@@ -1,0 +1,19 @@
+﻿@model IEnumerable<CostNag.Models.Cost>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+        </tr>
+        @foreach (var o in Model)
+        {
+            <tr>
+                <td>@o.item_spec</td>
+            </tr>
+        }
+    </table>
