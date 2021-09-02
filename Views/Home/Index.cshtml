@@ -4,16 +4,123 @@
     ViewData["Title"] = "Home Page";
 }
 
-    <table>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Department</th>
+    </tr>
+    @foreach (var o in Model)
+    {
         <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Department</th>
+            <td>@o.item_spec</td>
         </tr>
-        @foreach (var o in Model)
-        {
-            <tr>
-                <td>@o.item_spec</td>
-            </tr>
-        }
+    }
+</table>
+<form method="post" asp-action="Save" onsubmit="return jQueryAjaxPost(this);">
+    <input type="submit" class="btn btn-info w-180" value="Save" />
+
+
+    <input type="text" class="directInput" name="plant" id="plant" value="@ViewBag.plant" />
+    <input type="text" class="directInput" name="item_spec" id="item_spec" value="@ViewBag.plant" />
+    <input type="text" class="directInput" name="issue_date" id="issue_date" value="@ViewBag.plant" />
+    <input type="text" class="directInput" name="section" id="section" value="@ViewBag.plant" />
+    <input type="text" class="directInput" name="doc_no" id="doc_no" value="@ViewBag.plant" />
+    <input type="text" class="directInput" name="wr_no" id="wr_no" value="@ViewBag.plant" />
+    <input type="text" class="directInput" name="sales" id="sales" value="@ViewBag.plant" />
+    <input type="text" class="directInput" name="revision_no" id="revision_no" value="@ViewBag.plant" />
+    <input type="text" class="directInput" name="checked_date" id="checked_date" value="@ViewBag.plant" />
+    <input type="text" class="directInput" name="approved_by" id="approved_by" value="@ViewBag.plant" />
+
+    <br>
+    1. Object
+    <table class="table_estimate">
+        <tr>
+            <th>Customer</th>
+            <td colspan="3"><input type="text" class="directInput" name="customer" id="customer" value="@ViewBag.customer" /></td>
+        </tr>
+        <tr>
+            <th>Parts code</th>
+            <td><input type="text" class="directInput" name="parts_code" id="parts_code" value="@ViewBag.parts_code" /></td>
+            <th>Item: </th>
+            <td><input type="text" class="directInput" name="item" id="item" value="@ViewBag.item" /></td>
+        </tr>
+        <tr>
+            <th>Product</th>
+            <td><input type="text" class="directInput" name="product" id="product" value="@ViewBag.product" /></td>
+            <th>Product  Type: </th>
+            <td><input type="text" class="directInput" name="type" id="type" value="@ViewBag.type" /></td>
+        </tr>
+        <tr>
+            <th>Size(ID×OD×W)</th>
+            <td><input type="text" class="directInput" name="size" id="size" value="@ViewBag.size" /></td>
+        </tr>
     </table>
+    <table class="table_estimate">
+        <tr>
+            <th>Business Type</th>
+            <td colspan="3"><input type="text" class="directInput" name="business_type" id="business_type" value="@ViewBag.business_type" /></td>
+        </tr>
+        <tr>
+            <th>Quantity/month</th>
+            <td><input type="text" class="directInput" name="month_qty" id="month_qty" value="@ViewBag.month_qty" /></td>
+            <th>Exchange rate: JPY </th>
+            <td><input type="text" class="directInput" name="exchange_rate" id="exchange_rate" value="@ViewBag.exchange_rate" /></td>
+        </tr>
+        <tr>
+            <th>Target Price(Bht)</th>
+            <td><input type="text" class="directInput" name="target_price" id="target_price" value="@ViewBag.target_price" /></td>
+            <th>Target Price (Export) </th>
+            <td><input type="text" class="directInput" name="target_price_export" id="target_price_export" value="@ViewBag.target_price_export" /></td>
+        </tr>
+        <tr>
+            <th>Production Quantity/day</th>
+            <td colspan="3"><input type="text" class="calculateInput" name="quantity_day" id="quantity_day" value="@ViewBag.quantity_day" />pc/day, 3 Shifts</td>
+        </tr>
+        <tr>
+            <th>Working Day</th>
+            <td colspan="3"><input type="text" class="directInput" name="working_day" id="working_day" value="@ViewBag.working_day" />day/month</td>
+        </tr>
+    </table>
+    <br>
+    2. Calculation
+    <table class="table_estimate">
+        <tr>
+            <th rowspan="10" style="width:25px;word-wrap: break-word">Material</th>
+            <th rowspan="4" style="width:25px;word-wrap: break-word">Rubber</th>
+            <th rowspan="2" style="width:100px">Material name</th>
+            <th colspan="2" style="width:200px">DataBase Price</th>
+            <th rowspan="2" style="width:100px">price(kg)</th>
+            <th rowspan="2" style="width:100px">Mixing process cost</th>
+            <th colspan="2" style="width:200px">Weight</th>
+            <th rowspan="2" style="width:120px">Yield Rate (%)</th>
+            <th rowspan="2" style="width:100px">Weight (kg/pcs)</th>
+            <th rowspan="2" style="width:100px">SGD</th>
+            <th rowspan="2" style="width:120px">% of Target price</th>
+        </tr>
+        <tr>
+            <th>Current</th>
+            <th>New</th>
+            <th>g/pc</th>
+            <th>kg/pc</th>
+        </tr>
+        <tr>
+            <td><input type="text" class="directInput" name="rubber_material" id="rubber_material" value="@ViewBag.rubber_material" /></td>
+            <td><input type="text" class="directInput" name="rubber_price_current" id="rubber_price_current" value="@ViewBag.rubber_price_current" /></td>
+            <td><input type="text" class="directInput" name="rubber_price_new" id="rubber_price_new" value="@ViewBag.rubber_price_new" /></td>
+            <td><input type="text" class="calculateInput" name="rubber_price_kg" id="rubber_price_kg" value="@ViewBag.rubber_price_kg" /></td>
+            <td><input type="text" class="directInput" name="mixing_process_cost" id="mixing_process_cost" value="@ViewBag.mixing_process_cost" /></td>
+            <td><input type="text" class="directInput" name="rubber_weight_g" id="rubber_weight_g" value="@ViewBag.rubber_weight_g" /></td>
+            <td><input type="text" class="calculateInput" name="rubber_weight_kg" id="rubber_weight_kg" value="@ViewBag.rubber_weight_kg" /></td>
+            <td><input type="text" class="directInput" name="yield_rate" id="yield_rate" value="@ViewBag.yield_rate" />%</td>
+            <td><input type="text" class="calculateInput" name="rubber_weight_yield_rate" id="rubber_weight_yield_rate" value="@ViewBag.rubber_weight_yield_rate" /></td>
+            <td><input type="text" class="calculateInput" name="rubber_cost_sg" id="rubber_cost_sg" value="@ViewBag.rubber_cost_sg" /></td>
+            <td><input type="text" class="calculateInput" name="rubber_target_price" id="rubber_target_price" value="@ViewBag.rubber_target_price" />%</td>
+        </tr>
+        <tr>
+            <th colspan="11">Material Information</th>
+        </tr>
+    </table>
+
+
+</form>

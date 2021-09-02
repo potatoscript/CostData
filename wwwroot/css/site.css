@@ -12,6 +12,8 @@ a {
   color: #0366d6;
 }
 
+
+
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;
@@ -24,48 +26,189 @@ a {
   border-color: #1861ac;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+
+@-webkit-keyframes delay {
+    from {
+        background-color: red;
+    }
+
+    to {
+        background-color: inherit;
+    }
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+@-moz-keyframes delay {
+    from {
+        background-color: red;
+    }
+
+    to {
+        background-color: inherit;
+    }
 }
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+@-o-keyframes delay {
+    from {
+        background-color: red;
+    }
+
+    to {
+        background-color: inherit;
+    }
 }
 
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+@keyframes delay {
+    from {
+        background-color: red;
+    }
+
+    to {
+        background-color: inherit;
+    }
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
+.delay {
+    -webkit-animation: delay 1s infinite; /* Safari 4+ */
+    -moz-animation: delay 1s infinite; /* Fx 5+ */
+    -o-animation: delay 1s infinite; /* Opera 12+ */
+    animation: delay 1s infinite; /* IE 10+ */
+}
+
 html {
   position: relative;
   min-height: 100%;
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+body{
+    margin-left:5px;
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+
+.table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
 }
+.table th {
+    border: 1px solid black;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+    margin-left: 10px;
+    color: #000000;
+}
+.table td {
+    border:1px solid black;
+    font-size       : 15px;
+    font-weight     : normal;
+    text-align      : center;
+    padding         : 5px;
+    color           : #000000;
+}
+
+label,input{
+    text-align:center;
+    font-size:15px;
+}
+
+
+
+.directInput {
+    background: #fffd9c; 
+    border:0px solid grey;
+    width:100px;
+}
+.calculateInput {
+    background: #a9e285; 
+    border:0px solid grey;
+    width:100px;
+}
+.table_estimate {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 700px;
+    border: 1px solid black;
+    table-layout: fixed;
+}
+.table_estimate th{
+    font-size:15px;
+    width:150px;
+    padding-left:10px;
+    background : #efeded;
+    text-align:center;
+    border:1px solid black;
+}
+    .table_estimate td {
+        font-size: 15px;
+        text-align: center;
+        border: 1px solid black;
+    }
+
+
+#customer{
+    width:300px;
+}
+
+
+#table_ptr tr:first-child{
+    background: #abdce6;
+}
+/*operate*/
+#table_ptr tr:first-child + tr {
+    background: #d0ef9c;
+}
+/*non operate*/
+#table_ptr tr:nth-child(n+3):nth-child(-n+11) {
+    background-color: #FFFFCC;
+}
+/*irregular*/
+#table_ptr tr:nth-child(n+12):nth-child(-n+12) {
+    background-color: #efccff;
+}
+/*abnormal*/
+#table_ptr tr:nth-child(n+13):nth-child(-n+28) {
+    background-color: #ffcccc;
+}
+/*other*/
+#table_ptr tr:nth-child(n+29):nth-child(-n+36) {
+    background-color: #b9d0fe;
+}
+/*other*/
+#table_ptr tr:nth-child(n+37):nth-child(-n+37) {
+    background-color: #dbdbdb;
+}
+#table_ptr tr:last-child {
+    background: #abdce6;
+}
+
+
+#table_summary {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 98%;
+}
+
+    #table_summary th {
+        font-size: 15px;
+        background: #FFFFCC;
+        border: 1px solid black;
+    }
+
+#table_summary td {
+    font-size: 15px;
+    background:white;
+    border:1px solid black;
+    text-align:right;
+    padding-right:10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+

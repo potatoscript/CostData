@@ -9,6 +9,7 @@ using CostNag.Models;
 using CostNag.Helper;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace CostNag.Controllers
 {
@@ -35,6 +36,37 @@ namespace CostNag.Controllers
         {
             return View();
         }
+
+
+
+        public async Task<ActionResult<Cost>> Save(Cost model)
+        {
+
+            HttpClient client = _api.Initial();
+
+            var content = new StringContent(JsonConvert.SerializeObject(model),Encoding.UTF8, "application/json");
+
+            HttpResponseMessage res = await client.PostAsync("api/data/add-cost", content).ConfigureAwait(false);
+            res.EnsureSuccessStatusCode();
+            if (res.IsSuccessStatusCode)
+            {
+
+                var result = res.Content.ReadAsStringAsync().Result;
+
+                return Json(new
+                {
+                    isValid = true
+                });
+
+            }
+
+            return Json(new
+            {
+                isValid = false
+            });
+        }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
