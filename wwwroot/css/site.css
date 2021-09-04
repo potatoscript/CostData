@@ -148,63 +148,65 @@ label,input{
     width:300px;
 }
 
-
-#table_ptr tr:first-child{
-    background: #abdce6;
-}
-/*operate*/
-#table_ptr tr:first-child + tr {
-    background: #d0ef9c;
-}
-/*non operate*/
-#table_ptr tr:nth-child(n+3):nth-child(-n+11) {
-    background-color: #FFFFCC;
-}
-/*irregular*/
-#table_ptr tr:nth-child(n+12):nth-child(-n+12) {
-    background-color: #efccff;
-}
-/*abnormal*/
-#table_ptr tr:nth-child(n+13):nth-child(-n+28) {
-    background-color: #ffcccc;
-}
-/*other*/
-#table_ptr tr:nth-child(n+29):nth-child(-n+36) {
-    background-color: #b9d0fe;
-}
-/*other*/
-#table_ptr tr:nth-child(n+37):nth-child(-n+37) {
-    background-color: #dbdbdb;
-}
-#table_ptr tr:last-child {
-    background: #abdce6;
-}
-
-
-#table_summary {
+#table_approval {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 98%;
+    position:absolute;
+    top:80px;
+    left:900px;
 }
-
-    #table_summary th {
-        font-size: 15px;
-        background: #FFFFCC;
+    #table_approval th {
+        border:1px solid black;
+        width:150px;
+    }
+    #table_approval td {
         border: 1px solid black;
+        width: 110px;
     }
 
-#table_summary td {
-    font-size: 15px;
-    background:white;
-    border:1px solid black;
-    text-align:right;
-    padding-right:10px;
+#table_plant {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    position: absolute;
+    top: 90px;
+    left: 500px;
+}
+#table_plant td {
+    border: 1px solid black;
+    width: 120px;
+    font-size:25px;
+    text-align:center;
 }
 
+#table_parts_code {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 120px;
+    display:none;
+}
 
+    #table_parts_code th {
+        font-size: 15px;
+        background: #d2d2d2;
+        border: 1px solid black;
+        cursor:pointer;
+        text-align:center;
+    }
 
-
-
+    #table_parts_code td {
+        font-size: 15px;
+        background: white;
+        border: 1px solid black;
+        text-align: center;
+        padding-right: 10px;
+        cursor:pointer;
+    }
+    #table_parts_code tr:nth-child(odd) td {
+        background: #d1e8ff;
+    }
+    #table_parts_code tr:hover td {
+        background: #f7b491;
+    }
 
 
 

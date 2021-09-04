@@ -1,36 +1,91 @@
-﻿@model IEnumerable<CostNag.Models.Cost>
-
+﻿@*model IEnumerable<CostNag.Models.Cost>*@
+@model dynamic
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Department</th>
-    </tr>
-    @foreach (var o in Model)
-    {
+    <table id="table_parts_code">
         <tr>
-            <td>@o.item_spec</td>
+            <th>CLOSE</th>
         </tr>
-    }
-</table>
+        @{
+            foreach (var i in (List<ListModel>)ViewData["partscode"])
+            {
+                <tr>
+                    <td>@i.code</td>
+                    <td>@i.id</td>
+                </tr>
+            }
+         }
+     </table>
 <form method="post" asp-action="Save" onsubmit="return jQueryAjaxPost(this);">
     <input type="submit" class="btn btn-info w-180" value="Save" />
+    <input type="text" name="CostId" id="CostId" value="@ViewBag.CostId" />
 
+    <table id="table_plant">
+        <tr>
+            <td>
+                <select name="plant" class="form-control">
+                    <option value="-">Plant</option>
+                    @{
+                        foreach (var i in (List<SelectListItem>)ViewData["plant"])
+                        {
+                            <option value="@i.Value">@i.Text</option>
+                        }
 
-    <input type="text" class="directInput" name="plant" id="plant" value="@ViewBag.plant" />
-    <input type="text" class="directInput" name="item_spec" id="item_spec" value="@ViewBag.plant" />
-    <input type="text" class="directInput" name="issue_date" id="issue_date" value="@ViewBag.plant" />
-    <input type="text" class="directInput" name="section" id="section" value="@ViewBag.plant" />
-    <input type="text" class="directInput" name="doc_no" id="doc_no" value="@ViewBag.plant" />
-    <input type="text" class="directInput" name="wr_no" id="wr_no" value="@ViewBag.plant" />
-    <input type="text" class="directInput" name="sales" id="sales" value="@ViewBag.plant" />
-    <input type="text" class="directInput" name="revision_no" id="revision_no" value="@ViewBag.plant" />
-    <input type="text" class="directInput" name="checked_date" id="checked_date" value="@ViewBag.plant" />
-    <input type="text" class="directInput" name="approved_by" id="approved_by" value="@ViewBag.plant" />
+                    }
+                </select>
+            </td>
+            <td>
+                <select name="item_spec" class="form-control">
+                    <option value="-">Item Spec</option>
+                    @{
+                        foreach (var i in (List<SelectListItem>)ViewData["item_spec"])
+                        {
+                            <option value="@i.Value">@i.Text</option>
+                        }
+
+                    }
+                </select>
+            </td>
+        </tr>
+    </table>
+
+    <table id="table_approval">
+        <tr>
+            <th>Issue Date: </th>
+            <td><input type="text" class="directInput" name="issue_date" id="issue_date" value="@ViewBag.issue_date" /></td>
+        </tr>
+        <tr>
+            <th>Section: </th>
+            <td><input type="text" class="directInput" name="section" id="section" value="@ViewBag.section" /></td>
+        </tr>
+        <tr>
+            <th>Doc No: </th>
+            <td><input type="text" class="directInput" name="doc_no" id="doc_no" value="@ViewBag.doc_no" /></td>
+        </tr>
+        <tr>
+            <th>WR No: </th>
+            <td><input type="text" class="directInput" name="wr_no" id="wr_no" value="@ViewBag.wr_no" /></td>
+        </tr>
+        <tr>
+            <th>Sales: </th>
+            <td><input type="text" class="directInput" name="sales" id="sales" value="@ViewBag.sales" /></td>
+        </tr>
+        <tr>
+            <th>Revision no: </th>
+            <td><input type="text" class="directInput" name="revision_no" id="revision_no" value="@ViewBag.revision_no" /></td>
+        </tr>
+        <tr>
+            <th>Checked Date: </th>
+            <td><input type="text" class="directInput" name="checked_date" id="checked_date" value="@ViewBag.checked_date" /></td>
+        </tr>
+        <tr>
+            <th>Approved by: </th>
+            <td><input type="text" class="directInput" name="approved_by" id="approved_by" value="@ViewBag.approved_by" /></td>
+        </tr>
+    </table>
+
 
     <br>
     1. Object
@@ -41,7 +96,7 @@
         </tr>
         <tr>
             <th>Parts code</th>
-            <td><input type="text" class="directInput" name="parts_code" id="parts_code" value="@ViewBag.parts_code" /></td>
+            <td><input type="text" style="cursor:pointer" class="directInput" name="parts_code" id="parts_code" value="@ViewBag.parts_code" /></td>
             <th>Item: </th>
             <td><input type="text" class="directInput" name="item" id="item" value="@ViewBag.item" /></td>
         </tr>
@@ -49,7 +104,7 @@
             <th>Product</th>
             <td><input type="text" class="directInput" name="product" id="product" value="@ViewBag.product" /></td>
             <th>Product  Type: </th>
-            <td><input type="text" class="directInput" name="type" id="type" value="@ViewBag.type" /></td>
+            <td><input type="text" class="directInput" name="product_type" id="product_type" value="@ViewBag.product_type" /></td>
         </tr>
         <tr>
             <th>Size(ID×OD×W)</th>
@@ -63,23 +118,23 @@
         </tr>
         <tr>
             <th>Quantity/month</th>
-            <td><input type="text" class="directInput" name="month_qty" id="month_qty" value="@ViewBag.month_qty" /></td>
+            <td><input type="number" class="directInput production_qty" name="qty_month" id="qty_month" value="@ViewBag.qty_month" /></td>
             <th>Exchange rate: JPY </th>
-            <td><input type="text" class="directInput" name="exchange_rate" id="exchange_rate" value="@ViewBag.exchange_rate" /></td>
+            <td><input type="number" step="any" class="directInput" name="exchange_rate" id="exchange_rate" value="@ViewBag.exchange_rate" /></td>
         </tr>
         <tr>
             <th>Target Price(Bht)</th>
-            <td><input type="text" class="directInput" name="target_price" id="target_price" value="@ViewBag.target_price" /></td>
+            <td><input type="number" step="any" class="directInput" name="target_price_bht" id="target_price_bht" value="@ViewBag.target_price_bht" /></td>
             <th>Target Price (Export) </th>
-            <td><input type="text" class="directInput" name="target_price_export" id="target_price_export" value="@ViewBag.target_price_export" /></td>
+            <td><input type="number" step="any" class="directInput" name="target_price_export" id="target_price_export" value="@ViewBag.target_price_export" /></td>
         </tr>
         <tr>
             <th>Production Quantity/day</th>
-            <td colspan="3"><input type="text" class="calculateInput" name="quantity_day" id="quantity_day" value="@ViewBag.quantity_day" />pc/day, 3 Shifts</td>
+            <td colspan="3"><input type="number" class="calculateInput" name="production_qty_day" id="production_qty_day" value="@ViewBag.production_qty_day" />pc/day, 3 Shifts</td>
         </tr>
         <tr>
             <th>Working Day</th>
-            <td colspan="3"><input type="text" class="directInput" name="working_day" id="working_day" value="@ViewBag.working_day" />day/month</td>
+            <td colspan="3"><input type="number" class="directInput production_qty" name="working_day" id="working_day" value="@ViewBag.working_day" />day/month</td>
         </tr>
     </table>
     <br>
