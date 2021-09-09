@@ -141,7 +141,7 @@
     2. Calculation
     <table class="table_estimate">
         <tr>
-            <th rowspan="10" style="width:25px;word-wrap: break-word">Material</th>
+            <th rowspan="10" style="width:25px;word-wrap: break-word">M a t e r i a l</th>
             <th rowspan="4" style="width:25px;word-wrap: break-word">Rubber</th>
             <th rowspan="2" style="width:100px">Material name</th>
             <th colspan="2" style="width:200px">DataBase Price</th>
@@ -164,18 +164,145 @@
             <td><input type="text" class="directInput" name="rubber_database_price_current" id="rubber_database_price_current" value="@ViewBag.rubber_database_price_current" /></td>
             <td><input type="text" class="directInput" name="rubber_database_price_new" id="rubber_database_price_new" value="@ViewBag.rubber_database_price_new" /></td>
             <td><input type="text" class="calculateInput" name="rubber_price_kg" id="rubber_price_kg" value="@ViewBag.rubber_price_kg" /></td>
-            <td><input type="text" class="directInput" name="rubber_mixing_process_cost" id="mixing_process_cost" value="@ViewBag.rubber_mixing_process_cost" /></td>
+            <td><input type="text" class="directInput" name="rubber_mixing_process_cost" id="rubber_mixing_process_cost" value="@ViewBag.rubber_mixing_process_cost" /></td>
             <td><input type="text" class="directInput" name="rubber_weight_g" id="rubber_weight_g" value="@ViewBag.rubber_weight_g" /></td>
             <td><input type="text" class="calculateInput" name="rubber_weight_kg" id="rubber_weight_kg" value="@ViewBag.rubber_weight_kg" /></td>
-            <td><input type="text" class="directInput" name="yield_rate" id="yield_rate" value="@ViewBag.yield_rate" />%</td>
-            <td><input type="text" class="calculateInput" name="rubber_weight_yield_rate" id="rubber_weight_yield_rate" value="@ViewBag.rubber_weight_yield_rate" /></td>
-            <td><input type="text" class="calculateInput" name="rubber_cost_sg" id="rubber_cost_sg" value="@ViewBag.rubber_cost_sg" /></td>
-            <td><input type="text" class="calculateInput" name="rubber_target_price" id="rubber_target_price" value="@ViewBag.rubber_target_price" />%</td>
+            <td><input type="text" class="directInput" name="rubber_yield_rate" id="rubber_yield_rate" value="@ViewBag.rubber_yield_rate" /></td>
+            <td><input type="text" class="calculateInput" name="rubber_weight_kg_yieldrate" id="rubber_weight_kg_yieldrate" value="@ViewBag.rubber_weight_kg_yieldrate" /></td>
+            <td><input type="text" class="calculateInput" name="rubber_cost_sgd" id="rubber_cost_sgd" value="@ViewBag.rubber_cost_sgd" /></td>
+            <td><input type="text" class="calculateInput" name="rubber_percentage_target_price" id="rubber_percentage_target_price" value="@ViewBag.rubber_percentage_target_price" /></td>
         </tr>
         <tr>
             <th colspan="11">Material Information</th>
+        </tr>
+        <tr>
+            <th rowspan="3" style="width:25px;word-wrap: break-word">I n H o u s e</th>
+            <td colspan="3"><input type="text" class="directInput" name="material_inhouse_name_1" id="material_inhouse_name_1" value="@ViewBag.material_inhouse_name_1" /></td>
+            <td colspan="6"><input type="text" class="directInput" name="material_inhouse_info_1" id="material_inhouse_info_1" value="@ViewBag.material_inhouse_info_1" /></td>
+            <td><input type="text" class="calculateInput" name="material_inhouse_cost_sgd_1" id="material_inhouse_cost_sgd_1" value="@ViewBag.material_inhouse_cost_sgd_1" /></td>
+            <td><input type="text" class="calculateInput" name="material_inhouse_percentage_target_price_1" id="material_inhouse_percentage_target_price_1" value="@ViewBag.material_inhouse_percentage_target_price_1" /></td>
+        </tr>
+        <tr>
+            <td colspan="3"><input type="text" class="directInput" name="material_inhouse_name_2" id="material_inhouse_name_2" value="@ViewBag.material_inhouse_name_2" /></td>
+            <td colspan="6"><input type="text" class="directInput" name="material_inhouse_info_2" id="material_inhouse_info_2" value="@ViewBag.material_inhouse_info_2" /></td>
+            <td><input type="text" class="calculateInput" name="material_inhouse_cost_sgd_2" id="material_inhouse_cost_sgd_2" value="@ViewBag.material_inhouse_cost_sgd_2" /></td>
+            <td><input type="text" class="calculateInput" name="material_inhouse_percentage_target_price_2" id="material_inhouse_percentage_target_price_2" value="@ViewBag.material_inhouse_percentage_target_price_2" /></td>
+        </tr>
+        <tr>
+            <td colspan="3"><input type="text" class="directInput" name="material_inhouse_name_3" id="material_inhouse_name_3" value="@ViewBag.material_inhouse_name_3" /></td>
+            <td colspan="6"><input type="text" class="directInput" name="material_inhouse_info_3" id="material_inhouse_info_3" value="@ViewBag.material_inhouse_info_3" /></td>
+            <td><input type="text" class="calculateInput" name="material_inhouse_cost_sgd_3" id="material_inhouse_cost_sgd_3" value="@ViewBag.material_inhouse_cost_sgd_3" /></td>
+            <td><input type="text" class="calculateInput" name="material_inhouse_percentage_target_price_3" id="material_inhouse_percentage_target_price_3" value="@ViewBag.material_inhouse_percentage_target_price_3" /></td>
+        </tr>
+        <tr>
+            <th rowspan="3" style="width:25px;word-wrap: break-word">O u t s i d e</th>
+            <td colspan="3"><input type="text" class="directInput" name="material_outside_name_1" id="material_outside_name_1" value="@ViewBag.material_outside_name_1" /></td>
+            <td colspan="6"><input type="text" class="directInput" name="material_outside_info_1" id="material_outside_info_1" value="@ViewBag.material_outside_info_1" /></td>
+            <td><input type="text" class="calculateInput" name="material_outside_cost_sgd_1" id="material_outside_cost_sgd_1" value="@ViewBag.material_outside_cost_sgd_1" /></td>
+            <td><input type="text" class="calculateInput" name="material_outside_percentage_target_price_1" id="material_outside_percentage_target_price_1" value="@ViewBag.material_outside_percentage_target_price_1" /></td>
+        </tr>
+        <tr>
+            <td colspan="3"><input type="text" class="directInput" name="material_outside_name_2" id="material_outside_name_2" value="@ViewBag.material_outside_name_2" /></td>
+            <td colspan="6"><input type="text" class="directInput" name="material_outside_info_2" id="material_outside_info_2" value="@ViewBag.material_outside_info_2" /></td>
+            <td><input type="text" class="calculateInput" name="material_outside_cost_sgd_2" id="material_outside_cost_sgd_2" value="@ViewBag.material_outside_cost_sgd_2" /></td>
+            <td><input type="text" class="calculateInput" name="material_outside_percentage_target_price_2" id="material_outside_percentage_target_price_2" value="@ViewBag.material_outside_percentage_target_price_2" /></td>
+        </tr>
+        <tr>
+            <td colspan="3"><input type="text" class="directInput" name="material_outside_name_3" id="material_outside_name_3" value="@ViewBag.material_outside_name_3" /></td>
+            <td colspan="6"><input type="text" class="directInput" name="material_outside_info_3" id="material_outside_info_3" value="@ViewBag.material_outside_info_3" /></td>
+            <td><input type="text" class="calculateInput" name="material_outside_cost_sgd_3" id="material_outside_cost_sgd_3" value="@ViewBag.material_outside_cost_sgd_3" /></td>
+            <td><input type="text" class="calculateInput" name="material_outside_percentage_target_price_3" id="material_outside_percentage_target_price_3" value="@ViewBag.material_outside_percentage_target_price_3" /></td>
+        </tr>
+        <tr>
+            <td colspan="10" style="border-right:0px;text-align:left;padding-left:10px">Direct material cost</td>
+            <th style="border:0px;text-align:center;">A</th>
+            <td><input type="text" class="calculateInput" name="direct_material_cost" id="direct_material_cost" value="@ViewBag.direct_material_cost" /></td>
+            <td><input type="text" class="calculateInput" name="direct_material_cost_percentage" id="direct_material_cost_percentage" value="@ViewBag.direct_material_cost_percentage" /></td>
+        </tr>
+        <tr>
+            <td colspan="5" style="text-align:left;padding-left:10px">Sub Material</td>
+            <td><input type="text" class="directInput" name="sub_material_percentage" id="sub_material_percentage" value="@ViewBag.sub_material_percentage" /></td>
+            <td colspan="5" style="color:red;text-align:left;padding-left:10px">×　A</td>
+            <td><input type="text" class="calculateInput" name="sub_material_cost" id="sub_material_cost" value="@ViewBag.sub_material_cost" /></td>
+            <td><input type="text" class="calculateInput" name="sub_material_cost_percentage" id="sub_material_cost_percentage" value="@ViewBag.sub_material_cost_percentage" /></td>
+        </tr>
+        <tr>
+            <td colspan="6" style="text-align:left;padding-left:10px">Direct process cost</td>
+            <td colspan="4" style="text-align:left;padding-left:10px;border-right:0px">(Detail refer to Direct process cost sheets)</td>
+            <th style="border:0px;text-align:center;">B</th>
+            <td><input type="text" class="calculateInput" name="sub_material_cost" id="sub_material_cost" value="@ViewBag.direct_process_cost" /></td>
+            <td><input type="text" class="calculateInput" name="sub_material_cost_percentage" id="sub_material_cost_percentage" value="@ViewBag.direct_process_cost_percentage" /></td>
+        </tr>
+        <tr>
+            <td colspan="6" style="text-align:left;padding-left:10px">Total direct cost</td>
+            <td colspan="4" style="text-align:left;padding-left:10px;border-right:0px">(　A　+　B　)</td>
+            <th style="border:0px;text-align:center;">C</th>
+            <td><input type="text" class="calculateInput" name="total_direct_cost" id="total_direct_cost" value="@ViewBag.total_direct_cost" /></td>
+            <td><input type="text" class="calculateInput" name="total_direct_cost_percentage" id="total_direct_cost_percentage" value="@ViewBag.total_direct_cost_percentage" /></td>
+        </tr>
+        <tr>
+            <td colspan="5" style="text-align:left;padding-left:10px">Defective</td>
+            <td><input type="text" class="directInput" name="defective_percentage" id="defective_percentage" value="@ViewBag.defective_percentage" /></td>
+            <td colspan="3" style="color:red;text-align:left;padding-left:10px">×　C</td>
+            <td style="border-left:0px;text-align:center;">=</td>
+            <th style="border:0px;text-align:center;">D</th>
+            <td><input type="text" class="calculateInput" name="defective_cost" id="defective_cost" value="@ViewBag.defective_cost" /></td>
+            <td><input type="text" class="calculateInput" name="defective_cost_percentage" id="defective_cost_percentage" value="@ViewBag.defective_cost_percentage" /></td>
+        </tr>
+        <tr>
+            <td colspan="5" style="text-align:left;padding-left:10px">Indirect Cost</td>
+            <td><input type="text" class="directInput" name="indirect_percentage" id="indirect_percentage" value="@ViewBag.indirect_percentage" /></td>
+            <td colspan="3" style="color:red;text-align:left;padding-left:10px">×　(C + D)</td>
+            <td style="border-left:0px;text-align:center;">=</td>
+            <th style="border:0px;text-align:center;">E</th>
+            <td><input type="text" class="calculateInput" name="indirect_cost" id="indirect_cost" value="@ViewBag.indirect_cost" /></td>
+            <td><input type="text" class="calculateInput" name="indirect_cost_percentage" id="indirect_cost_percentage" value="@ViewBag.indirect_cost_percentage" /></td>
+        </tr>
+        <tr>
+            <td colspan="5" style="text-align:left;padding-left:10px">Packing Materials</td>
+            <td><input type="text" class="directInput" name="packing_material_percentage" id="packing_material_percentage" value="@ViewBag.packing_material_percentage" /></td>
+            <td colspan="3" style="color:red;text-align:left;padding-left:10px">×　A</td>
+            <td colspan="2" style="backgound-color:yellow;text-align:center;">Special package costs/pc(if any)</td>
+            <td><input type="text" class="calculateInput" name="packing_material_cost" id="packing_material_cost" value="@ViewBag.packing_material_cost" /></td>
+            <td><input type="text" class="calculateInput" name="packing_material_cost_percentage" id="packing_material_cost_percentage" value="@ViewBag.packing_material_cost_percentage" /></td>
+        </tr>
+        <tr>
+            <td colspan="5" style="text-align:left;padding-left:10px">Administration</td>
+            <td><input type="text" class="directInput" name="administration_percentage" id="administration_percentage" value="@ViewBag.administration_percentage" /></td>
+            <td colspan="3" style="color:black;text-align:left;padding-left:10px">×　(C + D + E)</td>
+            <td style="border-left:0px;text-align:center;">=</td>
+            <th style="border:0px;text-align:center;">F</th>
+            <td><input type="text" class="calculateInput" name="administration_cost" id="administration_cost" value="@ViewBag.administration_cost" /></td>
+            <td><input type="text" class="calculateInput" name="administration_cost_percentage" id="administration_cost_percentage" value="@ViewBag.administration_cost_percentage" /></td>
+        </tr>
+        <tr>
+            <td colspan="5" style="color:red;text-align:left;padding-left:10px">Plant Retail Cost</td>
+            <td><input type="text" class="directInput" name="plant_retail_percentage" id="plant_retail_percentage" value="@ViewBag.plant_retail_percentage" /></td>
+            <td colspan="5" style="color:red;text-align:left;padding-left:10px">×　A</td>
+            <td><input type="text" class="calculateInput" name="plant_retail_cost" id="plant_retail_cost" value="@ViewBag.plant_retail_cost" /></td>
+            <td><input type="text" class="calculateInput" name="plant_retail_cost_percentage" id="plant_retail_cost_percentage" value="@ViewBag.plant_retail_cost_percentage" /></td>
         </tr>
     </table>
 
 
 </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -115,12 +115,12 @@ label,input{
 .directInput {
     background: #fffd9c; 
     border:0px solid grey;
-    width:100px;
+    width:98%;
 }
 .calculateInput {
-    background: #a9e285; 
-    border:0px solid grey;
-    width:100px;
+    background: #a9e285;
+    border: 0px solid grey;
+    width: 98%;
 }
 .table_estimate {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;

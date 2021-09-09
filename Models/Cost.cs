@@ -80,6 +80,10 @@ namespace CostNag.Models
         [Column(TypeName = "integer")]
         public double working_day { get; set; }
 
+        /// <summary>
+        /// rubber material
+        /// </summary>
+
         [Column(TypeName = "character varying(10)")]
         public string rubber_material_name { get; set; }
 
