@@ -1,5 +1,5 @@
-﻿var _url = "/";          //if your app upload outside Default Web site - for my pc
-//var _url = "/nabsystem/";  //if your app upload under Default Web site - for company
+﻿//var _url = "/";          //if your app upload outside Default Web site - for my pc
+var _url = "/costnag/";  //if your app upload under Default Web site - for company
 
 jQuery(document).ready(function () {
     jQuery("#checked_date,#issue_date")

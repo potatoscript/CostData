@@ -30,7 +30,7 @@ label,input{
 .table th{
     font-size:15px;
     width:150px;
-    height:20px;
+    height:25px;
     padding:0px;
     padding-left:10px;
     background : #efeded;
@@ -40,7 +40,7 @@ label,input{
     .table td {
         padding: 0px;
         font-size: 15px;
-        height: 20px;
+        height: 25px;
         text-align: center;
         border: 1px solid black;
     }

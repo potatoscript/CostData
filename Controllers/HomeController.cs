@@ -269,24 +269,29 @@ namespace CostNag.Controllers
 
             List<Cost> cost = new List<Cost>();
             HttpClient client = _api.Initial();
-            HttpResponseMessage res = await client.GetAsync("api/data/get-all-costs");
-            if (res.IsSuccessStatusCode)
+            try
             {
-                var result = res.Content.ReadAsStringAsync().Result;
-                cost = JsonConvert.DeserializeObject<List<Cost>>(result);
-                foreach (var o in cost)
+                HttpResponseMessage res = await client.GetAsync("api/data/get-all-costs");
+                if (res.IsSuccessStatusCode)
                 {
-                    list.partscode.Add(new ListModel
+                    var result = res.Content.ReadAsStringAsync().Result;
+                    cost = JsonConvert.DeserializeObject<List<Cost>>(result);
+                    foreach (var o in cost)
                     {
-                        code = o.parts_code,
-                        id = o.CostId.ToString()
+                        list.partscode.Add(new ListModel
+                        {
+                            code = o.parts_code,
+                            id = o.CostId.ToString()
 
-                    });
+                        });
+                    }
+
                 }
                 
             }
-            List<ListModel> model = list.partscode.ToList();
+            catch(Exception e) { }
 
+            List<ListModel> model = list.partscode.ToList();
             ViewData["partscode"] = model;
 
             dynamic mymodel = new ExpandoObject();
