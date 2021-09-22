@@ -11,8 +11,8 @@ namespace CostNag.Helper
         public HttpClient Initial()
         {
             var Client = new HttpClient();
-            //Client.BaseAddress = new Uri("http://localhost:58810");//for my pc
-            Client.BaseAddress = new Uri("http://localhost/costnagapi/");//for nab server
+            Client.BaseAddress = new Uri("http://localhost:58810");//for my pc
+            //Client.BaseAddress = new Uri("http://localhost/costnagapi/");//for nab server
             return Client;
         }
     }
