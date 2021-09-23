@@ -123,6 +123,7 @@ namespace CostNag.Controllers
             ViewBag.indirect_cost = 0;
             ViewBag.indirect_cost_percentage = 0;
             ViewBag.packing_material_percentage = 0;
+            ViewBag.special_package_cost = 0;
             ViewBag.packing_material_cost = 0;
             ViewBag.packing_material_cost_percentage = 0;
             ViewBag.administration_percentage = 0;
@@ -466,6 +467,7 @@ namespace CostNag.Controllers
                 ViewBag.indirect_cost = costdata.indirect_cost;
                 ViewBag.indirect_cost_percentage = costdata.indirect_cost_percentage;
                 ViewBag.packing_material_percentage = costdata.packing_material_percentage;
+                ViewBag.special_package_cost = costdata.special_package_cost;
                 ViewBag.packing_material_cost = costdata.packing_material_cost;
                 ViewBag.packing_material_cost_percentage = costdata.packing_material_cost_percentage;
                 ViewBag.administration_percentage = costdata.administration_percentage;

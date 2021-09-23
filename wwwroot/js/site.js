@@ -41,9 +41,13 @@ jQuery(document).ready(function () {
     }
 
 
-    for (var s = document.getElementsByClassName("rubber"), t = 0; t < s.length; t++) {
+    for (var s = document.getElementsByClassName("material"), t = 0; t < s.length; t++) {
 
         s[t].onkeyup = function () {
+            
+           
+
+            //rubber
             var rubber_database_price_new = parseFloat(document.getElementById("rubber_database_price_new").value);
             var rubber_mixing_process_cost = parseFloat(document.getElementById("rubber_mixing_process_cost").value);
             var rubber_weight_g = parseFloat(document.getElementById("rubber_weight_g").value);
@@ -59,18 +63,8 @@ jQuery(document).ready(function () {
 
             document.getElementById("rubber_cost_sgd").value = ((rubber_price_kg + rubber_mixing_process_cost) * rubber_weight_kg_yieldrate).toFixed(4);
             var rubber_cost_sgd = parseFloat(document.getElementById("rubber_cost_sgd").value);
-            var target_price_bht = parseFloat(document.getElementById("target_price_bht").value);
 
-            document.getElementById("rubber_percentage_target_price").value = (rubber_cost_sgd / target_price_bht * 100).toFixed(0);
-        };
-    }
-
-    for (var s = document.getElementsByClassName("material"), t = 0; t < s.length; t++) {
-
-        s[t].onkeyup = function () {
-
-            var target_price_sgd = parseFloat(document.getElementById("target_price_bht").value);
-
+            //material
             var material_inhouse_value_1 = parseFloat(document.getElementById("material_inhouse_value_1").value);
             var material_inhouse_value_1b = parseFloat(document.getElementById("material_inhouse_value_1b").value);
             var material_inhouse_value_2 = parseFloat(document.getElementById("material_inhouse_value_2").value);
@@ -82,25 +76,144 @@ jQuery(document).ready(function () {
             document.getElementById("material_inhouse_cost_sgd_2").value = ((material_inhouse_value_2 / 1000) * material_inhouse_value_2b).toFixed(4);
             document.getElementById("material_inhouse_cost_sgd_3").value = ((material_inhouse_value_3 / 1000) * material_inhouse_value_3b).toFixed(4);
 
-            document.getElementById("material_inhouse_percentage_target_price_1").value = ((parseFloat(document.getElementById("material_inhouse_cost_sgd_1").value) / target_price_sgd) * 100).toFixed(1);
-            document.getElementById("material_inhouse_percentage_target_price_2").value = ((parseFloat(document.getElementById("material_inhouse_cost_sgd_2").value) / target_price_sgd) * 100).toFixed(1);
-            document.getElementById("material_inhouse_percentage_target_price_3").value = ((parseFloat(document.getElementById("material_inhouse_cost_sgd_3").value) / target_price_sgd) * 100).toFixed(1);
+            
 
 
             var material_outside_value_1 = parseFloat(document.getElementById("material_outside_value_1").value);
             var material_outside_value_1b = parseFloat(document.getElementById("material_outside_value_1b").value);
             var material_outside_value_2 = parseFloat(document.getElementById("material_outside_value_2").value);
             var material_outside_value_2b = parseFloat(document.getElementById("material_outside_value_2b").value);
-            var material_outside_value_3 = parseFloat(document.getElementById("material_outsdie_value_3").value);
+            var material_outside_value_3 = parseFloat(document.getElementById("material_outside_value_3").value);
             var material_outside_value_3b = parseFloat(document.getElementById("material_outside_value_3b").value);
 
             document.getElementById("material_outside_cost_sgd_1").value = ((material_outside_value_1 / 1000) * material_outside_value_1b).toFixed(4);
             document.getElementById("material_outside_cost_sgd_2").value = ((material_outside_value_2 / 1000) * material_outside_value_2b).toFixed(4);
             document.getElementById("material_outside_cost_sgd_3").value = ((material_outside_value_3 / 1000) * material_outside_value_3b).toFixed(4);
 
+            
+
+            var direct_material_cost =
+                parseFloat(document.getElementById("rubber_cost_sgd").value) +
+                parseFloat(document.getElementById("material_inhouse_cost_sgd_1").value) +
+                parseFloat(document.getElementById("material_inhouse_cost_sgd_2").value) +
+                parseFloat(document.getElementById("material_inhouse_cost_sgd_3").value) +
+                parseFloat(document.getElementById("material_outside_cost_sgd_1").value) +
+                parseFloat(document.getElementById("material_outside_cost_sgd_2").value) +
+                parseFloat(document.getElementById("material_outside_cost_sgd_3").value);
+
+            document.getElementById("direct_material_cost").value = direct_material_cost;
+            
+
+            var sub_material_percentage = parseFloat(document.getElementById("sub_material_percentage").value);
+            document.getElementById("sub_material_cost").value = (direct_material_cost * sub_material_percentage/100).toFixed(4);
+            
+
+            var direct_process_cost = parseFloat(document.getElementById("direct_process_cost").value);
+            
+
+            document.getElementById("total_direct_cost").value = (direct_material_cost +
+                direct_material_cost * sub_material_percentage / 100 +
+                direct_process_cost).toFixed(4);
+            
+
+            //Defective
+            var defective_percentage = parseFloat(document.getElementById("defective_percentage").value);
+            document.getElementById("defective_cost").value = (parseFloat(document.getElementById("total_direct_cost").value) * defective_percentage/100).toFixed(4);
+            
+
+            //Indirect cost
+            var indirect_percentage = parseFloat(document.getElementById("indirect_percentage").value);
+            document.getElementById("indirect_cost").value = ((
+                parseFloat(document.getElementById("total_direct_cost").value) +
+                parseFloat(document.getElementById("defective_cost").value)
+            ) * indirect_percentage / 100).toFixed(4);
+            
+
+            //packing
+            var packing_material_percentage = parseFloat(document.getElementById("packing_material_percentage").value);
+            var special_package_cost = parseFloat(document.getElementById("special_package_cost").value);
+            document.getElementById("packing_material_cost").value = (((
+                parseFloat(document.getElementById("direct_material_cost").value) 
+            ) * packing_material_percentage / 100 )+ special_package_cost).toFixed(4);
+            
+
+            //Administration
+            var administration_percentage = parseFloat(document.getElementById("administration_percentage").value);
+            document.getElementById("administration_cost").value = ((
+                parseFloat(document.getElementById("total_direct_cost").value) +
+                parseFloat(document.getElementById("defective_cost").value) +
+                parseFloat(document.getElementById("indirect_cost").value)
+            ) * administration_percentage / 100).toFixed(4);
+            
+
+            //Tooling Maintenance was plant_retail_percentage
+            var plant_retail_percentage = parseFloat(document.getElementById("plant_retail_percentage").value);
+            document.getElementById("plant_retail_cost").value = ((
+                parseFloat(document.getElementById("total_direct_cost").value) +
+                parseFloat(document.getElementById("defective_cost").value) +
+                parseFloat(document.getElementById("indirect_cost").value) +
+                parseFloat(document.getElementById("packing_material_cost").value) +
+                parseFloat(document.getElementById("administration_cost").value)
+            ) * plant_retail_percentage / 100).toFixed(4);
+            
+
+            //Tool Mold and Jig
+            var moldjig_percentage = parseFloat(document.getElementById("moldjig_percentage").value);
+            document.getElementById("moldjig_cost").value =
+                (moldjig_percentage / 24 / parseFloat(document.getElementById("qty_month").value)).toFixed(4);
+            
+
+            //Tool Die
+            var die_percentage = parseFloat(document.getElementById("die_percentage").value);
+            document.getElementById("die_cost").value =
+                (die_percentage / 24 / parseFloat(document.getElementById("qty_month").value)).toFixed(4);
+            
+
+            //Incuded toling cost
+            document.getElementById("net_included_tooling_cost").value =
+                parseFloat(document.getElementById("total_direct_cost").value) +
+                parseFloat(document.getElementById("defective_cost").value) +
+                parseFloat(document.getElementById("indirect_cost").value) +
+                parseFloat(document.getElementById("packing_material_cost").value) +
+                parseFloat(document.getElementById("administration_cost").value) +
+                parseFloat(document.getElementById("plant_retail_cost").value) +
+                parseFloat(document.getElementById("moldjig_cost").value) +
+                parseFloat(document.getElementById("die_cost").value);
+            
+
+            //Exclude toling cost
+            document.getElementById("net_exclude_tooling_cost").value = 
+                parseFloat(document.getElementById("net_included_tooling_cost").value) -
+                parseFloat(document.getElementById("moldjig_cost").value) -
+                parseFloat(document.getElementById("die_cost").value);
+
+
+            //calculate the target price(SGD)
+            document.getElementById("target_price_bht").value = (parseFloat(document.getElementById("net_exclude_tooling_cost").value) * 1.2).toFixed(4);
+
+            var target_price_sgd = parseFloat(document.getElementById("target_price_bht").value);
+
+            document.getElementById("rubber_percentage_target_price").value = (rubber_cost_sgd / target_price_sgd * 100).toFixed(0);
+            document.getElementById("material_inhouse_percentage_target_price_1").value = ((parseFloat(document.getElementById("material_inhouse_cost_sgd_1").value) / target_price_sgd) * 100).toFixed(1);
+            document.getElementById("material_inhouse_percentage_target_price_2").value = ((parseFloat(document.getElementById("material_inhouse_cost_sgd_2").value) / target_price_sgd) * 100).toFixed(1);
+            document.getElementById("material_inhouse_percentage_target_price_3").value = ((parseFloat(document.getElementById("material_inhouse_cost_sgd_3").value) / target_price_sgd) * 100).toFixed(1);
             document.getElementById("material_outside_percentage_target_price_1").value = ((parseFloat(document.getElementById("material_outside_cost_sgd_1").value) / target_price_sgd) * 100).toFixed(1);
             document.getElementById("material_outside_percentage_target_price_2").value = ((parseFloat(document.getElementById("material_outside_cost_sgd_2").value) / target_price_sgd) * 100).toFixed(1);
             document.getElementById("material_outside_percentage_target_price_3").value = ((parseFloat(document.getElementById("material_outside_cost_sgd_3").value) / target_price_sgd) * 100).toFixed(1);
+            document.getElementById("direct_material_cost_percentage").value = ((direct_material_cost / target_price_sgd) * 100).toFixed(2);
+            document.getElementById("sub_material_cost_percentage").value = (((direct_material_cost * sub_material_percentage / 100) / target_price_sgd) * 100).toFixed(2);
+            document.getElementById("direct_process_cost_percentage").value = ((direct_process_cost / target_price_sgd) * 100).toFixed(2);
+            document.getElementById("total_direct_cost_percentage").value =
+                ((parseFloat(document.getElementById("total_direct_cost").value) / target_price_sgd) * 100).toFixed(2);
+            document.getElementById("defective_cost_percentage").value = ((parseFloat(document.getElementById("defective_cost").value) / target_price_sgd) * 100).toFixed(2);
+            document.getElementById("indirect_cost_percentage").value = ((parseFloat(document.getElementById("indirect_cost").value) / target_price_sgd) * 100).toFixed(2);
+            document.getElementById("packing_material_cost_percentage").value = ((parseFloat(document.getElementById("packing_material_cost").value) / target_price_sgd) * 100).toFixed(2);
+            document.getElementById("administration_cost_percentage").value = ((parseFloat(document.getElementById("administration_cost").value) / target_price_sgd) * 100).toFixed(2);
+            document.getElementById("plant_retail_cost_percentage").value = ((parseFloat(document.getElementById("plant_retail_cost").value) / target_price_sgd) * 100).toFixed(2);
+            document.getElementById("moldjig_cost_percentage").value = ((parseFloat(document.getElementById("moldjig_cost").value) / target_price_sgd) * 100).toFixed(2);
+            document.getElementById("die_cost_percentage").value = ((parseFloat(document.getElementById("die_cost").value) / target_price_sgd) * 100).toFixed(2);
+            document.getElementById("net_included_tooling_cost_percentage").value = ((parseFloat(document.getElementById("net_included_tooling_cost").value) / target_price_sgd) * 100).toFixed(2);
+            document.getElementById("net_exclude_tooling_cost_percentage").value = ((parseFloat(document.getElementById("net_exclude_tooling_cost").value) / target_price_sgd) * 100).toFixed(2);
 
 
         };
