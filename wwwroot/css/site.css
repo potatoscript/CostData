@@ -45,17 +45,30 @@ label,input{
         border: 1px solid black;
     }
 
+#CostId{
+ border:0px;
+ height:5px;
+ font-size:8px;
+}
 
-#customer{
-    width:300px;
+#customer {
+    width: 300px;
+}
+
+#div_body{
+    overflow:auto;
+}
+
+#search_code{
+    width:80px;
+    height:35px;
+    font-size:16px;
+    border-radius:7px;
 }
 
 #table_approval {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    position:absolute;
-    top:80px;
-    left:900px;
 }
     #table_approval th {
         border:1px solid black;
@@ -113,7 +126,40 @@ label,input{
     }
 
 
+#table_process {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+}
 
+    #table_process th {
+        border: 1px solid black;
+        width: 150px;
+        padding-left: 5px;
+    }
+
+    #table_process td {
+        border: 1px solid black;
+        width: 110px;
+        padding-left: 5px;
+    }
+
+
+    #table_summary th {
+        font-size: 18px;
+        background: #FFFFFF;
+        border: 1px solid black;
+        text-align: left;
+        padding-left:5px;
+    }
+
+#table_summary td {
+    font-size: 18px;
+    background: white;
+    border: 1px solid black;
+    text-align: left;
+    padding-right: 10px;
+    padding-left: 5px;
+}
 
 
 

@@ -11,6 +11,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.Text;
 using System.Dynamic;
+using Process = CostNag.Models.Process;
 
 namespace CostNag.Controllers
 {
@@ -33,6 +34,7 @@ namespace CostNag.Controllers
             ViewBag.revision_no = "-";
             ViewBag.checked_date = "-";
             ViewBag.approved_by = "-";
+            ViewBag.expired_by = "-";
             ViewBag.customer = "-";
             ViewBag.parts_code = "-";
             ViewBag.item = "-";
@@ -41,7 +43,7 @@ namespace CostNag.Controllers
             ViewBag.size = "-";
             ViewBag.business_type = "-";
             ViewBag.qty_month = 0;
-            ViewBag.exchange_rate = 1;
+            ViewBag.exchange_rate = 0;
             ViewBag.target_price_bht = 0.0;
             ViewBag.target_price_export = 0.0;
             ViewBag.production_qty_day = 0;
@@ -377,6 +379,7 @@ namespace CostNag.Controllers
                 ViewBag.revision_no = costdata.revision_no;
                 ViewBag.checked_date = costdata.checked_date;
                 ViewBag.approved_by = costdata.approved_by;
+                ViewBag.expired_by = costdata.expired_by;
                 ViewBag.customer = costdata.customer;
                 ViewBag.parts_code = costdata.parts_code;
                 ViewBag.item = costdata.item;
@@ -494,8 +497,8 @@ namespace CostNag.Controllers
                 ViewBag.tooling_list_qty_1 = costdata.tooling_list_qty_1;
                 ViewBag.tooling_list_unit_1 = costdata.tooling_list_unit_1;
                 ViewBag.tooling_list_price_1 = costdata.tooling_list_price_1;
-                ViewBag.tooling_list_amount_jpy_1 = costdata.tooling_list_amount_jpy_1;
-                ViewBag.tooling_list_amount_usd_1 = costdata.tooling_list_amount_usd_1;
+                ViewBag.tooling_list_amount_jpy_1 = costdata.tooling_list_amount_jpy_1.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_1 = costdata.tooling_list_amount_usd_1.ToString("#,##0"); 
 
                 ViewBag.tooling_list_description_2 = costdata.tooling_list_description_2;
                 ViewBag.tooling_list_type_2 = costdata.tooling_list_type_2;
@@ -503,8 +506,8 @@ namespace CostNag.Controllers
                 ViewBag.tooling_list_qty_2 = costdata.tooling_list_qty_2;
                 ViewBag.tooling_list_unit_2 = costdata.tooling_list_unit_2;
                 ViewBag.tooling_list_price_2 = costdata.tooling_list_price_2;
-                ViewBag.tooling_list_amount_jpy_2 = costdata.tooling_list_amount_jpy_2;
-                ViewBag.tooling_list_amount_usd_2 = costdata.tooling_list_amount_usd_2;
+                ViewBag.tooling_list_amount_jpy_2 = costdata.tooling_list_amount_jpy_2.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_2 = costdata.tooling_list_amount_usd_2.ToString("#,##0");
 
                 ViewBag.tooling_list_description_3 = costdata.tooling_list_description_3;
                 ViewBag.tooling_list_type_3 = costdata.tooling_list_type_3;
@@ -512,8 +515,8 @@ namespace CostNag.Controllers
                 ViewBag.tooling_list_qty_3 = costdata.tooling_list_qty_3;
                 ViewBag.tooling_list_unit_3 = costdata.tooling_list_unit_3;
                 ViewBag.tooling_list_price_3 = costdata.tooling_list_price_3;
-                ViewBag.tooling_list_amount_jpy_3 = costdata.tooling_list_amount_jpy_3;
-                ViewBag.tooling_list_amount_usd_3 = costdata.tooling_list_amount_usd_3;
+                ViewBag.tooling_list_amount_jpy_3 = costdata.tooling_list_amount_jpy_3.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_3 = costdata.tooling_list_amount_usd_3.ToString("#,##0");
 
                 ViewBag.tooling_list_description_4 = costdata.tooling_list_description_4;
                 ViewBag.tooling_list_type_4 = costdata.tooling_list_type_4;
@@ -521,8 +524,8 @@ namespace CostNag.Controllers
                 ViewBag.tooling_list_qty_4 = costdata.tooling_list_qty_4;
                 ViewBag.tooling_list_unit_4 = costdata.tooling_list_unit_4;
                 ViewBag.tooling_list_price_4 = costdata.tooling_list_price_4;
-                ViewBag.tooling_list_amount_jpy_4 = costdata.tooling_list_amount_jpy_4;
-                ViewBag.tooling_list_amount_usd_4 = costdata.tooling_list_amount_usd_4;
+                ViewBag.tooling_list_amount_jpy_4 = costdata.tooling_list_amount_jpy_4.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_4 = costdata.tooling_list_amount_usd_4.ToString("#,##0");
 
                 ViewBag.tooling_list_description_5 = costdata.tooling_list_description_5;
                 ViewBag.tooling_list_type_5 = costdata.tooling_list_type_5;
@@ -530,8 +533,8 @@ namespace CostNag.Controllers
                 ViewBag.tooling_list_qty_5 = costdata.tooling_list_qty_5;
                 ViewBag.tooling_list_unit_5 = costdata.tooling_list_unit_5;
                 ViewBag.tooling_list_price_5 = costdata.tooling_list_price_5;
-                ViewBag.tooling_list_amount_jpy_5 = costdata.tooling_list_amount_jpy_5;
-                ViewBag.tooling_list_amount_usd_5 = costdata.tooling_list_amount_usd_5;
+                ViewBag.tooling_list_amount_jpy_5 = costdata.tooling_list_amount_jpy_5.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_5 = costdata.tooling_list_amount_usd_5.ToString("#,##0");
 
                 ViewBag.tooling_list_description_6 = costdata.tooling_list_description_6;
                 ViewBag.tooling_list_type_6 = costdata.tooling_list_type_6;
@@ -539,8 +542,8 @@ namespace CostNag.Controllers
                 ViewBag.tooling_list_qty_6 = costdata.tooling_list_qty_6;
                 ViewBag.tooling_list_unit_6 = costdata.tooling_list_unit_6;
                 ViewBag.tooling_list_price_6 = costdata.tooling_list_price_6;
-                ViewBag.tooling_list_amount_jpy_6 = costdata.tooling_list_amount_jpy_6;
-                ViewBag.tooling_list_amount_usd_6 = costdata.tooling_list_amount_usd_6;
+                ViewBag.tooling_list_amount_jpy_6 = costdata.tooling_list_amount_jpy_6.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_6 = costdata.tooling_list_amount_usd_6.ToString("#,##0");
 
                 ViewBag.tooling_list_description_7 = costdata.tooling_list_description_7;
                 ViewBag.tooling_list_type_7 = costdata.tooling_list_type_7;
@@ -548,8 +551,8 @@ namespace CostNag.Controllers
                 ViewBag.tooling_list_qty_7 = costdata.tooling_list_qty_7;
                 ViewBag.tooling_list_unit_7 = costdata.tooling_list_unit_7;
                 ViewBag.tooling_list_price_7 = costdata.tooling_list_price_7;
-                ViewBag.tooling_list_amount_jpy_7 = costdata.tooling_list_amount_jpy_7;
-                ViewBag.tooling_list_amount_usd_7 = costdata.tooling_list_amount_usd_7;
+                ViewBag.tooling_list_amount_jpy_7 = costdata.tooling_list_amount_jpy_7.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_7 = costdata.tooling_list_amount_usd_7.ToString("#,##0");
 
                 ViewBag.tooling_list_description_8 = costdata.tooling_list_description_8;
                 ViewBag.tooling_list_type_8 = costdata.tooling_list_type_8;
@@ -557,8 +560,8 @@ namespace CostNag.Controllers
                 ViewBag.tooling_list_qty_8 = costdata.tooling_list_qty_8;
                 ViewBag.tooling_list_unit_8 = costdata.tooling_list_unit_8;
                 ViewBag.tooling_list_price_8 = costdata.tooling_list_price_8;
-                ViewBag.tooling_list_amount_jpy_8 = costdata.tooling_list_amount_jpy_8;
-                ViewBag.tooling_list_amount_usd_8 = costdata.tooling_list_amount_usd_8;
+                ViewBag.tooling_list_amount_jpy_8 = costdata.tooling_list_amount_jpy_8.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_8 = costdata.tooling_list_amount_usd_8.ToString("#,##0");
 
                 ViewBag.tooling_list_description_9 = costdata.tooling_list_description_9;
                 ViewBag.tooling_list_type_9 = costdata.tooling_list_type_9;
@@ -566,8 +569,8 @@ namespace CostNag.Controllers
                 ViewBag.tooling_list_qty_9 = costdata.tooling_list_qty_9;
                 ViewBag.tooling_list_unit_9 = costdata.tooling_list_unit_9;
                 ViewBag.tooling_list_price_9 = costdata.tooling_list_price_9;
-                ViewBag.tooling_list_amount_jpy_9 = costdata.tooling_list_amount_jpy_9;
-                ViewBag.tooling_list_amount_usd_9 = costdata.tooling_list_amount_usd_9;
+                ViewBag.tooling_list_amount_jpy_9 = costdata.tooling_list_amount_jpy_9.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_9 = costdata.tooling_list_amount_usd_9.ToString("#,##0");
 
                 ViewBag.tooling_list_description_10 = costdata.tooling_list_description_10;
                 ViewBag.tooling_list_type_10 = costdata.tooling_list_type_10;
@@ -575,8 +578,8 @@ namespace CostNag.Controllers
                 ViewBag.tooling_list_qty_10 = costdata.tooling_list_qty_10;
                 ViewBag.tooling_list_unit_10 = costdata.tooling_list_unit_10;
                 ViewBag.tooling_list_price_10 = costdata.tooling_list_price_10;
-                ViewBag.tooling_list_amount_jpy_10 = costdata.tooling_list_amount_jpy_10;
-                ViewBag.tooling_list_amount_usd_10 = costdata.tooling_list_amount_usd_10;
+                ViewBag.tooling_list_amount_jpy_10 = costdata.tooling_list_amount_jpy_10.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_10 = costdata.tooling_list_amount_usd_10.ToString("#,##0");
 
                 ViewBag.tooling_list_description_11 = costdata.tooling_list_description_11;
                 ViewBag.tooling_list_type_11 = costdata.tooling_list_type_11;
@@ -584,8 +587,8 @@ namespace CostNag.Controllers
                 ViewBag.tooling_list_qty_11 = costdata.tooling_list_qty_11;
                 ViewBag.tooling_list_unit_11 = costdata.tooling_list_unit_11;
                 ViewBag.tooling_list_price_11 = costdata.tooling_list_price_11;
-                ViewBag.tooling_list_amount_jpy_11 = costdata.tooling_list_amount_jpy_11;
-                ViewBag.tooling_list_amount_usd_11 = costdata.tooling_list_amount_usd_11;
+                ViewBag.tooling_list_amount_jpy_11 = costdata.tooling_list_amount_jpy_11.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_11 = costdata.tooling_list_amount_usd_11.ToString("#,##0");
 
                 ViewBag.tooling_list_description_12 = costdata.tooling_list_description_12;
                 ViewBag.tooling_list_type_12 = costdata.tooling_list_type_12;
@@ -593,8 +596,8 @@ namespace CostNag.Controllers
                 ViewBag.tooling_list_qty_12 = costdata.tooling_list_qty_12;
                 ViewBag.tooling_list_unit_12 = costdata.tooling_list_unit_12;
                 ViewBag.tooling_list_price_12 = costdata.tooling_list_price_12;
-                ViewBag.tooling_list_amount_jpy_12 = costdata.tooling_list_amount_jpy_12;
-                ViewBag.tooling_list_amount_usd_12 = costdata.tooling_list_amount_usd_12;
+                ViewBag.tooling_list_amount_jpy_12 = costdata.tooling_list_amount_jpy_12.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_12 = costdata.tooling_list_amount_usd_12.ToString("#,##0");
 
                 ViewBag.tooling_list_description_13 = costdata.tooling_list_description_13;
                 ViewBag.tooling_list_type_13 = costdata.tooling_list_type_13;
@@ -602,8 +605,8 @@ namespace CostNag.Controllers
                 ViewBag.tooling_list_qty_13 = costdata.tooling_list_qty_13;
                 ViewBag.tooling_list_unit_13 = costdata.tooling_list_unit_13;
                 ViewBag.tooling_list_price_13 = costdata.tooling_list_price_13;
-                ViewBag.tooling_list_amount_jpy_13 = costdata.tooling_list_amount_jpy_13;
-                ViewBag.tooling_list_amount_usd_13 = costdata.tooling_list_amount_usd_13;
+                ViewBag.tooling_list_amount_jpy_13 = costdata.tooling_list_amount_jpy_13.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_13 = costdata.tooling_list_amount_usd_13.ToString("#,##0");
 
                 ViewBag.tooling_list_description_14 = costdata.tooling_list_description_14;
                 ViewBag.tooling_list_type_14 = costdata.tooling_list_type_14;
@@ -611,8 +614,8 @@ namespace CostNag.Controllers
                 ViewBag.tooling_list_qty_14 = costdata.tooling_list_qty_14;
                 ViewBag.tooling_list_unit_14 = costdata.tooling_list_unit_14;
                 ViewBag.tooling_list_price_14 = costdata.tooling_list_price_14;
-                ViewBag.tooling_list_amount_jpy_14 = costdata.tooling_list_amount_jpy_14;
-                ViewBag.tooling_list_amount_usd_14 = costdata.tooling_list_amount_usd_14;
+                ViewBag.tooling_list_amount_jpy_14 = costdata.tooling_list_amount_jpy_14.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_14 = costdata.tooling_list_amount_usd_14.ToString("#,##0");
 
                 ViewBag.tooling_list_description_15 = costdata.tooling_list_description_15;
                 ViewBag.tooling_list_type_15 = costdata.tooling_list_type_15;
@@ -620,10 +623,10 @@ namespace CostNag.Controllers
                 ViewBag.tooling_list_qty_15 = costdata.tooling_list_qty_15;
                 ViewBag.tooling_list_unit_15 = costdata.tooling_list_unit_15;
                 ViewBag.tooling_list_price_15 = costdata.tooling_list_price_15;
-                ViewBag.tooling_list_amount_jpy_15 = costdata.tooling_list_amount_jpy_15;
-                ViewBag.tooling_list_amount_usd_15 = costdata.tooling_list_amount_usd_15;
+                ViewBag.tooling_list_amount_jpy_15 = costdata.tooling_list_amount_jpy_15.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_15 = costdata.tooling_list_amount_usd_15.ToString("#,##0");
 
-                ViewBag.tooling_list_total_amount_usd = 0;
+                ViewBag.tooling_list_total_amount_usd = costdata.tooling_list_total_amount_usd.ToString("#,##0");
 
             }
 
@@ -632,12 +635,29 @@ namespace CostNag.Controllers
             return View("Index",mymodel); 
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Process(string p_doc_no)
         {
+            ViewBag.p_doc_no = p_doc_no;
+            ViewBag.p_process_cost = "-";
+            Process processdata = new Process();
+
+            HttpClient clientdata = _api.Initial();
+
+            var action = "api/process/get-process-by-id/"+p_doc_no;
+            HttpResponseMessage resdata = await clientdata.GetAsync(action).ConfigureAwait(false);
+
+            resdata.EnsureSuccessStatusCode();
+
+            if (resdata.IsSuccessStatusCode)
+            {
+                var resultdata = resdata.Content.ReadAsStringAsync().Result;
+                processdata = JsonConvert.DeserializeObject<Process>(resultdata);
+
+                ViewBag.p_process_cost = processdata.process_cost.ToString();
+            }
+
             return View();
         }
-
-
 
         public async Task<ActionResult<Cost>> Save(Cost model)
         {

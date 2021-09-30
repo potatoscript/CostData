@@ -2,7 +2,9 @@
 //var _url = "/costnag/";  //if your app upload under Default Web site - for company
 
 jQuery(document).ready(function () {
-    jQuery("#checked_date,#issue_date")
+    window.onresize = setWindow;
+    setWindow();
+    jQuery("#checked_date,#issue_date,#approved_by,#expired_by")
         .css({ "cursor": "pointer" })
         .mouseover(function () {
             this.style.background = "lightyellow";
@@ -190,6 +192,8 @@ jQuery(document).ready(function () {
 
             //calculate the target price(SGD)
             document.getElementById("target_price_bht").value = (parseFloat(document.getElementById("net_exclude_tooling_cost").value) * 1.2).toFixed(4);
+            var table = document.getElementById("table_summary");
+            table.rows[0].cells[1].innerText = document.getElementById("target_price_bht").value;
 
             var target_price_sgd = parseFloat(document.getElementById("target_price_bht").value);
 
@@ -220,8 +224,28 @@ jQuery(document).ready(function () {
 
     }
 
+    for (var s = document.getElementsByClassName("toolinglist"), t = 0; t < s.length; t++) {
 
-    jQuery("#parts_code").click(function () {
+        s[t].onkeyup = function () {
+            var jpy = parseFloat(document.getElementById("exchange_rate").value);
+            var n = 0;
+            for (var i = 1; i < 16; i++) {
+                var qty = parseFloat(document.getElementById("tooling_list_qty_"+i).value);
+                var price = parseFloat(document.getElementById("tooling_list_price_"+i).value);
+                document.getElementById("tooling_list_amount_usd_"+i).value = (qty * price).toFixed(0);
+                document.getElementById("tooling_list_amount_jpy_"+i).value = (qty * price * jpy).toFixed(0);
+                n += (qty * price);
+            }
+            document.getElementById("tooling_list_total_amount_usd").value = n.toFixed(0);
+            var table = document.getElementById("table_summary");
+            table.rows[1].cells[1].innerText = document.getElementById("tooling_list_total_amount_usd").value;
+
+        };
+
+    }
+
+    jQuery("#search_code").click(function () {
+        document.getElementById("search_code").select();
         jQuery("#table_parts_code")
             .show()
             .css({
@@ -232,15 +256,17 @@ jQuery(document).ready(function () {
             })
         jQuery('#table_parts_code td')
             .click(function (event) {//for multiple select on process
+
                 var RI = jQuery(this).parent().parent().children().index(this.parentNode);
 
                 var table = document.getElementById("table_parts_code");
-                document.getElementById("parts_code").value =
+                document.getElementById("search_code").value =
                     table.rows[RI].cells[0].innerText;
                 document.getElementById("CostId").value =
                     table.rows[RI].cells[1].innerText;
 
                 window.location.href = _url + "Home/Read?id=" + table.rows[RI].cells[1].innerText;
+
 
                 jQuery("#table_parts_code").hide();
 
@@ -277,3 +303,37 @@ function jQueryAjaxPost(form) {
     // to prevent default form submit event
     return false;
 }
+
+function setWindow() {
+
+    document.getElementById('div_body').style.width = (window.innerWidth - 60) + 'px';
+    document.getElementById('div_body').style.height = (window.innerHeight - 105) + 'px';
+
+    document.getElementById('table_summary').style.width = (window.innerWidth - 90) + 'px';
+}
+
+function SubmitData() {
+    document.getElementById("SubmitButton").click();
+}
+
+
+function showPopup(url, title) {
+    jQuery.ajax({
+        type: "GET",
+        url: url,
+        success: function (res) {
+            jQuery("#form-modal .modal-body").html(res);
+            jQuery("#form-modal .modal-title").html(title);
+            jQuery("#form-modal").modal('show');
+        }
+    })
+}
+
+
+
+
+
+
+
+
+

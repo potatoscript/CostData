@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "Process";
+    Layout = null;
+}
+
+<h3>Process</h3>
+
+
+<table id="table_process">
+    <tr>
+        <th>Doc No:</th>
+        <td>
+            <input type="text" class="directInput"
+                   name="p_doc_no" id="p_doc_no"
+                   value="@ViewBag.p_doc_no" />
+        </td>
+    </tr>
+    <tr>
+        <th>Process Cost:</th>
+        <td>
+            <input type="text" class="directInput"
+                   name="p_process_cost" id="p_process_cost"
+                   value="@ViewBag.p_process_cost" />
+        </td>
+    </tr>
+</table>

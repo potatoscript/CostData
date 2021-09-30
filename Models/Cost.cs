@@ -41,6 +41,9 @@ namespace CostNag.Models
         [Column(TypeName = "character varying(10)")]
         public string approved_by { get; set; }
 
+        [Column(TypeName = "character varying(10)")]
+        public string expired_by { get; set; }
+
         [Column(TypeName = "character varying(20)")]
         public string customer { get; set; }
 
