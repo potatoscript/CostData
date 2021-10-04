@@ -4,19 +4,14 @@
     Layout = null;
 }
 
-<h3>Process</h3>
-
-
 <table id="table_process">
     <tr>
         <th>Doc No:</th>
         <td>
-            <input type="text" class="directInput"
+            <input type="text" class="directInput" style="background:white"
                    name="p_doc_no" id="p_doc_no"
                    value="@ViewBag.p_doc_no" />
         </td>
-    </tr>
-    <tr>
         <th>Process Cost:</th>
         <td>
             <input type="text" class="directInput"
@@ -25,3 +20,287 @@
         </td>
     </tr>
 </table>
+<br>
+<table id="table_process_item">
+    <tr>
+        <td colspan="4" style="text-align:right;padding-right:10px">Process Name :</td>
+        <td>
+            <input type="text" class="directInput"
+                   name="process_name" id="process_name"
+                   value="@ViewBag.p_process_name" />
+        </td>
+    </tr>
+    <tr>
+        <td>Area(m^2):</td>
+        <td>Direct input</td>
+        <td></td>
+        <td>I</td>
+        <td>
+            <input type="text" class="directInput"
+                   name="area" id="area"
+                   value="@ViewBag.p_area" />
+        </td>
+    </tr>
+    <tr>
+        <td>Special Material:</td>
+        <td>Direct Input</td>
+        <td></td>
+        <td>J</td>
+        <td>
+            <input type="text" class="directInput"
+                   name="special_material" id="special_material"
+                   value="@ViewBag.p_special_material" />
+        </td>
+    </tr>
+    <tr>
+        <td>Plant Maintenance:</td>
+        <td>Auto</td>
+        <td>
+            <input type="text" class="directInput c2"
+                   name="plant_maintenance_unit" id="plant_maintenance_unit"
+                   value="@ViewBag.p_plant_maintenance_unit" />/M^2
+        </td>
+        <td>K</td>
+        <td>
+            <input type="text" class="calculateInput"
+                   name="plant_maintenance" id="plant_maintenance"
+                   value="@ViewBag.p_plant_maintenance" />
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Auto ( Cost* percentage )</td>
+        <td>
+            <input type="text" class="directInput c2"
+                   name="machine_cost_month_percentage_unit" id="machine_cost_month_percentage_unit"
+                   value="@ViewBag.p_machine_cost_month_percentage_unit" />%
+        </td>
+        <td>L</td>
+        <td>
+            <input type="text" class="calculateInput"
+                   name="machine_cost_month" id="machine_cost_month"
+                   value="@ViewBag.p_machine_cost_month" />
+        </td>
+    </tr>
+    <tr>
+        <td>Machine Cost (K SGD)</td>
+        <td>Direct input</td>
+        <td></td>
+        <td>M</td>
+        <td>
+            <input type="text" class="directInput"
+                   name="total_machine_cost" id="total_machine_cost"
+                   value="@ViewBag.p_total_machine_cost" />
+        </td>
+    </tr>
+    <tr>
+        <td>Month General purpose</td>
+        <td>Auto</td>
+        <td>
+            <input type="text" class="directInput c2"
+                   name="machine_usage_day" id="machine_usage_day"
+                   value="@ViewBag.p_machine_usage_day" />
+        </td>
+        <td>N</td>
+        <td>
+            <input type="text" class="calculateInput"
+                   name="machine_cost_month" id="machine_cost_month"
+                   value="@ViewBag.p_machine_cost_month" />
+        </td>
+    </tr>
+    <tr>
+        <td>Electric Consumption(Kw/H)</td>
+        <td>Direct input</td>
+        <td></td>
+        <td>O</td>
+        <td>
+            <input type="text" class="directInput"
+                   name="consumption_kwh" id="consumption_kwh"
+                   value="@ViewBag.p_consumption_kwh" />
+        </td>
+    </tr>
+    <tr>
+        <td>Electric Cost (SGD/kwH)</td>
+        <td>Auto</td>
+        <td>
+            <input type="text" class="directInput c2"
+                   name="consumption_unit" id="consumption_unit"
+                   value="@ViewBag.p_consumption_unit" />
+        </td>
+        <td>P</td>
+        <td>
+            <input type="text" class="calculateInput"
+                   name="consumption_sgd" id="consumption_sgd"
+                   value="@ViewBag.p_consumption_sgd" />
+        </td>
+    </tr>
+    <tr>
+        <td>Electric rate (%)</td>
+        <td>Direct input</td>
+        <td></td>
+        <td>Q</td>
+        <td>
+            <input type="text" class="directInput"
+                   name="consumption_rate" id="consumption_rate"
+                   value="@ViewBag.p_consumption_rate" />
+        </td>
+    </tr>
+    <tr>
+        <td>Electric Utility</td>
+        <td>Auto</td>
+        <td></td>
+        <td>R</td>
+        <td>
+            <input type="text" class="calculateInput"
+                   name="utility_electric" id="utility_electric"
+                   value="@ViewBag.p_utility_electric" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">Machine Utility cost (SGD/month)</td>
+        <td>D+E+F+G+H</td>
+        <td style="text-align:center">S</td>
+        <td>
+            <input type="text" class="calculateInput"
+                   name="machine_utility_cost" id="machine_utility_cost"
+                   value="@ViewBag.p_machine_utility_cost" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">Total cost (SGD/month)</td>
+        <td>Auto</td>
+        <td style="text-align:center">T</td>
+        <td>
+            <input type="text" class="calculateInput"
+                   name="labour_electric_cost" id="labour_electric_cost"
+                   value="@ViewBag.p_labour_electric_cost" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">Charge (labour+machine)/minutes</td>
+        <td>Auto</td>
+        <td style="text-align:center">U</td>
+        <td>
+            <input type="text" class="calculateInput"
+                   name="charge" id="charge"
+                   value="@ViewBag.p_charge" />
+        </td>
+    </tr>
+    <tr>
+        <td>Cycle Time (Sec/Pc)</td>
+        <td>Auto</td>
+        <td>
+            <input type="text" class="directInput c2"
+                   name="cycle_time_unit" id="cycle_time_unit"
+                   value="@ViewBag.p_cycle_time_unit" />
+        </td>
+        <td>V</td>
+        <td>
+            <input type="text" class="calculateInput"
+                   name="cycle_time" id="cycle_time"
+                   value="@ViewBag.p_cycle_time" />
+        </td>
+    </tr>
+    <tr>
+        <td>Time (Sec)</td>
+        <td>Direct input</td>
+        <td></td>
+        <td>W</td>
+        <td>
+            <input type="text" class="directInput"
+                   name="time" id="time"
+                   value="@ViewBag.p_time" />
+        </td>
+    </tr>
+    <tr>
+        <td>Capacity</td>
+        <td>Direct input</td>
+        <td></td>
+        <td>X</td>
+        <td>
+            <input type="text" class="directInput"
+                   name="capacity" id="capacity"
+                   value="@ViewBag.p_capacity" />
+        </td>
+    </tr>
+    <tr>
+        <td>time(s)/1g</td>
+        <td>Auto</td>
+        <td></td>
+        <td>Y</td>
+        <td>
+            <input type="text" class="calculateInput"
+                   name="time_g" id="time_g"
+                   value="@ViewBag.p_time_g" />
+        </td>
+    </tr>
+    <tr>
+        <td>Efficiency(%)</td>
+        <td>Direct input</td>
+        <td></td>
+        <td>Z</td>
+        <td>
+            <input type="text" class="directInput"
+                   name="efficiency" id="efficiency"
+                   value="@ViewBag.p_efficiency" />
+        </td>
+    </tr>
+    <tr>
+        <td>Production Capacity</td>
+        <td>Auto</td>
+        <td></td>
+        <td>AA</td>
+        <td>
+            <input type="text" class="calculateInput"
+                   name="production_capacity" id="production_capacity"
+                   value="@ViewBag.p_production_capacity" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" style="text-align:right;padding-right:5px">Cycle time   min/pc</td>
+        <td style="text-align:center">AB</td>
+        <td>
+            <input type="text" class="calculateInput"
+                   name="production_cycle_time" id="production_cycle_time"
+                   value="@ViewBag.p_production_cycle_time" />
+        </td>
+    </tr>
+    <tr>
+        <td>In case Double process Part/FG</td>
+        <td colspan="2">Special input     Pc/FG</td>
+        <td style="text-align:center">AC</td>
+        <td>
+            <input type="text" class="directInput"
+                   name="special_input" id="special_input"
+                   value="@ViewBag.p_special_input" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" style="text-align:right;padding-right:5px;">Direct process cost     SGD/pc.</td>
+        <td style="text-align:center">AD</td>
+        <td>
+            <input type="text" class="calculateInput"
+                   name="direct_process_cost" id="direct_process_cost"
+                   value="@ViewBag.p_direct_process_cost" />
+        </td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

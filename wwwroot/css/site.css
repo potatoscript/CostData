@@ -59,11 +59,12 @@ label,input{
     overflow:auto;
 }
 
-#search_code{
-    width:80px;
-    height:35px;
-    font-size:16px;
-    border-radius:7px;
+
+#search_code {
+    width: 80px;
+    height: 35px;
+    font-size: 16px;
+    border-radius: 7px;
 }
 
 #table_approval {
@@ -126,22 +127,38 @@ label,input{
     }
 
 
-#table_process {
+
+.c2{
+    width:90px;
+}
+#table_process, #table_process_item {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
+    white-space:nowrap;
 }
 
-    #table_process th {
+    #table_process th, #table_process_item th {
         border: 1px solid black;
         width: 150px;
         padding-left: 5px;
     }
 
-    #table_process td {
+    #table_process td, #table_process_item td {
         border: 1px solid black;
         width: 110px;
         padding-left: 5px;
     }
+
+    #table_process_item tr td:first-child + td + td  {
+        width: 150px;
+        text-align: left;
+        padding-left:5px;
+    }
+    #table_process_item tr td:first-child+td+td+td {
+        width: 60px;
+        text-align: center;
+    }
+
 
 
     #table_summary th {
