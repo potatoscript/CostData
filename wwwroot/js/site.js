@@ -280,7 +280,7 @@ jQuery(document).ready(function () {
 
 });
 
-function jQueryAjaxPost(form) {
+function jQueryAjaxPost(form,page) {
     try {
         jQuery.ajax({
             type: "POST",
@@ -290,7 +290,12 @@ function jQueryAjaxPost(form) {
             processData: false,
             success: function (res) {
                 if (res.isValid) {
-                    window.location.href = _url + "Home/Index";
+                    var p = _url + page;
+                    if (page == "Process/Index") {
+                        document.getElementById("direct_process_cost").click();
+                    } else {
+                        window.location.href = p;
+                    }
                 }
             },
             error: function (err) {

@@ -17,6 +17,10 @@ namespace CostNag.Models
         public string code { get; set; }
         public string id { get; set; }
 
+        public List<ListModel> process = new List<ListModel>();
+        public string name { get; set; }
+        public string cost { get; set; }
+
         public List<SelectListItem> plant = new List<SelectListItem>
         {
             new SelectListItem{Value = "BPK1", Text="BPK1"},
