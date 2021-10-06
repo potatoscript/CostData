@@ -272,7 +272,9 @@
                                    onclick="showPopup('@Url.Action("Index", "Process",
 						                new
 						                {
-                                            p_doc_no = ViewBag.doc_no					                },
+                                            p_doc_no = ViewBag.doc_no,
+                                            p_id = 0
+                                        },
 						                Context.Request.Scheme)','Process Cost');"
                                    value="@ViewBag.direct_process_cost" />
                         </td>

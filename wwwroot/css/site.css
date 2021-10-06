@@ -182,7 +182,15 @@ label,input{
         width: 110px;
         padding-left: 5px;
         font-size: 15px;
+        cursor:pointer;
     }
+#table_process_list tr:nth-child(odd) td {
+    background: #d1e8ff;
+}
+
+#table_process_list tr:hover td {
+    background: #fffd9c;
+}
 
     #table_summary th {
         font-size: 18px;

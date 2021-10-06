@@ -276,7 +276,10 @@ jQuery(document).ready(function () {
                 jQuery("#table_parts_code").hide();
 
             })
-    });
+    })
+
+
+    
 
 });
 
@@ -293,6 +296,7 @@ function jQueryAjaxPost(form,page) {
                     var p = _url + page;
                     if (page == "Process/Index") {
                         document.getElementById("direct_process_cost").click();
+
                     } else {
                         window.location.href = p;
                     }
