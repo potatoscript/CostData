@@ -442,6 +442,9 @@
         document.getElementById("status").innerText = "EDITING";
 
         Total_process_cost();
+        //set the total process_cost from process page into cost page's process cost and recalclate
+        document.getElementById("direct_process_cost").value =document.getElementById("process_cost").value;
+        calculate_cost();
 
         for (var s = document.getElementsByClassName("directInput"), t = 0; t < s.length; t++) {
 

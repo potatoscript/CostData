@@ -198,7 +198,8 @@ namespace CostNag.Controllers
 
                 return Json(new
                 {
-                    isValid = true
+                    isValid = true,
+                    process_cost = model.process_cost
                 });
 
             }

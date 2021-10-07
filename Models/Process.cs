@@ -8,25 +8,17 @@ namespace CostNag.Models
 {
     public class Process
     {
+        public double process_cost { get; set; }
 
         public int ProcessId { get; set; }
 
-        [Column(TypeName = "character varying(20)")]
         public string doc_no { get; set; }
 
-        [Column(TypeName = "character varying(20)")]
         public string process_name { get; set; }
-
-        [Column(TypeName = "double precision")]
         public double working_day { get; set; }
-
-        [Column(TypeName = "double precision")]
         public double working_time_day { get; set; }
 
-        [Column(TypeName = "double precision")]
         public double working_time_month { get; set; }
-
-        [Column(TypeName = "double precision")]
         public double shift { get; set; }
 
         [Column(TypeName = "double precision")]
