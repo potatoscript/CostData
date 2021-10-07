@@ -6,18 +6,31 @@
     
         <table id="table_parts_code">
             <tr>
-                <th>CLOSE</th>
+                <th colspan="4">CLOSE</th>
             </tr>
             @{
                 foreach (var i in (List<ListModel>)ViewData["partscode"])
                 {
-                    <tr>
-                        <td>@i.code</td>
-                        <td style="display:none">@i.id</td>
-                    </tr>
+                        <tr>
+                            <td>@i.doc_no</td>
+                            <td>@i.code</td>
+                            <td style="display:none">@i.id</td>
+                            <th style="border:0px;width:30px">
+                                <a style="height:25px;width:25px;cursor:pointer" 　
+                                   onclick="delete_data(@i.id)"
+                                   class="btn btn-danger bg-light">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="margin-left:-10px;margin-top:-15px"
+                                         fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                    </svg>
+                                </a>
+                            </th>
+                        </tr>
                 }
             }
         </table>
+
         <form method="post" asp-action="Save" onsubmit="return jQueryAjaxPost(this,'Home/Index');" style="margin-left:-20px">
 
             <input type="submit" id="SubmitButton" style="display:none" class="btn btn-info w-380" value="Save" />
@@ -88,23 +101,23 @@
                                 </tr>
                                 <tr>
                                     <th>Quantity/month</th>
-                                    <td><input type="number" class="directInput production_qty" name="qty_month" id="qty_month" value="@ViewBag.qty_month" /></td>
+                                    <td><input type="number" step="any" class="directInput production_qty" name="qty_month" id="qty_month" value="@ViewBag.qty_month" /></td>
                                     <th style="color:red">Exchange rate: JPY </th>
-                                    <td><input type="number" step="any" class="directInput toolinglist" name="exchange_rate" id="exchange_rate" value="@ViewBag.exchange_rate" /></td>
+                                    <td><input type="number" step="any" step="any" class="directInput toolinglist" name="exchange_rate" id="exchange_rate" value="@ViewBag.exchange_rate" /></td>
                                 </tr>
                                 <tr>
                                     <th>Target Price(SGD) : Included Tooling </th>
-                                    <td><input type="number" step="any" class="calculateInput" name="target_price_bht" id="target_price_bht" value="@ViewBag.target_price_bht" /></td>
+                                    <td><input type="number" step="any" step="any" class="calculateInput" name="target_price_bht" id="target_price_bht" value="@ViewBag.target_price_bht" /></td>
                                     <th>Target Price (WR) </th>
-                                    <td><input type="number" step="any" class="directInput" name="target_price_export" id="target_price_export" value="@ViewBag.target_price_export" /></td>
+                                    <td><input type="number" step="any" step="any" class="directInput" name="target_price_export" id="target_price_export" value="@ViewBag.target_price_export" /></td>
                                 </tr>
                                 <tr>
                                     <th colspan="2">Production Quantity/day</th>
-                                    <td colspan="2"><input type="number" class="calculateInput" name="production_qty_day" id="production_qty_day" value="@ViewBag.production_qty_day" style="width:70%" />pc/day, 3 Shifts</td>
+                                    <td colspan="2"><input type="number" step="any" class="calculateInput" name="production_qty_day" id="production_qty_day" value="@ViewBag.production_qty_day" style="width:70%" />pc/day, 3 Shifts</td>
                                 </tr>
                                 <tr>
                                     <th colspan="2">Working Day</th>
-                                    <td colspan="2"><input type="number" class="directInput production_qty " name="working_day" id="working_day" value="@ViewBag.working_day" style="width:70%" />day/month</td>
+                                    <td colspan="2"><input type="number" step="any" class="directInput production_qty " name="working_day" id="working_day" value="@ViewBag.working_day" style="width:70%" />day/month</td>
                                 </tr>
                             </table>
                         </td>
@@ -177,13 +190,13 @@
                     </tr>
                     <tr>
                         <td><input type="text" class="directInput" name="rubber_material_name" id="rubber_material_name" value="@ViewBag.rubber_material_name" /></td>
-                        <td><input type="number" class="directInput material" name="rubber_database_price_current" id="rubber_database_price_current" value="@ViewBag.rubber_database_price_current" /></td>
-                        <td><input type="number" class="directInput material" name="rubber_database_price_new" id="rubber_database_price_new" value="@ViewBag.rubber_database_price_new" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="rubber_database_price_current" id="rubber_database_price_current" value="@ViewBag.rubber_database_price_current" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="rubber_database_price_new" id="rubber_database_price_new" value="@ViewBag.rubber_database_price_new" /></td>
                         <td><input type="text" class="calculateInput" name="rubber_price_kg" id="rubber_price_kg" value="@ViewBag.rubber_price_kg" /></td>
-                        <td><input type="number" class="directInput material" name="rubber_mixing_process_cost" id="rubber_mixing_process_cost" value="@ViewBag.rubber_mixing_process_cost" /></td>
-                        <td><input type="number" class="directInput material" name="rubber_weight_g" id="rubber_weight_g" value="@ViewBag.rubber_weight_g" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="rubber_mixing_process_cost" id="rubber_mixing_process_cost" value="@ViewBag.rubber_mixing_process_cost" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="rubber_weight_g" id="rubber_weight_g" value="@ViewBag.rubber_weight_g" /></td>
                         <td><input type="text" class="calculateInput" name="rubber_weight_kg" id="rubber_weight_kg" value="@ViewBag.rubber_weight_kg" /></td>
-                        <td><input type="number" class="directInput material" name="rubber_yield_rate" id="rubber_yield_rate" value="@ViewBag.rubber_yield_rate" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="rubber_yield_rate" id="rubber_yield_rate" value="@ViewBag.rubber_yield_rate" /></td>
                         <td><input type="text" class="calculateInput" name="rubber_weight_kg_yieldrate" id="rubber_weight_kg_yieldrate" value="@ViewBag.rubber_weight_kg_yieldrate" /></td>
                         <td><input type="text" class="calculateInput" name="rubber_cost_sgd" id="rubber_cost_sgd" value="@ViewBag.rubber_cost_sgd" /></td>
                         <td><input type="text" class="calculateInput" name="rubber_percentage_target_price" id="rubber_percentage_target_price" value="@ViewBag.rubber_percentage_target_price" /></td>
@@ -195,27 +208,27 @@
                         <th rowspan="3" style="width:25px;word-wrap: break-word">I n H o u s e</th>
                         <td colspan="3"><input type="text" class="directInput" name="material_inhouse_name_1" id="material_inhouse_name_1" value="@ViewBag.material_inhouse_name_1" /></td>
                         <td colspan="2"><input type="text" class="directInput" name="material_inhouse_info_1" id="material_inhouse_info_1" value="@ViewBag.material_inhouse_info_1" /></td>
-                        <td><input type="number" class="directInput material" name="material_inhouse_value_1" id="material_inhouse_value_1" value="@ViewBag.material_inhouse_value_1" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="material_inhouse_value_1" id="material_inhouse_value_1" value="@ViewBag.material_inhouse_value_1" /></td>
                         <td colspan="2"><input type="text" class="directInput" name="material_inhouse_info_1b" id="material_inhouse_info_1b" value="@ViewBag.material_inhouse_info_1b" /></td>
-                        <td><input type="number" class="directInput material" name="material_inhouse_value_1b" id="material_inhouse_value_1b" value="@ViewBag.material_inhouse_value_1b" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="material_inhouse_value_1b" id="material_inhouse_value_1b" value="@ViewBag.material_inhouse_value_1b" /></td>
                         <td><input type="text" class="calculateInput" name="material_inhouse_cost_sgd_1" id="material_inhouse_cost_sgd_1" value="@ViewBag.material_inhouse_cost_sgd_1" /></td>
                         <td><input type="text" class="calculateInput" name="material_inhouse_percentage_target_price_1" id="material_inhouse_percentage_target_price_1" value="@ViewBag.material_inhouse_percentage_target_price_1" /></td>
                     </tr>
                     <tr>
                         <td colspan="3"><input type="text" class="directInput" name="material_inhouse_name_2" id="material_inhouse_name_2" value="@ViewBag.material_inhouse_name_2" /></td>
                         <td colspan="2"><input type="text" class="directInput" name="material_inhouse_info_2" id="material_inhouse_info_2" value="@ViewBag.material_inhouse_info_2" /></td>
-                        <td><input type="number" class="directInput material" name="material_inhouse_value_2" id="material_inhouse_value_2" value="@ViewBag.material_inhouse_value_2" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="material_inhouse_value_2" id="material_inhouse_value_2" value="@ViewBag.material_inhouse_value_2" /></td>
                         <td colspan="2"><input type="text" class="directInput" name="material_inhouse_info_2b" id="material_inhouse_info_2b" value="@ViewBag.material_inhouse_info_2b" /></td>
-                        <td><input type="number" class="directInput material" name="material_inhouse_value_2b" id="material_inhouse_value_2b" value="@ViewBag.material_inhouse_value_2b" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="material_inhouse_value_2b" id="material_inhouse_value_2b" value="@ViewBag.material_inhouse_value_2b" /></td>
                         <td><input type="text" class="calculateInput" name="material_inhouse_cost_sgd_2" id="material_inhouse_cost_sgd_2" value="@ViewBag.material_inhouse_cost_sgd_2" /></td>
                         <td><input type="text" class="calculateInput" name="material_inhouse_percentage_target_price_2" id="material_inhouse_percentage_target_price_2" value="@ViewBag.material_inhouse_percentage_target_price_2" /></td>
                     </tr>
                     <tr>
                         <td colspan="3"><input type="text" class="directInput" name="material_inhouse_name_3" id="material_inhouse_name_3" value="@ViewBag.material_inhouse_name_3" /></td>
                         <td colspan="2"><input type="text" class="directInput" name="material_inhouse_info_3" id="material_inhouse_info_3" value="@ViewBag.material_inhouse_info_3" /></td>
-                        <td><input type="number" class="directInput material" name="material_inhouse_value_3" id="material_inhouse_value_3" value="@ViewBag.material_inhouse_value_3" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="material_inhouse_value_3" id="material_inhouse_value_3" value="@ViewBag.material_inhouse_value_3" /></td>
                         <td colspan="2"><input type="text" class="directInput" name="material_inhouse_info_3b" id="material_inhouse_info_3b" value="@ViewBag.material_inhouse_info_3b" /></td>
-                        <td><input type="number" class="directInput material" name="material_inhouse_value_3b" id="material_inhouse_value_3b" value="@ViewBag.material_inhouse_value_3b" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="material_inhouse_value_3b" id="material_inhouse_value_3b" value="@ViewBag.material_inhouse_value_3b" /></td>
                         <td><input type="text" class="calculateInput" name="material_inhouse_cost_sgd_3" id="material_inhouse_cost_sgd_3" value="@ViewBag.material_inhouse_cost_sgd_3" /></td>
                         <td><input type="text" class="calculateInput" name="material_inhouse_percentage_target_price_3" id="material_inhouse_percentage_target_price_3" value="@ViewBag.material_inhouse_percentage_target_price_3" /></td>
                     </tr>
@@ -223,27 +236,27 @@
                         <th rowspan="3" style="width:25px;word-wrap: break-word">O u t s i d e</th>
                         <td colspan="3"><input type="text" class="directInput" name="material_outside_name_1" id="material_outside_name_1" value="@ViewBag.material_outside_name_1" /></td>
                         <td colspan="2"><input type="text" class="directInput" name="material_outside_info_1" id="material_outside_info_1" value="@ViewBag.material_outside_info_1" /></td>
-                        <td><input type="number" class="directInput material" name="material_outside_value_1" id="material_outside_value_1" value="@ViewBag.material_outside_value_1" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="material_outside_value_1" id="material_outside_value_1" value="@ViewBag.material_outside_value_1" /></td>
                         <td colspan="2"><input type="text" class="directInput" name="material_outside_info_1b" id="material_outside_info_1b" value="@ViewBag.material_outside_info_1b" /></td>
-                        <td><input type="number" class="directInput material" name="material_outside_value_1b" id="material_outside_value_1b" value="@ViewBag.material_outside_value_1b" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="material_outside_value_1b" id="material_outside_value_1b" value="@ViewBag.material_outside_value_1b" /></td>
                         <td><input type="text" class="calculateInput" name="material_outside_cost_sgd_1" id="material_outside_cost_sgd_1" value="@ViewBag.material_outside_cost_sgd_1" /></td>
                         <td><input type="text" class="calculateInput" name="material_outside_percentage_target_price_1" id="material_outside_percentage_target_price_1" value="@ViewBag.material_outside_percentage_target_price_1" /></td>
                     </tr>
                     <tr>
                         <td colspan="3"><input type="text" class="directInput" name="material_outside_name_2" id="material_outside_name_2" value="@ViewBag.material_outside_name_2" /></td>
                         <td colspan="2"><input type="text" class="directInput" name="material_outside_info_2" id="material_outside_info_2" value="@ViewBag.material_outside_info_2" /></td>
-                        <td><input type="number" class="directInput material" name="material_outside_value_2" id="material_outside_value_2" value="@ViewBag.material_outside_value_2" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="material_outside_value_2" id="material_outside_value_2" value="@ViewBag.material_outside_value_2" /></td>
                         <td colspan="2"><input type="text" class="directInput" name="material_outside_info_2b" id="material_outside_info_2b" value="@ViewBag.material_outside_info_2b" /></td>
-                        <td><input type="number" class="directInput material" name="material_outside_value_2b" id="material_outside_value_2b" value="@ViewBag.material_outside_value_2b" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="material_outside_value_2b" id="material_outside_value_2b" value="@ViewBag.material_outside_value_2b" /></td>
                         <td><input type="text" class="calculateInput" name="material_outside_cost_sgd_2" id="material_outside_cost_sgd_2" value="@ViewBag.material_outside_cost_sgd_2" /></td>
                         <td><input type="text" class="calculateInput" name="material_outside_percentage_target_price_2" id="material_outside_percentage_target_price_2" value="@ViewBag.material_outside_percentage_target_price_2" /></td>
                     </tr>
                     <tr>
                         <td colspan="3"><input type="text" class="directInput" name="material_outside_name_3" id="material_outside_name_3" value="@ViewBag.material_outside_name_3" /></td>
                         <td colspan="2"><input type="text" class="directInput" name="material_outside_info_3" id="material_outside_info_3" value="@ViewBag.material_outside_info_3" /></td>
-                        <td><input type="number" class="directInput material" name="material_outside_value_3" id="material_outside_value_3" value="@ViewBag.material_outside_value_3" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="material_outside_value_3" id="material_outside_value_3" value="@ViewBag.material_outside_value_3" /></td>
                         <td colspan="2"><input type="text" class="directInput" name="material_outside_info_3b" id="material_outside_info_3b" value="@ViewBag.material_outside_info_3b" /></td>
-                        <td><input type="number" class="directInput material" name="material_outside_value_3b" id="material_outside_value_3b" value="@ViewBag.material_outside_value_3b" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="material_outside_value_3b" id="material_outside_value_3b" value="@ViewBag.material_outside_value_3b" /></td>
                         <td><input type="text" class="calculateInput" name="material_outside_cost_sgd_3" id="material_outside_cost_sgd_3" value="@ViewBag.material_outside_cost_sgd_3" /></td>
                         <td><input type="text" class="calculateInput" name="material_outside_percentage_target_price_3" id="material_outside_percentage_target_price_3" value="@ViewBag.material_outside_percentage_target_price_3" /></td>
                     </tr>
@@ -255,7 +268,7 @@
                     </tr>
                     <tr>
                         <td colspan="5" style="text-align:left;padding-left:10px">Sub Material</td>
-                        <td><input type="number" class="directInput material" name="sub_material_percentage" id="sub_material_percentage" value="@ViewBag.sub_material_percentage" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="sub_material_percentage" id="sub_material_percentage" value="@ViewBag.sub_material_percentage" /></td>
                         <td colspan="5" style="color:red;text-align:left;padding-left:10px">×　A</td>
                         <td><input type="text" class="calculateInput" name="sub_material_cost" id="sub_material_cost" value="@ViewBag.sub_material_cost" /></td>
                         <td><input type="text" class="calculateInput" name="sub_material_cost_percentage" id="sub_material_cost_percentage" value="@ViewBag.sub_material_cost_percentage" /></td>
@@ -265,7 +278,7 @@
                         <td colspan="4" style="text-align:left;padding-left:10px;border-left:0px;border-right:0px">(Detail refer to Direct process cost sheets)</td>
                         <th style="border:0px;text-align:center;background:#b6deef">B</th>
                         <td>
-                            <input type="number" 
+                            <input type="number" step="any" 
                                    class="calculateInput material" 
                                    style="background:#b6deef;cursor:pointer" name="direct_process_cost" 
                                    id="direct_process_cost" 
@@ -289,7 +302,7 @@
                     </tr>
                     <tr>
                         <td colspan="5" style="text-align:left;padding-left:10px">Defective</td>
-                        <td><input type="number" class="directInput material" name="defective_percentage" id="defective_percentage" value="@ViewBag.defective_percentage" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="defective_percentage" id="defective_percentage" value="@ViewBag.defective_percentage" /></td>
                         <td colspan="3" style="text-align:left;padding-left:10px;border-right:0px">×　C</td>
                         <td style="border-left:0px;border-right:0px;text-align:center;">=</td>
                         <th style="border-left:0px;text-align:center;">D</th>
@@ -298,7 +311,7 @@
                     </tr>
                     <tr>
                         <td colspan="5" style="text-align:left;padding-left:10px">Indirect Cost</td>
-                        <td><input type="number" class="directInput material" name="indirect_percentage" id="indirect_percentage" value="@ViewBag.indirect_percentage" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="indirect_percentage" id="indirect_percentage" value="@ViewBag.indirect_percentage" /></td>
                         <td colspan="3" style="text-align:left;padding-left:10px;border-right:0px">×　(C + D)</td>
                         <td style="border-left:0px;border-right:0px;text-align:center;">=</td>
                         <th style="border-left:0px;text-align:center;">E</th>
@@ -307,16 +320,16 @@
                     </tr>
                     <tr>
                         <td colspan="5" style="text-align:left;padding-left:10px">Packing Materials</td>
-                        <td><input type="number" class="directInput material" name="packing_material_percentage" id="packing_material_percentage" value="@ViewBag.packing_material_percentage" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="packing_material_percentage" id="packing_material_percentage" value="@ViewBag.packing_material_percentage" /></td>
                         <td colspan="2" style="color:red;text-align:left;padding-left:10px;border-right:0px">×　A</td>
                         <td colspan="2" style="backgound-color:yellow;text-align:center;">Special package costs/pc(if any)</td>
-                        <td><input type="number" class="directInput material" name="special_package_cost" id="special_package_cost" value="@ViewBag.special_package_cost" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="special_package_cost" id="special_package_cost" value="@ViewBag.special_package_cost" /></td>
                         <td><input type="text" class="calculateInput" name="packing_material_cost" id="packing_material_cost" value="@ViewBag.packing_material_cost" /></td>
                         <td><input type="text" class="calculateInput" name="packing_material_cost_percentage" id="packing_material_cost_percentage" value="@ViewBag.packing_material_cost_percentage" /></td>
                     </tr>
                     <tr>
                         <td colspan="5" style="text-align:left;padding-left:10px">Administration</td>
-                        <td><input type="number" class="directInput material" name="administration_percentage" id="administration_percentage" value="@ViewBag.administration_percentage" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="administration_percentage" id="administration_percentage" value="@ViewBag.administration_percentage" /></td>
                         <td colspan="3" style="color:black;text-align:left;padding-left:10px;border-right:0px">×　(C + D + E)</td>
                         <td style="text-align:center;border-left:0px;border-right:0px">=</td>
                         <th style="border-left:0px;text-align:center;">F</th>
@@ -325,7 +338,7 @@
                     </tr>
                     <tr>
                         <td colspan="5" style="color:red;text-align:left;padding-left:10px">Tooling Maintenance</td>
-                        <td><input type="number" class="directInput material" name="plant_retail_percentage" id="plant_retail_percentage" value="@ViewBag.plant_retail_percentage" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="plant_retail_percentage" id="plant_retail_percentage" value="@ViewBag.plant_retail_percentage" /></td>
                         <td colspan="5" style="color:red;text-align:left;padding-left:10px;border:0px;">×　( C + D + E + Packing + F )</td>
                         <td><input type="text" class="calculateInput" name="plant_retail_cost" id="plant_retail_cost" value="@ViewBag.plant_retail_cost" /></td>
                         <td><input type="text" class="calculateInput" name="plant_retail_cost_percentage" id="plant_retail_cost_percentage" value="@ViewBag.plant_retail_cost_percentage" /></td>
@@ -333,7 +346,7 @@
                     <tr>
                         <th rowspan="2" style="width:25px;word-wrap: break-word">T o o l</th>
                         <td colspan="4" style="text-align:left;padding-left:10px">Mold & Jig</td>
-                        <td><input type="number" class="directInput material" name="moldjig_percentage" id="moldjig_percentage" value="@ViewBag.moldjig_percentage" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="moldjig_percentage" id="moldjig_percentage" value="@ViewBag.moldjig_percentage" /></td>
                         <td style="text-align:center;border-right:0px">　÷　</td>
                         <td colspan="2" style="border-right:0px;border-left:0px;color:red;text-align:right;padding-right:10px">24　months</td>
                         <td style="text-align:center;border-left:0px;border-right:0px">　=　</td>
@@ -343,7 +356,7 @@
                     </tr>
                     <tr>
                         <td colspan="4" style="text-align:left;padding-left:10px">Die</td>
-                        <td><input type="number" class="directInput material" name="die_percentage" id="die_percentage" value="@ViewBag.die_percentage" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="die_percentage" id="die_percentage" value="@ViewBag.die_percentage" /></td>
                         <td style="text-align:center;border-right:0px">　÷　</td>
                         <td colspan="2" style="border-right:0px;border-left:0px;color:red;text-align:right;padding-right:10px">24　months</td>
                         <td style="text-align:center;border-left:0px;border-right:0px">　=　</td>
@@ -385,9 +398,9 @@
                         <td><input type="text" class="directInput" name="tooling_list_description_1" id="tooling_list_description_1" value="@ViewBag.tooling_list_description_1" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_type_1" id="tooling_list_type_1" value="@ViewBag.tooling_list_type_1" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_1" id="tooling_list_source_1" value="@ViewBag.tooling_list_source_1" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_qty_1" id="tooling_list_qty_1" value="@ViewBag.tooling_list_qty_1" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_1" id="tooling_list_qty_1" value="@ViewBag.tooling_list_qty_1" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_unit_1" id="tooling_list_unit_1" value="@ViewBag.tooling_list_unit_1" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_price_1" id="tooling_list_price_1" value="@ViewBag.tooling_list_price_1" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_price_1" id="tooling_list_price_1" value="@ViewBag.tooling_list_price_1" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_jpy_1" id="tooling_list_amount_jpy_1" value="@ViewBag.tooling_list_amount_jpy_1" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_usd_1" id="tooling_list_amount_usd_1" value="@ViewBag.tooling_list_amount_usd_1" /></td>
                     </tr>
@@ -396,9 +409,9 @@
                         <td><input type="text" class="directInput" name="tooling_list_description_2" id="tooling_list_description_2" value="@ViewBag.tooling_list_description_2" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_type_2" id="tooling_list_type_2" value="@ViewBag.tooling_list_type_2" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_2" id="tooling_list_source_2" value="@ViewBag.tooling_list_source_2" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_qty_2" id="tooling_list_qty_2" value="@ViewBag.tooling_list_qty_2" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_2" id="tooling_list_qty_2" value="@ViewBag.tooling_list_qty_2" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_unit_2" id="tooling_list_unit_2" value="@ViewBag.tooling_list_unit_2" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_price_2" id="tooling_list_price_2" value="@ViewBag.tooling_list_price_2" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_price_2" id="tooling_list_price_2" value="@ViewBag.tooling_list_price_2" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_jpy_2" id="tooling_list_amount_jpy_2" value="@ViewBag.tooling_list_amount_jpy_2" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_usd_2" id="tooling_list_amount_usd_2" value="@ViewBag.tooling_list_amount_usd_2" /></td>
                     </tr>
@@ -407,9 +420,9 @@
                         <td><input type="text" class="directInput" name="tooling_list_description_3" id="tooling_list_description_3" value="@ViewBag.tooling_list_description_3" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_type_3" id="tooling_list_type_3" value="@ViewBag.tooling_list_type_3" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_3" id="tooling_list_source_3" value="@ViewBag.tooling_list_source_3" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_qty_3" id="tooling_list_qty_3" value="@ViewBag.tooling_list_qty_3" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_3" id="tooling_list_qty_3" value="@ViewBag.tooling_list_qty_3" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_unit_3" id="tooling_list_unit_3" value="@ViewBag.tooling_list_unit_3" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_price_3" id="tooling_list_price_3" value="@ViewBag.tooling_list_price_3" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_price_3" id="tooling_list_price_3" value="@ViewBag.tooling_list_price_3" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_jpy_3" id="tooling_list_amount_jpy_3" value="@ViewBag.tooling_list_amount_jpy_3" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_usd_3" id="tooling_list_amount_usd_3" value="@ViewBag.tooling_list_amount_usd_3" /></td>
                     </tr>
@@ -418,9 +431,9 @@
                         <td><input type="text" class="directInput" name="tooling_list_description_4" id="tooling_list_description_4" value="@ViewBag.tooling_list_description_4" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_type_4" id="tooling_list_type_4" value="@ViewBag.tooling_list_type_4" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_4" id="tooling_list_source_4" value="@ViewBag.tooling_list_source_4" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_qty_4" id="tooling_list_qty_4" value="@ViewBag.tooling_list_qty_4" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_4" id="tooling_list_qty_4" value="@ViewBag.tooling_list_qty_4" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_unit_4" id="tooling_list_unit_4" value="@ViewBag.tooling_list_unit_4" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_price_4" id="tooling_list_price_4" value="@ViewBag.tooling_list_price_4" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_price_4" id="tooling_list_price_4" value="@ViewBag.tooling_list_price_4" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_jpy_4" id="tooling_list_amount_jpy_4" value="@ViewBag.tooling_list_amount_jpy_4" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_usd_4" id="tooling_list_amount_usd_4" value="@ViewBag.tooling_list_amount_usd_4" /></td>
                     </tr>
@@ -429,9 +442,9 @@
                         <td><input type="text" class="directInput" name="tooling_list_description_5" id="tooling_list_description_5" value="@ViewBag.tooling_list_description_5" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_type_5" id="tooling_list_type_5" value="@ViewBag.tooling_list_type_5" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_5" id="tooling_list_source_5" value="@ViewBag.tooling_list_source_5" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_qty_5" id="tooling_list_qty_5" value="@ViewBag.tooling_list_qty_5" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_5" id="tooling_list_qty_5" value="@ViewBag.tooling_list_qty_5" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_unit_5" id="tooling_list_unit_5" value="@ViewBag.tooling_list_unit_5" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_price_5" id="tooling_list_price_5" value="@ViewBag.tooling_list_price_5" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_price_5" id="tooling_list_price_5" value="@ViewBag.tooling_list_price_5" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_jpy_5" id="tooling_list_amount_jpy_5" value="@ViewBag.tooling_list_amount_jpy_5" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_usd_5" id="tooling_list_amount_usd_5" value="@ViewBag.tooling_list_amount_usd_5" /></td>
                     </tr>
@@ -440,9 +453,9 @@
                         <td><input type="text" class="directInput" name="tooling_list_description_6" id="tooling_list_description_6" value="@ViewBag.tooling_list_description_6" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_type_6" id="tooling_list_type_6" value="@ViewBag.tooling_list_type_6" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_6" id="tooling_list_source_6" value="@ViewBag.tooling_list_source_6" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_qty_6" id="tooling_list_qty_6" value="@ViewBag.tooling_list_qty_6" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_6" id="tooling_list_qty_6" value="@ViewBag.tooling_list_qty_6" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_unit_6" id="tooling_list_unit_6" value="@ViewBag.tooling_list_unit_6" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_price_6" id="tooling_list_price_6" value="@ViewBag.tooling_list_price_6" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_price_6" id="tooling_list_price_6" value="@ViewBag.tooling_list_price_6" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_jpy_6" id="tooling_list_amount_jpy_6" value="@ViewBag.tooling_list_amount_jpy_6" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_usd_6" id="tooling_list_amount_usd_6" value="@ViewBag.tooling_list_amount_usd_6" /></td>
                     </tr>
@@ -451,9 +464,9 @@
                         <td><input type="text" class="directInput" name="tooling_list_description_7" id="tooling_list_description_7" value="@ViewBag.tooling_list_description_7" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_type_7" id="tooling_list_type_7" value="@ViewBag.tooling_list_type_7" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_7" id="tooling_list_source_7" value="@ViewBag.tooling_list_source_7" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_qty_7" id="tooling_list_qty_7" value="@ViewBag.tooling_list_qty_7" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_7" id="tooling_list_qty_7" value="@ViewBag.tooling_list_qty_7" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_unit_7" id="tooling_list_unit_7" value="@ViewBag.tooling_list_unit_7" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_price_7" id="tooling_list_price_7" value="@ViewBag.tooling_list_price_7" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_price_7" id="tooling_list_price_7" value="@ViewBag.tooling_list_price_7" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_jpy_7" id="tooling_list_amount_jpy_7" value="@ViewBag.tooling_list_amount_jpy_7" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_usd_7" id="tooling_list_amount_usd_7" value="@ViewBag.tooling_list_amount_usd_7" /></td>
                     </tr>
@@ -462,9 +475,9 @@
                         <td><input type="text" class="directInput" name="tooling_list_description_8" id="tooling_list_description_8" value="@ViewBag.tooling_list_description_8" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_type_8" id="tooling_list_type_8" value="@ViewBag.tooling_list_type_8" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_8" id="tooling_list_source_8" value="@ViewBag.tooling_list_source_8" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_qty_8" id="tooling_list_qty_8" value="@ViewBag.tooling_list_qty_8" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_8" id="tooling_list_qty_8" value="@ViewBag.tooling_list_qty_8" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_unit_8" id="tooling_list_unit_8" value="@ViewBag.tooling_list_unit_8" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_price_8" id="tooling_list_price_8" value="@ViewBag.tooling_list_price_8" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_price_8" id="tooling_list_price_8" value="@ViewBag.tooling_list_price_8" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_jpy_8" id="tooling_list_amount_jpy_8" value="@ViewBag.tooling_list_amount_jpy_8" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_usd_8" id="tooling_list_amount_usd_8" value="@ViewBag.tooling_list_amount_usd_8" /></td>
                     </tr>
@@ -473,9 +486,9 @@
                         <td><input type="text" class="directInput" name="tooling_list_description_9" id="tooling_list_description_9" value="@ViewBag.tooling_list_description_9" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_type_9" id="tooling_list_type_9" value="@ViewBag.tooling_list_type_9" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_9" id="tooling_list_source_9" value="@ViewBag.tooling_list_source_9" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_qty_9" id="tooling_list_qty_9" value="@ViewBag.tooling_list_qty_9" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_9" id="tooling_list_qty_9" value="@ViewBag.tooling_list_qty_9" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_unit_9" id="tooling_list_unit_9" value="@ViewBag.tooling_list_unit_9" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_price_9" id="tooling_list_price_9" value="@ViewBag.tooling_list_price_9" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_price_9" id="tooling_list_price_9" value="@ViewBag.tooling_list_price_9" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_jpy_9" id="tooling_list_amount_jpy_9" value="@ViewBag.tooling_list_amount_jpy_9" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_usd_9" id="tooling_list_amount_usd_9" value="@ViewBag.tooling_list_amount_usd_9" /></td>
                     </tr>
@@ -484,9 +497,9 @@
                         <td><input type="text" class="directInput" name="tooling_list_description_10" id="tooling_list_description_10" value="@ViewBag.tooling_list_description_10" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_type_10" id="tooling_list_type_10" value="@ViewBag.tooling_list_type_10" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_10" id="tooling_list_source_10" value="@ViewBag.tooling_list_source_10" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_qty_10" id="tooling_list_qty_10" value="@ViewBag.tooling_list_qty_10" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_10" id="tooling_list_qty_10" value="@ViewBag.tooling_list_qty_10" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_unit_10" id="tooling_list_unit_10" value="@ViewBag.tooling_list_unit_10" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_price_10" id="tooling_list_price_10" value="@ViewBag.tooling_list_price_10" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_price_10" id="tooling_list_price_10" value="@ViewBag.tooling_list_price_10" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_jpy_10" id="tooling_list_amount_jpy_10" value="@ViewBag.tooling_list_amount_jpy_10" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_usd_10" id="tooling_list_amount_usd_10" value="@ViewBag.tooling_list_amount_usd_10" /></td>
                     </tr>
@@ -495,9 +508,9 @@
                         <td><input type="text" class="directInput" name="tooling_list_description_11" id="tooling_list_description_11" value="@ViewBag.tooling_list_description_11" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_type_11" id="tooling_list_type_11" value="@ViewBag.tooling_list_type_11" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_11" id="tooling_list_source_11" value="@ViewBag.tooling_list_source_11" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_qty_11" id="tooling_list_qty_11" value="@ViewBag.tooling_list_qty_11" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_11" id="tooling_list_qty_11" value="@ViewBag.tooling_list_qty_11" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_unit_11" id="tooling_list_unit_11" value="@ViewBag.tooling_list_unit_11" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_price_11" id="tooling_list_price_11" value="@ViewBag.tooling_list_price_11" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_price_11" id="tooling_list_price_11" value="@ViewBag.tooling_list_price_11" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_jpy_11" id="tooling_list_amount_jpy_11" value="@ViewBag.tooling_list_amount_jpy_11" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_usd_11" id="tooling_list_amount_usd_11" value="@ViewBag.tooling_list_amount_usd_11" /></td>
                     </tr>
@@ -506,9 +519,9 @@
                         <td><input type="text" class="directInput" name="tooling_list_description_12" id="tooling_list_description_12" value="@ViewBag.tooling_list_description_12" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_type_12" id="tooling_list_type_12" value="@ViewBag.tooling_list_type_12" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_12" id="tooling_list_source_12" value="@ViewBag.tooling_list_source_12" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_qty_12" id="tooling_list_qty_12" value="@ViewBag.tooling_list_qty_12" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_12" id="tooling_list_qty_12" value="@ViewBag.tooling_list_qty_12" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_unit_12" id="tooling_list_unit_12" value="@ViewBag.tooling_list_unit_12" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_price_12" id="tooling_list_price_12" value="@ViewBag.tooling_list_price_12" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_price_12" id="tooling_list_price_12" value="@ViewBag.tooling_list_price_12" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_jpy_12" id="tooling_list_amount_jpy_12" value="@ViewBag.tooling_list_amount_jpy_12" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_usd_12" id="tooling_list_amount_usd_12" value="@ViewBag.tooling_list_amount_usd_12" /></td>
                     </tr>
@@ -517,9 +530,9 @@
                         <td><input type="text" class="directInput" name="tooling_list_description_13" id="tooling_list_description_13" value="@ViewBag.tooling_list_description_13" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_type_13" id="tooling_list_type_13" value="@ViewBag.tooling_list_type_13" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_13" id="tooling_list_source_13" value="@ViewBag.tooling_list_source_13" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_qty_13" id="tooling_list_qty_13" value="@ViewBag.tooling_list_qty_13" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_13" id="tooling_list_qty_13" value="@ViewBag.tooling_list_qty_13" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_unit_13" id="tooling_list_unit_13" value="@ViewBag.tooling_list_unit_13" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_price_13" id="tooling_list_price_13" value="@ViewBag.tooling_list_price_13" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_price_13" id="tooling_list_price_13" value="@ViewBag.tooling_list_price_13" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_jpy_13" id="tooling_list_amount_jpy_13" value="@ViewBag.tooling_list_amount_jpy_13" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_usd_13" id="tooling_list_amount_usd_13" value="@ViewBag.tooling_list_amount_usd_13" /></td>
                     </tr>
@@ -528,9 +541,9 @@
                         <td><input type="text" class="directInput" name="tooling_list_description_14" id="tooling_list_description_14" value="@ViewBag.tooling_list_description_14" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_type_14" id="tooling_list_type_14" value="@ViewBag.tooling_list_type_14" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_14" id="tooling_list_source_14" value="@ViewBag.tooling_list_source_14" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_qty_14" id="tooling_list_qty_14" value="@ViewBag.tooling_list_qty_14" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_14" id="tooling_list_qty_14" value="@ViewBag.tooling_list_qty_14" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_unit_14" id="tooling_list_unit_14" value="@ViewBag.tooling_list_unit_14" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_price_14" id="tooling_list_price_14" value="@ViewBag.tooling_list_price_14" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_price_14" id="tooling_list_price_14" value="@ViewBag.tooling_list_price_14" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_jpy_14" id="tooling_list_amount_jpy_14" value="@ViewBag.tooling_list_amount_jpy_14" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_usd_14" id="tooling_list_amount_usd_14" value="@ViewBag.tooling_list_amount_usd_14" /></td>
                     </tr>
@@ -539,9 +552,9 @@
                         <td><input type="text" class="directInput" name="tooling_list_description_15" id="tooling_list_description_15" value="@ViewBag.tooling_list_description_15" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_type_15" id="tooling_list_type_15" value="@ViewBag.tooling_list_type_15" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_15" id="tooling_list_source_15" value="@ViewBag.tooling_list_source_15" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_qty_15" id="tooling_list_qty_15" value="@ViewBag.tooling_list_qty_15" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_15" id="tooling_list_qty_15" value="@ViewBag.tooling_list_qty_15" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_unit_15" id="tooling_list_unit_15" value="@ViewBag.tooling_list_unit_15" /></td>
-                        <td><input type="number" class="directInput  toolinglist" name="tooling_list_price_15" id="tooling_list_price_15" value="@ViewBag.tooling_list_price_15" /></td>
+                        <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_price_15" id="tooling_list_price_15" value="@ViewBag.tooling_list_price_15" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_jpy_15" id="tooling_list_amount_jpy_15" value="@ViewBag.tooling_list_amount_jpy_15" /></td>
                         <td><input type="text" class="calculateInput" name="tooling_list_amount_usd_15" id="tooling_list_amount_usd_15" value="@ViewBag.tooling_list_amount_usd_15" /></td>
                     </tr>
@@ -598,6 +611,13 @@
                 </table>
             </div>
         </form>
+
+
+        <script>
+            jQuery(document).ready(function () {
+                document.getElementById("search_code").value = "@ViewBag.doc_no";
+            })
+        </script>
 
    
 

@@ -4,6 +4,10 @@
 jQuery(document).ready(function () {
     window.onresize = setWindow;
     setWindow();
+
+    if (document.getElementById("CostId").value != 0)
+        document.getElementById("data_status").innerText = "EDITING";
+
     jQuery("#checked_date,#issue_date,#approved_by,#expired_by")
         .css({ "cursor": "pointer" })
         .mouseover(function () {
@@ -103,7 +107,7 @@ jQuery(document).ready(function () {
                 parseFloat(document.getElementById("material_outside_cost_sgd_2").value) +
                 parseFloat(document.getElementById("material_outside_cost_sgd_3").value);
 
-            document.getElementById("direct_material_cost").value = direct_material_cost;
+            document.getElementById("direct_material_cost").value = direct_material_cost.toFixed(4);
             
 
             var sub_material_percentage = parseFloat(document.getElementById("sub_material_percentage").value);
@@ -263,9 +267,9 @@ jQuery(document).ready(function () {
                 document.getElementById("search_code").value =
                     table.rows[RI].cells[0].innerText;
                 document.getElementById("CostId").value =
-                    table.rows[RI].cells[1].innerText;
+                    table.rows[RI].cells[2].innerText;
 
-                window.location.href = _url + "Home/Read?id=" + table.rows[RI].cells[1].innerText;
+                window.location.href = _url + "Home/Read?id=" + table.rows[RI].cells[2].innerText;
 
 
                 jQuery("#table_parts_code").hide();
@@ -321,8 +325,33 @@ function setWindow() {
     document.getElementById('table_summary').style.width = (window.innerWidth - 90) + 'px';
 }
 
+
+function delete_data(id) {
+    
+    var confirm_delete = confirm("Delete Data?");
+    if (confirm_delete) {
+        jQuery.ajax({
+            type: "POST",
+            url: _url + 'Home/Delete',
+            data: jQuery.param({
+                Id: id,
+                confirm: true
+            }),
+            success: function (res) {
+                window.location.href = _url + "Home/Index";
+            }
+        });
+    }
+
+}
+
+function RefreshData() {
+    window.location.href = _url + "Home/Index";
+}
+
 function SubmitData() {
     document.getElementById("SubmitButton").click();
+   
 }
 
 

@@ -28,10 +28,16 @@
                             <p style="margin-top:5px">SERACH :</p>
                         </li>
                         <li class="nav-item">
-                            <input type="text" style="cursor:pointer;margin-left:5px" class="ui-icon-search" name="search_code" id="search_code" value="-" />
+                            <input type="text" style="width:150px;cursor:pointer;margin-left:5px" class="ui-icon-search" name="search_code" id="search_code" value="-" />
                         </li>
                         <li class="nav-item">
-                            <input type="button" onclick="SubmitData();" style="margin-left:15px" class="btn btn-info w-380" value="Save" />
+                            <input type="button" onclick="SubmitData();" style="margin-left:15px" class="btn btn-info w-280" value="Save" />
+                        </li>
+                        <li class="nav-item">
+                            <input type="button" onclick="RefreshData();" style="margin-left:15px" class="btn btn-warning w-280" value="Refresh" />
+                        </li>
+                        <li class="nav-item">
+                            <div id="data_status" style="padding-left:20px;border:0px;font-size:20px;color:blue">ADD NEW</div>
                         </li>
                     </ul>
                 </div>
@@ -46,7 +52,7 @@
 
     <div style="display:none;" class="modal" tabindex="-1" id="form-modal">
         <div class="modal-dialog" >
-            <div class="modal-content" style="background:white;width:1050px;padding-left:5px;margin-top:-40px;margin-left:-250px">
+            <div class="modal-content" style="background:white;width:1100px;padding-left:5px;margin-top:-40px;margin-left:-290px">
                 <div class="modal-header">
                     <h5 class="modal-title"></h5>
                     <button type="button" class="btn-close" data-dismiss="modal">X</button>

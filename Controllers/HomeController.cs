@@ -301,6 +301,7 @@ namespace CostNag.Controllers
                     {
                         list.partscode.Add(new ListModel
                         {
+                            doc_no = o.doc_no,
                             code = o.parts_code,
                             id = o.CostId.ToString()
 
@@ -339,6 +340,7 @@ namespace CostNag.Controllers
                 {
                     list.partscode.Add(new ListModel
                     {
+                        doc_no = o.doc_no,
                         code = o.parts_code,
                         id = o.CostId.ToString()
 
@@ -635,7 +637,37 @@ namespace CostNag.Controllers
             return View("Index",mymodel); 
         }
 
-        
+        public async void Delete(
+            Cost model,
+            bool confirm,
+            int Id
+        )
+        {
+            if (Id == null || Id == 0)  //this is used for the validation as well but in the server side
+            {
+                //return NotFound();
+            }
+            else
+            {
+                if (ModelState.IsValid && confirm == true)
+                {
+                    HttpClient client = _api.Initial();
+
+                    var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+
+                    var action = "api/data/delete-cost-by-id/" + Id;
+
+                    HttpResponseMessage res = await client.PostAsync(action, content).ConfigureAwait(false);
+
+                    res.EnsureSuccessStatusCode();
+                    if (res.IsSuccessStatusCode)
+                    {
+
+                        var result = res.Content.ReadAsStringAsync().Result;
+                    }
+                }
+            }
+        }
 
         public async Task<ActionResult<Cost>> Save(Cost model)
         {

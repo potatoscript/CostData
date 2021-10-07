@@ -99,7 +99,7 @@ label,input{
 #table_parts_code {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 120px;
+    width: 220px;
     display:none;
 }
 
@@ -159,7 +159,11 @@ label,input{
         font-size: 15px;
     }
         #table_process_item tr td:first-child + td + td + td {
-            width: 60px;
+            text-align: center;
+            font-size: 15px;
+        }
+        #table_process_item tr td:first-child + td + td + td+td {
+            width: 150px;
             text-align: center;
             font-size: 15px;
         }
@@ -168,21 +172,22 @@ label,input{
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     white-space: nowrap;
+    width:250px;
 }
 
     #table_process_list th {
         border: 1px solid black;
-        width: 150px;
         padding-left: 5px;
         font-size: 15px;
+        text-align:center;
     }
 
     #table_process_list td {
         border: 1px solid black;
-        width: 110px;
         padding-left: 5px;
         font-size: 15px;
-        cursor:pointer;
+        cursor: pointer;
+        text-align: center;
     }
 #table_process_list tr:nth-child(odd) td {
     background: #d1e8ff;

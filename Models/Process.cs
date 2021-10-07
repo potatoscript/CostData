@@ -33,6 +33,9 @@ namespace CostNag.Models
         public double worker { get; set; }
 
         [Column(TypeName = "double precision")]
+        public double direct_labour_unit { get; set; }
+
+        [Column(TypeName = "double precision")]
         public double direct_labour { get; set; }
 
         [Column(TypeName = "double precision")]

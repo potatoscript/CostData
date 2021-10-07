@@ -30,6 +30,7 @@ namespace CostNag.Controllers
             ViewBag.p_working_time_month = 0.0;
             ViewBag.p_shift = 0.0;
             ViewBag.p_worker = 0.0;
+            ViewBag.p_direct_labour_unit = 550;
             ViewBag.p_direct_labour = 0.0;
             ViewBag.p_total_labour_cost = 0.0;
             ViewBag.p_machine_qty = 0.0;
@@ -122,8 +123,9 @@ namespace CostNag.Controllers
                     ViewBag.p_working_time_month = p.working_time_month;
                     ViewBag.p_shift = p.shift;
                     ViewBag.p_worker = p.worker;
+                    ViewBag.p_direct_labour_unit = p.direct_labour_unit;
                     ViewBag.p_direct_labour = p.direct_labour;
-                    ViewBag.p_total_labour_cost = p.direct_process_cost;
+                    ViewBag.p_total_labour_cost = p.total_labour_cost;
                     ViewBag.p_machine_qty = p.machine_qty;
                     ViewBag.p_area = p.area;
                     ViewBag.p_special_material = p.special_material;

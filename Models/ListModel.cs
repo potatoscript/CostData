@@ -15,6 +15,7 @@ namespace CostNag.Models
 
         public List<ListModel> partscode = new List<ListModel>();
         public string code { get; set; }
+        public string doc_no { get; set; }
         public string id { get; set; }
 
         public List<ListModel> process = new List<ListModel>();
