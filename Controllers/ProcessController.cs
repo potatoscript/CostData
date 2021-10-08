@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using CostNag.Helper;
 using CostNag.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 
 namespace CostNag.Controllers
@@ -41,6 +42,7 @@ namespace CostNag.Controllers
             ViewBag.p_total_machine_cost = 0.0;
             ViewBag.p_machine_usage_day = 96;
             ViewBag.p_machine_cost_month = 0.0;
+            ViewBag.p_machine_cost_month2 = 0.0;
             ViewBag.p_machine_cost_month_percentage = 0.0;
             ViewBag.p_machine_cost_month_percentage_unit = 10;
             ViewBag.p_consumption_kwh = 0.0;
@@ -52,7 +54,7 @@ namespace CostNag.Controllers
             ViewBag.p_labour_electric_cost = 0.0;
             ViewBag.p_charge = 0.0;
             ViewBag.p_cycle_time = 0.0;
-            ViewBag.p_cycle_time_unit = 0.0;
+            ViewBag.p_cycle_time_unit = 5.43;
             ViewBag.p_time = 0.0;
             ViewBag.p_capacity = 0.0;
             ViewBag.p_time_g = 0.0;
@@ -68,6 +70,25 @@ namespace CostNag.Controllers
 
 
             ListModel list = new ListModel();
+            List<string> master_ = new List<string>();
+
+
+            HttpClient client = _api.Initial();
+
+            HttpResponseMessage res = await client.GetAsync("api/process/get-process-master");
+            if (res.IsSuccessStatusCode)
+            {
+                var result = res.Content.ReadAsStringAsync().Result;
+                master_ = JsonConvert.DeserializeObject<List<string>>(result);
+                
+            }
+
+            List<string> model_process = master_.ToList();
+            ViewData["processMaster"] = model_process;
+
+
+
+
             List<Process> process_ = new List<Process>();
 
             HttpClient clientdata = _api.Initial();
@@ -134,6 +155,7 @@ namespace CostNag.Controllers
                     ViewBag.p_total_machine_cost = p.total_machine_cost;
                     ViewBag.p_machine_usage_day = p.machine_usage_day;
                     ViewBag.p_machine_cost_month = p.machine_cost_month;
+                    ViewBag.p_machine_cost_month2 = p.machine_cost_month2;
                     ViewBag.p_machine_cost_month_percentage = p.machine_cost_month_percentage;
                     ViewBag.p_machine_cost_month_percentage_unit = p.machine_cost_month_percentage_unit;
                     ViewBag.p_consumption_kwh = p.consumption_kwh;

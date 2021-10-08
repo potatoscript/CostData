@@ -58,6 +58,9 @@ namespace CostNag.Models
         public double machine_cost_month { get; set; }
 
         [Column(TypeName = "double precision")]
+        public double machine_cost_month2 { get; set; }
+
+        [Column(TypeName = "double precision")]
         public double machine_cost_month_percentage { get; set; }
 
         [Column(TypeName = "double precision")]

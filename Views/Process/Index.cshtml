@@ -41,11 +41,18 @@
                 <td style="vertical-align:top">
                     <table id="table_process_item">
                         <tr>
-                            <td colspan="4" style="text-align:right;padding-right:10px">Process Name :</td>
+                            <td  style="text-align:right;padding-right:10px">Process Name :</td>
                             <td>
-                                <input type="text" class="directInput process_field"
+                                <input type="text" tabindex="0" class="directInput process_field"
                                        name="process_name" id="process_name"
                                        value="@ViewBag.p_process_name" />
+                            </td>
+                            <td colspan="2" style="text-align:right;padding-right:5px;">Direct process cost     SGD/pc.</td>
+                            <td>
+                                <input type="number" step="any" class="calculateInput"
+                                       name="direct_process_cost"
+                                       id="p_direct_process_cost"
+                                       value="@ViewBag.p_direct_process_cost" />
                             </td>
                         </tr>
                         <tr>
@@ -54,7 +61,7 @@
                             <td></td>
                             <td style="color:blue">A</td>
                             <td>
-                                <input type="number" step="any" class="directInput process_field"
+                                <input type="number" step="any" tabindex="1" class="directInput process_field"
                                        name="working_day" id="p_working_day"
                                        value="@ViewBag.p_working_day" />
                             </td>
@@ -65,7 +72,7 @@
                             <td></td>
                             <td style="color:blue">B</td>
                             <td>
-                                <input type="number" step="any" class="directInput process_field"
+                                <input type="number" step="any" tabindex="2" class="directInput process_field"
                                        name="working_time_day" id="p_working_time_day"
                                        value="@ViewBag.p_working_time_day" />
                             </td>
@@ -73,7 +80,7 @@
                         <tr>
                             <td>Working time(m/month):</td>
                             <td colspan="2" style="color:blue">Auto ( 稼働日数×実稼働時間 )</td>
-                            <td style="color:blue">C</td>
+                            <td style="text-align:center;color:blue">C</td>
                             <td>
                                 <input type="number" step="any" class="directInput process_field"
                                        name="working_time_month" id="p_working_time_month"
@@ -86,7 +93,7 @@
                             <td>shift/day</td>
                             <td style="color:blue">D</td>
                             <td>
-                                <input type="number" step="any" class="directInput process_field"
+                                <input type="number" step="any" tabindex="3" class="directInput process_field"
                                        name="shift" id="p_shift"
                                        value="@ViewBag.p_shift" />
                             </td>
@@ -97,7 +104,7 @@
                             <td></td>
                             <td style="color:blue">E</td>
                             <td>
-                                <input type="number" step="any" class="directInput process_field"
+                                <input type="number" step="any" tabindex="4" class="directInput process_field"
                                        name="worker" id="p_worker"
                                        value="@ViewBag.p_worker" />
                             </td>
@@ -106,7 +113,7 @@
                             <td>Direct labour &Aacute; Expense Allowance:</td>
                             <td style="color:blue">Auto</td>
                             <td>
-                                <input type="number" step="any" class="directInput c2  process_field"
+                                <input type="number" step="any" tabindex="5" class="directInput c2  process_field"
                                        name="direct_labour_unit" id="p_direct_labour_unit"
                                        value="@ViewBag.p_direct_labour_unit" />/M^2
                             </td>
@@ -134,7 +141,7 @@
                             <td></td>
                             <td style="color:blue">H</td>
                             <td>
-                                <input type="number" step="any" class="directInput process_field"
+                                <input type="number" step="any" tabindex="6" class="directInput process_field"
                                        name="machine_qty" id="p_machine_qty"
                                        value="@ViewBag.p_machine_qty" />
                             </td>
@@ -145,7 +152,7 @@
                             <td></td>
                             <td style="color:blue">I</td>
                             <td>
-                                <input type="number" step="any" class="directInput process_field"
+                                <input type="number" step="any" tabindex="7" class="directInput process_field"
                                        name="area" id="p_area"
                                        value="@ViewBag.p_area" />
                             </td>
@@ -156,7 +163,7 @@
                             <td></td>
                             <td style="color:blue">J</td>
                             <td>
-                                <input type="number" step="any" class="directInput process_field"
+                                <input type="number" step="any" tabindex="8" class="directInput process_field"
                                        name="special_material" id="p_special_material"
                                        value="@ViewBag.p_special_material" />
                             </td>
@@ -165,7 +172,7 @@
                             <td>Plant Maintenance:</td>
                             <td style="color:blue">Auto</td>
                             <td>
-                                <input type="number" step="any" class="directInput c2  process_field"
+                                <input type="number" step="any" tabindex="9" class="directInput c2  process_field"
                                        name="plant_maintenance_unit" id="p_plant_maintenance_unit"
                                        value="@ViewBag.p_plant_maintenance_unit" />/M^2
                             </td>
@@ -180,7 +187,7 @@
                             <td></td>
                             <td style="color:blue">Auto ( Cost* percentage )</td>
                             <td>
-                                <input type="number" step="any" class="directInput c2  process_field"
+                                <input type="number" step="any" tabindex="10" class="directInput c2  process_field"
                                        name="machine_cost_month_percentage_unit" id="p_machine_cost_month_percentage_unit"
                                        value="@ViewBag.p_machine_cost_month_percentage_unit" />%
                             </td>
@@ -197,7 +204,7 @@
                             <td></td>
                             <td style="color:blue">M</td>
                             <td>
-                                <input type="number" step="any" class="directInput  process_field"
+                                <input type="number" step="any" tabindex="11" class="directInput  process_field"
                                        name="total_machine_cost" id="p_total_machine_cost"
                                        value="@ViewBag.p_total_machine_cost" />
                             </td>
@@ -206,15 +213,15 @@
                             <td>Month General purpose</td>
                             <td style="color:blue">Auto</td>
                             <td>
-                                <input type="number" step="any" class="directInput c2  process_field"
+                                <input type="number" step="any" tabindex="12" class="directInput c2  process_field"
                                        name="machine_usage_day" id="p_machine_usage_day"
                                        value="@ViewBag.p_machine_usage_day" />
                             </td>
                             <td style="color:blue">N</td>
                             <td>
                                 <input type="number" step="any" class="calculateInput"
-                                       name="machine_cost_month" id="p_machine_cost_month"
-                                       value="@ViewBag.p_machine_cost_month" />
+                                       name="machine_cost_month2" id="p_machine_cost_month2"
+                                       value="@ViewBag.p_machine_cost_month2" />
                             </td>
                         </tr>
                         <tr>
@@ -223,7 +230,7 @@
                             <td></td>
                             <td style="color:blue">O</td>
                             <td>
-                                <input type="number" step="any" class="directInput  process_field"
+                                <input type="number" step="any" tabindex="13" class="directInput  process_field"
                                        name="consumption_kwh" id="p_consumption_kwh"
                                        value="@ViewBag.p_consumption_kwh" />
                             </td>
@@ -232,7 +239,7 @@
                             <td>Electric Cost (SGD/kwH)</td>
                             <td style="color:blue">Auto</td>
                             <td>
-                                <input type="number" step="any" class="directInput c2"
+                                <input type="number" step="any" tabindex="14" class="directInput c2"
                                        name="consumption_unit" id="p_consumption_unit"
                                        value="@ViewBag.p_consumption_unit" />
                             </td>
@@ -249,7 +256,7 @@
                             <td></td>
                             <td style="color:blue">Q</td>
                             <td>
-                                <input type="number" step="any" step="any" class="directInput  process_field"
+                                <input type="number" step="any" step="any" tabindex="15" class="directInput  process_field"
                                        name="consumption_rate" id="p_consumption_rate"
                                        value="@ViewBag.p_consumption_rate" />
                             </td>
@@ -302,7 +309,7 @@
                             <td>Cycle Time (Sec/Pc)</td>
                             <td style="color:blue">Auto</td>
                             <td>
-                                <input type="number" step="any" class="directInput c2  process_field"
+                                <input type="number" step="any" tabindex="16" class="directInput c2  process_field"
                                        name="cycle_time_unit" id="p_cycle_time_unit"
                                        value="@ViewBag.p_cycle_time_unit" />
                             </td>
@@ -319,7 +326,7 @@
                             <td></td>
                             <td style="color:blue">W</td>
                             <td>
-                                <input type="number" step="any" class="directInput  process_field"
+                                <input type="number" step="any" tabindex="17" class="directInput  process_field"
                                        name="time" id="p_time"
                                        value="@ViewBag.p_time" />
                             </td>
@@ -330,7 +337,7 @@
                             <td></td>
                             <td style="color:blue">X</td>
                             <td>
-                                <input type="number" step="any" class="directInput  process_field"
+                                <input type="number" step="any" tabindex="18" class="directInput  process_field"
                                        name="capacity" id="p_capacity"
                                        value="@ViewBag.p_capacity" />
                             </td>
@@ -352,7 +359,7 @@
                             <td></td>
                             <td style="color:blue">Z</td>
                             <td>
-                                <input type="number" step="any" class="directInput  process_field"
+                                <input type="number" step="any" tabindex="19" class="directInput  process_field"
                                        name="efficiency" id="p_efficiency"
                                        value="@ViewBag.p_efficiency" />
                             </td>
@@ -382,24 +389,21 @@
                             <td colspan="2">Special input     Pc/FG</td>
                             <td style="color:blue;text-align:center">AC</td>
                             <td>
-                                <input type="number" step="any" class="directInput  process_field"
+                                <input type="number" step="any" tabindex="20" class="directInput  process_field"
                                        name="special_input" id="p_special_input"
                                        value="@ViewBag.p_special_input" />
                             </td>
                         </tr>
-                        <tr>
-                            <td colspan="3" style="text-align:right;padding-right:5px;">Direct process cost     SGD/pc.</td>
-                            <td style="color:blue;text-align:center">AD</td>
-                            <td>
-                                <input type="number" step="any" class="calculateInput"
-                                       name="direct_process_cost"
-                                       id="p_direct_process_cost"
-                                       value="@ViewBag.p_direct_process_cost" />
-                            </td>
-                        </tr>
+                        
                     </table>
                 </td>
                 <td style="vertical-align:top">
+                    <table style="display:none">
+                        <tr>
+                            <td>Master Process:</td>
+                            <td><input type="text" value="-" id="master_process_" style="width:150px;cursor:pointer;margin-left:5px" class="ui-icon-search" /></td>
+                        </tr>
+                    </table>
                     <table id="table_process_list">
                         <tr>
                             <th style="display:none"></th>
@@ -435,89 +439,22 @@
         
     </form>
 
-<script>
-    jQuery(document).ready(function () {
 
-        if (document.getElementById("ProcessId").value != 0)
-        document.getElementById("status").innerText = "EDITING";
-
-        Total_process_cost();
-        //set the total process_cost from process page into cost page's process cost and recalclate
-        document.getElementById("direct_process_cost").value =document.getElementById("process_cost").value;
-        calculate_cost();
-
-        for (var s = document.getElementsByClassName("directInput"), t = 0; t < s.length; t++) {
-
-            s[t].onclick = function () { this.select() };
-
-
+    <table id="table_process_master">
+        <tr>
+            <th colspan="4">CLOSE</th>
+        </tr>
+        @{
+            foreach (var i in (List<string>)ViewData["processMaster"])
+            {
+                <tr>
+                    <td>@i</td>
+                </tr>
+            }
         }
-        for (var s = document.getElementsByClassName("process_field"), t = 0; t < s.length; t++) {
+    </table>
 
-            s[t].onkeyup = function () {
-                Total_process_cost();
-            };
-
-        }
-
-
-        jQuery('#table_process_list td')
-            .click(function (event) {
-                
-                var CI = jQuery(this).parent().children().index(this);
-                var RI = jQuery(this).parent().parent().children().index(this.parentNode);
-                var table = document.getElementById("table_process_list");
-                var docno = document.getElementById("doc_no").value;
-                if (CI != 3) {
-                    var url = _url + "Process?p_doc_no="+docno+"&p_id=" + table.rows[RI].cells[0].innerText;
-                    showPopup(url, 'Process Cost');
-                }
-            
-            })
-
-
-    });
-
-    function delete_process(id) {
-        var confirm_delete = confirm("Delete Process?");
-        if (confirm_delete) {
-            jQuery.ajax({
-                type: "POST",
-                url: _url + 'Process/Delete',
-                data: jQuery.param({
-                    Id: id,
-                    confirm: true
-                }),
-                success: function (res) {
-                    //set the id to zero for initial state
-                    var url = _url + "Process?p_doc_no="+document.getElementById("doc_no").value+"&p_id=0";
-                    showPopup(url, 'Process Cost');
-                }
-            });
-        }
-        
-    }
-
-    function refresh() {
-        var url = _url + "Process?p_doc_no="+document.getElementById("doc_no").value+"&p_id=0";
-        showPopup(url, 'Process Cost');
-    }
-
-
-    function Total_process_cost() {
-        var table = document.getElementById("table_process_list");
-        var total_process_cost = 0;
-        for (var k = 1; k < table.rows.length; k++) {
-            total_process_cost += parseFloat(table.rows[k].cells[2].innerText);
-        }
-        document.getElementById("process_cost").value = total_process_cost.toFixed(4);
-    }
-    
-</script>
-
-
-
-
+    <script src="~/js/process.js" asp-append-version="true"></script>
 
 
 

@@ -17,6 +17,10 @@ namespace CostNag.Models
         public string code { get; set; }
         public string doc_no { get; set; }
         public string id { get; set; }
+        public string master_process { get; set; }
+        public string processName { get; set; }
+
+        public List<string> processMaster = new List<string>();
 
         public List<ListModel> process = new List<ListModel>();
         public string name { get; set; }

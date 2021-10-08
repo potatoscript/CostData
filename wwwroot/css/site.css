@@ -127,6 +127,38 @@ label,input{
     }
 
 
+#table_process_master {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 220px;
+    display: none;
+}
+
+    #table_process_master th {
+        font-size: 15px;
+        background: #d2d2d2;
+        border: 1px solid black;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    #table_process_master td {
+        font-size: 15px;
+        background: white;
+        border: 1px solid black;
+        text-align: center;
+        padding-right: 10px;
+        cursor: pointer;
+    }
+
+    #table_process_master tr:nth-child(odd) td {
+        background: #a9e285;
+    }
+
+    #table_process_master tr:hover td {
+        background: #fffd9c;
+    }
+
 
 .c2{
     width:90px;
@@ -163,7 +195,7 @@ label,input{
             font-size: 15px;
         }
         #table_process_item tr td:first-child + td + td + td+td {
-            width: 150px;
+            width: 110px;
             text-align: center;
             font-size: 15px;
         }
