@@ -130,8 +130,7 @@ label,input{
 #table_process_master {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 220px;
-    display: none;
+  
 }
 
     #table_process_master th {
@@ -249,3 +248,26 @@ label,input{
 
 
 
+#table_master_input{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width:1200px;
+}
+
+    #table_master_input th {
+        font-size: 15px;
+        background: #d2d2d2;
+        border: 1px solid black;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    #table_master_input td {
+        font-size: 15px;
+        width:100px;
+        background: white;
+        border: 1px solid black;
+        text-align: center;
+        padding-right: 10px;
+        cursor: pointer;
+    }

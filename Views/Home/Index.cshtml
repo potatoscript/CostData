@@ -91,7 +91,9 @@
                                 </tr>
                                 <tr>
                                     <th>Size(ID×OD×W)</th>
-                                    <td colspan="3"><input type="text" class="directInput" name="size" id="size" value="@ViewBag.size" /></td>
+                                    <td><input type="text" class="directInput" name="item_id" id="item_id" value="@ViewBag.item_id" /></td>
+                                    <td><input type="text" class="directInput" name="item_od" id="item_od" value="@ViewBag.item_od" /></td>
+                                    <td><input type="text" class="directInput" name="item_w" id="item_w" value="@ViewBag.item_w" /></td>
                                 </tr>
                             </table>
                             <table class="table">
@@ -282,11 +284,11 @@
                                    class="calculateInput material" 
                                    style="background:#b6deef;cursor:pointer" name="direct_process_cost" 
                                    id="direct_process_cost" 
-                                   onclick="showPopup('@Url.Action("Index", "Process",
+                                   onclick="showPopup('@Url.Action("Index", "ProcessMaster",
 						                new
 						                {
                                             p_doc_no = ViewBag.doc_no,
-                                            p_id = 0
+                                            p_od = ViewBag.item_od
                                         },
 						                Context.Request.Scheme)','Process Cost');"
                                    value="@ViewBag.direct_process_cost" />

@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewData["Title"] = "Process Master";
+    Layout = null;
+}
+
+    <form method="post" asp-action="Save" onsubmit="return jQueryAjaxPost(this,'ProcessMaster/Index');"
+          style="margin-left:-20px;margin-top:-30px">
+
+        <table id="table_process">
+            <tr>
+                <th>Doc No:</th>
+                <td>
+                    <input type="text" class="directInput" style="background:white"
+                           name="doc_no" id="doc_no_master"
+                           value="@ViewBag.p_doc_no" />
+                </td>
+                <th>OD:</th>
+                <td>
+                    <input type="number" step="any" class="calculateInput" style="background:white"
+                           name="item_od" id="od"
+                           value="@ViewBag.p_od" />
+                </td>
+                <th>Total Process Cost:</th>
+                <td>
+                    <input type="number" step="any" class="calculateInput"
+                           name="process_cost" id="process_cost"
+                           value="@ViewBag.p_process_cost" />
+                </td>
+            </tr>
+        </table>
+        <table id="table_master_input">
+            <tr>
+                <th>Process Name:</th>
+                <td>
+                    <input type="text" class="directInput"
+                           name="process_name" id="process_name_master"
+                           value="@ViewBag.p_process_name" />
+                </td>
+                <th>Overhead Cost:</th>
+                <td>
+                    <input type="number" step="any" class="directInput"
+                           name="overhead_cost" id="overhead_cost"
+                           value="@ViewBag.p_overhead_cost" />
+                </td>
+                <th>Machine Cost:</th>
+                <td>
+                    <input type="number" step="any" class="directInput"
+                           name="machine_cost" id="machine_cost"
+                           value="@ViewBag.p_machine_cost" />
+                </td>
+                <th>Labor Cost:</th>
+                <td>
+                    <input type="number" step="any" class="directInput"
+                           name="labor_cost" id="labor_cost"
+                           value="@ViewBag.p_labor_cost" />
+                </td>
+                <th>Total Cost:</th>
+                <td>
+                    <input type="number" step="any" class="calculateInput"
+                           name="total_cost" id="total_cost"
+                           value="@ViewBag.p_total_cost" />
+                </td>
+                <td style="vertical-align:top;border:0px">
+                    <input type="submit" id="SubmitProcessMaster" class="btn btn-info w-280" value="Save" />
+
+                </td>
+                <td style="vertical-align:top;border:0px">
+                    <input type="button" id="RefreshProcessMaster" class="btn btn-warning w-280" value="Refresh" onclick="refresh()" />
+
+                </td>
+                <td style="border:0px;font-size:18px;color:blue" id="statusMaster">
+                    ADD NEW
+                </td>
+                <td style="border:0px"><input type="text" name="ProcessMasterId" id="ProcessMasterId" style="border:0px;font-size:10px;" value="@ViewBag.ProcessId" /></td>
+            </tr>
+        </table>
+
+        <table id="table_process_master">
+            <tr>
+                <th>Bonding Code</th>
+                <th></th>
+                @{
+                    foreach (var i in (List<string>)ViewData["processname"])
+                    {
+                        <td>@i</td>
+                    }
+                }
+            </tr>
+            <tr>
+                <th rowspan="4">5mm~50mm</th>
+                <th>Total Cost</th>
+                @{
+                    foreach (var i in (List<ProcessMaster>)ViewData["data"])
+                    {
+                        <td>@i.total_cost</td>
+                    }
+                }
+            </tr>
+            <tr>
+                <th>Labor Cost</th>
+                @{
+                    foreach (var i in (List<ProcessMaster>)ViewData["data"])
+                    {
+                        <td>@i.labor_cost</td>
+                    }
+                }
+            </tr>
+            <tr>
+                <th>Machine Cost</th>
+                @{
+                    foreach (var i in (List<ProcessMaster>)ViewData["data"])
+                    {
+                        <td>@i.machine_cost</td>
+                    }
+                }
+            </tr>
+            <tr>
+                <th>Overhead Cost</th>
+                @{
+                    foreach (var i in (List<ProcessMaster>)ViewData["data"])
+                    {
+                        <td>@i.overhead_cost</td>
+                    }
+                }
+            </tr>
+        </table>
+
+
+
+    </form>
+
+
+    <script src="~/js/processMaster.js" asp-append-version="true"></script>

@@ -41,6 +41,9 @@ namespace CostNag.Controllers
             ViewBag.product = "-";
             ViewBag.product_type = "-";
             ViewBag.size = "-";
+            ViewBag.item_id = 0;
+            ViewBag.item_od = 0;
+            ViewBag.item_w = 0;
             ViewBag.business_type = "-";
             ViewBag.qty_month = 0;
             ViewBag.exchange_rate = 0;
@@ -388,6 +391,9 @@ namespace CostNag.Controllers
                 ViewBag.product =costdata.product;
                 ViewBag.product_type = costdata.product_type;
                 ViewBag.size = costdata.size;
+                ViewBag.item_id = costdata.item_id;
+                ViewBag.item_od = costdata.item_od;
+                ViewBag.item_w = costdata.item_w;
                 ViewBag.business_type = costdata.business_type;
                 ViewBag.qty_month = costdata.qty_month;
                 ViewBag.exchange_rate = costdata.exchange_rate;

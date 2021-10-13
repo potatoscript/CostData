@@ -70,11 +70,11 @@ namespace CostNag.Controllers
 
 
             ListModel list = new ListModel();
+
+            /*
             List<string> master_ = new List<string>();
 
-
             HttpClient client = _api.Initial();
-
             HttpResponseMessage res = await client.GetAsync("api/process/get-process-master");
             if (res.IsSuccessStatusCode)
             {
@@ -82,10 +82,9 @@ namespace CostNag.Controllers
                 master_ = JsonConvert.DeserializeObject<List<string>>(result);
                 
             }
-
             List<string> model_process = master_.ToList();
             ViewData["processMaster"] = model_process;
-
+            */
 
 
 
@@ -114,8 +113,6 @@ namespace CostNag.Controllers
                 }
 
             }
-
-
             List<ListModel> model = list.process.ToList();
             ViewData["process"] = model;
 

@@ -62,6 +62,12 @@ namespace CostNag.Models
         [Column(TypeName = "character varying(10)")]
         public string size { get; set; }
 
+        public double item_id { get; set; }
+
+        public double item_od { get; set; }
+
+        public double item_w { get; set; }
+
         [Column(TypeName = "character varying(20)")]
         public string business_type { get; set; }
 

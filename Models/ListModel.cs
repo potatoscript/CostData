@@ -10,8 +10,14 @@ using System.Threading.Tasks;
 
 namespace CostNag.Models
 {
+
+    public class Filter
+    {
+        public string Name { get; set; }
+    }
     public class ListModel
     {
+        public Filter[] Filters { get; set; }
 
         public List<ListModel> partscode = new List<ListModel>();
         public string code { get; set; }
