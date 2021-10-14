@@ -10,7 +10,9 @@ namespace CostNag.Models
 
         public int ProcessMasterId { get; set; }
 
+        public string doc_no { get; set; }
         public string process_name { get; set; }
+        public string process_type { get; set; }
 
         public double od_min { get; set; }
 

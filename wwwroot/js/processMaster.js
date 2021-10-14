@@ -7,11 +7,50 @@ jQuery(document).ready(function () {
         document.getElementById("statusMaster").innerText = "EDITING";
 
 
+    for (var s = document.getElementsByClassName("directInput"), t = 0; t < s.length; t++) {
+
+        s[t].onclick = function () { this.select() };
+
+
+    }
+    for (var s = document.getElementsByClassName("processmaster_field"), t = 0; t < s.length; t++) {
+
+        s[t].onkeyup = function () {
+            
+            var overhead = parseFloat(document.getElementById("overhead_cost").value);
+            var machine = parseFloat(document.getElementById("machine_cost").value);
+            var labor = parseFloat(document.getElementById("labor_cost").value);
+            
+            document.getElementById("total_cost").value = (overhead+machine+labor).toFixed(5);
+        };
+
+    }
+
+
     jQuery('#table_process_master td')
         .click(function (event) {
+            var table = document.getElementById("table_process_master");
+            ci = jQuery(this).parent().children().index(this);
+            ri = jQuery(this).parent().parent().children().index(this.parentNode);
 
-           ci = jQuery(this).parent().children().index(this);
-           ri = jQuery(this).parent().parent().children().index(this.parentNode);
+            if (ci != 0 && String(table.rows[ri].cells[0].innerText).indexOf('★')==-1) {
+                document.getElementById("process_name_master").value = table.rows[ri].cells[0].innerText;
+                document.getElementById("process_type_master").value = table.rows[ri].cells[1].innerText;
+                document.getElementById("overhead_cost").value = table.rows[ri].cells[2].innerText;
+                document.getElementById("machine_cost").value = table.rows[ri].cells[3].innerText;
+                document.getElementById("labor_cost").value = table.rows[ri].cells[4].innerText;
+                document.getElementById("total_cost").value = table.rows[ri].cells[5].innerText;
+                document.getElementById("ProcessMasterId").value = table.rows[ri].cells[6].innerText;
+            } else {
+                document.getElementById("process_name_master").value = "-";
+                document.getElementById("process_type_master").value = "-";
+                document.getElementById("overhead_cost").value = 0;
+                document.getElementById("machine_cost").value = 0;
+                document.getElementById("labor_cost").value = 0;
+                document.getElementById("total_cost").value = 0;
+                document.getElementById("ProcessMasterId").value = 0;
+            }
+            
 
         })
 
@@ -19,52 +58,55 @@ jQuery(document).ready(function () {
     var n = 0;
     array_data = [];
     array_process_cost = [];
-    table.rows[0].onclick = function () {
-        var row = table.rows[0];
-        var rowCost = table.rows[1]; 
-        if (String(row.cells[ci].innerHTML).indexOf("★") == -1) {
-            array_data[n] = row.cells[ci].innerHTML;
-            array_process_cost[n] = rowCost.cells[ci].innerHTML;
-            row.cells[ci].innerHTML = "★" + row.cells[ci].innerHTML;
-            n++;
-        } else {
-            var val = String(row.cells[ci].innerHTML).split("★");
-            row.cells[ci].innerHTML = val.slice(1, 2);
-            for (var a = 0; a < array_data.length; a++) {
-                if (array_data[a] == row.cells[ci].innerHTML) {
-                    array_data[a] = ""; //clear array_data and remove ★
-                    array_process_cost[a] = "";
+    for (var k = 1; k < table.rows.length; k++) {
+        table.rows[k].onclick = function () {
+            if (ci == 0) {
+                var row = table.rows[this.rowIndex];
+                if (String(row.cells[0].innerHTML).indexOf("★") == -1) {
+                    array_data[n] = row.cells[0].innerHTML;
+                    array_process_cost[n] = row.cells[2].innerText;
+                    row.cells[0].innerHTML = "★" + row.cells[0].innerHTML;
+                    n++;
+                } else {
+                    var val = String(row.cells[0].innerHTML).split("★");
+                    row.cells[0].innerHTML = val.slice(1, 2);
+                    for (var a = 0; a < array_data.length; a++) {
+                        if (array_data[a] == row.cells[0].innerHTML) {
+                            array_data[a] = ""; //clear array_data and remove ★
+                            array_process_cost[a] = "";
+                        }
+                    }
                 }
+
+                var c = 0;
+                for (var i = 0; i < array_process_cost.length; i++) {
+                    if (array_process_cost[i] != "")
+                        c += parseFloat(array_process_cost[i]);
+                }
+
+                document.getElementById("process_cost").value = c;
             }
         }
-
-        var c = 0;
-        for (var i = 0; i < array_process_cost.length; i++) {
-            if (array_process_cost[i]!="")
-            c += parseFloat(array_process_cost[i]);
-        }
-
-        document.getElementById("process_cost").value = c;
-
     }
+    
 
 
 
 });
 
-function delete_process(id) {
+function delete_process_master(id) {
     var confirm_delete = confirm("Delete Process?");
     if (confirm_delete) {
         jQuery.ajax({
             type: "POST",
-            url: _url + 'Process/Delete',
+            url: _url + 'ProcessMaster/Delete',
             data: jQuery.param({
                 Id: id,
                 confirm: true
             }),
             success: function (res) {
                 //set the id to zero for initial state
-                var url = _url + "Process?p_doc_no=" + document.getElementById("doc_no").value + "&p_id=0";
+                var url = _url + "ProcessMaster/Index?p_doc_no=" + document.getElementById("doc_no").value + "&p_od=" + document.getElementById("od").value;
                 showPopup(url, 'Process Cost');
             }
         });
@@ -73,7 +115,7 @@ function delete_process(id) {
 }
 
 function refresh() {
-    var url = _url + "Process?p_doc_no=" + document.getElementById("doc_no").value + "&p_id=0";
+    var url = _url + "ProcessMaster?p_doc_no=" + document.getElementById("doc_no").value + "&p_od=" + document.getElementById("od").value;
     showPopup(url, 'Process Cost');
 }
 

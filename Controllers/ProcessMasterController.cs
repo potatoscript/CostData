@@ -25,12 +25,37 @@ namespace CostNag.Controllers
             ViewBag.p_od = p_od;
             ViewBag.p_process_cost = 0;
             ViewBag.p_process_name = "-";
-            ViewBag.p_od_min = 0;
-            ViewBag.p_od_max = 0;
+            ViewBag.p_process_type = "-";
             ViewBag.p_overhead_cost = 0;
             ViewBag.p_machine_cost = 0;
             ViewBag.p_labor_cost = 0;
             ViewBag.p_total_cost = 0;
+
+            if(p_od>=5 && p_od <= 50)
+            {
+                ViewBag.p_od_min = 5;
+                ViewBag.p_od_max = 50;
+            }
+            if (p_od >= 51 && p_od <= 100)
+            {
+                ViewBag.p_od_min = 51;
+                ViewBag.p_od_max = 100;
+            }
+            if (p_od >= 101 && p_od <= 120)
+            {
+                ViewBag.p_od_min = 101;
+                ViewBag.p_od_max = 120;
+            }
+            if (p_od >= 121 && p_od <= 150)
+            {
+                ViewBag.p_od_min = 121;
+                ViewBag.p_od_max = 150;
+            }
+            if (p_od >= 151 )
+            {
+                ViewBag.p_od_min = 151;
+                ViewBag.p_od_max = 10000000;
+            }
 
 
             ProcessMaster list = new ProcessMaster();
@@ -55,12 +80,14 @@ namespace CostNag.Controllers
                     list.data.Add(new ProcessMaster
                     {
                         process_name = o.process_name,
+                        process_type = o.process_type,
                         od_min = o.od_min,
                         od_max = o.od_max,
                         overhead_cost = o.overhead_cost,
                         machine_cost = o.machine_cost,
                         labor_cost = o.labor_cost,
-                        total_cost = o.total_cost
+                        total_cost = o.total_cost,
+                        ProcessMasterId = o.ProcessMasterId
                     });
                 }
 
@@ -68,7 +95,7 @@ namespace CostNag.Controllers
             List<ProcessMaster> model = list.data.ToList();
             ViewData["data"] = model;
 
-
+            /*
             var action2 = "api/processmaster/get-processname-by-od/" + p_od;
             HttpResponseMessage resdata2 = await clientdata.GetAsync(action2).ConfigureAwait(false);
 
@@ -86,23 +113,24 @@ namespace CostNag.Controllers
             }
             List<string> model2 = list.process.ToList();
             ViewData["processname"] = model2;
+            */
 
 
             return View();
         }
 
 
-        public async Task<ActionResult<Process>> Save(Process model)
+        public async Task<ActionResult<ProcessMaster>> Save(ProcessMaster model)
         {
 
             HttpClient client = _api.Initial();
 
             var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
 
-            var action = "api/process/update-process-by-id/" + model.ProcessId;
-            if (model.ProcessId == 0)
+            var action = "api/processmaster/update-processmaster-by-id/" + model.ProcessMasterId;
+            if (model.ProcessMasterId == 0)
             {
-                action = "api/process/add-process";
+                action = "api/processmaster/add-processmaster";
             }
 
             HttpResponseMessage res = await client.PostAsync(action, content).ConfigureAwait(false);
@@ -116,8 +144,8 @@ namespace CostNag.Controllers
 
                 return Json(new
                 {
-                    isValid = true,
-                    process_cost = model.process_cost
+                    isValid = true
+             
                 });
 
             }
@@ -126,6 +154,34 @@ namespace CostNag.Controllers
             {
                 isValid = false
             });
+        }
+
+        public async void Delete(
+           Process model,
+           bool confirm,
+           int Id
+       )
+        {
+            if (Id == null || Id == 0)  //this is used for the validation as well but in the server side
+            {
+                //return NotFound();
+            }
+            else
+            {
+                if (ModelState.IsValid && confirm == true)
+                {
+                    HttpClient client = _api.Initial();
+                    var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+                    var action = "api/processmaster/delete-processmaster-by-id/" + Id;
+                    HttpResponseMessage res = await client.PostAsync(action, content).ConfigureAwait(false);
+                    res.EnsureSuccessStatusCode();
+                    if (res.IsSuccessStatusCode)
+                    {
+                        var result = res.Content.ReadAsStringAsync().Result;
+                    }
+                }
+            }
+
         }
 
 

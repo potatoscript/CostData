@@ -7,126 +7,151 @@
     <form method="post" asp-action="Save" onsubmit="return jQueryAjaxPost(this,'ProcessMaster/Index');"
           style="margin-left:-20px;margin-top:-30px">
 
-        <table id="table_process">
+        <table>
             <tr>
-                <th>Doc No:</th>
-                <td>
-                    <input type="text" class="directInput" style="background:white"
-                           name="doc_no" id="doc_no_master"
-                           value="@ViewBag.p_doc_no" />
+                <td style="vertical-align:top;border:0px">
+                    <table id="table_master_input">
+                        <tr>
+                            <th>Process Name:</th>
+                            <th>Process Type:</th>
+                            <th>Overhead Cost:</th>
+                            <th>Machine Cost:</th>
+                            <th>Labor Cost:</th>
+                            <th>Total Cost:</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" class="directInput"
+                                       name="process_name" id="process_name_master"
+                                       value="@ViewBag.p_process_name" />
+                            </td>
+                            <td>
+                                <input type="text" class="directInput"
+                                       name="process_type" id="process_type_master"
+                                       value="@ViewBag.p_process_type" />
+                            </td>
+                            <td>
+                                <input type="number" step="any" class="directInput processmaster_field"
+                                       name="overhead_cost" id="overhead_cost"
+                                       value="@ViewBag.p_overhead_cost" />
+                            </td>
+                            <td>
+                                <input type="number" step="any" class="directInput processmaster_field"
+                                       name="machine_cost" id="machine_cost"
+                                       value="@ViewBag.p_machine_cost" />
+                            </td>
+                            <td>
+                                <input type="number" step="any" class="directInput processmaster_field"
+                                       name="labor_cost" id="labor_cost"
+                                       value="@ViewBag.p_labor_cost" />
+                            </td>
+                            <td>
+                                <input type="number" step="any" class="calculateInput"
+                                       name="total_cost" id="total_cost"
+                                       value="@ViewBag.p_total_cost" />
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="display:none">
+                        <input type="text" class="directInput"
+                               name="od_min" id="od_min"
+                               value="@ViewBag.p_od_min" />
+                        <input type="text" class="directInput"
+                               name="od_max" id="od_max"
+                               value="@ViewBag.p_od_max" />
+                    </div>
+                    
                 </td>
-                <th>OD:</th>
-                <td>
-                    <input type="number" step="any" class="calculateInput" style="background:white"
-                           name="item_od" id="od"
-                           value="@ViewBag.p_od" />
+                <td style="vertical-align:top;border:0px">
+                    <input type="submit" id="SubmitProcessMaster" class="btn btn-info w-100" value="Save" />
+
                 </td>
-                <th>Total Process Cost:</th>
-                <td>
-                    <input type="number" step="any" class="calculateInput"
-                           name="process_cost" id="process_cost"
-                           value="@ViewBag.p_process_cost" />
+                <td style="vertical-align:top;border:0px">
+                    <input type="button" id="RefreshProcessMaster" class="btn btn-warning w-100" value="Refresh" onclick="refresh()" />
+
                 </td>
             </tr>
-        </table>
-        <table id="table_master_input">
             <tr>
-                <th>Process Name:</th>
-                <td>
-                    <input type="text" class="directInput"
-                           name="process_name" id="process_name_master"
-                           value="@ViewBag.p_process_name" />
-                </td>
-                <th>Overhead Cost:</th>
-                <td>
-                    <input type="number" step="any" class="directInput"
-                           name="overhead_cost" id="overhead_cost"
-                           value="@ViewBag.p_overhead_cost" />
-                </td>
-                <th>Machine Cost:</th>
-                <td>
-                    <input type="number" step="any" class="directInput"
-                           name="machine_cost" id="machine_cost"
-                           value="@ViewBag.p_machine_cost" />
-                </td>
-                <th>Labor Cost:</th>
-                <td>
-                    <input type="number" step="any" class="directInput"
-                           name="labor_cost" id="labor_cost"
-                           value="@ViewBag.p_labor_cost" />
-                </td>
-                <th>Total Cost:</th>
-                <td>
-                    <input type="number" step="any" class="calculateInput"
-                           name="total_cost" id="total_cost"
-                           value="@ViewBag.p_total_cost" />
-                </td>
-                <td style="vertical-align:top;border:0px">
-                    <input type="submit" id="SubmitProcessMaster" class="btn btn-info w-280" value="Save" />
-
-                </td>
-                <td style="vertical-align:top;border:0px">
-                    <input type="button" id="RefreshProcessMaster" class="btn btn-warning w-280" value="Refresh" onclick="refresh()" />
-
-                </td>
-                <td style="border:0px;font-size:18px;color:blue" id="statusMaster">
+                <td></td>
+                <td style="vertical-align:top;padding-left:20px;border:0px;font-size:18px;color:blue" id="statusMaster">
                     ADD NEW
                 </td>
-                <td style="border:0px"><input type="text" name="ProcessMasterId" id="ProcessMasterId" style="border:0px;font-size:10px;" value="@ViewBag.ProcessId" /></td>
+                <td style="vertical-align:top">
+                    <input type="text" name="ProcessMasterId" id="ProcessMasterId" style="border:0px;font-size:10px;" value="@ViewBag.ProcessId" />
+                </td>
             </tr>
         </table>
 
-        <table id="table_process_master">
+        <br>
+
+        <table>
             <tr>
-                <th>Bonding Code</th>
-                <th></th>
-                @{
-                    foreach (var i in (List<string>)ViewData["processname"])
-                    {
-                        <td>@i</td>
-                    }
-                }
-            </tr>
-            <tr>
-                <th rowspan="4">5mm~50mm</th>
-                <th>Total Cost</th>
-                @{
-                    foreach (var i in (List<ProcessMaster>)ViewData["data"])
-                    {
-                        <td>@i.total_cost</td>
-                    }
-                }
-            </tr>
-            <tr>
-                <th>Labor Cost</th>
-                @{
-                    foreach (var i in (List<ProcessMaster>)ViewData["data"])
-                    {
-                        <td>@i.labor_cost</td>
-                    }
-                }
-            </tr>
-            <tr>
-                <th>Machine Cost</th>
-                @{
-                    foreach (var i in (List<ProcessMaster>)ViewData["data"])
-                    {
-                        <td>@i.machine_cost</td>
-                    }
-                }
-            </tr>
-            <tr>
-                <th>Overhead Cost</th>
-                @{
-                    foreach (var i in (List<ProcessMaster>)ViewData["data"])
-                    {
-                        <td>@i.overhead_cost</td>
-                    }
-                }
+                <td style="vertical-align:top">
+                    <table id="table_process_master">
+                        <tr>
+                            <th style="border-bottom:2px solid red">Process Name</th>
+                            <th>Process Type</th>
+                            <th>Overhead Cost</th>
+                            <th>Machine Cost</th>
+                            <th>Labor Cost</th>
+                            <th>Total Cost</th>
+                            <th>ID</th>
+                        </tr>
+                        @{
+                            foreach (var i in (List<ProcessMaster>)ViewData["data"])
+                            {
+                                <tr>
+                                    <td style="border-right:2px solid red">@i.process_name</td>
+                                    <td>@i.process_type</td>
+                                    <td>@i.overhead_cost</td>
+                                    <td>@i.machine_cost</td>
+                                    <td>@i.labor_cost</td>
+                                    <td>@i.total_cost</td>
+                                    <td style="display:none">@i.ProcessMasterId</td>
+                                    <td>
+                                        <a style="height:25px;width:25px;cursor:pointer" 　
+                                           onclick="delete_process_master(@i.ProcessMasterId)"
+                                           class="btn btn-danger bg-light">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="margin-left:-10px;margin-top:-15px"
+                                                 fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                            </svg>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+                    </table>
+                </td>
+                <td style="vertical-align:top;padding-left:10px">
+                    <table id="table_process">
+                        <tr>
+                            <th style="width:70px;border-right:0px">Doc No:</th>
+                            <td style="border-left:0px;text-align:left">
+                                <input type="text" class="directInput" style="background:white"
+                                       name="doc_no" id="doc_no_master"
+                                       value="@ViewBag.p_doc_no" />
+                            </td>
+                            <th style="width:50px;border-right:0px">OD:</th>
+                            <td style="border-left:0px;text-align:left">
+                                <input type="number" step="any" class="calculateInput" style="background:white"
+                                       name="item_od" id="od"
+                                       value="@ViewBag.p_od" />
+                            </td>
+                            <th style="border-right:0px">Total Process Cost:</th>
+                            <td style="border-left:0px;text-align:left">
+                                <input type="number" step="any" class="calculateInput"
+                                       name="process_cost" id="process_cost"
+                                       value="@ViewBag.p_process_cost" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                
             </tr>
         </table>
-
-
 
     </form>
 

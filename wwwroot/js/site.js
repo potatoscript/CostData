@@ -300,7 +300,7 @@ function jQueryAjaxPost(form,page) {
             success: function (res) {
                 if (res.isValid) {
                     var p = _url + page;
-                    if (page == "Process/Index") {
+                    if (page == "ProcessMaster/Index") {
                         document.getElementById("direct_process_cost").click();
 
                     } else {
