@@ -284,13 +284,13 @@
                                    class="calculateInput material" 
                                    style="background:#b6deef;cursor:pointer" name="direct_process_cost" 
                                    id="direct_process_cost" 
-                                   onclick="showPopup('@Url.Action("Index", "ProcessMaster",
+                                   onclick="showPopup('@Url.Action("Index", "CostProcess",
 						                new
 						                {
                                             p_doc_no = ViewBag.doc_no,
                                             p_od = ViewBag.item_od
                                         },
-						                Context.Request.Scheme)','Process Cost');"
+						                Context.Request.Scheme)','Process Cost Data');"
                                    value="@ViewBag.direct_process_cost" />
                         </td>
                         <td><input type="text" class="calculateInput" name="direct_process_cost_percentage" id="direct_process_cost_percentage" value="@ViewBag.direct_process_cost_percentage" /></td>

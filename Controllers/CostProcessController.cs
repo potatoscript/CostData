@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -12,9 +11,8 @@ using Newtonsoft.Json;
 
 namespace CostNag.Controllers
 {
-    public class ProcessMasterController : Controller
+    public class CostProcessController : Controller
     {
-
         CostAPI _api = new CostAPI();
 
         public async Task<IActionResult> Index(string p_doc_no, int p_od)
@@ -31,7 +29,7 @@ namespace CostNag.Controllers
             ViewBag.p_labor_cost = 0;
             ViewBag.p_total_cost = 0;
 
-            if(p_od>=5 && p_od <= 50)
+            if (p_od >= 5 && p_od <= 50)
             {
                 ViewBag.p_od_min = 5;
                 ViewBag.p_od_max = 50;
@@ -51,7 +49,7 @@ namespace CostNag.Controllers
                 ViewBag.p_od_min = 121;
                 ViewBag.p_od_max = 150;
             }
-            if (p_od >= 151 )
+            if (p_od >= 151)
             {
                 ViewBag.p_od_min = 151;
                 ViewBag.p_od_max = 10000000;
@@ -95,27 +93,49 @@ namespace CostNag.Controllers
             List<ProcessMaster> model = list.data.ToList();
             ViewData["data"] = model;
 
-            
-            
-            
+
+            var action2 = "api/costprocess/get-costprocess-by-docno/" + p_doc_no;
+            HttpResponseMessage resdata2 = await clientdata.GetAsync(action2).ConfigureAwait(false);
+
+            resdata2.EnsureSuccessStatusCode();
+
+            if (resdata2.IsSuccessStatusCode)
+            {
+                var resultdata2 = resdata2.Content.ReadAsStringAsync().Result;
+                data2_ = JsonConvert.DeserializeObject<List<CostProcess>>(resultdata2);
+                foreach (var o in data2_)
+                {
+                    list2.data.Add(new CostProcess
+                    {
+                        process_name = o.process_name,
+                        process_type = o.process_type,
+                        item_od = o.item_od,
+                        overhead_cost = o.overhead_cost,
+                        machine_cost = o.machine_cost,
+                        labor_cost = o.labor_cost,
+                        total_cost = o.total_cost,
+                        CostProcessId = o.CostProcessId
+                    });
+                }
+
+            }
+            List<CostProcess> model2 = list2.data.ToList();
+            ViewData["processdata"] = model2;
+
 
 
             return View();
         }
 
 
-        public async Task<ActionResult<ProcessMaster>> Save(ProcessMaster model)
+        public async Task<ActionResult<CostProcess>> Save(CostProcess model)
         {
 
             HttpClient client = _api.Initial();
 
             var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
 
-            var action = "api/processmaster/update-processmaster-by-id/" + model.ProcessMasterId;
-            if (model.ProcessMasterId == 0)
-            {
-                action = "api/processmaster/add-processmaster";
-            }
+            var action = "api/costprocess/add-costprocess";
 
             HttpResponseMessage res = await client.PostAsync(action, content).ConfigureAwait(false);
 
@@ -129,7 +149,7 @@ namespace CostNag.Controllers
                 return Json(new
                 {
                     isValid = true
-             
+
                 });
 
             }
@@ -140,11 +160,7 @@ namespace CostNag.Controllers
             });
         }
 
-        public async void Delete(
-           Process model,
-           bool confirm,
-           int Id
-       )
+        public async void Delete(CostProcess model,bool confirm,int Id)
         {
             if (Id == null || Id == 0)  //this is used for the validation as well but in the server side
             {
@@ -156,7 +172,7 @@ namespace CostNag.Controllers
                 {
                     HttpClient client = _api.Initial();
                     var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
-                    var action = "api/processmaster/delete-processmaster-by-id/" + Id;
+                    var action = "api/costprocess/delete-costprocess-by-id/" + Id;
                     HttpResponseMessage res = await client.PostAsync(action, content).ConfigureAwait(false);
                     res.EnsureSuccessStatusCode();
                     if (res.IsSuccessStatusCode)
@@ -167,7 +183,6 @@ namespace CostNag.Controllers
             }
 
         }
-
 
     }
 }

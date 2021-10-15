@@ -37,6 +37,18 @@
                             <input type="button" onclick="RefreshData();" style="margin-left:15px" class="btn btn-warning w-280" value="Refresh" />
                         </li>
                         <li class="nav-item">
+                            <input type="button" style="margin-left:15px" class="btn btn-primary w-280" 
+                                   value="Master" 
+                                   onclick="showPopup('@Url.Action("Index", "ProcessMaster",
+						                new
+						                {
+                                            p_doc_no = ViewBag.doc_no,
+                                            p_od = ViewBag.item_od
+                                        },
+						                Context.Request.Scheme)','Process Master');"
+                                   />
+                        </li>
+                        <li class="nav-item">
                             <div id="data_status" style="padding-left:20px;border:0px;font-size:20px;color:blue">ADD NEW</div>
                         </li>
                     </ul>

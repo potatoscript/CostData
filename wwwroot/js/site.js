@@ -347,9 +347,11 @@ function delete_data(id) {
 
 }
 
-function RefreshData() {
-    window.location.href = _url + "Home/Index";
+function MasterData() {
+
 }
+
+
 
 function SubmitData() {
     document.getElementById("SubmitButton").click();

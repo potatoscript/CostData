@@ -54,43 +54,6 @@ jQuery(document).ready(function () {
 
         })
 
-    var table = document.getElementById("table_process_master");
-    var n = 0;
-    array_data = [];
-    array_process_cost = [];
-    for (var k = 1; k < table.rows.length; k++) {
-        table.rows[k].onclick = function () {
-            if (ci == 0) {
-                var row = table.rows[this.rowIndex];
-                if (String(row.cells[0].innerHTML).indexOf("★") == -1) {
-                    array_data[n] = row.cells[0].innerHTML;
-                    array_process_cost[n] = row.cells[2].innerText;
-                    row.cells[0].innerHTML = "★" + row.cells[0].innerHTML;
-                    n++;
-                } else {
-                    var val = String(row.cells[0].innerHTML).split("★");
-                    row.cells[0].innerHTML = val.slice(1, 2);
-                    for (var a = 0; a < array_data.length; a++) {
-                        if (array_data[a] == row.cells[0].innerHTML) {
-                            array_data[a] = ""; //clear array_data and remove ★
-                            array_process_cost[a] = "";
-                        }
-                    }
-                }
-
-                var c = 0;
-                for (var i = 0; i < array_process_cost.length; i++) {
-                    if (array_process_cost[i] != "")
-                        c += parseFloat(array_process_cost[i]);
-                }
-
-                document.getElementById("process_cost").value = c;
-            }
-        }
-    }
-    
-
-
 
 });
 

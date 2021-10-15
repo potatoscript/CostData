@@ -159,6 +159,70 @@ label,input{
     }
 
 
+
+#table_process_master_data {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+}
+
+    #table_process_master_data th {
+        font-size: 15px;
+        background: #d2d2d2;
+        border: 1px solid black;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    #table_process_master_data td {
+        font-size: 15px;
+        background: white;
+        border: 1px solid black;
+        text-align: center;
+        padding-right: 10px;
+        cursor: pointer;
+    }
+
+    #table_process_master_data tr:nth-child(odd) td {
+        background: #b9d4f9;
+    }
+
+    #table_process_master_data tr:hover td {
+        background: #fffd9c;
+    }
+
+
+#table_process_data {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+}
+
+    #table_process_data th {
+        font-size: 15px;
+        background: #d2d2d2;
+        border: 1px solid black;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    #table_process_data td {
+        font-size: 15px;
+        background: white;
+        border: 1px solid black;
+        text-align: center;
+        padding-right: 10px;
+        cursor: pointer;
+    }
+
+    #table_process_data tr:nth-child(odd) td {
+        background: #f9d3b9;
+    }
+
+    #table_process_data tr:hover td {
+        background: #fffd9c;
+    }
+
+
+
 .c2{
     width:90px;
 }

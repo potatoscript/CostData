@@ -89,7 +89,7 @@
                 <td style="vertical-align:top">
                     <table id="table_process_master">
                         <tr>
-                            <th style="border-bottom:2px solid red">Process Name</th>
+                            <th>Process Name</th>
                             <th>Process Type</th>
                             <th>Overhead Cost</th>
                             <th>Machine Cost</th>
@@ -101,7 +101,7 @@
                             foreach (var i in (List<ProcessMaster>)ViewData["data"])
                             {
                                 <tr>
-                                    <td style="border-right:2px solid red">@i.process_name</td>
+                                    <td>@i.process_name</td>
                                     <td>@i.process_type</td>
                                     <td>@i.overhead_cost</td>
                                     <td>@i.machine_cost</td>
@@ -123,30 +123,6 @@
 
                             }
                         }
-                    </table>
-                </td>
-                <td style="vertical-align:top;padding-left:10px">
-                    <table id="table_process">
-                        <tr>
-                            <th style="width:70px;border-right:0px">Doc No:</th>
-                            <td style="border-left:0px;text-align:left">
-                                <input type="text" class="directInput" style="background:white"
-                                       name="doc_no" id="doc_no_master"
-                                       value="@ViewBag.p_doc_no" />
-                            </td>
-                            <th style="width:50px;border-right:0px">OD:</th>
-                            <td style="border-left:0px;text-align:left">
-                                <input type="number" step="any" class="calculateInput" style="background:white"
-                                       name="item_od" id="od"
-                                       value="@ViewBag.p_od" />
-                            </td>
-                            <th style="border-right:0px">Total Process Cost:</th>
-                            <td style="border-left:0px;text-align:left">
-                                <input type="number" step="any" class="calculateInput"
-                                       name="process_cost" id="process_cost"
-                                       value="@ViewBag.p_process_cost" />
-                            </td>
-                        </tr>
                     </table>
                 </td>
                 
