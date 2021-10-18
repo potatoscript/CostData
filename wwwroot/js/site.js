@@ -1,5 +1,5 @@
-﻿var _url = "/";          //if your app upload outside Default Web site - for my pc
-//var _url = "/costnag/";  //if your app upload under Default Web site - for company
+﻿//var _url = "/";          //if your app upload outside Default Web site - for my pc
+var _url = "/costnag/";  //if your app upload under Default Web site - for company
 
 jQuery(document).ready(function () {
     window.onresize = setWindow;
@@ -299,6 +299,7 @@ function jQueryAjaxPost(form,page) {
             processData: false,
             success: function (res) {
                 if (res.isValid) {
+                    /*
                     var p = _url + page;
                     if (page == "ProcessMaster/Index") {
                         document.getElementById("direct_process_cost").click();
@@ -306,6 +307,8 @@ function jQueryAjaxPost(form,page) {
                     } else {
                         window.location.href = p;
                     }
+                    */
+                    document.getElementById("Master").click();
                 }
             },
             error: function (err) {
@@ -349,6 +352,12 @@ function delete_data(id) {
 
 function MasterData() {
 
+}
+
+
+function RefreshData() {
+    var url = _url + "Home";
+    window.location.href = url;
 }
 
 

@@ -14,6 +14,8 @@
                         <tr>
                             <th>Process Name:</th>
                             <th>Process Type:</th>
+                            <th>OD Min:</th>
+                            <th>OD Max:</th>
                             <th>Overhead Cost:</th>
                             <th>Machine Cost:</th>
                             <th>Labor Cost:</th>
@@ -29,6 +31,16 @@
                                 <input type="text" class="directInput"
                                        name="process_type" id="process_type_master"
                                        value="@ViewBag.p_process_type" />
+                            </td>
+                            <td>
+                                <input type="text" class="directInput"
+                                       name="od_min" id="od_min"
+                                       value="@ViewBag.p_od_min" />
+                            </td>
+                            <td>
+                                <input type="text" class="directInput"
+                                       name="od_max" id="od_max"
+                                       value="@ViewBag.p_od_max" />
                             </td>
                             <td>
                                 <input type="number" step="any" class="directInput processmaster_field"
@@ -52,14 +64,6 @@
                             </td>
                         </tr>
                     </table>
-                    <div style="display:none">
-                        <input type="text" class="directInput"
-                               name="od_min" id="od_min"
-                               value="@ViewBag.p_od_min" />
-                        <input type="text" class="directInput"
-                               name="od_max" id="od_max"
-                               value="@ViewBag.p_od_max" />
-                    </div>
                     
                 </td>
                 <td style="vertical-align:top;border:0px">
@@ -67,7 +71,7 @@
 
                 </td>
                 <td style="vertical-align:top;border:0px">
-                    <input type="button" id="RefreshProcessMaster" class="btn btn-warning w-100" value="Refresh" onclick="refresh()" />
+                    <input type="button" id="RefreshProcessMaster" class="btn btn-warning w-100" value="Refresh" onclick="refreshMaster()" />
 
                 </td>
             </tr>
@@ -91,6 +95,8 @@
                         <tr>
                             <th>Process Name</th>
                             <th>Process Type</th>
+                            <th>OD Min</th>
+                            <th>OD Max</th>
                             <th>Overhead Cost</th>
                             <th>Machine Cost</th>
                             <th>Labor Cost</th>
@@ -103,6 +109,8 @@
                                 <tr>
                                     <td>@i.process_name</td>
                                     <td>@i.process_type</td>
+                                    <td>@i.od_min</td>
+                                    <td>@i.od_max</td>
                                     <td>@i.overhead_cost</td>
                                     <td>@i.machine_cost</td>
                                     <td>@i.labor_cost</td>

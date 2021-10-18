@@ -94,10 +94,6 @@ function delete_process(id) {
 
 }
 
-function refresh() {
-    var url = _url + "Process?p_doc_no=" + document.getElementById("doc_no").value + "&p_id=0";
-    showPopup(url, 'Process Cost');
-}
 
 
 function Total_process_cost() {

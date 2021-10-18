@@ -23,6 +23,8 @@ namespace CostNag.Controllers
 
             ViewBag.p_doc_no = p_doc_no;
             ViewBag.p_od = p_od;
+            ViewBag.p_od_min = 0;
+            ViewBag.p_od_max = 0;
             ViewBag.p_process_cost = 0;
             ViewBag.p_process_name = "-";
             ViewBag.p_process_type = "-";
@@ -67,6 +69,10 @@ namespace CostNag.Controllers
             HttpClient clientdata = _api.Initial();
 
             var action = "api/processmaster/get-processmaster-by-od/" + p_od;
+            if (p_od<1)
+            {
+                action = "api/processmaster/get-all-processesmaster";
+            }
             HttpResponseMessage resdata = await clientdata.GetAsync(action).ConfigureAwait(false);
 
             resdata.EnsureSuccessStatusCode();
@@ -94,11 +100,6 @@ namespace CostNag.Controllers
             }
             List<ProcessMaster> model = list.data.ToList();
             ViewData["data"] = model;
-
-            
-            
-            
-
 
             return View();
         }

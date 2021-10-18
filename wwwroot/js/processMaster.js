@@ -69,17 +69,18 @@ function delete_process_master(id) {
             }),
             success: function (res) {
                 //set the id to zero for initial state
-                var url = _url + "ProcessMaster/Index?p_doc_no=" + document.getElementById("doc_no").value + "&p_od=" + document.getElementById("od").value;
-                showPopup(url, 'Process Cost');
+                //var url = _url + "ProcessMaster/Index?p_doc_no=" + document.getElementById("doc_no").value + "&p_od=" + document.getElementById("od").value;
+                //showPopup(url, 'Process Cost');
+                document.getElementById("Master").click();
             }
         });
     }
 
 }
 
-function refresh() {
-    var url = _url + "ProcessMaster?p_doc_no=" + document.getElementById("doc_no").value + "&p_od=" + document.getElementById("od").value;
-    showPopup(url, 'Process Cost');
+function refreshMaster() {
+    var url = _url + "ProcessMaster?p_doc_no=-&p_od=0";
+    showPopup(url, 'Process Master Cost');
 }
 
 
