@@ -25,6 +25,7 @@ namespace CostNag.Models
         public string id { get; set; }
         public string master_process { get; set; }
         public string processName { get; set; }
+        public string processType { get; set; }
 
         public List<string> processMaster = new List<string>();
 
@@ -45,5 +46,20 @@ namespace CostNag.Models
             new SelectListItem{Value = "Current Item", Text="Current Item"},
             new SelectListItem{Value = "SM", Text="SM"}
         };
+
+        public List<ListModel> GetTypes()
+        {
+            return new List<ListModel>()
+            {
+                new ListModel(){processType = "Process Type"},
+                new ListModel(){processType = "Bonding"},
+                new ListModel(){processType = "Curing"},
+                new ListModel(){processType = "Combination Forming"},
+                new ListModel(){processType = "Progressive"},
+                new ListModel(){processType = "Trimmer"}
+            };
+        }
+
+
     }
 }

@@ -32,9 +32,9 @@ namespace CostNag.Controllers
             ViewBag.wr_no = "-";
             ViewBag.sales = "-";
             ViewBag.revision_no = "-";
-            ViewBag.checked_date = "-";
-            ViewBag.approved_by = "-";
-            ViewBag.expired_by = "-";
+            ViewBag.checked_date = DateTime.Now.AddDays(0).ToString("dd-MM-yyyy");
+            ViewBag.approved_by = DateTime.Now.AddDays(0).ToString("dd-MM-yyyy");
+            ViewBag.expired_by = DateTime.Now.AddDays(180).ToString("dd-MM-yyyy");
             ViewBag.customer = "-";
             ViewBag.parts_code = "-";
             ViewBag.item = "-";

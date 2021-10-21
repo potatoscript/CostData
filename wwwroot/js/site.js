@@ -1,5 +1,5 @@
-﻿//var _url = "/";          //if your app upload outside Default Web site - for my pc
-var _url = "/costnag/";  //if your app upload under Default Web site - for company
+﻿var _url = "/";          //if your app upload outside Default Web site - for my pc
+//var _url = "/costnag/";  //if your app upload under Default Web site - for company
 
 jQuery(document).ready(function () {
     window.onresize = setWindow;
@@ -7,6 +7,9 @@ jQuery(document).ready(function () {
 
     if (document.getElementById("CostId").value != 0)
         document.getElementById("data_status").innerText = "EDITING";
+
+
+    
 
     jQuery("#checked_date,#issue_date,#approved_by,#expired_by")
         .css({ "cursor": "pointer" })
@@ -25,6 +28,13 @@ jQuery(document).ready(function () {
 
             }
         })
+
+
+
+    document.getElementById("item_od").onkeyup = function () {
+        alert(999);
+    };
+
 
     for (var s = document.getElementsByClassName("directInput"), t = 0; t < s.length; t++) {
 
@@ -115,12 +125,12 @@ jQuery(document).ready(function () {
 
 function calculate_cost() {
     //rubber
-    var rubber_database_price_new = parseFloat(document.getElementById("rubber_database_price_new").value);
+    
     var rubber_mixing_process_cost = parseFloat(document.getElementById("rubber_mixing_process_cost").value);
     var rubber_weight_g = parseFloat(document.getElementById("rubber_weight_g").value);
     var rubber_yield_rate = parseFloat(document.getElementById("rubber_yield_rate").value);
 
-    document.getElementById("rubber_price_kg").value = (rubber_database_price_new * 105 / 100).toFixed(2);
+   
     var rubber_price_kg = parseFloat(document.getElementById("rubber_price_kg").value);
 
     document.getElementById("rubber_weight_kg").value = (rubber_weight_g / 1000).toFixed(5);

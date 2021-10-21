@@ -3,6 +3,31 @@ var array_process_cost = new Array();
 var ci, ri;
 jQuery(document).ready(function () {
 
+    jQuery("#processtypes").change(function () {
+        document.getElementById("product_type").value = document.getElementById("processtypes").value;
+
+        if (document.getElementById("processtypes").value !="Process Type") {
+            jQuery.ajax({
+                type: "GET",
+                url: _url + 'CostProcess/IndexGetType',
+                data: jQuery.param({
+                    p_doc_no: document.getElementById("doc_no").value,
+                    p_od: document.getElementById("od").value,
+                    p_process_type: document.getElementById("product_type").value
+                }),
+                success: function (res) {
+                    jQuery("#form-modal .modal-body").html(res);
+                    jQuery("#form-modal .modal-title").html("Process Cost Data");
+                    jQuery("#form-modal").modal('show');
+
+                    document.getElementById("processtypes").value = document.getElementById("product_type").value;
+                }
+            })
+        }
+        
+
+    })
+
     jQuery('#table_process_master_data td')
         .mouseenter(function (event) {
             var table = document.getElementById("table_process_master_data");

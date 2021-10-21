@@ -172,10 +172,9 @@
                 <h5>2. Calculation</h5>
                 <table class="table">
                     <tr>
-                        <th rowspan="10" style="width:25px;word-wrap: break-word">M a t e r i a l</th>
+                        <th rowspan="10"style="width:25px;word-wrap: break-word">M a t e r i a l</th>
                         <th rowspan="4" style="width:25px;word-wrap: break-word">Rubber</th>
-                        <th rowspan="2" style="width:100px">Material name</th>
-                        <th colspan="2" style="width:200px">DataBase Price</th>
+                        <th rowspan="2" colspan="3" style="width:100px">Material name</th>
                         <th rowspan="2" style="width:100px">price(kg)</th>
                         <th rowspan="2" style="width:100px">Mixing process cost</th>
                         <th colspan="2" style="width:100px">Weight</th>
@@ -185,16 +184,12 @@
                         <th rowspan="2" style="width:120px">% of Target price</th>
                     </tr>
                     <tr>
-                        <th>Current</th>
-                        <th>New</th>
                         <th>g/pc</th>
                         <th>kg/pc</th>
                     </tr>
                     <tr>
-                        <td><input type="text" class="directInput" name="rubber_material_name" id="rubber_material_name" value="@ViewBag.rubber_material_name" /></td>
-                        <td><input type="number" step="any" class="directInput material" name="rubber_database_price_current" id="rubber_database_price_current" value="@ViewBag.rubber_database_price_current" /></td>
-                        <td><input type="number" step="any" class="directInput material" name="rubber_database_price_new" id="rubber_database_price_new" value="@ViewBag.rubber_database_price_new" /></td>
-                        <td><input type="text" class="calculateInput" name="rubber_price_kg" id="rubber_price_kg" value="@ViewBag.rubber_price_kg" /></td>
+                        <td colspan="3"><input type="text" class="directInput" name="rubber_material_name" id="rubber_material_name" value="@ViewBag.rubber_material_name" /></td>
+                        <td><input type="number" step="any" class="directInput material" name="rubber_price_kg" id="rubber_price_kg" value="@ViewBag.rubber_price_kg" /></td>
                         <td><input type="number" step="any" class="directInput material" name="rubber_mixing_process_cost" id="rubber_mixing_process_cost" value="@ViewBag.rubber_mixing_process_cost" /></td>
                         <td><input type="number" step="any" class="directInput material" name="rubber_weight_g" id="rubber_weight_g" value="@ViewBag.rubber_weight_g" /></td>
                         <td><input type="text" class="calculateInput" name="rubber_weight_kg" id="rubber_weight_kg" value="@ViewBag.rubber_weight_kg" /></td>

@@ -33,23 +33,15 @@ jQuery(document).ready(function () {
             ci = jQuery(this).parent().children().index(this);
             ri = jQuery(this).parent().parent().children().index(this.parentNode);
 
-            if (ci != 0 && String(table.rows[ri].cells[0].innerText).indexOf('★')==-1) {
+
                 document.getElementById("process_name_master").value = table.rows[ri].cells[0].innerText;
                 document.getElementById("process_type_master").value = table.rows[ri].cells[1].innerText;
                 document.getElementById("overhead_cost").value = table.rows[ri].cells[2].innerText;
                 document.getElementById("machine_cost").value = table.rows[ri].cells[3].innerText;
                 document.getElementById("labor_cost").value = table.rows[ri].cells[4].innerText;
                 document.getElementById("total_cost").value = table.rows[ri].cells[5].innerText;
-                document.getElementById("ProcessMasterId").value = table.rows[ri].cells[6].innerText;
-            } else {
-                document.getElementById("process_name_master").value = "-";
-                document.getElementById("process_type_master").value = "-";
-                document.getElementById("overhead_cost").value = 0;
-                document.getElementById("machine_cost").value = 0;
-                document.getElementById("labor_cost").value = 0;
-                document.getElementById("total_cost").value = 0;
-                document.getElementById("ProcessMasterId").value = 0;
-            }
+                document.getElementById("ProcessMasterId").value = table.rows[ri].cells[8].innerText;
+
             
 
         })

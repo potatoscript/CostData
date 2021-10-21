@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using CostNag.Helper;
 using CostNag.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 
 namespace CostNag.Controllers
@@ -20,6 +21,15 @@ namespace CostNag.Controllers
         public async Task<IActionResult> Index(string p_doc_no, int p_od)
         {
             CostAPI _api = new CostAPI();
+
+            ListModel m = new ListModel();
+
+            ViewBag.Types = m.GetTypes().Select(x => new SelectListItem()
+            {
+                Text = x.processType,
+                Value = x.processType
+            }).ToList();
+
 
             ViewBag.p_doc_no = p_doc_no;
             ViewBag.p_od = p_od;
@@ -69,7 +79,7 @@ namespace CostNag.Controllers
             HttpClient clientdata = _api.Initial();
 
             var action = "api/processmaster/get-processmaster-by-od/" + p_od;
-            if (p_od<1)
+            if (p_od<5)
             {
                 action = "api/processmaster/get-all-processesmaster";
             }

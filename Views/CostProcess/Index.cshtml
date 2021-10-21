@@ -60,7 +60,9 @@
                     <table id="table_process_master_data">
                         <tr>
                             <th >Process Name</th>
-                            <th>Process Type</th>
+                            <th>
+                                <select class="form-control" name="processtypes" id="processtypes" asp-items="ViewBag.Types"></select>
+                            </th>
                             <th>Overhead Cost</th>
                             <th>Machine Cost</th>
                             <th>Labor Cost</th>

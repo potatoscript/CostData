@@ -16,43 +16,46 @@
                             <th>Process Type:</th>
                             <th>OD Min:</th>
                             <th>OD Max:</th>
-                            <th>Overhead Cost:</th>
-                            <th>Machine Cost:</th>
-                            <th>Labor Cost:</th>
+                            <th style="display:none">Overhead Cost:</th>
+                            <th style="display:none">Machine Cost:</th>
+                            <th style="display:none">Labor Cost:</th>
                             <th>Total Cost:</th>
                         </tr>
                         <tr>
                             <td>
                                 <input type="text" class="directInput"
+                                       style="width:200px"
                                        name="process_name" id="process_name_master"
                                        value="@ViewBag.p_process_name" />
                             </td>
                             <td>
-                                <input type="text" class="directInput"
-                                       name="process_type" id="process_type_master"
-                                       value="@ViewBag.p_process_type" />
+                                <select class="form-control" style="width:200px"
+                                        name="process_type" id="process_type_master"
+                                        asp-items="ViewBag.Types">
+                                </select>
+
                             </td>
                             <td>
-                                <input type="text" class="directInput"
+                                <input type="number" step="any" class="directInput"
                                        name="od_min" id="od_min"
                                        value="@ViewBag.p_od_min" />
                             </td>
                             <td>
-                                <input type="text" class="directInput"
+                                <input type="number" step="any" class="directInput"
                                        name="od_max" id="od_max"
                                        value="@ViewBag.p_od_max" />
                             </td>
-                            <td>
+                            <td style="display:none">
                                 <input type="number" step="any" class="directInput processmaster_field"
                                        name="overhead_cost" id="overhead_cost"
                                        value="@ViewBag.p_overhead_cost" />
                             </td>
-                            <td>
+                            <td style="display:none">
                                 <input type="number" step="any" class="directInput processmaster_field"
                                        name="machine_cost" id="machine_cost"
                                        value="@ViewBag.p_machine_cost" />
                             </td>
-                            <td>
+                            <td style="display:none">
                                 <input type="number" step="any" class="directInput processmaster_field"
                                        name="labor_cost" id="labor_cost"
                                        value="@ViewBag.p_labor_cost" />
@@ -88,22 +91,21 @@
 
         <br>
 
-        <table>
-            <tr>
-                <td style="vertical-align:top">
-                    <table id="table_process_master">
-                        <tr>
-                            <th>Process Name</th>
-                            <th>Process Type</th>
-                            <th>OD Min</th>
-                            <th>OD Max</th>
-                            <th>Overhead Cost</th>
-                            <th>Machine Cost</th>
-                            <th>Labor Cost</th>
-                            <th>Total Cost</th>
-                            <th>ID</th>
-                        </tr>
-                        @{
+        <div id="div_master_data">
+            <table id="table_process_master">
+                            <tr>
+                                <th>Process Name</th>
+                                <th>Process Type</th>
+                                <th>OD Min</th>
+                                <th>OD Max</th>
+                                <th style="display:none">Overhead Cost</th>
+                                <th style="display:none">Machine Cost</th>
+                                <th style="display:none">Labor Cost</th>
+                                <th>Total Cost</th>
+                                <th style="display:none">ID</th>
+                                <th></th>
+                            </tr>
+                            @{
                             foreach (var i in (List<ProcessMaster>)ViewData["data"])
                             {
                                 <tr>
@@ -111,9 +113,9 @@
                                     <td>@i.process_type</td>
                                     <td>@i.od_min</td>
                                     <td>@i.od_max</td>
-                                    <td>@i.overhead_cost</td>
-                                    <td>@i.machine_cost</td>
-                                    <td>@i.labor_cost</td>
+                                    <td style="display:none">@i.overhead_cost</td>
+                                    <td style="display:none">@i.machine_cost</td>
+                                    <td style="display:none">@i.labor_cost</td>
                                     <td>@i.total_cost</td>
                                     <td style="display:none">@i.ProcessMasterId</td>
                                     <td>
@@ -130,12 +132,10 @@
                                 </tr>
 
                             }
-                        }
-                    </table>
-                </td>
-                
-            </tr>
-        </table>
+                            }
+                        </table>
+        </div>
+       
 
     </form>
 
