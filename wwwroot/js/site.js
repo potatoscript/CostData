@@ -313,6 +313,8 @@ function jQueryAjaxPost(form,page) {
                     if (page != "Home/Index") {
                         document.getElementById("Master").click();
 
+                    } else {
+                        RefreshData();
                     }
                     
                 }
@@ -367,7 +369,6 @@ function RefreshData() {
 }
 
 
-
 function SubmitData() {
     document.getElementById("SubmitButton").click();
    
@@ -406,6 +407,21 @@ function showPopup(url, title) {
 
 }
 
+
+function showPopupMaster(url, title) {
+
+    jQuery.ajax({
+        type: "GET",
+        url: url,
+        success: function (res) {
+            jQuery("#form-modal .modal-body").html(res);
+            jQuery("#form-modal .modal-title").html(title);
+            jQuery("#form-modal").modal('show');
+        }
+    })
+
+
+}
 
 
 
