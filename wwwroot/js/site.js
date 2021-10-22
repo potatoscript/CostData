@@ -309,16 +309,12 @@ function jQueryAjaxPost(form,page) {
             processData: false,
             success: function (res) {
                 if (res.isValid) {
-                    /*
                     var p = _url + page;
-                    if (page == "ProcessMaster/Index") {
-                        document.getElementById("direct_process_cost").click();
+                    if (page != "Home/Index") {
+                        document.getElementById("Master").click();
 
-                    } else {
-                        window.location.href = p;
                     }
-                    */
-                    document.getElementById("Master").click();
+                    
                 }
             },
             error: function (err) {
@@ -379,6 +375,7 @@ function SubmitData() {
 
 
 function showPopup(url, title) {
+    /*
     jQuery.ajax({
         type: "GET",
         url: url,
@@ -388,6 +385,25 @@ function showPopup(url, title) {
             jQuery("#form-modal").modal('show');
         }
     })
+    */
+
+    jQuery.ajax({
+        type: "GET",
+        url: _url + 'CostProcess/Index',
+        data: jQuery.param({
+            p_doc_no: document.getElementById("doc_no").value,
+            p_od: document.getElementById("item_od").value,
+            p_process_type: document.getElementById("product_type").value
+        }),
+        success: function (res) {
+            jQuery("#form-modal .modal-body").html(res);
+            jQuery("#form-modal .modal-title").html("Process Cost Data");
+            jQuery("#form-modal").modal('show');
+
+        }
+    })
+
+
 }
 
 
