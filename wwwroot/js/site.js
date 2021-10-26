@@ -8,7 +8,17 @@ jQuery(document).ready(function () {
     if (document.getElementById("CostId").value != 0)
         document.getElementById("data_status").innerText = "EDITING";
 
+    jQuery("#rubber_material_list").change(function () {
+        var dat = String(document.getElementById("rubber_material_list").value).split(","); 
+        document.getElementById("rubber_material_name").value = dat.slice(0,1);
+        document.getElementById("rubber_price_kg").value = dat.slice(1,2);
+        document.getElementById("rubber_mixing_process_cost").value = dat.slice(2,3);
+        document.getElementById("rubber_weight_g").value = dat.slice(3,4);
+        document.getElementById("rubber_yield_rate").value = dat.slice(4, 5);
 
+        calculate_cost();
+
+    })
     
 
     jQuery("#checked_date,#issue_date,#approved_by,#expired_by")
@@ -29,11 +39,6 @@ jQuery(document).ready(function () {
             }
         })
 
-
-
-    document.getElementById("item_od").onkeyup = function () {
-        alert(999);
-    };
 
 
     for (var s = document.getElementsByClassName("directInput"), t = 0; t < s.length; t++) {

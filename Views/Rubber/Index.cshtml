@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewData["Title"] = "Rubber";
+    Layout = null;
+}
+
+<form method="post" asp-action="Save" onsubmit="return jQueryAjaxPostRubber(this,'Rubber/Index');"
+      style="margin-left:-20px;margin-top:-30px">
+
+    <table>
+        <tr>
+            <td style="vertical-align:top;border:0px">
+                <table id="table_master_input">
+                    <tr>
+                        <th>Material Name:</th>
+                        <th>Price (Kg):</th>
+                        <th>Mixing Process Cost:</th>
+                        <th>Weight g/pc:</th>
+                        <th>Yield Rate (%):</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="directInput"
+                                   style="width:200px"
+                                   name="material_name" id="material_name"
+                                   value="@ViewBag.material_name" />
+                        </td>
+                        <td>
+                            <input type="number" step="any" class="directInput"
+                                   name="price_kg" id="price_kg"
+                                   value="@ViewBag.price_kg" />
+                        </td>
+                        <td>
+                            <input type="number" step="any" class="directInput"
+                                   name="mixing_process_cost" id="mixing_process_cost"
+                                   value="@ViewBag.mixing_process_cost" />
+                        </td>
+                        <td>
+                            <input type="number" step="any" class="directInput"
+                                   name="weight_g" id="weight_g"
+                                   value="@ViewBag.weight_g" />
+                        </td>
+                        <td>
+                            <input type="number" step="any" class="directInput"
+                                   name="yield_rate" id="yield_rate"
+                                   value="@ViewBag.yield_rate" />
+                        </td>
+
+                    </tr>
+                </table>
+
+            </td>
+            <td style="vertical-align:top;border:0px">
+                <input type="submit" id="SubmitRubber" class="btn btn-info w-100" value="Save" />
+
+            </td>
+            <td style="vertical-align:top;border:0px">
+                <input type="button" id="RefreshRubber" 
+                       class="btn btn-warning w-100" 
+                       value="Refresh" 
+                       onclick="refreshRubber()" />
+
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="vertical-align:top;padding-left:20px;border:0px;font-size:18px;color:blue" id="statusRubber">
+                ADD NEW
+            </td>
+            <td style="vertical-align:top">
+                <input type="text" name="RubberId" id="RubberId" style="border:0px;font-size:10px;" value="@ViewBag.RubberId" />
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <div id="div_master_data">
+        <table id="table_rubber">
+            <tr>
+                <th>Material Name</th>
+                <th>Price (Kg)</th>
+                <th>Mixing Process Cost</th>
+                <th>Weight g/pc</th>
+                <th>Yield Rate (%)</th>
+                <th style="display:none">ID</th>
+                <th></th>
+            </tr>
+            @{
+                foreach (var i in (List<Rubber>)ViewData["data"])
+                {
+                    <tr>
+                        <td>@i.material_name</td>
+                        <td>@i.price_kg</td>
+                        <td>@i.mixing_process_cost</td>
+                        <td>@i.weight_g</td>
+                        <td>@i.yield_rate</td>
+                        <td style="display:none">@i.RubberId</td>
+                        <td>
+                            <a style="height:25px;width:25px;cursor:pointer" 　
+                               onclick="delete_rubber(@i.RubberId)"
+                               class="btn btn-danger bg-light">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="margin-left:-10px;margin-top:-15px"
+                                     fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                </svg>
+                            </a>
+                        </td>
+
+                    </tr>
+
+                }
+            }
+        </table>
+    </div>
+
+
+</form>
+
+
+<script src="~/js/rubber.js" asp-append-version="true"></script>
+

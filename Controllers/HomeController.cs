@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using System.Text;
 using System.Dynamic;
 using Process = CostNag.Models.Process;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CostNag.Controllers
 {
@@ -23,6 +24,34 @@ namespace CostNag.Controllers
          
         public async Task<IActionResult> Index()
         {
+
+            Rubber listRubber = new Rubber();
+            List<Rubber> rubber = new List<Rubber>();
+
+            HttpClient r = _api.Initial();
+            HttpResponseMessage resRubber = await r.GetAsync("api/rubber/get-all-rubbers");
+            if (resRubber.IsSuccessStatusCode)
+            {
+                var result = resRubber.Content.ReadAsStringAsync().Result;
+                rubber = JsonConvert.DeserializeObject<List<Rubber>>(result);
+                listRubber.data.Clear();
+                foreach (var o in rubber)
+                {
+                    listRubber.data.Add(new Rubber
+                    {
+                        material_name = o.material_name
+                    });
+                }
+            }
+
+            List<Rubber> rubberModel = listRubber.data.ToList();
+
+            ViewBag.Rubber = rubber.Select(x => new SelectListItem()
+            {
+                Text = x.material_name,
+                Value = x.material_name
+
+            }).ToList();
 
             ViewBag.plant = "-";
             ViewBag.item_spec = "-";
@@ -287,6 +316,10 @@ namespace CostNag.Controllers
             ViewBag.tooling_list_total_amount_usd = 0;
 
 
+            
+
+
+
             ListModel list = new ListModel();
             ViewData["plant"] = list.plant;
             ViewData["item_spec"] = list.item_spec;
@@ -372,7 +405,39 @@ namespace CostNag.Controllers
                 var resultdata = resdata.Content.ReadAsStringAsync().Result;
                 costdata = JsonConvert.DeserializeObject<Cost>(resultdata);
 
-                
+
+                Rubber listRubber = new Rubber();
+                List<Rubber> rubber = new List<Rubber>();
+
+                HttpClient r = _api.Initial();
+                HttpResponseMessage resRubber = await r.GetAsync("api/rubber/get-all-rubbers");
+                if (resRubber.IsSuccessStatusCode)
+                {
+                    var result = resRubber.Content.ReadAsStringAsync().Result;
+                    rubber = JsonConvert.DeserializeObject<List<Rubber>>(result);
+                    listRubber.data.Clear();
+                    foreach (var o in rubber)
+                    {
+                        listRubber.data.Add(new Rubber
+                        {
+                            material_name = o.material_name,
+                            price_kg = o.price_kg,
+                            mixing_process_cost = o.mixing_process_cost,
+                            weight_g = o.weight_g,
+                            yield_rate = o.yield_rate
+                        });
+                    }
+                }
+
+                List<Rubber> rubberModel = listRubber.data.ToList();
+
+                ViewBag.Rubber = rubber.Select(x => new SelectListItem()
+                {
+                    Text = x.material_name,
+                    Value = x.material_name+","+x.price_kg + "," +x.mixing_process_cost + "," +x.weight_g + "," +x.yield_rate
+
+                }).ToList();
+
 
                 ViewBag.plant = costdata.plant;
                 ViewBag.item_spec = costdata.item_spec;

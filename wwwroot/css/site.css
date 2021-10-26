@@ -133,14 +133,14 @@ label,input{
     overflow-x:hidden;
 }
 
-#table_process_master {
+#table_process_master,#table_rubber {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width:1000px;
   
 }
 
-    #table_process_master th,#table_master_input th {
+    #table_process_master th, #table_master_input th, #table_rubber th {
         font-size: 15px;
         background: #d2d2d2;
         border: 1px solid black;
@@ -149,7 +149,7 @@ label,input{
         text-align: center;
     }
 
-    #table_process_master td, #table_master_input td {
+    #table_process_master td, #table_master_input td, #table_rubber td {
         font-size: 15px;
         background: white;
         border: 1px solid black;
