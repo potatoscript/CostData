@@ -36,10 +36,9 @@ jQuery(document).ready(function () {
 
                 document.getElementById("process_name_master").value = table.rows[ri].cells[0].innerText;
                 document.getElementById("process_type_master").value = table.rows[ri].cells[1].innerText;
-                document.getElementById("overhead_cost").value = table.rows[ri].cells[2].innerText;
-                document.getElementById("machine_cost").value = table.rows[ri].cells[3].innerText;
-                document.getElementById("labor_cost").value = table.rows[ri].cells[4].innerText;
-                document.getElementById("total_cost").value = table.rows[ri].cells[5].innerText;
+                document.getElementById("od_min").value = table.rows[ri].cells[2].innerText;
+                document.getElementById("od_max").value = table.rows[ri].cells[3].innerText;
+                document.getElementById("total_cost").value = table.rows[ri].cells[7].innerText;
                 document.getElementById("ProcessMasterId").value = table.rows[ri].cells[8].innerText;
 
             
@@ -60,19 +59,15 @@ function delete_process_master(id) {
                 confirm: true
             }),
             success: function (res) {
-                //set the id to zero for initial state
-                //var url = _url + "ProcessMaster/Index?p_doc_no=" + document.getElementById("doc_no").value + "&p_od=" + document.getElementById("od").value;
-                //showPopup(url, 'Process Cost');
-                document.getElementById("Master").click();
+                document.getElementById("ProcessMaster").click();
             }
         });
     }
 
 }
 
-function refreshMaster() {
-    var url = _url + "ProcessMaster?p_doc_no=-&p_od=0";
-    showPopup(url, 'Process Master Cost');
+function refreshProcessMaster() {
+    document.getElementById("ProcessMaster").click();
 }
 
 

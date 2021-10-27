@@ -6,7 +6,8 @@ jQuery(document).ready(function () {
     jQuery("#processtypes").change(function () {
         document.getElementById("product_type").value = document.getElementById("processtypes").value;
 
-        if (document.getElementById("processtypes").value !="Process Type") {
+
+
             jQuery.ajax({
                 type: "GET",
                 url: _url + 'CostProcess/IndexGetType',
@@ -23,7 +24,7 @@ jQuery(document).ready(function () {
                     document.getElementById("processtypes").value = document.getElementById("product_type").value;
                 }
             })
-        }
+
         
 
     })

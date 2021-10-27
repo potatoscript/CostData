@@ -316,7 +316,7 @@ function jQueryAjaxPost(form,page) {
                 if (res.isValid) {
                     var p = _url + page;
                     if (page != "Home/Index") {
-                        document.getElementById("Master").click();
+                        document.getElementById("ProcessMaster").click();
 
                     } else {
                         RefreshData();
