@@ -81,6 +81,7 @@ namespace CostNag.Controllers
                 action = "api/processmaster/get-all-processesmaster";
 
 
+
             HttpResponseMessage resdata = await clientdata.GetAsync(action).ConfigureAwait(false);
 
             resdata.EnsureSuccessStatusCode();
@@ -205,8 +206,9 @@ namespace CostNag.Controllers
             HttpClient clientdata = _api.Initial();
 
             //var action = "api/processmaster/get-processmaster-by-od-type/" + p_od;
-            //if (p_od < 5)
-            var    action = "api/processmaster/get-processmaster-by-type/" + p_process_type;
+            var action = "api/processmaster/get-processmaster-by-odtype/" + p_od+"/"+ p_process_type;
+            if (p_od < 5)
+                action = "api/processmaster/get-processmaster-by-type/" + p_process_type;
 
 
             HttpResponseMessage resdata = await clientdata.GetAsync(action).ConfigureAwait(false);
