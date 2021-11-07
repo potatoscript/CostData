@@ -28,30 +28,48 @@ namespace CostNag.Controllers
             Rubber listRubber = new Rubber();
             List<Rubber> rubber = new List<Rubber>();
 
+
             HttpClient r = _api.Initial();
             HttpResponseMessage resRubber = await r.GetAsync("api/rubber/get-all-rubbers");
             if (resRubber.IsSuccessStatusCode)
             {
                 var result = resRubber.Content.ReadAsStringAsync().Result;
                 rubber = JsonConvert.DeserializeObject<List<Rubber>>(result);
-                listRubber.data.Clear();
-                foreach (var o in rubber)
-                {
-                    listRubber.data.Add(new Rubber
-                    {
-                        material_name = o.material_name
-                    });
-                }
+                //listRubber.data.Clear();
+
+                //listRubber.data.Add(new Rubber
+                //{
+                //    material_name ="-",
+                //    price_kg = 0,
+                //    mixing_process_cost = 0,
+                //    weight_g = 0,
+                //    yield_rate = 0
+                //});
+
+                //foreach (var o in rubber)
+                //{
+                //    listRubber.data.Add(new Rubber
+                //    {
+                //        material_name = o.material_name,
+                //        price_kg = o.price_kg,
+                //        mixing_process_cost = o.mixing_process_cost,
+                //        weight_g = o.weight_g,
+                //        yield_rate = o.yield_rate
+                //    });
+                //}
             }
 
-            List<Rubber> rubberModel = listRubber.data.ToList();
+            //List<Rubber> rubberModel = listRubber.data.ToList();
 
             ViewBag.Rubber = rubber.Select(x => new SelectListItem()
             {
                 Text = x.material_name,
-                Value = x.material_name
+                Value = x.material_name + "," + x.price_kg + "," + x.mixing_process_cost + "," + x.weight_g + "," + x.yield_rate
 
             }).ToList();
+
+
+
 
             ViewBag.plant = "-";
             ViewBag.item_spec = "-";
@@ -415,21 +433,31 @@ namespace CostNag.Controllers
                 {
                     var result = resRubber.Content.ReadAsStringAsync().Result;
                     rubber = JsonConvert.DeserializeObject<List<Rubber>>(result);
-                    listRubber.data.Clear();
-                    foreach (var o in rubber)
-                    {
-                        listRubber.data.Add(new Rubber
-                        {
-                            material_name = o.material_name,
-                            price_kg = o.price_kg,
-                            mixing_process_cost = o.mixing_process_cost,
-                            weight_g = o.weight_g,
-                            yield_rate = o.yield_rate
-                        });
-                    }
+                    //listRubber.data.Clear();
+
+                    //listRubber.data.Add(new Rubber
+                    //{
+                    //    material_name = "-",
+                    //    price_kg = 0,
+                    //    mixing_process_cost = 0,
+                    //    weight_g = 0,
+                    //    yield_rate = 0
+                    //});
+
+                    //foreach (var o in rubber)
+                    //{
+                    //    listRubber.data.Add(new Rubber
+                    //    {
+                    //        material_name = o.material_name,
+                    //        price_kg = o.price_kg,
+                    //        mixing_process_cost = o.mixing_process_cost,
+                    //        weight_g = o.weight_g,
+                    //        yield_rate = o.yield_rate
+                    //    });
+                    //}
                 }
 
-                List<Rubber> rubberModel = listRubber.data.ToList();
+                //List<Rubber> rubberModel = listRubber.data.ToList();
 
                 ViewBag.Rubber = rubber.Select(x => new SelectListItem()
                 {
