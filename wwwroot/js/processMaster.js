@@ -41,7 +41,7 @@ jQuery(document).ready(function () {
                 document.getElementById("total_cost").value = table.rows[ri].cells[7].innerText;
                 document.getElementById("ProcessMasterId").value = table.rows[ri].cells[8].innerText;
 
-            
+            document.getElementById("statusMaster").innerText = "EDITING";
 
         })
 

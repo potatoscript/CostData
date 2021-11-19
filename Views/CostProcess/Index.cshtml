@@ -29,17 +29,17 @@
                                name="process_type" id="process_type_data"
                                value="@ViewBag.p_process_type" />
                     </td>
-                    <td>
+                    <td  style="display:none">
                         <input type="number" step="any" class="directInput processmaster_field"
                                name="overhead_cost" id="overhead_cost_data"
                                value="@ViewBag.p_overhead_cost" />
                     </td>
-                    <td>
+                    <td  style="display:none">
                         <input type="number" step="any" class="directInput processmaster_field"
                                name="machine_cost" id="machine_cost_data"
                                value="@ViewBag.p_machine_cost" />
                     </td>
-                    <td>
+                    <td  style="display:none">
                         <input type="number" step="any" class="directInput processmaster_field"
                                name="labor_cost" id="labor_cost_data"
                                value="@ViewBag.p_labor_cost" />
@@ -63,9 +63,9 @@
                             <th>
                                 <select class="form-control" name="processtypes" id="processtypes" asp-items="ViewBag.Types"></select>
                             </th>
-                            <th>Overhead Cost</th>
-                            <th>Machine Cost</th>
-                            <th>Labor Cost</th>
+                            <th style="display:none">Overhead Cost</th>
+                            <th style="display:none">Machine Cost</th>
+                            <th style="display:none">Labor Cost</th>
                             <th>Total Cost</th>
                             <th style="display:none">ID</th>
                         </tr>
@@ -75,9 +75,6 @@
                                 <tr>
                                     <td>@i.process_name</td>
                                     <td>@i.process_type</td>
-                                    <td>@i.overhead_cost</td>
-                                    <td>@i.machine_cost</td>
-                                    <td>@i.labor_cost</td>
                                     <td>@i.total_cost</td>
                                     <td style="display:none">@i.ProcessMasterId</td>
 
@@ -102,11 +99,11 @@
                                        name="item_od" id="od"
                                        value="@ViewBag.p_od" />
                             </td>
-                            <th style="border-right:0px">Total Process Cost:</th>
+                            <th style="width:50px;border-right:0px">Rubber Weight:</th>
                             <td style="border-left:0px;text-align:left">
-                                <input type="number" step="any" class="calculateInput"
-                                       name="process_cost" id="process_cost"
-                                       value="@ViewBag.p_process_cost" />
+                                <input type="number" step="any" class="calculateInput" style="background:white"
+                                       name="total_rubber_weight" id="total_rubber_weight"
+                                       value="@ViewBag.p_rubber_weight" />
                             </td>
                         </tr>
                     </table>
@@ -114,9 +111,9 @@
                         <tr>
                             <th>Process Name</th>
                             <th>Process Type</th>
-                            <th>Overhead Cost</th>
-                            <th>Machine Cost</th>
-                            <th>Labor Cost</th>
+                            <th  style="display:none">Overhead Cost</th>
+                            <th  style="display:none">Machine Cost</th>
+                            <th  style="display:none">Labor Cost</th>
                             <th>Total Cost</th>
                             <th style="display:none">ID</th>
                             <th></th>
@@ -127,9 +124,9 @@
                                 <tr>
                                     <td>@i.process_name</td>
                                     <td>@i.process_type</td>
-                                    <td>@i.overhead_cost</td>
-                                    <td>@i.machine_cost</td>
-                                    <td>@i.labor_cost</td>
+                                    <td  style="display:none">@i.overhead_cost</td>
+                                    <td  style="display:none">@i.machine_cost</td>
+                                    <td  style="display:none">@i.labor_cost</td>
                                     <td>@i.total_cost</td>
                                     <td style="display:none">@i.CostProcessId</td>
                                     <td>
@@ -146,6 +143,14 @@
                                 </tr>
 
                             }
+                            <tr>
+                                <th colspan="2">Total Process Cost:</th>
+                                <td>
+                                    <input type="number" step="any" class="calculateInput"
+                                           name="process_cost" id="process_cost"
+                                           value="@ViewBag.p_process_cost" />
+                                </td>
+                            </tr>
                         }
                     </table>
                 </td>

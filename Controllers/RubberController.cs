@@ -23,7 +23,7 @@ namespace CostNag.Controllers
             ViewBag.mixing_process_cost = 0;
             ViewBag.weight_g = 0;
             ViewBag.yield_rate = 0;
-
+            ViewBag.RubberId = 0;
 
 
             Rubber list = new Rubber();
@@ -40,6 +40,8 @@ namespace CostNag.Controllers
             {
                 var resultdata = resdata.Content.ReadAsStringAsync().Result;
                 rubber_ = JsonConvert.DeserializeObject<List<Rubber>>(resultdata);
+
+
                 foreach (var o in rubber_)
                 {
                     list.data.Add(new Rubber
@@ -70,10 +72,10 @@ namespace CostNag.Controllers
 
             var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
 
-            var action = "api/rubber/update-rubber-by-id/" + model.RubberId;
-            if (model.RubberId == 0)
+            var action = "api/rubber/add-rubber-data";
+            if (model.RubberId > 0)
             {
-                action = "api/rubber/add-rubber";
+                action = "api/rubber/update-rubber-by-id/" + model.RubberId;
             }
 
             HttpResponseMessage res = await client.PostAsync(action, content).ConfigureAwait(false);

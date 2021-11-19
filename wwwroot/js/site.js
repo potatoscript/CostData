@@ -19,6 +19,18 @@ jQuery(document).ready(function () {
         calculate_cost();
 
     })
+
+    jQuery("#rubber_material_list2").change(function () {
+        var dat = String(document.getElementById("rubber_material_list2").value).split(",");
+        document.getElementById("rubber_material_name2").value = dat.slice(0, 1);
+        document.getElementById("rubber_price_kg2").value = parseFloat(dat.slice(1, 2));
+        document.getElementById("rubber_mixing_process_cost2").value = dat.slice(2, 3);
+        document.getElementById("rubber_weight_g2").value = dat.slice(3, 4);
+        document.getElementById("rubber_yield_rate2").value = dat.slice(4, 5);
+
+        calculate_cost();
+
+    })
     
 
     jQuery("#checked_date,#issue_date,#approved_by,#expired_by")
@@ -46,47 +58,12 @@ jQuery(document).ready(function () {
         s[t].onclick = function () { this.select() };
         s[t].onkeyup = function () {
             jQuery("#table_parts_code").hide();
-        };
-
-    }
-
-    for (var s = document.getElementsByClassName("production_qty"), t = 0; t < s.length; t++) {
-
-        s[t].onkeyup = function () {
-            var qty = parseInt(document.getElementById("qty_month").value);
-            var day = parseInt(document.getElementById("working_day").value);
-            if (day > 0 && qty > 0)
-                document.getElementById("production_qty_day").value = (qty / day).toFixed(0);
-        };
-
-    }
-
-
-    for (var s = document.getElementsByClassName("material"), t = 0; t < s.length; t++) {
-        s[t].onkeyup = function () {
             calculate_cost();
         };
+
+        
     }
 
-    for (var s = document.getElementsByClassName("toolinglist"), t = 0; t < s.length; t++) {
-
-        s[t].onkeyup = function () {
-            var jpy = parseFloat(document.getElementById("exchange_rate").value);
-            var n = 0;
-            for (var i = 1; i < 16; i++) {
-                var qty = parseFloat(document.getElementById("tooling_list_qty_"+i).value);
-                var price = parseFloat(document.getElementById("tooling_list_price_"+i).value);
-                document.getElementById("tooling_list_amount_usd_"+i).value = (qty * price).toFixed(0);
-                document.getElementById("tooling_list_amount_jpy_"+i).value = (qty * price * jpy).toFixed(0);
-                n += (qty * price);
-            }
-            document.getElementById("tooling_list_total_amount_usd").value = n.toFixed(0);
-            var table = document.getElementById("table_summary");
-            table.rows[1].cells[1].innerText = document.getElementById("tooling_list_total_amount_usd").value;
-
-        };
-
-    }
 
     jQuery("#search_code").click(function () {
         document.getElementById("search_code").select();
@@ -129,22 +106,52 @@ jQuery(document).ready(function () {
 
 
 function calculate_cost() {
+
+    var qty = parseInt(document.getElementById("qty_month").value);
+    var day = parseInt(document.getElementById("working_day").value);
+    if (day > 0 && qty > 0)
+        document.getElementById("production_qty_day").value = (qty / day).toFixed(0);
+
+
+    var jpy = parseFloat(document.getElementById("exchange_rate_jpy").value);
+    var n = 0;
+    for (var i = 1; i < 16; i++) {
+        var qty = parseFloat(document.getElementById("tooling_list_qty_" + i).value);
+        var price = parseFloat(document.getElementById("tooling_list_price_" + i).value);
+        document.getElementById("tooling_list_amount_sgd_" + i).value = (qty * price).toFixed(0);
+        document.getElementById("tooling_list_amount_jpy_" + i).value = (qty * price * jpy).toFixed(0);
+        n += (qty * price);
+    }
+    document.getElementById("tooling_list_total_amount_sgd").value = n.toFixed(0);
+    var table = document.getElementById("table_summary");
+    table.rows[1].cells[1].innerText = document.getElementById("tooling_list_total_amount_sgd").value;
+
+
     //rubber
-    
     var rubber_mixing_process_cost = parseFloat(document.getElementById("rubber_mixing_process_cost").value);
     var rubber_weight_g = parseFloat(document.getElementById("rubber_weight_g").value);
     var rubber_yield_rate = parseFloat(document.getElementById("rubber_yield_rate").value);
-
-   
     var rubber_price_kg = parseFloat(document.getElementById("rubber_price_kg").value);
-
     document.getElementById("rubber_weight_kg").value = (rubber_weight_g / 1000).toFixed(5);
 
-    document.getElementById("rubber_weight_kg_yieldrate").value = ((rubber_weight_g / 1000) / (rubber_yield_rate / 100)).toFixed(5);
-    var rubber_weight_kg_yieldrate = parseFloat(document.getElementById("rubber_weight_kg_yieldrate").value);
+    if (rubber_yield_rate > 0)
+    document.getElementById("rubber_weight_kg_yieldrate").value = ((rubber_weight_g / 1000) / (rubber_yield_rate)).toFixed(5);
 
+    var rubber_weight_kg_yieldrate = parseFloat(document.getElementById("rubber_weight_kg_yieldrate").value);
     document.getElementById("rubber_cost_sgd").value = ((rubber_price_kg + rubber_mixing_process_cost) * rubber_weight_kg_yieldrate).toFixed(4);
     var rubber_cost_sgd = parseFloat(document.getElementById("rubber_cost_sgd").value);
+
+    //rubber2
+    var rubber_mixing_process_cost2 = parseFloat(document.getElementById("rubber_mixing_process_cost2").value);
+    var rubber_weight_g2 = parseFloat(document.getElementById("rubber_weight_g2").value);
+    var rubber_yield_rate2 = parseFloat(document.getElementById("rubber_yield_rate2").value);
+    var rubber_price_kg2 = parseFloat(document.getElementById("rubber_price_kg2").value);
+    document.getElementById("rubber_weight_kg2").value = (rubber_weight_g2 / 1000).toFixed(5);
+    if (rubber_yield_rate2 > 0)
+    document.getElementById("rubber_weight_kg_yieldrate2").value = ((rubber_weight_g2 / 1000) / (rubber_yield_rate2)).toFixed(5);
+    var rubber_weight_kg_yieldrate2 = parseFloat(document.getElementById("rubber_weight_kg_yieldrate2").value);
+    document.getElementById("rubber_cost_sgd2").value = ((rubber_price_kg2 + rubber_mixing_process_cost2) * rubber_weight_kg_yieldrate2).toFixed(4);
+    var rubber_cost_sgd2 = parseFloat(document.getElementById("rubber_cost_sgd2").value);
 
     //material
     var material_inhouse_value_1 = parseFloat(document.getElementById("material_inhouse_value_1").value);
@@ -174,6 +181,7 @@ function calculate_cost() {
 
     var direct_material_cost =
         parseFloat(document.getElementById("rubber_cost_sgd").value) +
+        parseFloat(document.getElementById("rubber_cost_sgd2").value) +
         parseFloat(document.getElementById("material_inhouse_cost_sgd_1").value) +
         parseFloat(document.getElementById("material_inhouse_cost_sgd_2").value) +
         parseFloat(document.getElementById("material_inhouse_cost_sgd_3").value) +
@@ -239,12 +247,14 @@ function calculate_cost() {
 
     //Tool Mold and Jig
     var moldjig_percentage = parseFloat(document.getElementById("moldjig_percentage").value);
+    if (parseFloat(document.getElementById("qty_month").value)>0)
     document.getElementById("moldjig_cost").value =
         (moldjig_percentage / 24 / parseFloat(document.getElementById("qty_month").value)).toFixed(4);
 
 
     //Tool Die
     var die_percentage = parseFloat(document.getElementById("die_percentage").value);
+    if (parseFloat(document.getElementById("qty_month").value)>0)
     document.getElementById("die_cost").value =
         (die_percentage / 24 / parseFloat(document.getElementById("qty_month").value)).toFixed(4);
 
@@ -273,34 +283,45 @@ function calculate_cost() {
 
 
     //calculate the target price(SGD)
-    document.getElementById("target_price_bht").value = (parseFloat(document.getElementById("net_exclude_tooling_cost").value) * 1.2).toFixed(4);
+    document.getElementById("target_price_sgd").value = (parseFloat(document.getElementById("net_exclude_tooling_cost").value) * 1.2).toFixed(4);
+    var target_price_sgd = parseFloat(document.getElementById("target_price_sgd").value);
+    document.getElementById("target_price_usd").value = (parseFloat(document.getElementById("exchange_rate_usd").value) * target_price_sgd).toFixed(4);
+    document.getElementById("target_price_eud").value = (parseFloat(document.getElementById("exchange_rate_eud").value) * target_price_sgd).toFixed(4);
+
+    var target_price_wr_sgd = parseFloat(document.getElementById("target_price_wr_sgd").value);
+    document.getElementById("target_price_wr_usd").value = (parseFloat(document.getElementById("exchange_rate_usd").value) * target_price_wr_sgd).toFixed(4);
+    document.getElementById("target_price_wr_eud").value = (parseFloat(document.getElementById("exchange_rate_eud").value) * target_price_wr_sgd).toFixed(4);
+
+
     var table = document.getElementById("table_summary");
-    table.rows[0].cells[1].innerText = document.getElementById("target_price_bht").value;
+    table.rows[0].cells[1].innerText = document.getElementById("target_price_sgd").value;
 
-    var target_price_sgd = parseFloat(document.getElementById("target_price_bht").value);
+    
 
-    document.getElementById("rubber_percentage_target_price").value = (rubber_cost_sgd / target_price_sgd * 100).toFixed(0);
-    document.getElementById("material_inhouse_percentage_target_price_1").value = ((parseFloat(document.getElementById("material_inhouse_cost_sgd_1").value) / target_price_sgd) * 100).toFixed(1);
-    document.getElementById("material_inhouse_percentage_target_price_2").value = ((parseFloat(document.getElementById("material_inhouse_cost_sgd_2").value) / target_price_sgd) * 100).toFixed(1);
-    document.getElementById("material_inhouse_percentage_target_price_3").value = ((parseFloat(document.getElementById("material_inhouse_cost_sgd_3").value) / target_price_sgd) * 100).toFixed(1);
-    document.getElementById("material_outside_percentage_target_price_1").value = ((parseFloat(document.getElementById("material_outside_cost_sgd_1").value) / target_price_sgd) * 100).toFixed(1);
-    document.getElementById("material_outside_percentage_target_price_2").value = ((parseFloat(document.getElementById("material_outside_cost_sgd_2").value) / target_price_sgd) * 100).toFixed(1);
-    document.getElementById("material_outside_percentage_target_price_3").value = ((parseFloat(document.getElementById("material_outside_cost_sgd_3").value) / target_price_sgd) * 100).toFixed(1);
-    document.getElementById("direct_material_cost_percentage").value = ((direct_material_cost / target_price_sgd) * 100).toFixed(2);
-    document.getElementById("sub_material_cost_percentage").value = (((direct_material_cost * sub_material_percentage / 100) / target_price_sgd) * 100).toFixed(2);
-    document.getElementById("direct_process_cost_percentage").value = ((direct_process_cost / target_price_sgd) * 100).toFixed(2);
-    document.getElementById("total_direct_cost_percentage").value =
-        ((parseFloat(document.getElementById("total_direct_cost").value) / target_price_sgd) * 100).toFixed(2);
-    document.getElementById("defective_cost_percentage").value = ((parseFloat(document.getElementById("defective_cost").value) / target_price_sgd) * 100).toFixed(2);
-    document.getElementById("indirect_cost_percentage").value = ((parseFloat(document.getElementById("indirect_cost").value) / target_price_sgd) * 100).toFixed(2);
-    document.getElementById("packing_material_cost_percentage").value = ((parseFloat(document.getElementById("packing_material_cost").value) / target_price_sgd) * 100).toFixed(2);
-    document.getElementById("administration_cost_percentage").value = ((parseFloat(document.getElementById("administration_cost").value) / target_price_sgd) * 100).toFixed(2);
-    document.getElementById("plant_retail_cost_percentage").value = ((parseFloat(document.getElementById("plant_retail_cost").value) / target_price_sgd) * 100).toFixed(2);
-    document.getElementById("moldjig_cost_percentage").value = ((parseFloat(document.getElementById("moldjig_cost").value) / target_price_sgd) * 100).toFixed(2);
-    document.getElementById("die_cost_percentage").value = ((parseFloat(document.getElementById("die_cost").value) / target_price_sgd) * 100).toFixed(2);
-    document.getElementById("net_included_tooling_cost_percentage").value = ((parseFloat(document.getElementById("net_included_tooling_cost").value) / target_price_sgd) * 100).toFixed(2);
-    document.getElementById("net_exclude_tooling_cost_percentage").value = ((parseFloat(document.getElementById("net_exclude_tooling_cost").value) / target_price_sgd) * 100).toFixed(2);
-
+    if (target_price_sgd > 0) {
+        document.getElementById("rubber_percentage_target_price").value = (rubber_cost_sgd / target_price_sgd * 100).toFixed(0);
+        document.getElementById("rubber_percentage_target_price2").value = (rubber_cost_sgd2 / target_price_sgd * 100).toFixed(0);
+        document.getElementById("material_inhouse_percentage_target_price_1").value = ((parseFloat(document.getElementById("material_inhouse_cost_sgd_1").value) / target_price_sgd) * 100).toFixed(1);
+        document.getElementById("material_inhouse_percentage_target_price_2").value = ((parseFloat(document.getElementById("material_inhouse_cost_sgd_2").value) / target_price_sgd) * 100).toFixed(1);
+        document.getElementById("material_inhouse_percentage_target_price_3").value = ((parseFloat(document.getElementById("material_inhouse_cost_sgd_3").value) / target_price_sgd) * 100).toFixed(1);
+        document.getElementById("material_outside_percentage_target_price_1").value = ((parseFloat(document.getElementById("material_outside_cost_sgd_1").value) / target_price_sgd) * 100).toFixed(1);
+        document.getElementById("material_outside_percentage_target_price_2").value = ((parseFloat(document.getElementById("material_outside_cost_sgd_2").value) / target_price_sgd) * 100).toFixed(1);
+        document.getElementById("material_outside_percentage_target_price_3").value = ((parseFloat(document.getElementById("material_outside_cost_sgd_3").value) / target_price_sgd) * 100).toFixed(1);
+        document.getElementById("direct_material_cost_percentage").value = ((direct_material_cost / target_price_sgd) * 100).toFixed(2);
+        document.getElementById("sub_material_cost_percentage").value = (((direct_material_cost * sub_material_percentage / 100) / target_price_sgd) * 100).toFixed(2);
+        document.getElementById("direct_process_cost_percentage").value = ((direct_process_cost / target_price_sgd) * 100).toFixed(2);
+        document.getElementById("total_direct_cost_percentage").value =
+            ((parseFloat(document.getElementById("total_direct_cost").value) / target_price_sgd) * 100).toFixed(2);
+        document.getElementById("defective_cost_percentage").value = ((parseFloat(document.getElementById("defective_cost").value) / target_price_sgd) * 100).toFixed(2);
+        document.getElementById("indirect_cost_percentage").value = ((parseFloat(document.getElementById("indirect_cost").value) / target_price_sgd) * 100).toFixed(2);
+        document.getElementById("packing_material_cost_percentage").value = ((parseFloat(document.getElementById("packing_material_cost").value) / target_price_sgd) * 100).toFixed(2);
+        document.getElementById("administration_cost_percentage").value = ((parseFloat(document.getElementById("administration_cost").value) / target_price_sgd) * 100).toFixed(2);
+        document.getElementById("plant_retail_cost_percentage").value = ((parseFloat(document.getElementById("plant_retail_cost").value) / target_price_sgd) * 100).toFixed(2);
+        document.getElementById("moldjig_cost_percentage").value = ((parseFloat(document.getElementById("moldjig_cost").value) / target_price_sgd) * 100).toFixed(2);
+        document.getElementById("die_cost_percentage").value = ((parseFloat(document.getElementById("die_cost").value) / target_price_sgd) * 100).toFixed(2);
+        document.getElementById("net_included_tooling_cost_percentage").value = ((parseFloat(document.getElementById("net_included_tooling_cost").value) / target_price_sgd) * 100).toFixed(2);
+        document.getElementById("net_exclude_tooling_cost_percentage").value = ((parseFloat(document.getElementById("net_exclude_tooling_cost").value) / target_price_sgd) * 100).toFixed(2);
+    }
 }
 
 
@@ -392,6 +413,8 @@ function showPopup(url, title) {
         }
     })
     */
+    var total_rubber_weight = parseFloat(document.getElementById("rubber_weight_g").value) +
+        parseFloat(document.getElementById("rubber_weight_g2").value);
 
     jQuery.ajax({
         type: "GET",
@@ -399,7 +422,8 @@ function showPopup(url, title) {
         data: jQuery.param({
             p_doc_no: document.getElementById("doc_no").value,
             p_od: document.getElementById("item_od").value,
-            p_process_type: document.getElementById("product_type").value
+            p_process_type: document.getElementById("product_type").value,
+            p_rubber_weight: total_rubber_weight
         }),
         success: function (res) {
             jQuery("#form-modal .modal-body").html(res);

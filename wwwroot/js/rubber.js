@@ -23,7 +23,7 @@ jQuery(document).ready(function () {
             document.getElementById("yield_rate").value = table.rows[ri].cells[4].innerText;
             document.getElementById("RubberId").value = table.rows[ri].cells[5].innerText;
 
-
+            document.getElementById("statusRubber").innerText = "EDITING";
 
         })
 

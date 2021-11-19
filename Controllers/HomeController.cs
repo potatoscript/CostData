@@ -91,13 +91,25 @@ namespace CostNag.Controllers
             ViewBag.item_id = 0;
             ViewBag.item_od = 0;
             ViewBag.item_w = 0;
+            ViewBag.item_w2 = 0;
             ViewBag.business_type = "-";
             ViewBag.qty_month = 0;
-            ViewBag.exchange_rate = 0;
-            ViewBag.target_price_bht = 0.0;
-            ViewBag.target_price_export = 0.0;
+
+            ViewBag.exchange_rate_jpy = 84.13;
+            ViewBag.exchange_rate_usd = 0.74;
+            ViewBag.exchange_rate_eud = 0.65;
+
+            ViewBag.target_price_sgd = 0.0;
+            ViewBag.target_price_usd = 0.0;
+            ViewBag.target_price_eud = 0.0;
+            ViewBag.target_price_wr_sgd = 0.0;
+            ViewBag.target_price_wr_usd = 0.0;
+            ViewBag.target_price_wr_eud = 0.0;
+
             ViewBag.production_qty_day = 0;
             ViewBag.working_day = 21;
+
+            ViewBag.rubber_weight_g_total = 0;
 
             ViewBag.rubber_material_name = "-";
             ViewBag.rubber_database_price_current = 0;
@@ -110,6 +122,18 @@ namespace CostNag.Controllers
             ViewBag.rubber_weight_kg_yieldrate = 0;
             ViewBag.rubber_cost_sgd = 0;
             ViewBag.rubber_percentage_target_price = 0;
+
+            ViewBag.rubber_material_name2 = "-";
+            ViewBag.rubber_database_price_current2 = 0;
+            ViewBag.rubber_database_price_new2 = 0;
+            ViewBag.rubber_price_kg2 = 0;
+            ViewBag.rubber_mixing_process_cost2 = 0;
+            ViewBag.rubber_weight_g2 = 0;
+            ViewBag.rubber_weight_kg2 = 0;
+            ViewBag.rubber_yield_rate2 = 0;
+            ViewBag.rubber_weight_kg_yieldrate2 = 0;
+            ViewBag.rubber_cost_sgd2 = 0;
+            ViewBag.rubber_percentage_target_price2 = 0;
 
             ViewBag.material_inhouse_name_1 = "-";
             ViewBag.material_inhouse_info_1 = "-";
@@ -203,7 +227,7 @@ namespace CostNag.Controllers
             ViewBag.tooling_list_unit_1 = "-";
             ViewBag.tooling_list_price_1 = 0;
             ViewBag.tooling_list_amount_jpy_1 = 0;
-            ViewBag.tooling_list_amount_usd_1 = 0;
+            ViewBag.tooling_list_amount_sgd_1 = 0;
 
             ViewBag.tooling_list_description_2 = "-";
             ViewBag.tooling_list_type_2 = "-";
@@ -212,7 +236,7 @@ namespace CostNag.Controllers
             ViewBag.tooling_list_unit_2 = "-";
             ViewBag.tooling_list_price_2 = 0;
             ViewBag.tooling_list_amount_jpy_2 = 0;
-            ViewBag.tooling_list_amount_usd_2 = 0;
+            ViewBag.tooling_list_amount_sgd_2 = 0;
 
             ViewBag.tooling_list_description_3 = "-";
             ViewBag.tooling_list_type_3 = "-";
@@ -221,7 +245,7 @@ namespace CostNag.Controllers
             ViewBag.tooling_list_unit_3 = "-";
             ViewBag.tooling_list_price_3 = 0;
             ViewBag.tooling_list_amount_jpy_3 = 0;
-            ViewBag.tooling_list_amount_usd_3 = 0;
+            ViewBag.tooling_list_amount_sgd_3 = 0;
 
             ViewBag.tooling_list_description_4 = "-";
             ViewBag.tooling_list_type_4 = "-";
@@ -230,7 +254,7 @@ namespace CostNag.Controllers
             ViewBag.tooling_list_unit_4 = "-";
             ViewBag.tooling_list_price_4 = 0;
             ViewBag.tooling_list_amount_jpy_4 = 0;
-            ViewBag.tooling_list_amount_usd_4 = 0;
+            ViewBag.tooling_list_amount_sgd_4 = 0;
 
             ViewBag.tooling_list_description_5 = "-";
             ViewBag.tooling_list_type_5 = "-";
@@ -239,7 +263,7 @@ namespace CostNag.Controllers
             ViewBag.tooling_list_unit_5 = "-";
             ViewBag.tooling_list_price_5 = 0;
             ViewBag.tooling_list_amount_jpy_5 = 0;
-            ViewBag.tooling_list_amount_usd_5 = 0;
+            ViewBag.tooling_list_amount_sgd_5 = 0;
 
             ViewBag.tooling_list_description_6 = "-";
             ViewBag.tooling_list_type_6 = "-";
@@ -248,7 +272,7 @@ namespace CostNag.Controllers
             ViewBag.tooling_list_unit_6 = "-";
             ViewBag.tooling_list_price_6 = 0;
             ViewBag.tooling_list_amount_jpy_6 = 0;
-            ViewBag.tooling_list_amount_usd_6 = 0;
+            ViewBag.tooling_list_amount_sgd_6 = 0;
 
             ViewBag.tooling_list_description_7 = "-";
             ViewBag.tooling_list_type_7 = "-";
@@ -257,7 +281,7 @@ namespace CostNag.Controllers
             ViewBag.tooling_list_unit_7 = "-";
             ViewBag.tooling_list_price_7 = 0;
             ViewBag.tooling_list_amount_jpy_7 = 0;
-            ViewBag.tooling_list_amount_usd_7 = 0;
+            ViewBag.tooling_list_amount_sgd_7 = 0;
 
             ViewBag.tooling_list_description_8 = "-";
             ViewBag.tooling_list_type_8 = "-";
@@ -266,7 +290,7 @@ namespace CostNag.Controllers
             ViewBag.tooling_list_unit_8 = "-";
             ViewBag.tooling_list_price_8 = 0;
             ViewBag.tooling_list_amount_jpy_8 = 0;
-            ViewBag.tooling_list_amount_usd_8 = 0;
+            ViewBag.tooling_list_amount_sgd_8 = 0;
 
             ViewBag.tooling_list_description_9 = "-";
             ViewBag.tooling_list_type_9 = "-";
@@ -275,7 +299,7 @@ namespace CostNag.Controllers
             ViewBag.tooling_list_unit_9 = "-";
             ViewBag.tooling_list_price_9 = 0;
             ViewBag.tooling_list_amount_jpy_9 = 0;
-            ViewBag.tooling_list_amount_usd_9 = 0;
+            ViewBag.tooling_list_amount_sgd_9 = 0;
 
             ViewBag.tooling_list_description_10 = "-";
             ViewBag.tooling_list_type_10 = "-";
@@ -284,7 +308,7 @@ namespace CostNag.Controllers
             ViewBag.tooling_list_unit_10 = "-";
             ViewBag.tooling_list_price_10 = 0;
             ViewBag.tooling_list_amount_jpy_10 = 0;
-            ViewBag.tooling_list_amount_usd_10 = 0;
+            ViewBag.tooling_list_amount_sgd_10 = 0;
 
             ViewBag.tooling_list_description_11 = "-";
             ViewBag.tooling_list_type_11 = "-";
@@ -293,7 +317,7 @@ namespace CostNag.Controllers
             ViewBag.tooling_list_unit_11 = "-";
             ViewBag.tooling_list_price_11 = 0;
             ViewBag.tooling_list_amount_jpy_11 = 0;
-            ViewBag.tooling_list_amount_usd_11 = 0;
+            ViewBag.tooling_list_amount_sgd_11 = 0;
 
             ViewBag.tooling_list_description_12 = "-";
             ViewBag.tooling_list_type_12 = "-";
@@ -302,7 +326,7 @@ namespace CostNag.Controllers
             ViewBag.tooling_list_unit_12 = "-";
             ViewBag.tooling_list_price_12 = 0;
             ViewBag.tooling_list_amount_jpy_12 = 0;
-            ViewBag.tooling_list_amount_usd_12 = 0;
+            ViewBag.tooling_list_amount_sgd_12 = 0;
 
             ViewBag.tooling_list_description_13 = "-";
             ViewBag.tooling_list_type_13 = "-";
@@ -311,7 +335,7 @@ namespace CostNag.Controllers
             ViewBag.tooling_list_unit_13 = "-";
             ViewBag.tooling_list_price_13 = 0;
             ViewBag.tooling_list_amount_jpy_13 = 0;
-            ViewBag.tooling_list_amount_usd_13 = 0;
+            ViewBag.tooling_list_amount_sgd_13 = 0;
 
             ViewBag.tooling_list_description_14 = "-";
             ViewBag.tooling_list_type_14 = "-";
@@ -320,7 +344,7 @@ namespace CostNag.Controllers
             ViewBag.tooling_list_unit_14 = "-";
             ViewBag.tooling_list_price_14 = 0;
             ViewBag.tooling_list_amount_jpy_14 = 0;
-            ViewBag.tooling_list_amount_usd_14 = 0;
+            ViewBag.tooling_list_amount_sgd_14 = 0;
 
             ViewBag.tooling_list_description_15 = "-";
             ViewBag.tooling_list_type_15 = "-";
@@ -329,9 +353,9 @@ namespace CostNag.Controllers
             ViewBag.tooling_list_unit_15 = "-";
             ViewBag.tooling_list_price_15 = 0;
             ViewBag.tooling_list_amount_jpy_15 = 0;
-            ViewBag.tooling_list_amount_usd_15 = 0;
+            ViewBag.tooling_list_amount_sgd_15 = 0;
 
-            ViewBag.tooling_list_total_amount_usd = 0;
+            ViewBag.tooling_list_total_amount_sgd = 0;
 
 
             
@@ -487,13 +511,28 @@ namespace CostNag.Controllers
                 ViewBag.item_id = costdata.item_id;
                 ViewBag.item_od = costdata.item_od;
                 ViewBag.item_w = costdata.item_w;
+                ViewBag.item_w2 = costdata.item_w2;
                 ViewBag.business_type = costdata.business_type;
                 ViewBag.qty_month = costdata.qty_month;
-                ViewBag.exchange_rate = costdata.exchange_rate;
-                ViewBag.target_price_bht = costdata.target_price_bht;
-                ViewBag.target_price_export = costdata.target_price_export;
+
+                ViewBag.exchange_rate_jpy = costdata.exchange_rate_jpy;
+                ViewBag.exchange_rate_usd = costdata.exchange_rate_usd;
+                ViewBag.exchange_rate_eud = costdata.exchange_rate_eud;
+
+
+                ViewBag.target_price_sgd = costdata.target_price_sgd;
+                ViewBag.target_price_usd = costdata.target_price_usd;
+                ViewBag.target_price_eud = costdata.target_price_eud;
+
+                ViewBag.target_price_wr_sgd = costdata.target_price_wr_sgd;
+                ViewBag.target_price_wr_usd = costdata.target_price_wr_usd;
+                ViewBag.target_price_wr_eud = costdata.target_price_wr_eud;
+
                 ViewBag.production_qty_day = costdata.production_qty_day;
                 ViewBag.working_day = costdata.working_day;
+
+                var total_rubber_weight = float.Parse(costdata.rubber_weight_g.ToString()) + float.Parse(costdata.rubber_weight_g2.ToString());
+                ViewBag.rubber_weight_g_total = total_rubber_weight;
 
                 ViewBag.rubber_material_name = costdata.rubber_material_name;
                 ViewBag.rubber_database_price_current = costdata.rubber_database_price_current;
@@ -506,6 +545,18 @@ namespace CostNag.Controllers
                 ViewBag.rubber_weight_kg_yieldrate = costdata.rubber_weight_kg_yieldrate;
                 ViewBag.rubber_cost_sgd = costdata.rubber_cost_sgd;
                 ViewBag.rubber_percentage_target_price = costdata.rubber_percentage_target_price;
+
+                ViewBag.rubber_material_name2 = costdata.rubber_material_name2;
+                ViewBag.rubber_database_price_current2 = costdata.rubber_database_price_current2;
+                ViewBag.rubber_database_price_new2 = costdata.rubber_database_price_new2;
+                ViewBag.rubber_price_kg2 = costdata.rubber_price_kg2;
+                ViewBag.rubber_mixing_process_cost2 = costdata.rubber_mixing_process_cost2;
+                ViewBag.rubber_weight_g2 = costdata.rubber_weight_g2;
+                ViewBag.rubber_weight_kg2 = costdata.rubber_weight_kg2;
+                ViewBag.rubber_yield_rate2 = costdata.rubber_yield_rate2;
+                ViewBag.rubber_weight_kg_yieldrate2 = costdata.rubber_weight_kg_yieldrate2;
+                ViewBag.rubber_cost_sgd2 = costdata.rubber_cost_sgd2;
+                ViewBag.rubber_percentage_target_price2 = costdata.rubber_percentage_target_price2;
 
                 ViewBag.material_inhouse_name_1 = costdata.material_inhouse_name_1;
                 ViewBag.material_inhouse_info_1 = costdata.material_inhouse_info_1;

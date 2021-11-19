@@ -14,7 +14,8 @@ jQuery(document).ready(function () {
                 data: jQuery.param({
                     p_doc_no: document.getElementById("doc_no").value,
                     p_od: document.getElementById("od").value,
-                    p_process_type: document.getElementById("product_type").value
+                    p_process_type: document.getElementById("product_type").value,
+                    p_rubber_weight: document.getElementById("total_rubber_weight").value
                 }),
                 success: function (res) {
                     jQuery("#form-modal .modal-body").html(res);
@@ -35,12 +36,18 @@ jQuery(document).ready(function () {
             ci = jQuery(this).parent().children().index(this);
             ri = jQuery(this).parent().parent().children().index(this.parentNode);
 
+            var total_cost_data = parseFloat(table.rows[ri].cells[2].innerText);
+            var rubber_weight = parseFloat(document.getElementById("total_rubber_weight").value);
+            if (table.rows[ri].cells[1].innerText == "Rubber") {
+                total_cost_data = parseFloat(table.rows[ri].cells[2].innerText) * rubber_weight;
+            }
+
             document.getElementById("process_name_data").value = table.rows[ri].cells[0].innerText;
             document.getElementById("process_type_data").value = table.rows[ri].cells[1].innerText;
-            document.getElementById("overhead_cost_data").value = table.rows[ri].cells[2].innerText;
-            document.getElementById("machine_cost_data").value = table.rows[ri].cells[3].innerText;
-            document.getElementById("labor_cost_data").value = table.rows[ri].cells[4].innerText;
-            document.getElementById("total_cost_data").value = table.rows[ri].cells[5].innerText;
+            //document.getElementById("overhead_cost_data").value = table.rows[ri].cells[2].innerText;
+            //document.getElementById("machine_cost_data").value = table.rows[ri].cells[3].innerText;
+            //document.getElementById("labor_cost_data").value = table.rows[ri].cells[4].innerText;
+            document.getElementById("total_cost_data").value = total_cost_data;
 
         })
         .click(function () {
@@ -101,7 +108,7 @@ jQuery(document).ready(function () {
     //get the total process cost
     var table = document.getElementById("table_process_data");
     var totalcost = 0;
-    for (var k = 1; k < table.rows.length; k++) {
+    for (var k = 1; k < table.rows.length-1; k++) {//-1 because the last raw was the total
         totalcost += parseFloat(table.rows[k].cells[5].innerText);
     }
     document.getElementById("process_cost").value = totalcost;

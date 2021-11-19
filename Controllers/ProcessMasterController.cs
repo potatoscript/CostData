@@ -42,8 +42,9 @@ namespace CostNag.Controllers
             ViewBag.p_machine_cost = 0;
             ViewBag.p_labor_cost = 0;
             ViewBag.p_total_cost = 0;
+            ViewBag.ProcessId = 0;
 
-            if(p_od>=5 && p_od <= 50)
+            if (p_od>=5 && p_od <= 50)
             {
                 ViewBag.p_od_min = 5;
                 ViewBag.p_od_max = 50;
@@ -123,10 +124,10 @@ namespace CostNag.Controllers
 
             var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
 
-            var action = "api/processmaster/update-processmaster-by-id/" + model.ProcessMasterId;
-            if (model.ProcessMasterId == 0)
+            var action = "api/processmaster/add-processmaster"; 
+            if (model.ProcessMasterId > 0)
             {
-                action = "api/processmaster/add-processmaster";
+                action = "api/processmaster/update-processmaster-by-id/" + model.ProcessMasterId;
             }
 
             HttpResponseMessage res = await client.PostAsync(action, content).ConfigureAwait(false);

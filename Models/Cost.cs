@@ -62,11 +62,17 @@ namespace CostNag.Models
         [Column(TypeName = "character varying(10)")]
         public string size { get; set; }
 
+        [Column(TypeName = "double precision")]
         public double item_id { get; set; }
 
+        [Column(TypeName = "double precision")]
         public double item_od { get; set; }
 
+        [Column(TypeName = "double precision")]
         public double item_w { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double item_w2 { get; set; }
 
         [Column(TypeName = "character varying(20)")]
         public string business_type { get; set; }
@@ -74,14 +80,37 @@ namespace CostNag.Models
         [Column(TypeName = "integer")]
         public int qty_month { get; set; }
 
-        [Column(TypeName = "double precision")]
-        public double exchange_rate { get; set; }
 
         [Column(TypeName = "double precision")]
-        public double target_price_bht { get; set; }
+        public double exchange_rate_jpy { get; set; }
 
         [Column(TypeName = "double precision")]
-        public double target_price_export { get; set; }
+        public double exchange_rate_usd { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double exchange_rate_eud { get; set; }
+
+
+        [Column(TypeName = "double precision")]
+        public double target_price_sgd { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double target_price_wr_sgd { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double target_price_usd { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double target_price_wr_usd { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double target_price_eud { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double target_price_wr_eud { get; set; }
+
+
+
 
         [Column(TypeName = "integer")]
         public double production_qty_day { get; set; }
@@ -121,6 +150,41 @@ namespace CostNag.Models
 
         [Column(TypeName = "double precision")]
         public double rubber_percentage_target_price { get; set; }
+
+
+
+        [Column(TypeName = "character varying(10)")]
+        public string rubber_material_name2 { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double rubber_database_price_current2 { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double rubber_database_price_new2 { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double rubber_price_kg2 { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double rubber_mixing_process_cost2 { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double rubber_weight_g2 { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double rubber_weight_kg2 { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double rubber_yield_rate2 { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double rubber_weight_kg_yieldrate2 { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double rubber_cost_sgd2 { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double rubber_percentage_target_price2 { get; set; }
 
         /// <summary>
         /// /////////////Material Inhouse
@@ -391,6 +455,9 @@ namespace CostNag.Models
         [Column(TypeName = "double precision")]
         public double tooling_list_amount_usd_1 { get; set; }
 
+        [Column(TypeName = "double precision")]
+        public double tooling_list_amount_sgd_1 { get; set; }
+
 
         [Column(TypeName = "character varying(50)")]
         public string tooling_list_description_2 { get; set; }
@@ -415,6 +482,9 @@ namespace CostNag.Models
 
         [Column(TypeName = "double precision")]
         public double tooling_list_amount_usd_2 { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double tooling_list_amount_sgd_2 { get; set; }
 
         ///no 3
         [Column(TypeName = "character varying(50)")]
@@ -441,6 +511,9 @@ namespace CostNag.Models
         [Column(TypeName = "double precision")]
         public double tooling_list_amount_usd_3 { get; set; }
 
+        [Column(TypeName = "double precision")]
+        public double tooling_list_amount_sgd_3 { get; set; }
+
         // no 4
         [Column(TypeName = "character varying(50)")]
         public string tooling_list_description_4 { get; set; }
@@ -466,6 +539,9 @@ namespace CostNag.Models
         [Column(TypeName = "double precision")]
         public double tooling_list_amount_usd_4 { get; set; }
 
+        [Column(TypeName = "double precision")]
+        public double tooling_list_amount_sgd_4 { get; set; }
+
         // no 5
         [Column(TypeName = "character varying(50)")]
         public string tooling_list_description_5 { get; set; }
@@ -490,6 +566,9 @@ namespace CostNag.Models
 
         [Column(TypeName = "double precision")]
         public double tooling_list_amount_usd_5 { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double tooling_list_amount_sgd_5 { get; set; }
 
 
         //no 6
@@ -517,6 +596,8 @@ namespace CostNag.Models
         [Column(TypeName = "double precision")]
         public double tooling_list_amount_usd_6 { get; set; }
 
+        [Column(TypeName = "double precision")]
+        public double tooling_list_amount_sgd_6 { get; set; }
 
         //no 7
         [Column(TypeName = "character varying(50)")]
@@ -543,6 +624,9 @@ namespace CostNag.Models
         [Column(TypeName = "double precision")]
         public double tooling_list_amount_usd_7 { get; set; }
 
+        [Column(TypeName = "double precision")]
+        public double tooling_list_amount_sgd_7 { get; set; }
+
         //no 8
         [Column(TypeName = "character varying(50)")]
         public string tooling_list_description_8 { get; set; }
@@ -567,6 +651,9 @@ namespace CostNag.Models
 
         [Column(TypeName = "double precision")]
         public double tooling_list_amount_usd_8 { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double tooling_list_amount_sgd_8 { get; set; }
 
         //no 9
         [Column(TypeName = "character varying(50)")]
@@ -593,6 +680,9 @@ namespace CostNag.Models
         [Column(TypeName = "double precision")]
         public double tooling_list_amount_usd_9 { get; set; }
 
+        [Column(TypeName = "double precision")]
+        public double tooling_list_amount_sgd_9 { get; set; }
+
         //no 10
         [Column(TypeName = "character varying(50)")]
         public string tooling_list_description_10 { get; set; }
@@ -617,6 +707,9 @@ namespace CostNag.Models
 
         [Column(TypeName = "double precision")]
         public double tooling_list_amount_usd_10 { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double tooling_list_amount_sgd_10 { get; set; }
 
         //no 11
         [Column(TypeName = "character varying(50)")]
@@ -643,6 +736,9 @@ namespace CostNag.Models
         [Column(TypeName = "double precision")]
         public double tooling_list_amount_usd_11 { get; set; }
 
+        [Column(TypeName = "double precision")]
+        public double tooling_list_amount_sgd_11 { get; set; }
+
         //no 12
         [Column(TypeName = "character varying(50)")]
         public string tooling_list_description_12 { get; set; }
@@ -668,6 +764,8 @@ namespace CostNag.Models
         [Column(TypeName = "double precision")]
         public double tooling_list_amount_usd_12 { get; set; }
 
+        [Column(TypeName = "double precision")]
+        public double tooling_list_amount_sgd_12 { get; set; }
 
         //no 13
         [Column(TypeName = "character varying(50)")]
@@ -694,6 +792,9 @@ namespace CostNag.Models
         [Column(TypeName = "double precision")]
         public double tooling_list_amount_usd_13 { get; set; }
 
+        [Column(TypeName = "double precision")]
+        public double tooling_list_amount_sgd_13 { get; set; }
+
         //no 14
         [Column(TypeName = "character varying(50)")]
         public string tooling_list_description_14 { get; set; }
@@ -718,6 +819,9 @@ namespace CostNag.Models
 
         [Column(TypeName = "double precision")]
         public double tooling_list_amount_usd_14 { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double tooling_list_amount_sgd_14 { get; set; }
 
         //no 15
         [Column(TypeName = "character varying(50)")]
@@ -744,12 +848,22 @@ namespace CostNag.Models
         [Column(TypeName = "double precision")]
         public double tooling_list_amount_usd_15 { get; set; }
 
+        [Column(TypeName = "double precision")]
+        public double tooling_list_amount_sgd_15 { get; set; }
+
         //total machine and tooling list
         [Column(TypeName = "double precision")]
         public double tooling_list_total_amount_usd { get; set; }
 
-    }
+        [Column(TypeName = "double precision")]
+        public double tooling_list_total_amount_sgd { get; set; }
 
+
+        //Navigation Properties
+        public List<CostProcess> Cost_Processes { get; set; }
+
+
+    }
 }
 
 

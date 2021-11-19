@@ -18,7 +18,7 @@ namespace CostNag.Controllers
 
         
 
-        public async Task<IActionResult> Index(string p_doc_no, int p_od)
+        public async Task<IActionResult> Index(string p_doc_no, int p_od, float p_rubber_weight)
         {
             CostAPI _api = new CostAPI();
 
@@ -40,6 +40,7 @@ namespace CostNag.Controllers
             ViewBag.p_machine_cost = 0;
             ViewBag.p_labor_cost = 0;
             ViewBag.p_total_cost = 0;
+            ViewBag.p_rubber_weight = p_rubber_weight;
 
             if (p_od >= 5 && p_od <= 50)
             {
@@ -144,7 +145,7 @@ namespace CostNag.Controllers
             return View();
         }
 
-        public async Task<IActionResult> IndexGetType(string p_doc_no, int p_od, string p_process_type)
+        public async Task<IActionResult> IndexGetType(string p_doc_no, int p_od, string p_process_type, float p_rubber_weight)
         {
             CostAPI _api = new CostAPI();
 
@@ -169,6 +170,7 @@ namespace CostNag.Controllers
             ViewBag.p_machine_cost = 0;
             ViewBag.p_labor_cost = 0;
             ViewBag.p_total_cost = 0;
+            ViewBag.p_rubber_weight = p_rubber_weight;
 
             if (p_od >= 5 && p_od <= 50)
             {
