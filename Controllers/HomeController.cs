@@ -13,6 +13,8 @@ using System.Text;
 using System.Dynamic;
 using Process = CostNag.Models.Process;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using ClosedXML.Excel;
+using System.IO;
 
 namespace CostNag.Controllers
 {
@@ -785,6 +787,466 @@ namespace CostNag.Controllers
             dynamic mymodel = new ExpandoObject();
            // mymodel.code = costdata;
             return View("Index",mymodel); 
+        }
+
+
+        public IActionResult ExcelData(
+            string customer,
+            string parts_code,
+            string item,
+            string product,
+            string product_type,
+            string item_id,
+            string item_od,
+            string item_w,
+            string item_w2,
+            string business_type,
+            string qty_month,
+            string target_price_sgd,
+            string target_price_usd,
+            string target_price_eud,
+            string exchange_rate_jpy,
+            string exchange_rate_usd,
+            string exchange_rate_eud,
+            string production_qty_day,
+            string working_day,
+            string issue_date,
+            string section,
+            string doc_no,
+            string wr_no,
+            string sales,
+            string revision_no,
+            string checked_date,
+            string approved_by,
+            string expired_by
+        ){
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("Cost");
+
+                
+                worksheet.Columns().Style.Font.FontSize = 13;
+                worksheet.Columns().Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+                //worksheet.Columns().AdjustToContents();
+                worksheet.ColumnWidth = 13;
+
+                worksheet.Columns("A:A").Width = 3;
+                worksheet.Columns("B:B").Width = 3;
+                worksheet.Columns("C:C").Width = 3;
+
+                worksheet.Cell(2, 2).Value = "1. Object";
+                worksheet.Cell(2, 2).Style.Font.FontSize = 18;
+                worksheet.Cell(2, 2).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("B2:D2").Merge(true);
+
+                worksheet.Cell(3, 2).Value = "Customer";
+                worksheet.Range("B3:D3").Merge(true);
+                worksheet.Range("B3:D3").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("B3:D3").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B3:D3").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B3:D3").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B3:D3").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(3, 5).Value = customer;
+                worksheet.Range("E3:J3").Merge(true);
+                worksheet.Range("E3:J3").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("E3:J3").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E3:J3").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E3:J3").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(4, 2).Value = "Parts code";
+                worksheet.Range("B4:D4").Merge(true);
+                worksheet.Range("B4:D4").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("B4:D4").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B4:D4").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B4:D4").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B4:D4").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(4, 5).Value = parts_code;
+                worksheet.Range("E4:G4").Merge(true);
+                worksheet.Range("E4:G4").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("E4:G4").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E4:G4").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E4:G4").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(4, 8).Value = "Item: (If have)";
+                worksheet.Cell(4, 8).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(4, 8).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(4, 8).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(4, 8).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(4, 8).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(4, 9).Value = item;
+                worksheet.Cell(4, 9).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(4, 9).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(4, 9).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(4, 9).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Range("J4:J5").Merge(true);
+                worksheet.Range("J4:J5").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("J4:J5").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("J4:J5").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("J4:J5").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(5, 2).Value = "Product";
+                worksheet.Range("B5:D5").Merge(true);
+                worksheet.Range("B5:D5").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("B5:D5").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B5:D5").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B5:D5").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B5:D5").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(5, 5).Value = product;
+                worksheet.Range("E5:G5").Merge(true);
+                worksheet.Range("E5:G5").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("E5:G5").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E5:G5").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E5:G5").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(5, 8).Value = "Product Type:";
+                worksheet.Cell(5, 8).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(5, 8).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(5, 8).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(5, 8).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(5, 8).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(5, 9).Value = product_type;
+                worksheet.Cell(5, 9).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(5, 9).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(5, 9).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(5, 9).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(6, 2).Value = "Size(IDxODxW1xW2)";
+                worksheet.Range("B6:D6").Merge(true);
+                worksheet.Range("B6:D6").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("B6:D6").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B6:D6").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B6:D6").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B6:D6").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(6, 5).Value = item_id;
+                worksheet.Range("E6:G6").Merge(true);
+                worksheet.Range("E6:G6").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("E6:G6").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E6:G6").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E6:G6").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(6, 8).Value = item_od;
+                worksheet.Cell(6, 8).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(6, 8).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(6, 8).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(6, 8).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(6, 9).Value = item_w;
+                worksheet.Cell(6, 9).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(6, 9).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(6, 9).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(6, 9).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(6, 10).Value = item_w2;
+                worksheet.Cell(6, 10).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(6, 10).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(6, 10).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(6, 10).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(8, 2).Value = "Business Type:";
+                worksheet.Range("B8:D8").Merge(true);
+                worksheet.Range("B8:D8").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("B8:D8").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B8:D8").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B8:D8").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B8:D8").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(8, 5).Value = business_type;
+                worksheet.Range("E8:L8").Merge(true);
+                worksheet.Range("E8:L8").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("E8:L8").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E8:L8").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E8:L8").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(9, 2).Value = "Quantity/month:";
+                worksheet.Range("B9:D9").Merge(true);
+                worksheet.Range("B9:D9").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("B9:D9").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B9:D9").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B9:D9").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B9:D9").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(9, 5).Value = qty_month;
+                worksheet.Range("E9:L9").Merge(true);
+                worksheet.Range("E9:L9").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("E9:L9").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E9:L9").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E9:L9").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(10, 2).Value = "Target Price(SGD):";
+                worksheet.Range("B10:D10").Merge(true);
+                worksheet.Range("B10:D10").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("B10:D10").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B10:D10").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 2).Value = "Included Tooling";
+                worksheet.Range("B11:D11").Merge(true);
+                worksheet.Range("B11:D11").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("B11:D11").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("B11:D11").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B11:D11").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(10, 5).Value = "SGD";
+                worksheet.Cell(10, 5).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(10, 5).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 5).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 5).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 5).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(10, 6).Value = "USD";
+                worksheet.Cell(10, 6).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(10, 6).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 6).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 6).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 6).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(10, 7).Value = "EUD";
+                worksheet.Cell(10, 7).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(10, 7).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 7).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 7).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 7).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(10, 8).Value = "Exchange Rate:";
+                worksheet.Range("H10:I11").Merge(true);
+                worksheet.Range("H10:I11").Style.Alignment.SetVertical(XLAlignmentVerticalValues.Top);
+                worksheet.Range("H10:I10").Style.Font.FontColor = XLColor.Red;
+                worksheet.Range("H10:I10").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("H10:I10").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H10:I10").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H10:I10").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H10:I10").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(10, 10).Value = "JPY";
+                worksheet.Cell(10, 10).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(10, 10).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 10).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 10).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 10).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(10, 11).Value = "USD";
+                worksheet.Cell(10, 11).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(10, 11).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 11).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 11).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 11).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(10, 12).Value = "EUD";
+                worksheet.Cell(10, 12).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(10, 12).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 12).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 12).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 12).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(11, 5).Value = target_price_sgd;
+                worksheet.Cell(11, 5).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(11, 5).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 5).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 5).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 5).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(11, 6).Value = target_price_usd;
+                worksheet.Cell(11, 6).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(11, 6).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 6).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 6).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 6).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(11, 7).Value = target_price_eud;
+                worksheet.Cell(11, 7).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(11, 7).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 7).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 7).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 7).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(11, 10).Value = exchange_rate_jpy;
+                worksheet.Cell(11, 10).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(11, 10).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 10).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 10).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 10).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(11, 11).Value = exchange_rate_usd;
+                worksheet.Cell(11, 11).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(11, 11).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 11).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 11).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 11).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(11, 12).Value = exchange_rate_eud;
+                worksheet.Cell(11, 12).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(11, 12).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 12).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 12).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 12).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(12, 2).Value = "Production Quantity/day";
+                worksheet.Range("B12:G12").Merge(true);
+                worksheet.Range("B12:G12").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("B12:G12").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B12:G12").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B12:G12").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(12, 8).Value = production_qty_day + "  pc/day, 3 Shifts";
+                worksheet.Range("H12:L12").Merge(true);
+                worksheet.Range("H12:L12").Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Range("H12:L12").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H12:L12").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H12:L12").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(13, 2).Value = "Working Day";
+                worksheet.Range("B13:G13").Merge(true);
+                worksheet.Range("B13:G13").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("B13:G13").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B13:G13").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B13:G13").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(13, 8).Value = working_day + "  day/month";
+                worksheet.Range("H13:L13").Merge(true);
+                worksheet.Range("H13:L13").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("H13:L13").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H13:L13").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H13:L13").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+
+                //    worksheet.Cell(currentRow, n).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+                //    worksheet.Cell(currentRow, n).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center);
+
+                worksheet.Columns("M:M").Width = 3;
+                worksheet.Columns("N:N").Width = 20;
+                worksheet.Columns("O:O").Width = 25;
+
+                worksheet.Cell(3, 14).Value = "Issue Date: ";
+                worksheet.Cell(3, 14).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Cell(3, 14).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(3, 14).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(3, 14).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(3, 14).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(3, 14).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(3, 15).Value = issue_date;
+                worksheet.Cell(3, 15).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(3, 15).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(3, 15).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(3, 15).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(3, 15).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(4, 14).Value = "Section: ";
+                worksheet.Cell(4, 14).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Cell(4, 14).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(4, 14).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(4, 14).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(4, 14).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(4, 14).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(4, 15).Value = section;
+                worksheet.Cell(4, 15).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(4, 15).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(4, 15).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(4, 15).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(4, 15).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(5, 14).Value = "Doc No: ";
+                worksheet.Cell(5, 14).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Cell(5, 14).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(5, 14).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(5, 14).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(5, 14).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(5, 14).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(5, 15).Value = doc_no;
+                worksheet.Cell(5, 15).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(5, 15).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(5, 15).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(5, 15).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(5, 15).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(6, 14).Value = "WR No: ";
+                worksheet.Cell(6, 14).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Cell(6, 14).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(6, 14).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(6, 14).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(6, 14).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(6, 14).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(6, 15).Value = wr_no;
+                worksheet.Cell(6, 15).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(6, 15).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(6, 15).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(6, 15).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(6, 15).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(7, 14).Value = "Sales: ";
+                worksheet.Cell(7, 14).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Cell(7, 14).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(7, 14).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(7, 14).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(7, 14).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(7, 14).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(7, 15).Value = sales;
+                worksheet.Cell(7, 15).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(7, 15).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(7, 15).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(7, 15).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(7, 15).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(8, 14).Value = "Revision no: ";
+                worksheet.Cell(8, 14).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Cell(8, 14).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(8, 14).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(8, 14).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(8, 14).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(8, 14).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(8, 15).Value = revision_no;
+                worksheet.Cell(8, 15).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(8, 15).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(8, 15).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(8, 15).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(8, 15).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(9, 14).Value = "Checked by/date: ";
+                worksheet.Cell(9, 14).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Cell(9, 14).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(9, 14).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(9, 14).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(9, 14).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(9, 14).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(9, 15).Value = checked_date;
+                worksheet.Cell(9, 15).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(9, 15).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(9, 15).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(9, 15).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(9, 15).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(10, 14).Value = "Approved by/date: ";
+                worksheet.Cell(10, 14).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Cell(10, 14).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(10, 14).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 14).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 14).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 14).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 15).Value = approved_by;
+                worksheet.Cell(10, 15).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(10, 15).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 15).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 15).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(10, 15).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(11, 14).Value = "Expired by/date: ";
+                worksheet.Cell(11, 14).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Cell(11, 14).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(11, 14).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 14).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 14).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 14).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 15).Value = expired_by;
+                worksheet.Cell(11, 15).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(11, 15).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 15).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 15).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(11, 15).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(
+                        content,
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        "Cost.xlsx");
+
+                }
+            }
         }
 
         public async void Delete(

@@ -31,10 +31,48 @@
                             <input type="text" style="width:150px;cursor:pointer;margin-left:5px" class="ui-icon-search" name="search_code" id="search_code" value="-" />
                         </li>
                         <li class="nav-item">
-                            <input type="button" onclick="SubmitData();" style="margin-left:15px" class="btn btn-info w-280" value="Save" />
+                            <input type="button" onclick="SubmitData('Index');" style="margin-left:15px" class="btn btn-info w-280" value="Save" />
                         </li>
                         <li class="nav-item">
                             <input type="button" onclick="RefreshData();" style="margin-left:15px" class="btn btn-warning w-280" value="Refresh" />
+                        </li>
+                        <li class="nav-item" style="margin-left:10px">
+                            <a id="Excel" class="btn btn-outline-dark mx-1"
+                               style="background:#d6fca8;"
+                               asp-area=""
+                               asp-controller="Home"
+                               asp-action="ExcelData"
+                               asp-route-customer="@ViewBag.customer"
+                               asp-route-parts_code="@ViewBag.parts_code"
+                               asp-route-item="@ViewBag.item"
+                               asp-route-product="@ViewBag.product"
+                               asp-route-product_type="@ViewBag.product_type"
+                               asp-route-item_id="@ViewBag.item_id"
+                               asp-route-item_od="@ViewBag.item_od"
+                               asp-route-item_w="@ViewBag.item_w"
+                               asp-route-item_w2="@ViewBag.item_w2"
+                               asp-route-business_type="@ViewBag.business_type"
+                               asp-route-qty_month="@ViewBag.qty_month"
+                               asp-route-target_price_sgd="@ViewBag.target_price_sgd"
+                               asp-route-target_price_usd="@ViewBag.target_price_usd"
+                               asp-route-target_price_eud="@ViewBag.target_price_eud"
+                               asp-route-exchange_rate_jpy="@ViewBag.exchange_rate_jpy"
+                               asp-route-exchange_rate_usd="@ViewBag.exchange_rate_usd"
+                               asp-route-exchange_rate_eud="@ViewBag.exchange_rate_eud"
+                               asp-route-production_qty_day="@ViewBag.production_qty_day"
+                               asp-route-working_day="@ViewBag.working_day"
+
+                               asp-route-issue_date="@ViewBag.issue_date"
+                               asp-route-section="@ViewBag.section"
+                               asp-route-doc_no="@ViewBag.doc_no"
+                               asp-route-wr_no="@ViewBag.wr_no"
+                               asp-route-sales="@ViewBag.sales"
+                               asp-route-revision_no="@ViewBag.revision_no"
+                               asp-route-checked_date="@ViewBag.checked_date"
+                               asp-route-approved_by="@ViewBag.approved_by"
+                               asp-route-expired_by="@ViewBag.expired_by"
+
+                               >Excel</a>
                         </li>
                         <li class="nav-item">
                             <input type="button" style="margin-left:15px" class="btn btn-primary w-280"
@@ -55,7 +93,7 @@
                                    onclick="showPopupMaster('@Url.Action("Index", "Rubber",
 						                new
 						                {
-                             
+
                                         },
 						                Context.Request.Scheme)','Rubber Master');" />
                         </li>

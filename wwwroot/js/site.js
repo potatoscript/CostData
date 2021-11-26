@@ -5,8 +5,13 @@ jQuery(document).ready(function () {
     window.onresize = setWindow;
     setWindow();
 
-    if (document.getElementById("CostId").value != 0)
+    if (document.getElementById("CostId").value != 0) {
         document.getElementById("data_status").innerText = "EDITING";
+        document.getElementById("Excel").style.display = "block";
+    } else {
+        document.getElementById("Excel").style.display = "none";
+    }
+        
 
     jQuery("#rubber_material_list").change(function () {
         var dat = String(document.getElementById("rubber_material_list").value).split(","); 
@@ -57,6 +62,7 @@ jQuery(document).ready(function () {
 
         s[t].onclick = function () { this.select() };
         s[t].onkeyup = function () {
+            document.getElementById("Excel").style.display = "none";
             jQuery("#table_parts_code").hide();
             calculate_cost();
         };
@@ -325,7 +331,7 @@ function calculate_cost() {
 }
 
 
-function jQueryAjaxPost(form,page) {
+function jQueryAjaxPost(form, page) {
     try {
         jQuery.ajax({
             type: "POST",
@@ -336,10 +342,12 @@ function jQueryAjaxPost(form,page) {
             success: function (res) {
                 if (res.isValid) {
                     var p = _url + page;
-                    if (page != "Home/Index") {
+                    if (page == "ProcessMaster/Index") {
                         document.getElementById("ProcessMaster").click();
 
-                    } else {
+                    } 
+                    if (page == "Home/Index") {
+                      
                         RefreshData();
                     }
                     
@@ -364,6 +372,22 @@ function setWindow() {
     document.getElementById('table_summary').style.width = (window.innerWidth - 90) + 'px';
 }
 
+// keep for reference not working
+function ExcelData() {
+    jQuery.ajax({
+        type: "GET",
+        url: _url + 'Home/ExcelData',
+        data: jQuery.param({
+            customer: "abc",
+            confirm: true
+        }),
+        success: function (res) {
+
+        }
+    });
+
+
+}
 
 function delete_data(id) {
     
@@ -390,12 +414,14 @@ function MasterData() {
 
 
 function RefreshData() {
+    
     var url = _url + "Home";
     window.location.href = url;
 }
 
 
-function SubmitData() {
+function SubmitData(page) {
+    document.getElementById("SubmitButton").value=page;
     document.getElementById("SubmitButton").click();
    
 }
