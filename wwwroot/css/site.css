@@ -45,6 +45,16 @@ label,input{
         border: 1px solid black;
     }
 
+.summary{
+    border:0px;
+    background:transparent;
+    width:110px;
+    height:25px;
+    font-size:13px;
+    text-align:right;
+    padding-right:5px;
+}
+
 #CostId{
  border:0px;
  height:5px;

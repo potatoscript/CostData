@@ -71,7 +71,7 @@ namespace CostNag.Controllers
             }).ToList();
 
 
-
+            ViewBag.process_type = "Process Type";
 
             ViewBag.plant = "-";
             ViewBag.item_spec = "-";
@@ -359,6 +359,32 @@ namespace CostNag.Controllers
 
             ViewBag.tooling_list_total_amount_sgd = 0;
 
+            ViewBag.direct_raw_material= 0;
+            ViewBag.direct_raw_material_p= 0;
+            ViewBag.sub_material= 0;
+            ViewBag.sub_material_p= 0;
+            ViewBag.raw_material_cost_sub_total= 0;
+            ViewBag.raw_material_cost_sub_total_p= 0;
+            ViewBag.labor_cost= 0;
+            ViewBag.labor_cost_p= 0;
+            ViewBag.machine_cost= 0;
+            ViewBag.machine_cost_p= 0;
+            ViewBag.overhead_cost= 0;
+            ViewBag.overhead_cost_p= 0;
+            ViewBag.process_cost_sub_total= 0;
+            ViewBag.process_cost_sub_total_p= 0;
+            ViewBag.defectives= 0;
+            ViewBag.defectives_p= 0;
+            ViewBag.admin_engin_qc= 0;
+            ViewBag.admin_engin_qc_p= 0;
+            ViewBag.tooling_cost= 0;
+            ViewBag.tooling_cost_p= 0;
+            ViewBag.process_margin_adjust= 0;
+            ViewBag.process_margin_adjust_p= 0;
+            ViewBag.other_fixed_cost_sub_total= 0;
+            ViewBag.other_fixed_cost_sub_total_p= 0;
+            ViewBag.grand_total_cost= 0;
+            ViewBag.grand_total_cost_p= 0;
 
             
 
@@ -782,6 +808,34 @@ namespace CostNag.Controllers
 
                 ViewBag.tooling_list_total_amount_usd = costdata.tooling_list_total_amount_usd.ToString("#,##0");
 
+
+                ViewBag.direct_raw_material = costdata.direct_raw_material;
+                ViewBag.direct_raw_material_p = costdata.direct_raw_material_p;
+                ViewBag.sub_material = costdata.sub_material;
+                ViewBag.sub_material_p = costdata.sub_material_p;
+                ViewBag.raw_material_cost_sub_total = costdata.raw_material_cost_sub_total;
+                ViewBag.raw_material_cost_sub_total_p = costdata.raw_material_cost_sub_total_p;
+                ViewBag.labor_cost = costdata.labor_cost;
+                ViewBag.labor_cost_p = costdata.labor_cost_p;
+                ViewBag.machine_cost = costdata.machine_cost;
+                ViewBag.machine_cost_p = costdata.machine_cost_p;
+                ViewBag.overhead_cost = costdata.overhead_cost;
+                ViewBag.overhead_cost_p = costdata.overhead_cost_p;
+                ViewBag.process_cost_sub_total = costdata.process_cost_sub_total;
+                ViewBag.process_cost_sub_total_p = costdata.process_cost_sub_total_p;
+                ViewBag.defectives = costdata.defectives;
+                ViewBag.defectives_p = costdata.defectives_p;
+                ViewBag.admin_engin_qc = costdata.admin_engin_qc;
+                ViewBag.admin_engin_qc_p = costdata.admin_engin_qc_p;
+                ViewBag.tooling_cost = costdata.tooling_cost;
+                ViewBag.tooling_cost_p = costdata.tooling_cost_p;
+                ViewBag.process_margin_adjust = costdata.process_margin_adjust;
+                ViewBag.process_margin_adjust_p = costdata.process_margin_adjust_p;
+                ViewBag.other_fixed_cost_sub_total = costdata.other_fixed_cost_sub_total;
+                ViewBag.other_fixed_cost_sub_total_p = costdata.other_fixed_cost_sub_total_p;
+                ViewBag.grand_total_cost = costdata.grand_total_cost;
+                ViewBag.grand_total_cost_p = costdata.grand_total_cost_p;
+
             }
 
             dynamic mymodel = new ExpandoObject();
@@ -818,8 +872,69 @@ namespace CostNag.Controllers
             string revision_no,
             string checked_date,
             string approved_by,
-            string expired_by
-        ){
+            string expired_by,
+            string rubber_material_name,
+            string rubber_price_kg,
+            string rubber_mixing_process_cost,
+            string rubber_weight_g,
+            string rubber_weight_kg,
+            string rubber_yield_rate,
+            string rubber_weight_kg_yieldrate,
+            string rubber_cost_sgd,
+            string rubber_percentage_target_price,
+            string rubber_material_name2,
+            string rubber_price_kg2,
+            string rubber_mixing_process_cost2,
+            string rubber_weight_g2,
+            string rubber_weight_kg2,
+            string rubber_yield_rate2,
+            string rubber_weight_kg_yieldrate2,
+            string rubber_cost_sgd2,
+            string rubber_percentage_target_price2,
+            string material_inhouse_name_1,
+            string material_inhouse_info_1,
+            string material_inhouse_value_1,
+            string material_inhouse_info_1b,
+            string material_inhouse_value_1b,
+            string material_inhouse_cost_sgd_1,
+            string material_inhouse_percentage_target_price_1,
+            string material_inhouse_name_2,
+            string material_inhouse_info_2,
+            string material_inhouse_value_2,
+            string material_inhouse_info_2b,
+            string material_inhouse_value_2b,
+            string material_inhouse_cost_sgd_2,
+            string material_inhouse_percentage_target_price_2,
+            string material_inhouse_name_3,
+            string material_inhouse_info_3,
+            string material_inhouse_value_3,
+            string material_inhouse_info_3b,
+            string material_inhouse_value_3b,
+            string material_inhouse_cost_sgd_3,
+            string material_inhouse_percentage_target_price_3,
+            string material_outside_name_1,
+            string material_outside_info_1,
+            string material_outside_value_1,
+            string material_outside_info_1b,
+            string material_outside_value_1b,
+            string material_outside_cost_sgd_1,
+            string material_outside_percentage_target_price_1,
+            string material_outside_name_2,
+            string material_outside_info_2,
+            string material_outside_value_2,
+            string material_outside_info_2b,
+            string material_outside_value_2b,
+            string material_outside_cost_sgd_2,
+            string material_outside_percentage_target_price_2,
+            string material_outside_name_3,
+            string material_outside_info_3,
+            string material_outside_value_3,
+            string material_outside_info_3b,
+            string material_outside_value_3b,
+            string material_outside_cost_sgd_3,
+            string material_outside_percentage_target_price_3
+        )
+        {
             using (var workbook = new XLWorkbook())
             {
                 var worksheet = workbook.Worksheets.Add("Cost");
@@ -827,12 +942,15 @@ namespace CostNag.Controllers
                 
                 worksheet.Columns().Style.Font.FontSize = 13;
                 worksheet.Columns().Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+                worksheet.Columns().Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center);
                 //worksheet.Columns().AdjustToContents();
-                worksheet.ColumnWidth = 13;
+                worksheet.ColumnWidth = 15;
+                worksheet.RowHeight = 25;
+                
 
                 worksheet.Columns("A:A").Width = 3;
-                worksheet.Columns("B:B").Width = 3;
-                worksheet.Columns("C:C").Width = 3;
+                worksheet.Columns("B:B").Width = 2;
+                worksheet.Columns("C:C").Width = 2;
 
                 worksheet.Cell(2, 2).Value = "1. Object";
                 worksheet.Cell(2, 2).Style.Font.FontSize = 18;
@@ -995,7 +1113,7 @@ namespace CostNag.Controllers
                 worksheet.Cell(10, 6).Style.Border.RightBorder = XLBorderStyleValues.Thin;
                 worksheet.Cell(10, 6).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
 
-                worksheet.Cell(10, 7).Value = "EUD";
+                worksheet.Cell(10, 7).Value = "EUR";
                 worksheet.Cell(10, 7).Style.Fill.BackgroundColor = XLColor.LightGray;
                 worksheet.Cell(10, 7).Style.Border.TopBorder = XLBorderStyleValues.Thin;
                 worksheet.Cell(10, 7).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
@@ -1026,7 +1144,7 @@ namespace CostNag.Controllers
                 worksheet.Cell(10, 11).Style.Border.RightBorder = XLBorderStyleValues.Thin;
                 worksheet.Cell(10, 11).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
 
-                worksheet.Cell(10, 12).Value = "EUD";
+                worksheet.Cell(10, 12).Value = "EUR";
                 worksheet.Cell(10, 12).Style.Fill.BackgroundColor = XLColor.LightGray;
                 worksheet.Cell(10, 12).Style.Border.TopBorder = XLBorderStyleValues.Thin;
                 worksheet.Cell(10, 12).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
@@ -1235,6 +1353,573 @@ namespace CostNag.Controllers
                 worksheet.Cell(11, 15).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
                 worksheet.Cell(11, 15).Style.Border.RightBorder = XLBorderStyleValues.Thin;
                 worksheet.Cell(11, 15).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+
+                worksheet.Cell(15, 2).Value = "2. Calculation";
+                worksheet.Cell(15, 2).Style.Font.FontSize = 18;
+                worksheet.Cell(15, 2).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("B15:D15").Merge(true);
+
+                worksheet.Cell(16, 2).Value = "M a t e r  i  a l";
+                worksheet.Range("B16:B26").Merge(true);
+                worksheet.Range("B16:B26").Style.Alignment.WrapText = true;
+                worksheet.Range("B16:B26").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("B16:B16").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B26:B26").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B16:B26").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B16:B26").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(16, 3).Value = "R u b b e r";
+                worksheet.Range("C16:C20").Merge(true);
+                worksheet.Range("C16:C20").Style.Alignment.WrapText = true;
+                worksheet.Range("C16:C20").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("C16:C20").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("C19:C20").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("C16:C20").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("C16:C20").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(16, 4).Value = "Material name";
+                worksheet.Range("D16:D17").Merge(true);
+                worksheet.Range("D16:D17").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("D16:D16").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("D17:D17").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("D16:D17").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("D16:D17").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(18, 4).Value = rubber_material_name;
+                worksheet.Cell(18, 4).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(18, 4).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 4).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 4).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 4).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(19, 4).Value = rubber_material_name2;
+                worksheet.Cell(19, 4).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(19, 4).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 4).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 4).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 4).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(16, 5).Value = "price(kg)";
+                worksheet.Range("E16:E17").Merge(true);
+                worksheet.Range("E16:E17").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("E16:E16").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E17:E17").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E16:E17").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E16:E17").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(18, 5).Value = rubber_price_kg;
+                worksheet.Cell(18, 5).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(18, 5).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 5).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 5).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 5).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(19, 5).Value = rubber_price_kg2;
+                worksheet.Cell(19, 5).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(19, 5).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 5).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 5).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 5).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(16, 6).Value = "Mixing Process Cost";
+                worksheet.Range("F16:F17").Merge(true);
+                worksheet.Range("F16:F17").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("F16:F16").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("F17:F17").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("F16:F17").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("F16:F17").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(18, 6).Value = rubber_mixing_process_cost;
+                worksheet.Cell(18, 6).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(18, 6).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 6).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 6).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 6).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(19, 6).Value = rubber_mixing_process_cost2;
+                worksheet.Cell(19, 6).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(19, 6).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 6).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 6).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 6).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(16, 7).Value = "Weight";
+                worksheet.Range("G16:H16").Merge(true);
+                worksheet.Range("G16:H16").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("G16:H16").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("G16:H16").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H16:H16").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("G16:G16").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(17, 7).Value = "g/pc";
+                worksheet.Range("G17:G17").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("G17:G17").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("G17:G17").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("G17:G17").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("G17:G17").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(18, 7).Value = rubber_weight_g;
+                worksheet.Cell(18, 7).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(18, 7).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 7).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 7).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 7).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(19, 7).Value = rubber_weight_g2;
+                worksheet.Cell(19, 7).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(19, 7).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 7).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 7).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 7).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(17, 8).Value = "kg/pc";
+                worksheet.Range("H17:H17").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("H17:H17").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H17:H17").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H17:H17").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H17:H17").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(18, 8).Value = rubber_weight_kg;
+                worksheet.Cell(18, 8).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(18, 8).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 8).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 8).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 8).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(19, 8).Value = rubber_weight_kg2;
+                worksheet.Cell(19, 8).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(19, 8).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 8).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 8).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 8).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(16, 9).Value = "Yield Rate(%)";
+                worksheet.Range("I16:I17").Merge(true);
+                worksheet.Range("I16:I17").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("I16:I16").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I17:I17").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I16:I17").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I16:I17").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(18, 9).Value = rubber_yield_rate;
+                worksheet.Cell(18, 9).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(18, 9).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 9).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 9).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 9).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(19, 9).Value = rubber_yield_rate2;
+                worksheet.Cell(19, 9).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(19, 9).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 9).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 9).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 9).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(16, 10).Value = "Weight";
+                worksheet.Cell(17, 10).Value = "(kg/pcs)";
+                worksheet.Range("J16:J17").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("J16:J16").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("J17:J17").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("J16:J17").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("J16:J17").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(18, 10).Value = rubber_weight_kg_yieldrate;
+                worksheet.Cell(18, 10).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(18, 10).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 10).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 10).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 10).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(19, 10).Value = rubber_weight_kg_yieldrate2;
+                worksheet.Cell(19, 10).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(19, 10).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 10).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 10).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 10).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(16, 11).Value = "SGD";
+                worksheet.Range("K16:K17").Merge(true);
+                worksheet.Range("K16:K17").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("K16:K16").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("K17:K17").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("K16:K17").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("K16:K17").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(18, 11).Value = rubber_cost_sgd;
+                worksheet.Cell(18, 11).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(18, 11).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 11).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 11).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 11).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(19, 11).Value = rubber_cost_sgd2;
+                worksheet.Cell(19, 11).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(19, 11).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 11).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 11).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 11).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(16, 12).Value = "% of Target";
+                worksheet.Cell(17, 12).Value = "price";
+                worksheet.Range("L16:L17").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("L16:L16").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("L17:L17").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("L16:L17").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("L16:L17").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(18, 12).Value = rubber_percentage_target_price;
+                worksheet.Cell(18, 12).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(18, 12).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 12).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 12).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(18, 12).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(19, 12).Value = rubber_percentage_target_price2;
+                worksheet.Cell(19, 12).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(19, 12).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 12).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 12).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(19, 12).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(20, 4).Value = "Material Information";
+                worksheet.Range("D20:L20").Merge(true);
+                worksheet.Range("D20:L20").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("D20:L20").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("D20:L20").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("D20:L20").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("D20:L20").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(21, 3).Value = "I n H o u s e";
+                worksheet.Range("C21:C23").Merge(true);
+                worksheet.Range("C21:C23").Style.Alignment.WrapText = true;
+                worksheet.Range("C21:C23").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("C21:C23").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("C21:C23").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("C21:C23").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("C21:C23").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(21, 4).Value = material_inhouse_name_1;
+                worksheet.Cell(21, 4).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(21, 4).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(21, 4).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(21, 4).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(21, 4).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(21, 5).Value = material_inhouse_info_1;
+                worksheet.Range("E21:F21").Merge(true);
+                worksheet.Range("E21:F21").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("E21:F21").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E21:F21").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("F21:F21").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E21:E21").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(21, 7).Value = material_inhouse_value_1;
+                worksheet.Cell(21, 7).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(21, 7).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(21, 7).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(21, 7).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(21, 7).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(21, 8).Value = material_inhouse_info_1b;
+                worksheet.Range("H21:I21").Merge(true);
+                worksheet.Range("H21:I21").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("H21:I21").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H21:I21").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I21:I21").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H21:H21").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(21, 10).Value = material_inhouse_value_1b;
+                worksheet.Cell(21, 10).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(21, 10).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(21, 10).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(21, 10).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(21, 10).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(21, 11).Value = material_inhouse_cost_sgd_1;
+                worksheet.Cell(21, 11).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(21, 11).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(21, 11).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(21, 11).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(21, 11).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(21, 12).Value = material_inhouse_percentage_target_price_1;
+                worksheet.Cell(21, 12).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(21, 12).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(21, 12).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(21, 12).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(21, 12).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+
+                worksheet.Cell(22, 4).Value = material_inhouse_name_2;
+                worksheet.Cell(22, 4).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(22, 4).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(22, 4).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(22, 4).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(22, 4).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(22, 5).Value = material_inhouse_info_2;
+                worksheet.Range("E22:F22").Merge(true);
+                worksheet.Range("E22:F22").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("E22:F22").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E22:F22").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("F22:F22").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E22:E22").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(22, 7).Value = material_inhouse_value_2;
+                worksheet.Cell(22, 7).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(22, 7).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(22, 7).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(22, 7).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(22, 7).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(22, 8).Value = material_inhouse_info_2b;
+                worksheet.Range("H22:I22").Merge(true);
+                worksheet.Range("H22:I22").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("H22:I22").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H22:I22").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I22:I22").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H22:H22").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(22, 10).Value = material_inhouse_value_2b;
+                worksheet.Cell(22, 10).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(22, 10).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(22, 10).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(22, 10).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(22, 10).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(22, 11).Value = material_inhouse_cost_sgd_2;
+                worksheet.Cell(22, 11).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(22, 11).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(22, 11).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(22, 11).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(22, 11).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(22, 12).Value = material_inhouse_percentage_target_price_2;
+                worksheet.Cell(22, 12).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(22, 12).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(22, 12).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(22, 12).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(22, 12).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+
+
+                worksheet.Cell(23, 4).Value = material_inhouse_name_3;
+                worksheet.Cell(23, 4).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(23, 4).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(23, 4).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(23, 4).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(23, 4).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(23, 5).Value = material_inhouse_info_3;
+                worksheet.Range("E23:F23").Merge(true);
+                worksheet.Range("E23:F23").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("E23:F23").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E23:F23").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("F23:F23").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E23:E23").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(23, 7).Value = material_inhouse_value_3;
+                worksheet.Cell(23, 7).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(23, 7).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(23, 7).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(23, 7).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(23, 7).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(23, 8).Value = material_inhouse_info_3b;
+                worksheet.Range("H23:I23").Merge(true);
+                worksheet.Range("H23:I23").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("H23:I23").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H23:I23").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I23:I23").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H23:H23").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(23, 10).Value = material_inhouse_value_3b;
+                worksheet.Cell(23, 10).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(23, 10).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(23, 10).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(23, 10).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(23, 10).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(23, 11).Value = material_inhouse_cost_sgd_3;
+                worksheet.Cell(23, 11).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(23, 11).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(23, 11).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(23, 11).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(23, 11).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(23, 12).Value = material_inhouse_percentage_target_price_3;
+                worksheet.Cell(23, 12).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(23, 12).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(23, 12).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(23, 12).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(23, 12).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+
+                worksheet.Cell(24, 3).Value = "O u t s i d e";
+                worksheet.Range("C24:C26").Merge(true);
+                worksheet.Range("C24:C26").Style.Alignment.WrapText = true;
+                worksheet.Range("C24:C26").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("C24:C26").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("C24:C26").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("C24:C26").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("C24:C26").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(24, 4).Value = material_outside_name_1;
+                worksheet.Cell(24, 4).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(24, 4).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(24, 4).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(24, 4).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(24, 4).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(24, 5).Value = material_outside_info_1;
+                worksheet.Range("E24:F24").Merge(true);
+                worksheet.Range("E24:F24").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("E24:F24").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E24:F24").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("F24:F24").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E24:E24").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(24, 7).Value = material_outside_value_1;
+                worksheet.Cell(24, 7).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(24, 7).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(24, 7).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(24, 7).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(24, 7).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(24, 8).Value = material_outside_info_1b;
+                worksheet.Range("H24:I24").Merge(true);
+                worksheet.Range("H24:I24").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("H24:I24").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H24:I24").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I24:I24").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H24:H24").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(24, 10).Value = material_outside_value_1b;
+                worksheet.Cell(24, 10).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(24, 10).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(24, 10).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(24, 10).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(24, 10).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(24, 11).Value = material_outside_cost_sgd_1;
+                worksheet.Cell(24, 11).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(24, 11).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(24, 11).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(24, 11).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(24, 11).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(24, 12).Value = material_outside_percentage_target_price_1;
+                worksheet.Cell(24, 12).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(24, 12).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(24, 12).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(24, 12).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(24, 12).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+
+                worksheet.Cell(25, 4).Value = material_outside_name_2;
+                worksheet.Cell(25, 4).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(25, 4).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(25, 4).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(25, 4).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(25, 4).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                
+                worksheet.Cell(25, 5).Value = material_outside_info_2;
+                worksheet.Range("E25:F25").Merge(true);
+                worksheet.Range("E25:F25").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("E25:F25").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E25:F25").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("F25:F25").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E25:E25").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(25, 7).Value = material_outside_value_2;
+                worksheet.Cell(25, 7).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(25, 7).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(25, 7).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(25, 7).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(25, 7).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(25, 8).Value = material_outside_info_2b;
+                worksheet.Range("H25:I25").Merge(true);
+                worksheet.Range("H25:I25").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("H25:I25").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H25:I25").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I25:I25").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H25:H25").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(25, 10).Value = material_outside_value_2b;
+                worksheet.Cell(25, 10).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(25, 10).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(25, 10).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(25, 10).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(25, 10).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(25, 11).Value = material_outside_cost_sgd_2;
+                worksheet.Cell(25, 11).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(25, 11).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(25, 11).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(25, 11).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(25, 11).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(25, 12).Value = material_outside_percentage_target_price_2;
+                worksheet.Cell(25, 12).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(25, 12).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(25, 12).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(25, 12).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(25, 12).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+
+
+                worksheet.Cell(26, 4).Value = material_outside_name_3;
+                worksheet.Cell(26, 4).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(26, 4).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(26, 4).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(26, 4).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(26, 4).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(26, 5).Value = material_outside_info_3;
+                worksheet.Range("E26:F26").Merge(true);
+                worksheet.Range("E26:F26").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("E26:F26").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E26:F26").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("F26:F26").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E26:E26").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(26, 7).Value = material_outside_value_3;
+                worksheet.Cell(26, 7).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(26, 7).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(26, 7).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(26, 7).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(26, 7).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(26, 8).Value = material_outside_info_3b;
+                worksheet.Range("H26:I26").Merge(true);
+                worksheet.Range("H26:I26").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("H26:I26").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H26:I26").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I26:I26").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H26:H26").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(26, 10).Value = material_outside_value_3b;
+                worksheet.Cell(26, 10).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(26, 10).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(26, 10).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(26, 10).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(26, 10).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(26, 11).Value = material_outside_cost_sgd_3;
+                worksheet.Cell(26, 11).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(26, 11).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(26, 11).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(26, 11).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(26, 11).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(26, 12).Value = material_outside_percentage_target_price_3;
+                worksheet.Cell(26, 12).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(26, 12).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(26, 12).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(26, 12).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(26, 12).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
 
                 using (var stream = new MemoryStream())
                 {

@@ -171,9 +171,6 @@ function calculate_cost() {
     document.getElementById("material_inhouse_cost_sgd_2").value = ((material_inhouse_value_2 / 1000) * material_inhouse_value_2b).toFixed(4);
     document.getElementById("material_inhouse_cost_sgd_3").value = ((material_inhouse_value_3 / 1000) * material_inhouse_value_3b).toFixed(4);
 
-
-
-
     var material_outside_value_1 = parseFloat(document.getElementById("material_outside_value_1").value);
     var material_outside_value_1b = parseFloat(document.getElementById("material_outside_value_1b").value);
     var material_outside_value_2 = parseFloat(document.getElementById("material_outside_value_2").value);
@@ -196,7 +193,6 @@ function calculate_cost() {
         parseFloat(document.getElementById("material_outside_cost_sgd_3").value);
 
     document.getElementById("direct_material_cost").value = direct_material_cost.toFixed(4);
-
 
     var sub_material_percentage = parseFloat(document.getElementById("sub_material_percentage").value);
     document.getElementById("sub_material_cost").value = (direct_material_cost * sub_material_percentage / 100).toFixed(4);
@@ -229,6 +225,8 @@ function calculate_cost() {
     document.getElementById("packing_material_cost").value = (((
         parseFloat(document.getElementById("direct_material_cost").value)
     ) * packing_material_percentage / 100) + special_package_cost).toFixed(4);
+
+
 
 
     //Administration
@@ -314,6 +312,7 @@ function calculate_cost() {
         document.getElementById("material_outside_percentage_target_price_2").value = ((parseFloat(document.getElementById("material_outside_cost_sgd_2").value) / target_price_sgd) * 100).toFixed(1);
         document.getElementById("material_outside_percentage_target_price_3").value = ((parseFloat(document.getElementById("material_outside_cost_sgd_3").value) / target_price_sgd) * 100).toFixed(1);
         document.getElementById("direct_material_cost_percentage").value = ((direct_material_cost / target_price_sgd) * 100).toFixed(2);
+        
         document.getElementById("sub_material_cost_percentage").value = (((direct_material_cost * sub_material_percentage / 100) / target_price_sgd) * 100).toFixed(2);
         document.getElementById("direct_process_cost_percentage").value = ((direct_process_cost / target_price_sgd) * 100).toFixed(2);
         document.getElementById("total_direct_cost_percentage").value =
@@ -327,7 +326,27 @@ function calculate_cost() {
         document.getElementById("die_cost_percentage").value = ((parseFloat(document.getElementById("die_cost").value) / target_price_sgd) * 100).toFixed(2);
         document.getElementById("net_included_tooling_cost_percentage").value = ((parseFloat(document.getElementById("net_included_tooling_cost").value) / target_price_sgd) * 100).toFixed(2);
         document.getElementById("net_exclude_tooling_cost_percentage").value = ((parseFloat(document.getElementById("net_exclude_tooling_cost").value) / target_price_sgd) * 100).toFixed(2);
+
+        document.getElementById("direct_raw_material").value = direct_material_cost.toFixed(4);
+        document.getElementById("direct_raw_material_p").value = ((direct_material_cost / target_price_sgd) * 100).toFixed(2);
+        document.getElementById("sub_material").value =
+            parseFloat(document.getElementById("sub_material_cost").value) +
+            parseFloat(document.getElementById("packing_material_cost").value);
+
+        document.getElementById("sub_material_p").value =
+            ((parseFloat(document.getElementById("sub_material").value) / target_price_sgd) * 100).toFixed(2);
     }
+
+
+    document.getElementById("raw_material_cost_sub_total").value =
+        parseFloat(document.getElementById("direct_raw_material").value) +
+        parseFloat(document.getElementById("sub_material").value);
+
+    document.getElementById("raw_material_cost_sub_total_p").value =
+        parseFloat(document.getElementById("direct_raw_material_p").value) +
+        parseFloat(document.getElementById("sub_material_p").value);
+
+
 }
 
 
@@ -343,8 +362,8 @@ function jQueryAjaxPost(form, page) {
                 if (res.isValid) {
                     var p = _url + page;
                     if (page == "ProcessMaster/Index") {
-                        document.getElementById("ProcessMaster").click();
-
+                        //document.getElementById("RefreshProcessMaster").click();
+                        refreshProcessMaster();
                     } 
                     if (page == "Home/Index") {
                       

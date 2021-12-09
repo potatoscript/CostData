@@ -859,6 +859,88 @@ namespace CostNag.Models
         public double tooling_list_total_amount_sgd { get; set; }
 
 
+        //Raw Material Cost
+        [Column(TypeName = "double precision")]
+        public double direct_raw_material { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double direct_raw_material_p { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double sub_material { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double sub_material_p { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double raw_material_cost_sub_total { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double raw_material_cost_sub_total_p { get; set; }
+
+
+        //Breakdown of Process Cost
+        [Column(TypeName = "double precision")]
+        public double labor_cost { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double labor_cost_p { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double machine_cost { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double machine_cost_p { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double overhead_cost { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double overhead_cost_p { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double process_cost_sub_total { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double process_cost_sub_total_p { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double defectives { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double defectives_p { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double admin_engin_qc { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double admin_engin_qc_p { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double tooling_cost { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double tooling_cost_p { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double process_margin_adjust { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double process_margin_adjust_p { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double other_fixed_cost_sub_total { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double other_fixed_cost_sub_total_p { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double grand_total_cost { get; set; }
+
+        [Column(TypeName = "double precision")]
+        public double grand_total_cost_p { get; set; }
+
+
         //Navigation Properties
         public List<CostProcess> Cost_Processes { get; set; }
 

@@ -18,7 +18,7 @@ namespace CostNag.Controllers
 
         CostAPI _api = new CostAPI();
 
-        public async Task<IActionResult> Index(string p_doc_no, int p_od)
+        public async Task<IActionResult> Index(string p_doc_no, int p_od, string p_type)
         {
             CostAPI _api = new CostAPI();
 
@@ -84,7 +84,7 @@ namespace CostNag.Controllers
             //{
             //    action = "api/processmaster/get-all-processesmaster";
             //}
-            var action = "api/processmaster/get-all-processesmaster";
+            var action = "api/processmaster/get-processmaster-by-type/"+ p_type;
             HttpResponseMessage resdata = await clientdata.GetAsync(action).ConfigureAwait(false);
 
             resdata.EnsureSuccessStatusCode();
