@@ -149,6 +149,23 @@
                                asp-route-special_package_cost ="@ViewBag.special_package_cost"
                                asp-route-packing_material_cost ="@ViewBag.packing_material_cost"
                                asp-route-packing_material_cost_percentage ="@ViewBag.packing_material_cost_percentage"
+                               asp-route-administration_percentage ="@ViewBag.administration_percentage"
+                               asp-route-administration_cost ="@ViewBag.administration_cost"
+                               asp-route-administration_cost_percentage ="@ViewBag.administration_cost_percentage"
+                               asp-route-plant_retail_percentage ="@ViewBag.plant_retail_percentage"
+                               asp-route-plant_retail_cost ="@ViewBag.plant_retail_cost"
+                               asp-route-plant_retail_cost_percentage ="@ViewBag.plant_retail_cost_percentage"
+                               asp-route-moldjig_percentage ="@ViewBag.moldjig_percentage"
+                               asp-route-moldjig_cost ="@ViewBag.moldjig_cost"
+                               asp-route-moldjig_cost_percentage ="@ViewBag.moldjig_cost_percentage"
+                               asp-route-die_percentage ="@ViewBag.die_percentage"
+                               asp-route-die_cost ="@ViewBag.die_cost"
+                               asp-route-die_cost_percentage ="@ViewBag.die_cost_percentage"
+                               asp-route-note ="@ViewBag.note"
+                               asp-route-net_included_tooling_cost ="@ViewBag.net_included_tooling_cost"
+                               asp-route-net_included_tooling_cost_percentage ="@ViewBag.net_included_tooling_cost_percentage"
+                               asp-route-net_exclude_tooling_cost ="@ViewBag.net_exclude_tooling_cost"
+                               asp-route-net_exclude_tooling_cost_percentage ="@ViewBag.net_exclude_tooling_cost_percentage"
                                >Excel</a>
                         </li>
                         <li class="nav-item">
@@ -189,7 +206,7 @@
         </main>
     </div>
 
-    <input type="text" id="processtype" />
+    <input style="display:none" type="text" id="processtype" />
 
     <div style="display:none;" class="modal" tabindex="-1" id="form-modal">
         <div class="modal-dialog">

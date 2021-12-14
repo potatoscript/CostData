@@ -951,7 +951,24 @@ namespace CostNag.Controllers
             string packing_material_percentage,
             string special_package_cost,
             string packing_material_cost,
-            string packing_material_cost_percentage
+            string packing_material_cost_percentage,
+            string administration_percentage,
+            string administration_cost,
+            string administration_cost_percentage,
+            string plant_retail_percentage,
+            string plant_retail_cost,
+            string plant_retail_cost_percentage,
+            string moldjig_percentage,
+            string moldjig_cost,
+            string moldjig_cost_percentage,
+            string die_percentage,
+            string die_cost,
+            string die_cost_percentage,
+            string note,
+            string net_included_tooling_cost,
+            string net_included_tooling_cost_percentage,
+            string net_exclude_tooling_cost,
+            string net_exclude_tooling_cost_percentage
         )
         {
             using (var workbook = new XLWorkbook())
@@ -2225,6 +2242,341 @@ namespace CostNag.Controllers
                 worksheet.Cell(33, 12).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
                 worksheet.Cell(33, 12).Style.Border.RightBorder = XLBorderStyleValues.Thin;
                 worksheet.Cell(33, 12).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(34, 2).Value = "　Administration";
+                worksheet.Cell(34, 2).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("B34:D34").Merge(true);
+                worksheet.Range("B34:D34").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("B34:D34").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B34:D34").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("D34:D34").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B34:B34").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(34, 5).Value = administration_percentage;
+                worksheet.Cell(34, 5).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(34, 5).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(34, 5).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(34, 5).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(34, 5).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(34, 6).Value = "　×　（C　＋　D　＋　E）　　　　　　　　　　　=　　";
+                worksheet.Cell(34, 6).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("F34:I34").Merge(true);
+                worksheet.Range("F34:I34").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("F34:I34").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("F34:I34").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I34:I34").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("F34:F34").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(34, 10).Value = "F";
+                worksheet.Cell(34, 10).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(34, 10).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(34, 10).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(34, 10).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(34, 10).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(34, 11).Value = administration_cost;
+                worksheet.Cell(34, 11).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(34, 11).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(34, 11).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(34, 11).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(34, 11).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(34, 12).Value = administration_cost_percentage;
+                worksheet.Cell(34, 12).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(34, 12).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(34, 12).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(34, 12).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(34, 12).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+
+                worksheet.Cell(35, 2).Value = "　Tooling Maintenance";
+                worksheet.Cell(35, 2).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Cell(35, 2).Style.Font.FontColor = XLColor.Red;
+                worksheet.Range("B35:D35").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("B35:D35").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B35:D35").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("D35:D35").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B35:B35").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(35, 5).Value = plant_retail_percentage;
+                worksheet.Cell(35, 5).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Cell(35, 5).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(35, 5).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(35, 5).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(35, 5).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(35, 6).Value = "　×　（C　＋　D　＋　E　＋　Packing　＋　F）　";
+                worksheet.Cell(35, 6).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Cell(35, 6).Style.Font.FontColor = XLColor.Red;
+                worksheet.Range("F35:J35").Merge(true);
+                worksheet.Range("F35:J35").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("F35:J35").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("F35:J35").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("J35:J35").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("F35:F35").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(35, 11).Value = plant_retail_cost;
+                worksheet.Cell(35, 11).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(35, 11).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(35, 11).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(35, 11).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(35, 11).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(35, 12).Value = plant_retail_cost_percentage;
+                worksheet.Cell(35, 12).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(35, 12).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(35, 12).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(35, 12).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(35, 12).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(36, 2).Value = "T o o l";
+                worksheet.Range("B36:B39").Merge(true);
+                worksheet.Range("B36:B39").Style.Alignment.WrapText = true;
+                worksheet.Range("B36:B39").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("B36:B39").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B36:B39").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B36:B39").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B36:B39").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(36, 3).Value = "　Mold &  Jig";
+                worksheet.Cell(36, 3).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("C36:D37").Merge(true);
+                worksheet.Range("C36:D37").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("C36:D37").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("C36:D37").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("D36:D37").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("C36:C37").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(36, 5).Value = moldjig_percentage;
+                worksheet.Range("E36:E37").Merge(true);
+                worksheet.Range("E36:E37").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("E36:E37").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E36:E37").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E36:E37").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E36:E37").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(36, 6).Value = "　÷　　　24　months　　　　　　　　　　=　　";
+                worksheet.Range("F36:I37").Merge(true);
+                worksheet.Range("F36:I37").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("F36:I37").Style.Font.FontColor = XLColor.Red;
+                worksheet.Range("F36:I37").Merge(true);
+                worksheet.Range("F36:I37").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("F36:I37").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("F36:I37").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I36:I37").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("F36:F37").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(36, 10).Value = "G";
+                worksheet.Range("J36:J37").Merge(true);
+                worksheet.Range("J36:J37").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("J36:J37").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("J36:J37").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("J36:J37").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("J36:J37").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(36, 11).Value = moldjig_cost;
+                worksheet.Range("K36:K37").Merge(true);
+                worksheet.Range("K36:K37").Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Range("K36:K37").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("K36:K37").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("K36:K37").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("K36:K37").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(36, 12).Value = moldjig_cost_percentage;
+                worksheet.Range("L36:L37").Merge(true);
+                worksheet.Range("L36:L37").Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Range("L36:L37").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("L36:L37").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("L36:L37").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("L36:L37").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(38, 3).Value = "　Die";
+                worksheet.Cell(38, 3).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("C38:D39").Merge(true);
+                worksheet.Range("C38:D39").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("C38:D39").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("C38:D39").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("D38:D39").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("C38:C39").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(38, 5).Value = die_percentage;
+                worksheet.Range("E38:E39").Merge(true);
+                worksheet.Range("E38:E39").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("E38:E39").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E38:E39").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E38:E39").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("E38:E39").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(38, 6).Value = "　÷　　　24　months　　　　　　　　　　=　　";
+                worksheet.Range("F38:I39").Merge(true);
+                worksheet.Range("F38:I39").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("F38:I39").Style.Font.FontColor = XLColor.Red;
+                worksheet.Range("F38:I39").Merge(true);
+                worksheet.Range("F38:I39").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("F38:I39").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("F38:I39").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I38:I39").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("F38:F39").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(38, 10).Value = "G";
+                worksheet.Range("J38:J39").Merge(true);
+                worksheet.Range("J38:J39").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("J38:J39").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("J38:J39").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("J38:J39").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("J38:J39").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(38, 11).Value = die_cost;
+                worksheet.Range("K38:K39").Merge(true);
+                worksheet.Range("K38:K39").Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Range("K38:K39").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("K38:K39").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("K38:K39").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("K38:K39").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(38, 12).Value = die_cost_percentage;
+                worksheet.Range("L38:L39").Merge(true);
+                worksheet.Range("L38:L39").Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Range("L38:L39").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("L38:L39").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("L38:L39").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("L38:L39").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(40, 2).Value = " Note :";
+                worksheet.Cell(40, 2).Style.Font.FontSize = 18;
+                worksheet.Cell(40, 2).Style.Font.SetUnderline();
+                worksheet.Cell(40, 2).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("B40:F40").Merge(true);
+                worksheet.Range("B40:F40").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("B40:F40").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B40:F40").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B40:F40").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(40, 7).Value = " Net Cost";
+                worksheet.Cell(40, 7).Style.Font.FontSize = 16;
+                worksheet.Cell(40, 7).Style.Font.SetUnderline();
+                worksheet.Cell(40, 7).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("G40:H40").Merge(true);
+                worksheet.Range("G40:H40").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("G40:H40").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("G40:H40").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(40, 9).Value = "Included tooling";
+                worksheet.Cell(40, 9).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right);
+                worksheet.Range("I40:J40").Merge(true);
+                worksheet.Range("I40:J40").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("I40:J40").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I40:J40").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(40, 11).Value = net_included_tooling_cost;
+                worksheet.Range("K40:K40").Merge(true);
+                worksheet.Range("K40:K40").Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Range("K40:K40").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("K40:K40").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("K40:K40").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("K40:K40").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(40, 12).Value = net_included_tooling_cost_percentage;
+                worksheet.Range("L40:L40").Merge(true);
+                worksheet.Range("L40:L40").Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Range("L40:L40").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("L40:L40").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("L40:L40").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("L40:L40").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(41, 2).Value = note;
+                worksheet.Cell(41, 2).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("B41:F41").Merge(true);
+                worksheet.Range("B41:F41").Style.Fill.BackgroundColor = XLColor.LightYellow;
+                worksheet.Range("B41:F41").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B41:F41").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B41:F41").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(41, 7).Value = " ";
+                worksheet.Cell(41, 7).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("G41:H41").Merge(true);
+                worksheet.Range("G41:H41").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("G41:H41").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("G41:H41").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(41, 9).Value = "Exluded tooling";
+                worksheet.Cell(41, 9).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right);
+                worksheet.Range("I41:J41").Merge(true);
+                worksheet.Range("I41:J41").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("I41:J41").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I41:J41").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(41, 11).Value = net_exclude_tooling_cost;
+                worksheet.Range("K41:K41").Merge(true);
+                worksheet.Range("K41:K41").Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Range("K41:K41").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("K41:K41").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("K41:K41").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("K41:K41").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(41, 12).Value = net_exclude_tooling_cost_percentage;
+                worksheet.Range("L41:L41").Merge(true);
+                worksheet.Range("L41:L41").Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Range("L41:L41").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("L41:L41").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("L41:L41").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("L41:L41").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(43, 2).Value = "3. Machine & Tooling List";
+                worksheet.Cell(43, 2).Style.Font.FontSize = 18;
+                worksheet.Cell(43, 2).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("B43:D43").Merge(true);
+
+                worksheet.Cell(44, 2).Value = "No.";
+                worksheet.Cell(44, 2).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(44, 2).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(44, 2).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(44, 2).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(44, 3).Value = "Description";
+                worksheet.Range("C44:E44").Merge(true);
+                worksheet.Range("C44:E44").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("C44:E44").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("C44:E44").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("C44:E44").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(44, 6).Value = "Type of tool";
+                worksheet.Range("F44:G44").Merge(true);
+                worksheet.Range("F44:G44").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("F44:G44").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("F44:G44").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("F44:G44").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(44, 8).Value = "Source";
+                worksheet.Range("H44:H44").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("H44:H44").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H44:H44").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("H44:H44").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(44, 9).Value = "Qty";
+                worksheet.Range("I44:I44").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("I44:I44").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I44:I44").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I44:I44").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(44, 10).Value = "Unit";
+                worksheet.Cell(44, 10).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(44, 10).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(44, 10).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(44, 10).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(44, 11).Value = "Price/unit";
+                worksheet.Cell(44, 11).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(44, 11).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(44, 11).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(44, 11).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(44, 12).Value = "Amount(SGD)";
+                worksheet.Cell(44, 12).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(44, 12).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(44, 12).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(44, 12).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
 
                 using (var stream = new MemoryStream())
                 {
