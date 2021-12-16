@@ -968,7 +968,128 @@ namespace CostNag.Controllers
             string net_included_tooling_cost,
             string net_included_tooling_cost_percentage,
             string net_exclude_tooling_cost,
-            string net_exclude_tooling_cost_percentage
+            string net_exclude_tooling_cost_percentage,
+            string tooling_list_description_1,
+            string tooling_list_description_2,
+            string tooling_list_description_3,
+            string tooling_list_description_4,
+            string tooling_list_description_5,
+            string tooling_list_description_6,
+            string tooling_list_description_7,
+            string tooling_list_description_8,
+            string tooling_list_description_9,
+            string tooling_list_description_10,
+            string tooling_list_description_11,
+            string tooling_list_description_12,
+            string tooling_list_description_13,
+            string tooling_list_description_14,
+            string tooling_list_description_15,
+            string tooling_list_type_1,
+            string tooling_list_type_2,
+            string tooling_list_type_3,
+            string tooling_list_type_4,
+            string tooling_list_type_5,
+            string tooling_list_type_6,
+            string tooling_list_type_7,
+            string tooling_list_type_8,
+            string tooling_list_type_9,
+            string tooling_list_type_10,
+            string tooling_list_type_11,
+            string tooling_list_type_12,
+            string tooling_list_type_13,
+            string tooling_list_type_14,
+            string tooling_list_type_15,
+            string tooling_list_source_1,
+            string tooling_list_source_2,
+            string tooling_list_source_3,
+            string tooling_list_source_4,
+            string tooling_list_source_5,
+            string tooling_list_source_6,
+            string tooling_list_source_7,
+            string tooling_list_source_8,
+            string tooling_list_source_9,
+            string tooling_list_source_10,
+            string tooling_list_source_11,
+            string tooling_list_source_12,
+            string tooling_list_source_13,
+            string tooling_list_source_14,
+            string tooling_list_source_15,
+            string tooling_list_qty_1,
+            string tooling_list_qty_2,
+            string tooling_list_qty_3,
+            string tooling_list_qty_4,
+            string tooling_list_qty_5,
+            string tooling_list_qty_6,
+            string tooling_list_qty_7,
+            string tooling_list_qty_8,
+            string tooling_list_qty_9,
+            string tooling_list_qty_10,
+            string tooling_list_qty_11,
+            string tooling_list_qty_12,
+            string tooling_list_qty_13,
+            string tooling_list_qty_14,
+            string tooling_list_qty_15,
+            string tooling_list_unit_1,
+            string tooling_list_unit_2,
+            string tooling_list_unit_3,
+            string tooling_list_unit_4,
+            string tooling_list_unit_5,
+            string tooling_list_unit_6,
+            string tooling_list_unit_7,
+            string tooling_list_unit_8,
+            string tooling_list_unit_9,
+            string tooling_list_unit_10,
+            string tooling_list_unit_11,
+            string tooling_list_unit_12,
+            string tooling_list_unit_13,
+            string tooling_list_unit_14,
+            string tooling_list_unit_15,
+            string tooling_list_price_1,
+            string tooling_list_price_2,
+            string tooling_list_price_3,
+            string tooling_list_price_4,
+            string tooling_list_price_5,
+            string tooling_list_price_6,
+            string tooling_list_price_7,
+            string tooling_list_price_8,
+            string tooling_list_price_9,
+            string tooling_list_price_10,
+            string tooling_list_price_11,
+            string tooling_list_price_12,
+            string tooling_list_price_13,
+            string tooling_list_price_14,
+            string tooling_list_price_15,
+            string tooling_list_amount_jpy_1,
+            string tooling_list_amount_jpy_2,
+            string tooling_list_amount_jpy_3,
+            string tooling_list_amount_jpy_4,
+            string tooling_list_amount_jpy_5,
+            string tooling_list_amount_jpy_6,
+            string tooling_list_amount_jpy_7,
+            string tooling_list_amount_jpy_8,
+            string tooling_list_amount_jpy_9,
+            string tooling_list_amount_jpy_10,
+            string tooling_list_amount_jpy_11,
+            string tooling_list_amount_jpy_12,
+            string tooling_list_amount_jpy_13,
+            string tooling_list_amount_jpy_14,
+            string tooling_list_amount_jpy_15,
+            string tooling_list_amount_usd_1,
+            string tooling_list_amount_usd_2,
+            string tooling_list_amount_usd_3,
+            string tooling_list_amount_usd_4,
+            string tooling_list_amount_usd_5,
+            string tooling_list_amount_usd_6,
+            string tooling_list_amount_usd_7,
+            string tooling_list_amount_usd_8,
+            string tooling_list_amount_usd_9,
+            string tooling_list_amount_usd_10,
+            string tooling_list_amount_usd_11,
+            string tooling_list_amount_usd_12,
+            string tooling_list_amount_usd_13,
+            string tooling_list_amount_usd_14,
+            string tooling_list_amount_usd_15,
+            string tooling_list_total_amount_usd
         )
         {
             using (var workbook = new XLWorkbook())
@@ -2526,27 +2647,27 @@ namespace CostNag.Controllers
                 worksheet.Cell(43, 2).Value = "3. Machine & Tooling List";
                 worksheet.Cell(43, 2).Style.Font.FontSize = 18;
                 worksheet.Cell(43, 2).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
-                worksheet.Range("B43:D43").Merge(true);
+                worksheet.Range("B43:G43").Merge(true);
 
                 worksheet.Cell(44, 2).Value = "No.";
-                worksheet.Cell(44, 2).Style.Fill.BackgroundColor = XLColor.LightGray;
-                worksheet.Cell(44, 2).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
-                worksheet.Cell(44, 2).Style.Border.RightBorder = XLBorderStyleValues.Thin;
-                worksheet.Cell(44, 2).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B44:C44").Merge(true);
+                worksheet.Range("B44:C44").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("B44:C44").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B44:C44").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B44:C44").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
 
-                worksheet.Cell(44, 3).Value = "Description";
-                worksheet.Range("C44:E44").Merge(true);
-                worksheet.Range("C44:E44").Style.Fill.BackgroundColor = XLColor.LightGray;
-                worksheet.Range("C44:E44").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
-                worksheet.Range("C44:E44").Style.Border.RightBorder = XLBorderStyleValues.Thin;
-                worksheet.Range("C44:E44").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(44, 4).Value = "Description";
+                worksheet.Range("D44:F44").Merge(true);
+                worksheet.Range("D44:F44").Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Range("D44:F44").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("D44:F44").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("D44:F44").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
 
-                worksheet.Cell(44, 6).Value = "Type of tool";
-                worksheet.Range("F44:G44").Merge(true);
-                worksheet.Range("F44:G44").Style.Fill.BackgroundColor = XLColor.LightGray;
-                worksheet.Range("F44:G44").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
-                worksheet.Range("F44:G44").Style.Border.RightBorder = XLBorderStyleValues.Thin;
-                worksheet.Range("F44:G44").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(44, 7).Value = "Type of tool";
+                worksheet.Cell(44, 7).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(44, 7).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(44, 7).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(44, 7).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
 
                 worksheet.Cell(44, 8).Value = "Source";
                 worksheet.Range("H44:H44").Style.Fill.BackgroundColor = XLColor.LightGray;
@@ -2577,6 +2698,200 @@ namespace CostNag.Controllers
                 worksheet.Cell(44, 12).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
                 worksheet.Cell(44, 12).Style.Border.RightBorder = XLBorderStyleValues.Thin;
                 worksheet.Cell(44, 12).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                string[] description = { 
+                    tooling_list_description_1, 
+                    tooling_list_description_2, 
+                    tooling_list_description_3, 
+                    tooling_list_description_4, 
+                    tooling_list_description_5, 
+                    tooling_list_description_6, 
+                    tooling_list_description_7, 
+                    tooling_list_description_8, 
+                    tooling_list_description_9, 
+                    tooling_list_description_10, 
+                    tooling_list_description_11, 
+                    tooling_list_description_12, 
+                    tooling_list_description_13, 
+                    tooling_list_description_14, 
+                    tooling_list_description_15 
+                };
+                string[] type = {
+                    tooling_list_type_1,
+                    tooling_list_type_2,
+                    tooling_list_type_3,
+                    tooling_list_type_4,
+                    tooling_list_type_5,
+                    tooling_list_type_6,
+                    tooling_list_type_7,
+                    tooling_list_type_8,
+                    tooling_list_type_9,
+                    tooling_list_type_10,
+                    tooling_list_type_11,
+                    tooling_list_type_12,
+                    tooling_list_type_13,
+                    tooling_list_type_14,
+                    tooling_list_type_15
+                };
+                string[] source = {
+                    tooling_list_source_1,
+                    tooling_list_source_2,
+                    tooling_list_source_3,
+                    tooling_list_source_4,
+                    tooling_list_source_5,
+                    tooling_list_source_6,
+                    tooling_list_source_7,
+                    tooling_list_source_8,
+                    tooling_list_source_9,
+                    tooling_list_source_10,
+                    tooling_list_source_11,
+                    tooling_list_source_12,
+                    tooling_list_source_13,
+                    tooling_list_source_14,
+                    tooling_list_source_15
+                };
+                string[] qty = {
+                    tooling_list_qty_1,
+                    tooling_list_qty_2,
+                    tooling_list_qty_3,
+                    tooling_list_qty_4,
+                    tooling_list_qty_5,
+                    tooling_list_qty_6,
+                    tooling_list_qty_7,
+                    tooling_list_qty_8,
+                    tooling_list_qty_9,
+                    tooling_list_qty_10,
+                    tooling_list_qty_11,
+                    tooling_list_qty_12,
+                    tooling_list_qty_13,
+                    tooling_list_qty_14,
+                    tooling_list_qty_15
+                };
+                string[] unit = {
+                    tooling_list_unit_1,
+                    tooling_list_unit_2,
+                    tooling_list_unit_3,
+                    tooling_list_unit_4,
+                    tooling_list_unit_5,
+                    tooling_list_unit_6,
+                    tooling_list_unit_7,
+                    tooling_list_unit_8,
+                    tooling_list_unit_9,
+                    tooling_list_unit_10,
+                    tooling_list_unit_11,
+                    tooling_list_unit_12,
+                    tooling_list_unit_13,
+                    tooling_list_unit_14,
+                    tooling_list_unit_15
+                };
+                string[] price = {
+                    tooling_list_price_1,
+                    tooling_list_price_2,
+                    tooling_list_price_3,
+                    tooling_list_price_4,
+                    tooling_list_price_5,
+                    tooling_list_price_6,
+                    tooling_list_price_7,
+                    tooling_list_price_8,
+                    tooling_list_price_9,
+                    tooling_list_price_10,
+                    tooling_list_price_11,
+                    tooling_list_price_12,
+                    tooling_list_price_13,
+                    tooling_list_price_14,
+                    tooling_list_price_15
+                };
+                string[] amountjpy = {
+                    tooling_list_amount_jpy_1,
+                    tooling_list_amount_jpy_2,
+                    tooling_list_amount_jpy_3,
+                    tooling_list_amount_jpy_4,
+                    tooling_list_amount_jpy_5,
+                    tooling_list_amount_jpy_6,
+                    tooling_list_amount_jpy_7,
+                    tooling_list_amount_jpy_8,
+                    tooling_list_amount_jpy_9,
+                    tooling_list_amount_jpy_10,
+                    tooling_list_amount_jpy_11,
+                    tooling_list_amount_jpy_12,
+                    tooling_list_amount_jpy_13,
+                    tooling_list_amount_jpy_14,
+                    tooling_list_amount_jpy_15
+                };
+                string[] amountusd = {
+                    tooling_list_amount_usd_1,
+                    tooling_list_amount_usd_2,
+                    tooling_list_amount_usd_3,
+                    tooling_list_amount_usd_4,
+                    tooling_list_amount_usd_5,
+                    tooling_list_amount_usd_6,
+                    tooling_list_amount_usd_7,
+                    tooling_list_amount_usd_8,
+                    tooling_list_amount_usd_9,
+                    tooling_list_amount_usd_10,
+                    tooling_list_amount_usd_11,
+                    tooling_list_amount_usd_12,
+                    tooling_list_amount_usd_13,
+                    tooling_list_amount_usd_14,
+                    tooling_list_amount_usd_15
+                };
+
+                int c = 45;
+                for (int i=0; i<15; i++)
+                {
+                    worksheet.Cell(c, 2).Value = i+1;
+                    worksheet.Range("B" +c + ":C" +c).Merge(true);
+                    worksheet.Range("B" +c + ":C" +c).Style.Fill.BackgroundColor = XLColor.White;
+                    worksheet.Range("B" +c + ":C" +c).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                    worksheet.Range("B" +c + ":C" +c).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                    worksheet.Range("B" +c + ":C" +c).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                    worksheet.Cell(c, 4).Value = description[i];
+                    worksheet.Range("D" +c + ":F" +c).Merge(true);
+                    worksheet.Range("D" +c + ":F" +c).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                    worksheet.Range("D" +c + ":F" +c).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                    worksheet.Range("D" +c + ":F" +c).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                    worksheet.Range("D" +c + ":F" +c).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                    c++;
+
+                    worksheet.Cell(45 + i, 7).Value = type[i];
+                    worksheet.Cell(45 + i, 7).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                    worksheet.Cell(45 + i, 7).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                    worksheet.Cell(45 + i, 7).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                    worksheet.Cell(45 + i, 7).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                    worksheet.Cell(45 + i, 8).Value = source[i];
+                    worksheet.Cell(45 + i, 8).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                    worksheet.Cell(45 + i, 8).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                    worksheet.Cell(45 + i, 8).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                    worksheet.Cell(45 + i, 8).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                    worksheet.Cell(45 + i, 9).Value = qty[i];
+                    worksheet.Cell(45 + i, 9).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                    worksheet.Cell(45 + i, 9).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                    worksheet.Cell(45 + i, 9).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                    worksheet.Cell(45 + i, 9).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                    worksheet.Cell(45 + i, 10).Value = unit[i];
+                    worksheet.Cell(45 + i, 10).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                    worksheet.Cell(45 + i, 10).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                    worksheet.Cell(45 + i, 10).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                    worksheet.Cell(45 + i, 10).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                    worksheet.Cell(45 + i, 11).Value = price[i];
+                    worksheet.Cell(45 + i, 11).Style.Fill.BackgroundColor = XLColor.LightYellow;
+                    worksheet.Cell(45 + i, 11).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                    worksheet.Cell(45 + i, 11).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                    worksheet.Cell(45 + i, 11).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                    worksheet.Cell(45 + i, 12).Value = amountusd[i];
+                    worksheet.Cell(45 + i, 12).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                    worksheet.Cell(45 + i, 12).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                    worksheet.Cell(45 + i, 12).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                    worksheet.Cell(45 + i, 12).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                }
+                
 
                 using (var stream = new MemoryStream())
                 {
