@@ -18,7 +18,7 @@ namespace CostNag.Controllers
 
         CostAPI _api = new CostAPI();
 
-        public async Task<IActionResult> Index(string p_doc_no, int p_od, string p_type)
+        public async Task<IActionResult> Index()
         {
             CostAPI _api = new CostAPI();
 
@@ -31,8 +31,6 @@ namespace CostNag.Controllers
             }).ToList();
 
 
-            ViewBag.p_doc_no = p_doc_no;
-            ViewBag.p_od = p_od;
             ViewBag.p_od_min = 0;
             ViewBag.p_od_max = 0;
             ViewBag.p_process_cost = 0;
@@ -44,31 +42,10 @@ namespace CostNag.Controllers
             ViewBag.p_total_cost = 0;
             ViewBag.ProcessId = 0;
 
-            if (p_od>=5 && p_od <= 50)
-            {
+
                 ViewBag.p_od_min = 5;
                 ViewBag.p_od_max = 50;
-            }
-            if (p_od >= 51 && p_od <= 100)
-            {
-                ViewBag.p_od_min = 51;
-                ViewBag.p_od_max = 100;
-            }
-            if (p_od >= 101 && p_od <= 120)
-            {
-                ViewBag.p_od_min = 101;
-                ViewBag.p_od_max = 120;
-            }
-            if (p_od >= 121 && p_od <= 150)
-            {
-                ViewBag.p_od_min = 121;
-                ViewBag.p_od_max = 150;
-            }
-            if (p_od >= 151 )
-            {
-                ViewBag.p_od_min = 151;
-                ViewBag.p_od_max = 10000000;
-            }
+
 
 
             ProcessMaster list = new ProcessMaster();
@@ -84,7 +61,8 @@ namespace CostNag.Controllers
             //{
             //    action = "api/processmaster/get-all-processesmaster";
             //}
-            var action = "api/processmaster/get-processmaster-by-type/"+ p_type;
+            //var action = "api/processmaster/get-processmaster-by-type/"+ p_type;
+            var action = "api/processmaster/get-all-processesmaster";
             HttpResponseMessage resdata = await clientdata.GetAsync(action).ConfigureAwait(false);
 
             resdata.EnsureSuccessStatusCode();
@@ -104,7 +82,7 @@ namespace CostNag.Controllers
                         overhead_cost = o.overhead_cost,
                         machine_cost = o.machine_cost,
                         labor_cost = o.labor_cost,
-                        total_cost = o.total_cost,
+                        total_cost = double.Parse(o.total_cost.ToString("0.0000")),
                         ProcessMasterId = o.ProcessMasterId
                     });
                 }

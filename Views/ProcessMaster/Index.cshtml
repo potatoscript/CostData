@@ -24,12 +24,12 @@
                         <tr>
                             <td>
                                 <input type="text" class="directInput"
-                                       style="width:200px"
+                                       style="width:160px"
                                        name="process_name" id="process_name_master"
                                        value="@ViewBag.p_process_name" />
                             </td>
                             <td>
-                                <select class="form-control" style="width:200px"
+                                <select class="form-control" style="width:160px"
                                         name="process_type" id="process_type_master"
                                         asp-items="ViewBag.Types">
                                 </select>
@@ -37,31 +37,37 @@
                             </td>
                             <td>
                                 <input type="number" step="any" class="directInput"
+                                       style="width:60px"
                                        name="od_min" id="od_min"
                                        value="@ViewBag.p_od_min" />
                             </td>
                             <td>
                                 <input type="number" step="any" class="directInput"
+                                       style="width:60px"
                                        name="od_max" id="od_max"
                                        value="@ViewBag.p_od_max" />
                             </td>
                             <td>
                                 <input type="number" step="any" class="directInput"
+                                       style="width:80px"
                                        name="overhead_cost" id="overhead_cost_master"
                                        value="@ViewBag.p_overhead_cost" />
                             </td>
                             <td>
                                 <input type="number" step="any" class="directInput"
+                                       style="width:80px"
                                        name="machine_cost" id="machine_cost_master"
                                        value="@ViewBag.p_machine_cost" />
                             </td>
                             <td>
                                 <input type="number" step="any" class="directInput"
+                                       style="width:80px"
                                        name="labor_cost" id="labor_cost_master"
                                        value="@ViewBag.p_labor_cost" />
                             </td>
                             <td>
                                 <input type="number" step="any" class="calculateInput"
+                                       style="width:80px"
                                        name="total_cost" id="total_cost"
                                        value="@ViewBag.p_total_cost" />
                             </td>
@@ -71,11 +77,8 @@
                 </td>
                 <td style="vertical-align:top;border:0px">
                     <input type="submit" id="SubmitProcessMaster" class="btn btn-info w-100" value="Save" />
-
-                </td>
-                <td style="vertical-align:top;border:0px">
+                    <br><br>
                     <input type="button" id="RefreshProcessMaster" class="btn btn-warning w-100" value="Refresh" onclick="refreshProcessMaster()" />
-
                 </td>
             </tr>
             <tr>

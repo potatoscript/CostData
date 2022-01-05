@@ -482,6 +482,31 @@
                         <td style="vertical-align:top">
                             <table style="width:450px;">
                                 <tr>
+                                    <th>Work Time: </th>
+                                    <td><input type="text" class="directInput" name="actual_working_time" id="actual_working_time" value="@ViewBag.actual_working_time" /></td>
+                                    <th>CT (sec/pcs): </th>
+                                    <td><input type="text" class="directInput" name="cycle_time" id="cycle_time" value="@ViewBag.cycle_time" /></td>
+                                </tr>
+                                <tr>
+                                    <th>Efficiency: </th>
+                                    <td><input type="text" class="directInput" name="efficiency" id="efficiency" value="@ViewBag.efficiency" /></td>
+                                    <th style="width:110px">Prod capacity: </th>
+                                    <td><input type="text" class="calculateInput" name="production_capacity" id="production_capacity" value="@ViewBag.production_capacity" /></td>
+                                </tr>
+                                <tr style="border:1px solid black">
+                                    <th>Daily Amount</th>
+                                    <td><input type="text" class="summary" name="daily_amount" id="daily_amount" value="@ViewBag.daily_amount" /></td>
+                                    <td></td>
+                                </tr>
+                                <tr style="border:1px solid black">
+                                    <th>Daily Qty</th>
+                                    <td><input type="text" class="summary" name="daily_qty_days" id="daily_qty_days" value="@ViewBag.daily_qty_days" /></td>
+                                    <td><input type="text" class="summary" name="daily_qty_days_p" id="daily_qty_days_p" value="@ViewBag.daily_qty_days_p" /></td>
+                                </tr>
+                            </table>
+                            <br>
+                            <table style="width:450px;">
+                                <tr>
                                     <th style="text-decoration:underline;font-size:18px;width:200px">Raw Material Cost</th>
                                     <th style="text-align:center">Unit Cost</th>
                                     <th style="text-align:center">%</th>

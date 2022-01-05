@@ -10,7 +10,7 @@ namespace CostNag.Models
 
         public int ProcessMasterId { get; set; }
 
-        public string doc_no { get; set; }
+        //public string doc_no { get; set; }
         public string process_name { get; set; }
         public string process_type { get; set; }
 
@@ -27,7 +27,7 @@ namespace CostNag.Models
         public double total_cost { get; set; }
 
         public List<ProcessMaster> data = new List<ProcessMaster>();
-        public List<string> process = new List<string>();
+        //public List<string> process = new List<string>();
 
     }
 }

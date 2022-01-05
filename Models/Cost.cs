@@ -910,35 +910,38 @@ namespace CostNag.Models
         [Column(TypeName = "double precision")]
         public double defectives_p { get; set; }
 
-        [Column(TypeName = "double precision")]
         public double admin_engin_qc { get; set; }
 
-        [Column(TypeName = "double precision")]
         public double admin_engin_qc_p { get; set; }
 
-        [Column(TypeName = "double precision")]
         public double tooling_cost { get; set; }
 
-        [Column(TypeName = "double precision")]
         public double tooling_cost_p { get; set; }
 
-        [Column(TypeName = "double precision")]
         public double process_margin_adjust { get; set; }
 
-        [Column(TypeName = "double precision")]
         public double process_margin_adjust_p { get; set; }
 
-        [Column(TypeName = "double precision")]
         public double other_fixed_cost_sub_total { get; set; }
 
-        [Column(TypeName = "double precision")]
         public double other_fixed_cost_sub_total_p { get; set; }
 
-        [Column(TypeName = "double precision")]
         public double grand_total_cost { get; set; }
 
-        [Column(TypeName = "double precision")]
         public double grand_total_cost_p { get; set; }
+
+
+        public double production_capacity { get; set; }
+        public double actual_working_time { get; set; }
+
+        public double cycle_time { get; set; }
+
+        public double efficiency { get; set; }
+        public double daily_qty_days { get; set; }
+
+        public double daily_qty_days_p { get; set; }
+
+        public double daily_amount { get; set; }
 
 
         //Navigation Properties

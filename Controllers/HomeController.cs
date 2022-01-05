@@ -386,8 +386,13 @@ namespace CostNag.Controllers
             ViewBag.grand_total_cost= 0;
             ViewBag.grand_total_cost_p= 0;
 
-            
-
+            ViewBag.production_capacity = 0;
+            ViewBag.actual_working_time = 0;
+            ViewBag.cycle_time = 0;
+            ViewBag.efficiency = 0;
+            ViewBag.daily_qty_days = 0;
+            ViewBag.daily_qty_days_p = 0;
+            ViewBag.daily_amount = 0;
 
 
             ListModel list = new ListModel();
@@ -836,6 +841,14 @@ namespace CostNag.Controllers
                 ViewBag.grand_total_cost = costdata.grand_total_cost;
                 ViewBag.grand_total_cost_p = costdata.grand_total_cost_p;
 
+                ViewBag.production_capacity = costdata.production_capacity;
+                ViewBag.actual_working_time = costdata.actual_working_time;
+                ViewBag.cycle_time = costdata.cycle_time;
+                ViewBag.efficiency = costdata.efficiency;
+                ViewBag.daily_qty_days = costdata.daily_qty_days;
+                ViewBag.daily_qty_days_p = costdata.daily_qty_days_p;
+                ViewBag.daily_amount = costdata.daily_amount;
+
             }
 
             dynamic mymodel = new ExpandoObject();
@@ -1089,7 +1102,33 @@ namespace CostNag.Controllers
             string tooling_list_amount_usd_13,
             string tooling_list_amount_usd_14,
             string tooling_list_amount_usd_15,
-            string tooling_list_total_amount_usd
+            string tooling_list_total_amount_usd,
+            string direct_raw_material,
+            string direct_raw_material_p,
+            string sub_material,
+            string sub_material_p,
+            string raw_material_cost_sub_total,
+            string raw_material_cost_sub_total_p,
+            string labor_cost,
+            string labor_cost_p,
+            string machine_cost,
+            string machine_cost_p,
+            string overhead_cost,
+            string overhead_cost_p,
+            string process_cost_sub_total,
+            string process_cost_sub_total_p,
+            string defectives,
+            string defectives_p,
+            string admin_engin_qc,
+            string admin_engin_qc_p,
+            string tooling_cost,
+            string tooling_cost_p,
+            string process_margin_adjust,
+            string process_margin_adjust_p,
+            string other_fixed_cost_sub_total,
+            string other_fixed_cost_sub_total_p,
+            string grand_total_cost,
+            string grand_total_cost_p
         )
         {
             using (var workbook = new XLWorkbook())
@@ -2891,7 +2930,204 @@ namespace CostNag.Controllers
                     worksheet.Cell(45 + i, 12).Style.Border.RightBorder = XLBorderStyleValues.Thin;
                     worksheet.Cell(45 + i, 12).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
                 }
-                
+
+                worksheet.Cell(60, 11).Value = "Total";
+                worksheet.Cell(60, 11).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(60, 11).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(60, 11).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(60, 11).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(60, 12).Value = tooling_list_total_amount_usd;
+                worksheet.Cell(60, 12).Style.Fill.BackgroundColor = XLColor.LightGreen;
+                worksheet.Cell(60, 12).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(60, 12).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Cell(60, 12).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(62, 2).Value = "　Propose Price to NFS";
+                worksheet.Cell(62, 2).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("B62:F62").Merge(true);
+                worksheet.Range("B62:F62").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("B62:F62").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B62:F62").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B62:F62").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B62:F62").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(62, 7).Value = "　";
+                worksheet.Range("G62:H62").Merge(true);
+                worksheet.Range("G62:H62").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("G62:H62").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("G62:H62").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("G62:H62").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("G62:H62").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(63, 2).Value = "　Tooling Price By NFS";
+                worksheet.Cell(63, 2).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("B63:F63").Merge(true);
+                worksheet.Range("B63:F63").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("B63:F63").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B63:F63").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B63:F63").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B63:F63").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(63, 7).Value = tooling_list_total_amount_usd;
+                worksheet.Range("G63:H63").Merge(true);
+                worksheet.Range("G63:H63").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("G63:H63").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("G63:H63").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("G63:H63").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("G63:H63").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(64, 2).Value = "　Remark :";
+                worksheet.Cell(64, 2).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Cell(64, 2).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Top);
+                worksheet.Range("B64:H67").Merge(true);
+                worksheet.Range("B64:H67").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("B64:H67").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B64:H67").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B64:H67").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("B64:H67").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(62, 9).Value = "　";
+                worksheet.Cell(62, 9).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("I62:L62").Merge(true);
+                worksheet.Range("I62:L62").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("I62:L62").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I62:L62").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I62:L62").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(63, 9).Value = "　Final Unit Price　　　　：_________________________________";
+                worksheet.Cell(63, 9).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("I63:L63").Merge(true);
+                worksheet.Range("I63:L63").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("I63:L63").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I63:L63").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(64, 9).Value = "　Tooling Cost Paid by NFS ：_________________________________";
+                worksheet.Cell(64, 9).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("I64:L64").Merge(true);
+                worksheet.Range("I64:L64").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("I64:L64").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I64:L64").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(65, 9).Value = "　Sign off of acceptance 　：_________________________________";
+                worksheet.Cell(65, 9).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("I65:L65").Merge(true);
+                worksheet.Range("I65:L65").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("I65:L65").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I65:L65").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(66, 9).Value = "　By & Date　　　　　　：_________________________________";
+                worksheet.Cell(66, 9).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("I66:L66").Merge(true);
+                worksheet.Range("I66:L66").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("I66:L66").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I66:L66").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                worksheet.Cell(67, 9).Value = "　";
+                worksheet.Cell(67, 9).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range("I67:L67").Merge(true);
+                worksheet.Range("I67:L67").Style.Fill.BackgroundColor = XLColor.White;
+                worksheet.Range("I67:L67").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I67:L67").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                worksheet.Range("I67:L67").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+
+                worksheet.Cell(16, 14).Value = "Raw Material Cost";
+                worksheet.Cell(16, 14).Style.Font.FontSize = 13;
+                worksheet.Cell(16, 14).Style.Font.SetUnderline();
+                worksheet.Cell(16, 15).Value = "Unit Cost";
+                worksheet.Cell(16, 15).Style.Font.FontSize = 13;
+                worksheet.Cell(16, 15).Style.Font.SetUnderline();
+                worksheet.Cell(16, 16).Value = "%";
+                worksheet.Cell(16, 16).Style.Font.FontSize = 13;
+                worksheet.Cell(16, 16).Style.Font.SetUnderline();
+
+
+                worksheet.Cell(17, 14).Value = "Direct Raw Material";
+                worksheet.Cell(17, 15).Value = direct_raw_material;
+                worksheet.Cell(17, 16).Value = direct_raw_material_p + " %";
+
+                worksheet.Cell(18, 14).Value = "Sub-Material";
+                worksheet.Cell(18, 15).Value = sub_material;
+                worksheet.Cell(18, 16).Value = sub_material_p + " %";
+
+                worksheet.Cell(19, 14).Value = "Sub Total";
+                worksheet.Cell(19, 14).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(19, 15).Value = raw_material_cost_sub_total;
+                worksheet.Cell(19, 15).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(19, 16).Value = raw_material_cost_sub_total_p + " %";
+                worksheet.Cell(19, 16).Style.Fill.BackgroundColor = XLColor.LightGray;
+
+
+                worksheet.Cell(21, 14).Value = "Breakdown of Process Cost";
+                worksheet.Cell(21, 14).Style.Font.FontSize = 13;
+                worksheet.Cell(21, 14).Style.Font.SetUnderline();
+                worksheet.Cell(21, 15).Value = "Unit Cost";
+                worksheet.Cell(21, 15).Style.Font.FontSize = 13;
+                worksheet.Cell(21, 15).Style.Font.SetUnderline();
+                worksheet.Cell(21, 16).Value = "%";
+                worksheet.Cell(21, 16).Style.Font.FontSize = 13;
+                worksheet.Cell(21, 16).Style.Font.SetUnderline();
+
+                worksheet.Cell(22, 14).Value = "Labor Cost";
+                worksheet.Cell(22, 15).Value = labor_cost;
+                worksheet.Cell(22, 16).Value = labor_cost_p + " %";
+
+                worksheet.Cell(23, 14).Value = "Machine Cost";
+                worksheet.Cell(23, 15).Value = machine_cost;
+                worksheet.Cell(23, 16).Value = machine_cost_p + " %";
+
+                worksheet.Cell(24, 14).Value = "Overhead Cost";
+                worksheet.Cell(24, 15).Value = overhead_cost;
+                worksheet.Cell(24, 16).Value = overhead_cost_p + " %";
+
+                worksheet.Cell(25, 14).Value = "Sub Total";
+                worksheet.Cell(25, 14).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(25, 15).Value = process_cost_sub_total;
+                worksheet.Cell(25, 15).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(25, 16).Value = process_cost_sub_total_p + " %";
+                worksheet.Cell(25, 16).Style.Fill.BackgroundColor = XLColor.LightGray;
+
+
+                worksheet.Cell(27, 14).Value = "Other Fixed Cost";
+                worksheet.Cell(27, 14).Style.Font.FontSize = 13;
+                worksheet.Cell(27, 14).Style.Font.SetUnderline();
+                worksheet.Cell(27, 15).Value = "Unit Cost";
+                worksheet.Cell(27, 15).Style.Font.FontSize = 13;
+                worksheet.Cell(27, 15).Style.Font.SetUnderline();
+                worksheet.Cell(27, 16).Value = "%";
+                worksheet.Cell(27, 16).Style.Font.FontSize = 13;
+                worksheet.Cell(27, 16).Style.Font.SetUnderline();
+
+                worksheet.Cell(28, 14).Value = "Defectives";
+                worksheet.Cell(28, 15).Value = defectives;
+                worksheet.Cell(28, 16).Value = defectives_p + " %";
+
+                worksheet.Cell(29, 14).Value = "Admin A Engin, QC";
+                worksheet.Cell(29, 15).Value = admin_engin_qc;
+                worksheet.Cell(29, 16).Value = admin_engin_qc_p + " %";
+
+                worksheet.Cell(30, 14).Value = "Tooling Cost";
+                worksheet.Cell(30, 15).Value = tooling_cost;
+                worksheet.Cell(30, 16).Value = tooling_cost_p + " %";
+
+                worksheet.Cell(31, 14).Value = "Process Margin Adjust";
+                worksheet.Cell(31, 15).Value = process_margin_adjust;
+                worksheet.Cell(31, 16).Value = process_margin_adjust_p + " %";
+
+                worksheet.Cell(32, 14).Value = "Sub Total";
+                worksheet.Cell(32, 14).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(32, 15).Value = other_fixed_cost_sub_total;
+                worksheet.Cell(32, 15).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(32, 16).Value = other_fixed_cost_sub_total_p + " %";
+                worksheet.Cell(32, 16).Style.Fill.BackgroundColor = XLColor.LightGray;
+
+                worksheet.Cell(34, 14).Value = "Grand Total Cost";
+                worksheet.Cell(34, 14).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(34, 15).Value = grand_total_cost;
+                worksheet.Cell(34, 15).Style.Fill.BackgroundColor = XLColor.LightGray;
+                worksheet.Cell(34, 16).Value = grand_total_cost_p + " %";
+                worksheet.Cell(34, 16).Style.Fill.BackgroundColor = XLColor.LightGray;
 
                 using (var stream = new MemoryStream())
                 {

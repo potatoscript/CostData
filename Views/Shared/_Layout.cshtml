@@ -288,6 +288,33 @@
                                asp-route-tooling_list_amount_usd_15 ="@ViewBag.tooling_list_amount_usd_15"
                                asp-route-tooling_list_amount_usd ="@ViewBag.tooling_list_amount_usd"
                                asp-route-tooling_list_total_amount_usd_1 ="@ViewBag.tooling_list_total_amount_usd_1"
+                               asp-route-direct_raw_material ="@ViewBag.direct_raw_material"
+                               asp-route-direct_raw_material_p ="@ViewBag.direct_raw_material_p"
+                               asp-route-sub_material ="@ViewBag.sub_material"
+                               asp-route-sub_material_p ="@ViewBag.sub_material_p"
+                               asp-route-raw_material_cost_sub_total ="@ViewBag.raw_material_cost_sub_total"
+                               asp-route-raw_material_cost_sub_total_p ="@ViewBag.raw_material_cost_sub_total_p"
+                               asp-route-labor_cost = "@ViewBag.labor_cost"
+                               asp-route-labor_cost_p = "@ViewBag.labor_cost_p"
+                               asp-route-machine_cost = "@ViewBag.machine_cost"
+                               asp-route-machine_cost_p = "@ViewBag.machine_cost_p"
+                               asp-route-overhead_cost = "@ViewBag.overhead_cost"
+                               asp-route-overhead_cost_p = "@ViewBag.overhead_cost_p"
+                               asp-route-process_cost_sub_total = "@ViewBag.process_cost_sub_total"
+                               asp-route-process_cost_sub_total_p = "@ViewBag.process_cost_sub_total_p"
+                               asp-route-defectives = "@ViewBag.defectives"
+                               asp-route-defectives_p = "@ViewBag.defectives_p"
+                               asp-route-admin_engin_qc = "@ViewBag.admin_engin_qc"
+                               asp-route-admin_engin_qc_p = "@ViewBag.admin_engin_qc_p"
+                               asp-route-tooling_cost = "@ViewBag.tooling_cost"
+                               asp-route-tooling_cost_p = "@ViewBag.tooling_cost_p"
+                               asp-route-process_margin_adjust = "@ViewBag.process_margin_adjust"
+                               asp-route-process_margin_adjust_p = "@ViewBag.process_margin_adjust_p"
+                               asp-route-other_fixed_cost_sub_total = "@ViewBag.other_fixed_cost_sub_total"
+                               asp-route-other_fixed_cost_sub_total_p = "@ViewBag.other_fixed_cost_sub_total_p"
+                               asp-route-grand_total_cost = "@ViewBag.grand_total_cost"
+                               asp-route-grand_total_cost_p = "@ViewBag.grand_total_cost_p"
+
                                >Excel</a>
                         </li>
                         <li class="nav-item">
@@ -297,9 +324,6 @@
                                    onclick="showPopupMaster('@Url.Action("Index", "ProcessMaster",
 						                new
 						                {
-                                            p_doc_no = ViewBag.doc_no,
-                                            p_od = ViewBag.item_od,
-                                            p_type = ViewBag.process_type
                                         },
 						                Context.Request.Scheme)','Process Master');" />
                         </li>

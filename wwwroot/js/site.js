@@ -105,7 +105,7 @@ jQuery(document).ready(function () {
             })
     })
 
-
+    calculate_cost();
     
 
 });
@@ -300,7 +300,20 @@ function calculate_cost() {
     var table = document.getElementById("table_summary");
     table.rows[0].cells[1].innerText = document.getElementById("target_price_sgd").value;
 
-    
+
+
+    document.getElementById("defectives").value = document.getElementById("defective_cost").value;
+    document.getElementById("defectives_p").value = ((parseFloat(document.getElementById("defective_cost").value) / target_price_sgd) * 100).toFixed(1);
+    var admin_engin_qc = parseFloat(document.getElementById("indirect_cost").value) +
+        parseFloat(document.getElementById("administration_cost").value) +
+        parseFloat(document.getElementById("plant_retail_cost").value);
+    document.getElementById("admin_engin_qc").value = admin_engin_qc;
+    document.getElementById("admin_engin_qc_p").value = ((admin_engin_qc / target_price_sgd) * 100).toFixed(1);
+
+    var tooling_cost = parseFloat(document.getElementById("moldjig_cost").value) +
+        parseFloat(document.getElementById("die_cost").value);
+    document.getElementById("tooling_cost").value = tooling_cost;
+    document.getElementById("tooling_cost_p").value = ((tooling_cost / target_price_sgd) * 100).toFixed(1);
 
     if (target_price_sgd > 0) {
         document.getElementById("rubber_percentage_target_price").value = (rubber_cost_sgd / target_price_sgd * 100).toFixed(0);
@@ -339,13 +352,60 @@ function calculate_cost() {
 
 
     document.getElementById("raw_material_cost_sub_total").value =
-        parseFloat(document.getElementById("direct_raw_material").value) +
-        parseFloat(document.getElementById("sub_material").value);
+        (parseFloat(document.getElementById("direct_raw_material").value) +
+            parseFloat(document.getElementById("sub_material").value)).toFixed(4);
 
     document.getElementById("raw_material_cost_sub_total_p").value =
-        parseFloat(document.getElementById("direct_raw_material_p").value) +
-        parseFloat(document.getElementById("sub_material_p").value);
+        (parseFloat(document.getElementById("direct_raw_material_p").value) +
+            parseFloat(document.getElementById("sub_material_p").value)).toFixed(1);
 
+
+    document.getElementById("other_fixed_cost_sub_total").value =
+        (parseFloat(document.getElementById("defectives").value) +
+            parseFloat(document.getElementById("admin_engin_qc").value)+
+            parseFloat(document.getElementById("tooling_cost").value)+
+            parseFloat(document.getElementById("process_margin_adjust").value)
+        ).toFixed(4);
+
+    document.getElementById("other_fixed_cost_sub_total_p").value =
+        (parseFloat(document.getElementById("defectives_p").value) +
+            parseFloat(document.getElementById("admin_engin_qc_p").value) +
+            parseFloat(document.getElementById("tooling_cost_p").value) +
+            parseFloat(document.getElementById("process_margin_adjust_p").value)
+        ).toFixed(1);
+
+
+    document.getElementById("grand_total_cost").value =
+        (parseFloat(document.getElementById("sub_material").value) +
+        parseFloat(document.getElementById("process_cost_sub_total").value) +
+            parseFloat(document.getElementById("other_fixed_cost_sub_total").value)
+        ).toFixed(4);
+
+    document.getElementById("grand_total_cost_p").value =
+        (parseFloat(document.getElementById("sub_material_p").value) +
+            parseFloat(document.getElementById("process_cost_sub_total_p").value) +
+            parseFloat(document.getElementById("other_fixed_cost_sub_total_p").value)
+        ).toFixed(1);
+
+    if (parseFloat(document.getElementById("cycle_time").value) > 0) {
+        var prod_capa = parseFloat(document.getElementById("actual_working_time").value) * 60 / parseFloat(document.getElementById("cycle_time").value);
+        var prod_capa_e = prod_capa * (parseFloat(document.getElementById("efficiency").value) / 100);
+        document.getElementById("production_capacity").value = (prod_capa_e).toFixed(0);
+    }
+    
+    var daily_qty_days = parseFloat(document.getElementById("production_capacity").value) / 20;
+    if (daily_qty_days > 0) {
+        document.getElementById("daily_qty_days").value = daily_qty_days.toFixed(0);
+
+        var qty_month = parseFloat(document.getElementById("qty_month").value);
+        document.getElementById("daily_qty_days_p").value = (qty_month / daily_qty_days).toFixed(2);
+
+
+
+        var dailyamount = 1.15 * parseFloat(document.getElementById("net_exclude_tooling_cost").value) * daily_qty_days;
+        document.getElementById("daily_amount").value = (dailyamount).toFixed(0);
+    }
+    
 
 }
 

@@ -146,15 +146,38 @@
                                 </tr>
 
                             }
-                            <tr>
-                                <th colspan="2">Total Process Cost:</th>
-                                <td>
-                                    <input type="number" step="any" class="calculateInput"
-                                           name="process_cost" id="process_cost"
-                                           value="@ViewBag.p_process_cost" />
-                                </td>
-                            </tr>
+                            
                         }
+                    </table>
+                    <table>
+                        <tr>
+                            <th>Overhead Cost:</th>
+                            <th>Machine Cost:</th>
+                            <th>Labor Cost:</th>
+                            <th>Total Process Cost:</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" step="any" class="calculateInput"
+                                       name="total_overhead_cost" id="total_overhead_cost"
+                                       value="@ViewBag.p_total_overhead_cost" />
+                            </td>
+                            <td>
+                                <input type="number" step="any" class="calculateInput"
+                                       name="total_machine_cost" id="total_machine_cost"
+                                       value="@ViewBag.p_total_machine_cost" />
+                            </td>
+                            <td>
+                                <input type="number" step="any" class="calculateInput"
+                                       name="total_labor_cost" id="total_labor_cost"
+                                       value="@ViewBag.p_total_labor_cost" />
+                            </td>
+                            <td>
+                                <input type="number" step="any" class="calculateInput"
+                                       name="process_cost" id="process_cost"
+                                       value="@ViewBag.p_process_cost" />
+                            </td>
+                        </tr>
                     </table>
                 </td>
 

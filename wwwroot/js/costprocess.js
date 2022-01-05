@@ -3,6 +3,36 @@ var array_process_cost = new Array();
 var ci, ri;
 jQuery(document).ready(function () {
 
+    //get the total process cost
+    var table = document.getElementById("table_process_data");
+    var totalcost = 0;
+    var total_overhead_cost = 0;
+    var total_machine_cost = 0;
+    var total_labor_cost = 0;
+    for (var k = 1; k < table.rows.length; k++) {//-1 because the last raw was the total
+        total_overhead_cost += parseFloat(table.rows[k].cells[2].innerText);
+        total_machine_cost += parseFloat(table.rows[k].cells[3].innerText);
+        total_labor_cost += parseFloat(table.rows[k].cells[4].innerText);
+        totalcost += parseFloat(table.rows[k].cells[5].innerText);
+    }
+    document.getElementById("total_overhead_cost").value = total_overhead_cost;
+    document.getElementById("total_machine_cost").value = total_machine_cost;
+    document.getElementById("total_labor_cost").value = total_labor_cost;
+    document.getElementById("process_cost").value = totalcost;
+    document.getElementById("direct_process_cost").value = totalcost;// in the main page
+    document.getElementById("overhead_cost").value = total_overhead_cost;
+    document.getElementById("machine_cost").value = total_machine_cost;
+    document.getElementById("labor_cost").value = total_labor_cost;
+
+    var price_sgd = parseFloat(document.getElementById("target_price_sgd").value);
+    document.getElementById("overhead_cost_p").value = ((total_overhead_cost / price_sgd)*100).toFixed(1);
+    document.getElementById("machine_cost_p").value = ((total_machine_cost / price_sgd) * 100).toFixed(1);
+    document.getElementById("labor_cost_p").value = ((total_labor_cost / price_sgd) * 100).toFixed(1);
+
+    var process_cost_sub_total = total_overhead_cost + total_machine_cost + total_labor_cost;
+    document.getElementById("process_cost_sub_total").value = process_cost_sub_total.toFixed(4);
+    document.getElementById("process_cost_sub_total_p").value = ((process_cost_sub_total / price_sgd) * 100).toFixed(1);
+
     jQuery("#processtypes").change(function () {
         document.getElementById("product_type").value = document.getElementById("processtypes").value;
 
@@ -36,23 +66,25 @@ jQuery(document).ready(function () {
             ci = jQuery(this).parent().children().index(this);
             ri = jQuery(this).parent().parent().children().index(this.parentNode);
 
-            var total_cost_data = parseFloat(table.rows[ri].cells[2].innerText);
+            var total_cost_data = parseFloat(table.rows[ri].cells[5].innerText);
             var rubber_weight = parseFloat(document.getElementById("total_rubber_weight").value);
             if (table.rows[ri].cells[1].innerText == "Rubber") {
-                total_cost_data = parseFloat(table.rows[ri].cells[2].innerText) * rubber_weight;
+                total_cost_data = parseFloat(table.rows[ri].cells[5].innerText) * rubber_weight;
             }
 
             document.getElementById("process_name_data").value = table.rows[ri].cells[0].innerText;
             document.getElementById("process_type_data").value = table.rows[ri].cells[1].innerText;
-            //document.getElementById("overhead_cost_data").value = table.rows[ri].cells[2].innerText;
-            //document.getElementById("machine_cost_data").value = table.rows[ri].cells[3].innerText;
-            //document.getElementById("labor_cost_data").value = table.rows[ri].cells[4].innerText;
+            document.getElementById("overhead_cost_data").value = table.rows[ri].cells[2].innerText;
+            document.getElementById("machine_cost_data").value = table.rows[ri].cells[3].innerText;
+            document.getElementById("labor_cost_data").value = table.rows[ri].cells[4].innerText;
             document.getElementById("total_cost_data").value = total_cost_data;
 
         })
         .click(function () {
             document.getElementById("submit_costprocess").click();
         })
+
+    calculate_cost();
 
     /*
     var table = document.getElementById("table_process_master_data");
@@ -105,14 +137,7 @@ jQuery(document).ready(function () {
     }
     */
 
-    //get the total process cost
-    var table = document.getElementById("table_process_data");
-    var totalcost = 0;
-    for (var k = 1; k < table.rows.length-1; k++) {//-1 because the last raw was the total
-        totalcost += parseFloat(table.rows[k].cells[5].innerText);
-    }
-    document.getElementById("process_cost").value = totalcost;
-    document.getElementById("direct_process_cost").value = totalcost;// in the main page
+    
 
 
 });

@@ -38,6 +38,9 @@ namespace CostNag.Controllers
             ViewBag.p_process_type = "-";
             ViewBag.p_overhead_cost = 0;
             ViewBag.p_machine_cost = 0;
+            ViewBag.p_total_labor_cost = 0;
+            ViewBag.p_total_overhead_cost = 0;
+            ViewBag.p_total_machine_cost = 0;
             ViewBag.p_labor_cost = 0;
             ViewBag.p_total_cost = 0;
             ViewBag.p_rubber_weight = p_rubber_weight;
@@ -99,10 +102,10 @@ namespace CostNag.Controllers
                         process_type = o.process_type,
                         od_min = o.od_min,
                         od_max = o.od_max,
-                        overhead_cost = o.overhead_cost,
-                        machine_cost = o.machine_cost,
-                        labor_cost = o.labor_cost,
-                        total_cost = o.total_cost,
+                        overhead_cost = double.Parse(o.overhead_cost.ToString("0.0000")),
+                        machine_cost = double.Parse(o.machine_cost.ToString("0.0000")),
+                        labor_cost = double.Parse(o.labor_cost.ToString("0.0000")),
+                        total_cost = double.Parse(o.total_cost.ToString("0.0000")),
                         ProcessMasterId = o.ProcessMasterId
                     });
                 }
@@ -128,10 +131,10 @@ namespace CostNag.Controllers
                         process_name = o.process_name,
                         process_type = o.process_type,
                         item_od = o.item_od,
-                        overhead_cost = o.overhead_cost,
-                        machine_cost = o.machine_cost,
-                        labor_cost = o.labor_cost,
-                        total_cost = o.total_cost,
+                        overhead_cost = double.Parse(o.overhead_cost.ToString("0.0000")),
+                        machine_cost = double.Parse(o.machine_cost.ToString("0.0000")),
+                        labor_cost = double.Parse(o.labor_cost.ToString("0.0000")),
+                        total_cost = double.Parse(o.total_cost.ToString("0.0000")),
                         CostProcessId = o.CostProcessId
                     });
                 }
@@ -139,8 +142,6 @@ namespace CostNag.Controllers
             }
             List<CostProcess> model2 = list2.data.ToList();
             ViewData["processdata"] = model2;
-
-
 
             return View();
         }
@@ -229,10 +230,10 @@ namespace CostNag.Controllers
                         process_type = o.process_type,
                         od_min = o.od_min,
                         od_max = o.od_max,
-                        overhead_cost = o.overhead_cost,
-                        machine_cost = o.machine_cost,
-                        labor_cost = o.labor_cost,
-                        total_cost = o.total_cost,
+                        overhead_cost = double.Parse(o.overhead_cost.ToString("0.0000")),
+                        machine_cost = double.Parse(o.machine_cost.ToString("0.0000")),
+                        labor_cost = double.Parse(o.labor_cost.ToString("0.0000")),
+                        total_cost = double.Parse(o.total_cost.ToString("0.0000")),
                         ProcessMasterId = o.ProcessMasterId
                     });
                 }
@@ -258,10 +259,10 @@ namespace CostNag.Controllers
                         process_name = o.process_name,
                         process_type = o.process_type,
                         item_od = o.item_od,
-                        overhead_cost = o.overhead_cost,
-                        machine_cost = o.machine_cost,
-                        labor_cost = o.labor_cost,
-                        total_cost = o.total_cost,
+                        overhead_cost = double.Parse(o.overhead_cost.ToString("0.0000")),
+                        machine_cost = double.Parse(o.machine_cost.ToString("0.0000")),
+                        labor_cost = double.Parse(o.labor_cost.ToString("0.0000")),
+                        total_cost = double.Parse(o.total_cost.ToString("0.0000")),
                         CostProcessId = o.CostProcessId
                     });
                 }
