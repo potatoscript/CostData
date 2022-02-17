@@ -71,6 +71,25 @@ namespace CostNag.Controllers
             }).ToList();
 
 
+
+            Tooling listTooling = new Tooling();
+            List<Tooling> tooling = new List<Tooling>();
+
+            HttpClient t = _api.Initial();
+            HttpResponseMessage resTooling = await t.GetAsync("api/tooling/get-all-toolings");
+            if (resTooling.IsSuccessStatusCode)
+            {
+                var result = resTooling.Content.ReadAsStringAsync().Result;
+                tooling = JsonConvert.DeserializeObject<List<Tooling>>(result);
+            }
+            ViewBag.Tooling = tooling.Select(x => new SelectListItem()
+            {
+                Text = x.description,
+                Value = x.description + "," + x.source + "," + x.qty + "," + x.unit + "," + x.price
+
+            }).ToList();
+
+
             ViewBag.process_type = "Process Type";
 
             ViewBag.plant = "-";
@@ -187,27 +206,27 @@ namespace CostNag.Controllers
 
             ViewBag.direct_material_cost = 0;
             ViewBag.direct_material_cost_percentage = 0;
-            ViewBag.sub_material_percentage = 0;
+            ViewBag.sub_material_percentage = 10;
             ViewBag.sub_material_cost = 0;
             ViewBag.sub_material_cost_percentage = 0;
             ViewBag.direct_process_cost = 0;
             ViewBag.direct_process_cost_percentage = 0;
             ViewBag.total_direct_cost = 0;
             ViewBag.total_direct_cost_percentage = 0;
-            ViewBag.defective_percentage = 0;
+            ViewBag.defective_percentage = 3;
             ViewBag.defective_cost = 0;
             ViewBag.defective_cost_percentage = 0;
-            ViewBag.indirect_percentage = 0;
+            ViewBag.indirect_percentage = 15;
             ViewBag.indirect_cost = 0;
             ViewBag.indirect_cost_percentage = 0;
-            ViewBag.packing_material_percentage = 0;
+            ViewBag.packing_material_percentage = 5;
             ViewBag.special_package_cost = 0;
             ViewBag.packing_material_cost = 0;
             ViewBag.packing_material_cost_percentage = 0;
-            ViewBag.administration_percentage = 0;
+            ViewBag.administration_percentage = 10;
             ViewBag.administration_cost = 0;
             ViewBag.administration_cost_percentage = 0;
-            ViewBag.plant_retail_percentage = 0;
+            ViewBag.plant_retail_percentage = 5;
             ViewBag.plant_retail_cost = 0;
             ViewBag.plant_retail_cost_percentage = 0;
             ViewBag.moldjig_percentage = 0;
@@ -490,28 +509,6 @@ namespace CostNag.Controllers
                 {
                     var result = resRubber.Content.ReadAsStringAsync().Result;
                     rubber = JsonConvert.DeserializeObject<List<Rubber>>(result);
-                    //listRubber.data.Clear();
-
-                    //listRubber.data.Add(new Rubber
-                    //{
-                    //    material_name = "-",
-                    //    price_kg = 0,
-                    //    mixing_process_cost = 0,
-                    //    weight_g = 0,
-                    //    yield_rate = 0
-                    //});
-
-                    //foreach (var o in rubber)
-                    //{
-                    //    listRubber.data.Add(new Rubber
-                    //    {
-                    //        material_name = o.material_name,
-                    //        price_kg = o.price_kg,
-                    //        mixing_process_cost = o.mixing_process_cost,
-                    //        weight_g = o.weight_g,
-                    //        yield_rate = o.yield_rate
-                    //    });
-                    //}
                 }
 
                 //List<Rubber> rubberModel = listRubber.data.ToList();
@@ -520,6 +517,25 @@ namespace CostNag.Controllers
                 {
                     Text = x.material_name,
                     Value = x.material_name+","+x.price_kg + "," +x.mixing_process_cost + "," +x.weight_g + "," +x.yield_rate
+
+                }).ToList();
+
+
+
+                Tooling listTooling = new Tooling();
+                List<Tooling> tooling = new List<Tooling>();
+
+                HttpClient t = _api.Initial();
+                HttpResponseMessage resTooling = await t.GetAsync("api/tooling/get-all-toolings");
+                if (resTooling.IsSuccessStatusCode)
+                {
+                    var result = resTooling.Content.ReadAsStringAsync().Result;
+                    tooling = JsonConvert.DeserializeObject<List<Tooling>>(result);
+                }
+                ViewBag.Tooling = tooling.Select(x => new SelectListItem()
+                {
+                    Text = x.description,
+                    Value = x.description + "," + x.source + "," + x.qty + "," + x.unit + "," + x.price
 
                 }).ToList();
 

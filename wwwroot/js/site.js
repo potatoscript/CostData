@@ -1,5 +1,8 @@
-﻿var _url = "/";          //if your app upload outside Default Web site - for my pc
-//var _url = "/costnag/";  //if your app upload under Default Web site - for company
+﻿//var _url = "/";          //if your app upload outside Default Web site - for my pc
+var _url = "/costnag/";  //if your app upload under Default Web site - for company
+//you need to change on the Helper.cs for the deploying as well
+
+var tooling_no = 0;
 
 jQuery(document).ready(function () {
     window.onresize = setWindow;
@@ -36,6 +39,55 @@ jQuery(document).ready(function () {
         calculate_cost();
 
     })
+
+
+    var obj = document.getElementById("rubber_material_list");
+    obj.value = document.getElementById("rubber_material_name").value + "," +
+        document.getElementById("rubber_price_kg").value + "," +
+        document.getElementById("rubber_mixing_process_cost").value + "," +
+        document.getElementById("rubber_weight_g").value + "," +
+        document.getElementById("rubber_yield_rate").value;
+
+    var obj2 = document.getElementById("rubber_material_list2");
+    obj2.value = document.getElementById("rubber_material_name2").value + "," +
+        document.getElementById("rubber_price_kg2").value + "," +
+        document.getElementById("rubber_mixing_process_cost2").value + "," +
+        document.getElementById("rubber_weight_g2").value + "," +
+        document.getElementById("rubber_yield_rate2").value;
+    /*
+    for (var i = 0; i < obj.length; i++) {
+        if (obj[i].text == "@ViewBag.rubber_material_name2") {
+            obj[i].selected = true;
+        }
+    }
+    */
+
+
+    
+
+    for (var i = 1; i < 16; i++) {
+        jQuery("#tooling_list_data_" + i).change(function () {
+            var dat = String(this.value).split(",");
+            var n = String(this.id).split("_");
+            var no = n.slice(3, 4);
+            document.getElementById("tooling_list_description_"+no).value = dat.slice(0, 1);
+            document.getElementById("tooling_list_source_"+no).value = dat.slice(1, 2);
+            document.getElementById("tooling_list_qty_"+no).value = dat.slice(2, 3);
+            document.getElementById("tooling_list_unit_"+no).value = dat.slice(3, 4);
+            document.getElementById("tooling_list_price_"+no).value = dat.slice(4, 5);
+
+            calculate_cost();
+        })
+
+        //load the tooling list value on read
+        document.getElementById("tooling_list_data_" + i).value = document.getElementById("tooling_list_description_" + i).value + "," +
+            document.getElementById("tooling_list_source_" + i).value + "," +
+            document.getElementById("tooling_list_qty_" + i).value + "," +
+            document.getElementById("tooling_list_unit_" + i).value + "," +
+            document.getElementById("tooling_list_price_" + i).value;
+
+    }
+    
     
 
     jQuery("#checked_date,#issue_date,#approved_by,#expired_by")
@@ -66,9 +118,9 @@ jQuery(document).ready(function () {
             jQuery("#table_parts_code").hide();
             calculate_cost();
         };
-
-        
     }
+
+
 
 
     jQuery("#search_code").click(function () {
@@ -106,7 +158,10 @@ jQuery(document).ready(function () {
     })
 
     calculate_cost();
+
+
     
+
 
 });
 

@@ -55,6 +55,7 @@ namespace CostNag.Models
                 new ListModel(){processType = "Bonding"},
                 new ListModel(){processType = "Combination Forming"},
                 new ListModel(){processType = "Curing"},
+                new ListModel(){processType = "OOP"},
                 new ListModel(){processType = "Progressive"},
                 new ListModel(){processType = "Rubber"},
                 new ListModel(){processType = "Spring"},

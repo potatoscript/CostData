@@ -255,14 +255,6 @@
                                                 asp-items="ViewBag.Rubber">
                                         </select>
                                         <input style="display:none" type="text" name="rubber_material_name" id="rubber_material_name" value="@ViewBag.rubber_material_name" />
-                                        <script>
-                                var obj = document.getElementById("rubber_material_list");
-                                for (var i = 0; i < obj.length; i++) {
-                                    if (obj[i].text=="@ViewBag.rubber_material_name") {
-                                        obj[i].selected = true;
-                                    }
-                                }
-                                        </script>
                                     </td>
                                     <td><input type="number" step="any" class="directInput material" name="rubber_price_kg" id="rubber_price_kg" value="@ViewBag.rubber_price_kg" /></td>
                                     <td><input type="number" step="any" class="directInput material" name="rubber_mixing_process_cost" id="rubber_mixing_process_cost" value="@ViewBag.rubber_mixing_process_cost" /></td>
@@ -280,14 +272,7 @@
                                                 asp-items="ViewBag.Rubber">
                                         </select>
                                         <input style="display:none" type="text" name="rubber_material_name2" id="rubber_material_name2" value="@ViewBag.rubber_material_name2" />
-                                        <script>
-                                var obj = document.getElementById("rubber_material_list2");
-                                for (var i = 0; i < obj.length; i++) {
-                                    if (obj[i].text=="@ViewBag.rubber_material_name2") {
-                                        obj[i].selected = true;
-                                    }
-                                }
-                                        </script>
+
                                     </td>
                                     <td><input type="number" step="any" class="directInput material" name="rubber_price_kg2" id="rubber_price_kg2" value="@ViewBag.rubber_price_kg2" /></td>
                                     <td><input type="number" step="any" class="directInput material" name="rubber_mixing_process_cost2" id="rubber_mixing_process_cost2" value="@ViewBag.rubber_mixing_process_cost2" /></td>
@@ -616,7 +601,13 @@
                     </tr>
                     <tr>
                         <td>1</td>
-                        <td><input type="text" class="directInput" name="tooling_list_description_1" id="tooling_list_description_1" value="@ViewBag.tooling_list_description_1" /></td>
+                        <td>
+                            <select class="form-control" 
+                                    id="tooling_list_data_1"
+                                    asp-items="ViewBag.Tooling">
+                            </select>
+                            <input style="display:none" type="text" class="directInput tooling" name="tooling_list_description_1" id="tooling_list_description_1" value="@ViewBag.tooling_list_description_1" />
+                        </td>
                         <td><input type="text" class="directInput" name="tooling_list_type_1" id="tooling_list_type_1" value="@ViewBag.tooling_list_type_1" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_1" id="tooling_list_source_1" value="@ViewBag.tooling_list_source_1" /></td>
                         <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_1" id="tooling_list_qty_1" value="@ViewBag.tooling_list_qty_1" /></td>
@@ -627,7 +618,13 @@
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td><input type="text" class="directInput" name="tooling_list_description_2" id="tooling_list_description_2" value="@ViewBag.tooling_list_description_2" /></td>
+                        <td>
+                            <select class="form-control"
+                                    id="tooling_list_data_2"
+                                    asp-items="ViewBag.Tooling">
+                            </select>
+                            <input style="display:none"  type="text" class="directInput tooling" name="tooling_list_description_2" id="tooling_list_description_2" value="@ViewBag.tooling_list_description_1" />
+                        </td>
                         <td><input type="text" class="directInput" name="tooling_list_type_2" id="tooling_list_type_2" value="@ViewBag.tooling_list_type_2" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_2" id="tooling_list_source_2" value="@ViewBag.tooling_list_source_2" /></td>
                         <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_2" id="tooling_list_qty_2" value="@ViewBag.tooling_list_qty_2" /></td>
@@ -638,7 +635,13 @@
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td><input type="text" class="directInput" name="tooling_list_description_3" id="tooling_list_description_3" value="@ViewBag.tooling_list_description_3" /></td>
+                        <td>
+                            <select class="form-control"
+                                    id="tooling_list_data_3"
+                                    asp-items="ViewBag.Tooling">
+                            </select>
+                            <input style="display:none"  type="text" class="directInput tooling" name="tooling_list_description_3" id="tooling_list_description_3" value="@ViewBag.tooling_list_description_3" />
+                        </td>
                         <td><input type="text" class="directInput" name="tooling_list_type_3" id="tooling_list_type_3" value="@ViewBag.tooling_list_type_3" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_3" id="tooling_list_source_3" value="@ViewBag.tooling_list_source_3" /></td>
                         <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_3" id="tooling_list_qty_3" value="@ViewBag.tooling_list_qty_3" /></td>
@@ -649,7 +652,13 @@
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td><input type="text" class="directInput" name="tooling_list_description_4" id="tooling_list_description_4" value="@ViewBag.tooling_list_description_4" /></td>
+                        <td>
+                            <select class="form-control"
+                                    id="tooling_list_data_4"
+                                    asp-items="ViewBag.Tooling">
+                            </select>
+                            <input style="display:none"  type="text" class="directInput tooling" name="tooling_list_description_4" id="tooling_list_description_4" value="@ViewBag.tooling_list_description_4" />
+                        </td>
                         <td><input type="text" class="directInput" name="tooling_list_type_4" id="tooling_list_type_4" value="@ViewBag.tooling_list_type_4" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_4" id="tooling_list_source_4" value="@ViewBag.tooling_list_source_4" /></td>
                         <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_4" id="tooling_list_qty_4" value="@ViewBag.tooling_list_qty_4" /></td>
@@ -660,7 +669,13 @@
                     </tr>
                     <tr>
                         <td>5</td>
-                        <td><input type="text" class="directInput" name="tooling_list_description_5" id="tooling_list_description_5" value="@ViewBag.tooling_list_description_5" /></td>
+                        <td>
+                            <select class="form-control"
+                                    id="tooling_list_data_5"
+                                    asp-items="ViewBag.Tooling">
+                            </select>
+                            <input style="display:none"  type="text" class="directInput tooling" name="tooling_list_description_5" id="tooling_list_description_5" value="@ViewBag.tooling_list_description_5" />
+                        </td>
                         <td><input type="text" class="directInput" name="tooling_list_type_5" id="tooling_list_type_5" value="@ViewBag.tooling_list_type_5" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_5" id="tooling_list_source_5" value="@ViewBag.tooling_list_source_5" /></td>
                         <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_5" id="tooling_list_qty_5" value="@ViewBag.tooling_list_qty_5" /></td>
@@ -671,7 +686,13 @@
                     </tr>
                     <tr>
                         <td>6</td>
-                        <td><input type="text" class="directInput" name="tooling_list_description_6" id="tooling_list_description_6" value="@ViewBag.tooling_list_description_6" /></td>
+                        <td>
+                            <select class="form-control"
+                                    id="tooling_list_data_6"
+                                    asp-items="ViewBag.Tooling">
+                            </select>
+                            <input style="display:none"  type="text" class="directInput tooling" name="tooling_list_description_6" id="tooling_list_description_6" value="@ViewBag.tooling_list_description_6" />
+                        </td>
                         <td><input type="text" class="directInput" name="tooling_list_type_6" id="tooling_list_type_6" value="@ViewBag.tooling_list_type_6" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_6" id="tooling_list_source_6" value="@ViewBag.tooling_list_source_6" /></td>
                         <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_6" id="tooling_list_qty_6" value="@ViewBag.tooling_list_qty_6" /></td>
@@ -682,7 +703,13 @@
                     </tr>
                     <tr>
                         <td>7</td>
-                        <td><input type="text" class="directInput" name="tooling_list_description_7" id="tooling_list_description_7" value="@ViewBag.tooling_list_description_7" /></td>
+                        <td>
+                            <select class="form-control"
+                                    id="tooling_list_data_7"
+                                    asp-items="ViewBag.Tooling">
+                            </select>
+                            <input style="display:none"  type="text" class="directInput tooling" name="tooling_list_description_7" id="tooling_list_description_7" value="@ViewBag.tooling_list_description_7" />
+                        </td>
                         <td><input type="text" class="directInput" name="tooling_list_type_7" id="tooling_list_type_7" value="@ViewBag.tooling_list_type_7" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_7" id="tooling_list_source_7" value="@ViewBag.tooling_list_source_7" /></td>
                         <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_7" id="tooling_list_qty_7" value="@ViewBag.tooling_list_qty_7" /></td>
@@ -693,7 +720,13 @@
                     </tr>
                     <tr>
                         <td>8</td>
-                        <td><input type="text" class="directInput" name="tooling_list_description_8" id="tooling_list_description_8" value="@ViewBag.tooling_list_description_8" /></td>
+                        <td>
+                            <select class="form-control"
+                                    id="tooling_list_data_8"
+                                    asp-items="ViewBag.Tooling">
+                            </select>
+                            <input style="display:none" type="text" class="directInput tooling" name="tooling_list_description_8" id="tooling_list_description_8" value="@ViewBag.tooling_list_description_8" />
+                        </td>
                         <td><input type="text" class="directInput" name="tooling_list_type_8" id="tooling_list_type_8" value="@ViewBag.tooling_list_type_8" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_8" id="tooling_list_source_8" value="@ViewBag.tooling_list_source_8" /></td>
                         <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_8" id="tooling_list_qty_8" value="@ViewBag.tooling_list_qty_8" /></td>
@@ -704,7 +737,13 @@
                     </tr>
                     <tr>
                         <td>9</td>
-                        <td><input type="text" class="directInput" name="tooling_list_description_9" id="tooling_list_description_9" value="@ViewBag.tooling_list_description_9" /></td>
+                        <td>
+                            <select class="form-control"
+                                    id="tooling_list_data_9"
+                                    asp-items="ViewBag.Tooling">
+                            </select>
+                            <input style="display:none" type="text" class="directInput tooling" name="tooling_list_description_9" id="tooling_list_description_9" value="@ViewBag.tooling_list_description_9" />
+                        </td>
                         <td><input type="text" class="directInput" name="tooling_list_type_9" id="tooling_list_type_9" value="@ViewBag.tooling_list_type_9" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_9" id="tooling_list_source_9" value="@ViewBag.tooling_list_source_9" /></td>
                         <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_9" id="tooling_list_qty_9" value="@ViewBag.tooling_list_qty_9" /></td>
@@ -715,7 +754,13 @@
                     </tr>
                     <tr>
                         <td>10</td>
-                        <td><input type="text" class="directInput" name="tooling_list_description_10" id="tooling_list_description_10" value="@ViewBag.tooling_list_description_10" /></td>
+                        <td>
+                            <select class="form-control"
+                                    id="tooling_list_data_10"
+                                    asp-items="ViewBag.Tooling">
+                            </select>
+                            <input style="display:none" type="text" class="directInput tooling" name="tooling_list_description_10" id="tooling_list_description_10" value="@ViewBag.tooling_list_description_10" />
+                        </td>
                         <td><input type="text" class="directInput" name="tooling_list_type_10" id="tooling_list_type_10" value="@ViewBag.tooling_list_type_10" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_10" id="tooling_list_source_10" value="@ViewBag.tooling_list_source_10" /></td>
                         <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_10" id="tooling_list_qty_10" value="@ViewBag.tooling_list_qty_10" /></td>
@@ -726,7 +771,13 @@
                     </tr>
                     <tr>
                         <td>11</td>
-                        <td><input type="text" class="directInput" name="tooling_list_description_11" id="tooling_list_description_11" value="@ViewBag.tooling_list_description_11" /></td>
+                        <td>
+                            <select class="form-control"
+                                    id="tooling_list_data_11"
+                                    asp-items="ViewBag.Tooling">
+                            </select>
+                            <input style="display:none" type="text" class="directInput tooling" name="tooling_list_description_11" id="tooling_list_description_11" value="@ViewBag.tooling_list_description_11" />
+                        </td>
                         <td><input type="text" class="directInput" name="tooling_list_type_11" id="tooling_list_type_11" value="@ViewBag.tooling_list_type_11" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_11" id="tooling_list_source_11" value="@ViewBag.tooling_list_source_11" /></td>
                         <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_11" id="tooling_list_qty_11" value="@ViewBag.tooling_list_qty_11" /></td>
@@ -737,7 +788,13 @@
                     </tr>
                     <tr>
                         <td>12</td>
-                        <td><input type="text" class="directInput" name="tooling_list_description_12" id="tooling_list_description_12" value="@ViewBag.tooling_list_description_12" /></td>
+                        <td>
+                            <select class="form-control"
+                                    id="tooling_list_data_12"
+                                    asp-items="ViewBag.Tooling">
+                            </select>
+                            <input style="display:none" type="text" class="directInput tooling" name="tooling_list_description_12" id="tooling_list_description_12" value="@ViewBag.tooling_list_description_12" />
+                        </td>
                         <td><input type="text" class="directInput" name="tooling_list_type_12" id="tooling_list_type_12" value="@ViewBag.tooling_list_type_12" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_12" id="tooling_list_source_12" value="@ViewBag.tooling_list_source_12" /></td>
                         <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_12" id="tooling_list_qty_12" value="@ViewBag.tooling_list_qty_12" /></td>
@@ -748,7 +805,13 @@
                     </tr>
                     <tr>
                         <td>13</td>
-                        <td><input type="text" class="directInput" name="tooling_list_description_13" id="tooling_list_description_13" value="@ViewBag.tooling_list_description_13" /></td>
+                        <td>
+                            <select class="form-control"
+                                    id="tooling_list_data_13"
+                                    asp-items="ViewBag.Tooling">
+                            </select>
+                            <input style="display:none" type="text" class="directInput tooling" name="tooling_list_description_13" id="tooling_list_description_13" value="@ViewBag.tooling_list_description_13" />
+                        </td>
                         <td><input type="text" class="directInput" name="tooling_list_type_13" id="tooling_list_type_13" value="@ViewBag.tooling_list_type_13" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_13" id="tooling_list_source_13" value="@ViewBag.tooling_list_source_13" /></td>
                         <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_13" id="tooling_list_qty_13" value="@ViewBag.tooling_list_qty_13" /></td>
@@ -759,7 +822,13 @@
                     </tr>
                     <tr>
                         <td>14</td>
-                        <td><input type="text" class="directInput" name="tooling_list_description_14" id="tooling_list_description_14" value="@ViewBag.tooling_list_description_14" /></td>
+                        <td>
+                            <select class="form-control"
+                                    id="tooling_list_data_14"
+                                    asp-items="ViewBag.Tooling">
+                            </select>
+                            <input style="display:none" type="text" class="directInput tooling" name="tooling_list_description_14" id="tooling_list_description_14" value="@ViewBag.tooling_list_description_14" />
+                        </td>
                         <td><input type="text" class="directInput" name="tooling_list_type_14" id="tooling_list_type_14" value="@ViewBag.tooling_list_type_14" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_14" id="tooling_list_source_14" value="@ViewBag.tooling_list_source_14" /></td>
                         <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_14" id="tooling_list_qty_14" value="@ViewBag.tooling_list_qty_14" /></td>
@@ -770,7 +839,13 @@
                     </tr>
                     <tr>
                         <td>15</td>
-                        <td><input type="text" class="directInput" name="tooling_list_description_15" id="tooling_list_description_15" value="@ViewBag.tooling_list_description_15" /></td>
+                        <td>
+                            <select class="form-control"
+                                    id="tooling_list_data_15"
+                                    asp-items="ViewBag.Tooling">
+                            </select>
+                            <input style="display:none" type="text" class="directInput tooling" name="tooling_list_description_15" id="tooling_list_description_15" value="@ViewBag.tooling_list_description_15" />
+                        </td>
                         <td><input type="text" class="directInput" name="tooling_list_type_15" id="tooling_list_type_15" value="@ViewBag.tooling_list_type_15" /></td>
                         <td><input type="text" class="directInput" name="tooling_list_source_15" id="tooling_list_source_15" value="@ViewBag.tooling_list_source_15" /></td>
                         <td><input type="number" step="any" class="directInput  toolinglist" name="tooling_list_qty_15" id="tooling_list_qty_15" value="@ViewBag.tooling_list_qty_15" /></td>
