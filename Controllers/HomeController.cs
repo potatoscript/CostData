@@ -3197,10 +3197,10 @@ namespace CostNag.Controllers
 
             var content = new StringContent(JsonConvert.SerializeObject(model),Encoding.UTF8, "application/json");
 
-            var action = "api/data/update-cost-by-id/"+ model.CostId;
-            if (model.CostId == 0)
+            var action = "api/data/add-cost"; 
+            if (model.CostId > 0)
             {
-               action = "api/data/add-cost";
+                action = "api/data/update-cost-by-id/" + model.CostId;
             }
 
             HttpResponseMessage res = await client.PostAsync(action, content).ConfigureAwait(false);

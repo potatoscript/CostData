@@ -4,7 +4,7 @@
  * 2. Client.BaseAddress in Helper.cs
  *******/
 var _url = "/";          //if your app upload outside Default Web site - for my pc
-//var _url = "/costnag/";  //if your app upload under Default Web site - for company
+//var _url = "/costdata/";  //if your app upload under Default Web site - for company
 
 
 var tooling_no = 0;
