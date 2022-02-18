@@ -508,7 +508,7 @@ function setWindow() {
     document.getElementById('div_body').style.width = (window.innerWidth - 80) + 'px';
     document.getElementById('div_body').style.height = (window.innerHeight - 105) + 'px';
 
-    document.getElementById('table_summary').style.width = (window.innerWidth - 90) + 'px';
+    document.getElementById('table_summary').style.width = (window.innerWidth - 110) + 'px';
 }
 
 // keep for reference not working

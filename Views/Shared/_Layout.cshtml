@@ -17,7 +17,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CostNag System</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Cost Estimate</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -316,8 +316,8 @@
                                asp-route-grand_total_cost_p="@ViewBag.grand_total_cost_p">Excel</a>
                         </li>
                         <li class="nav-item">
-                            <input type="button" style="margin-left:10px" class="btn btn-primary w-250"
-                                   value="Process Master"
+                            <input type="button" style="margin-left:10px" class="btn btn-primary w-200"
+                                   value="Process M"
                                    id="ProcessMaster"
                                    onclick="showPopupMaster('@Url.Action("Index", "ProcessMaster",
 						                new
@@ -326,8 +326,8 @@
 						                Context.Request.Scheme)','Process Master');" />
                         </li>
                         <li class="nav-item">
-                            <input type="button" style="margin-left:10px" class="btn btn-primary w-250"
-                                   value="Rubber Master"
+                            <input type="button" style="margin-left:10px" class="btn btn-primary w-200"
+                                   value="Rubber M"
                                    id="RubberMaster"
                                    onclick="showPopupMaster('@Url.Action("Index", "Rubber",
 						                new
@@ -337,8 +337,8 @@
 						                Context.Request.Scheme)','Rubber Master');" />
                         </li>
                         <li class="nav-item">
-                            <input type="button" style="margin-left:10px" class="btn btn-primary w-250"
-                                   value="Tooling Master"
+                            <input type="button" style="margin-left:10px" class="btn btn-primary w-200"
+                                   value="Tooling M"
                                    id="ToolingMaster"
                                    onclick="showPopupMaster('@Url.Action("Index", "Tooling",
 						                new
@@ -348,7 +348,7 @@
 						                Context.Request.Scheme)','Tooling Master');" />
                         </li>
                         <li class="nav-item">
-                            <div id="data_status" style="padding-left:20px;border:0px;font-size:20px;color:blue">ADD NEW</div>
+                            <div id="data_status" style="vertical-align:bottom; padding-left:10px;border:0px;font-size:15px;color:blue">ADD NEW</div>
                         </li>
                     </ul>
                 </div>
@@ -356,7 +356,7 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-1">
             @RenderBody()
         </main>
     </div>
