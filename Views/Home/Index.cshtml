@@ -465,18 +465,18 @@
                             </table>
                         </td>
                         <td style="vertical-align:top">
-                            <table style="width:450px;">
+                            <table style="width:350px;font-size:13px">
                                 <tr>
                                     <th>Work Time: </th>
-                                    <td><input type="text" class="directInput" name="actual_working_time" id="actual_working_time" value="@ViewBag.actual_working_time" /></td>
+                                    <td><input type="text" style="width:80px" class="directInput" name="actual_working_time" id="actual_working_time" value="@ViewBag.actual_working_time" /></td>
                                     <th>CT (sec/pcs): </th>
-                                    <td><input type="text" class="directInput" name="cycle_time" id="cycle_time" value="@ViewBag.cycle_time" /></td>
+                                    <td><input type="text" style="width:80px" class="directInput" name="cycle_time" id="cycle_time" value="@ViewBag.cycle_time" /></td>
                                 </tr>
                                 <tr>
                                     <th>Efficiency: </th>
-                                    <td><input type="text" class="directInput" name="efficiency" id="efficiency" value="@ViewBag.efficiency" /></td>
-                                    <th style="width:110px">Prod capacity: </th>
-                                    <td><input type="text" class="calculateInput" name="production_capacity" id="production_capacity" value="@ViewBag.production_capacity" /></td>
+                                    <td><input type="text" style="width:80px" class="directInput" name="efficiency" id="efficiency" value="@ViewBag.efficiency" /></td>
+                                    <th style="width:100px">Prod capacity: </th>
+                                    <td><input type="text" style="width:80px" class="calculateInput" name="production_capacity" id="production_capacity" value="@ViewBag.production_capacity" /></td>
                                 </tr>
                                 <tr style="border:1px solid black">
                                     <th>Daily Amount</th>
@@ -490,95 +490,95 @@
                                 </tr>
                             </table>
                             <br>
-                            <table style="width:450px;">
+                            <table style="width:350px;font-size:13px">
                                 <tr>
-                                    <th style="text-decoration:underline;font-size:18px;width:200px">Raw Material Cost</th>
+                                    <th style="text-decoration:underline;font-size:15px;width:200px">Raw Material Cost</th>
                                     <th style="text-align:center">Unit Cost</th>
                                     <th style="text-align:center">%</th>
                                 </tr>
                                 <tr>
                                     <td>Direct Raw Material</td>
-                                    <td><input type="text" class="summary" name="direct_raw_material" id="direct_raw_material" value="@ViewBag.direct_raw_material" /></td>
-                                    <td><input type="text" class="summary" name="direct_raw_material_p" id="direct_raw_material_p" value="@ViewBag.direct_raw_material_p" />%</td>
+                                    <td><input type="text" style="width:80px" class="summary" name="direct_raw_material" id="direct_raw_material" value="@ViewBag.direct_raw_material" /></td>
+                                    <td><input type="text" style="width:50px" class="summary" name="direct_raw_material_p" id="direct_raw_material_p" value="@ViewBag.direct_raw_material_p" />%</td>
                                 </tr>
                                 <tr>
                                     <td>Sub-Material</td>
-                                    <td><input type="text" class="summary" name="sub_material" id="sub_material" value="@ViewBag.sub_material" /></td>
-                                    <td><input type="text" class="summary" name="sub_material_p" id="sub_material_p" value="@ViewBag.sub_material_p" />%</td>
+                                    <td><input type="text" style="width:80px" class="summary" name="sub_material" id="sub_material" value="@ViewBag.sub_material" /></td>
+                                    <td><input type="text" style="width:50px" class="summary" name="sub_material_p" id="sub_material_p" value="@ViewBag.sub_material_p" />%</td>
                                 </tr>
                                 <tr style="background:lightgray">
                                     <td>Sub Total</td>
-                                    <td><input type="text" class="summary" name="raw_material_cost_sub_total" id="raw_material_cost_sub_total" value="@ViewBag.raw_material_cost_sub_total" /></td>
-                                    <td><input type="text" class="summary" name="raw_material_cost_sub_total_p" id="raw_material_cost_sub_total_p" value="@ViewBag.raw_material_cost_sub_total_p" />%</td>
+                                    <td><input type="text" style="width:80px" class="summary" name="raw_material_cost_sub_total" id="raw_material_cost_sub_total" value="@ViewBag.raw_material_cost_sub_total" /></td>
+                                    <td><input type="text" style="width:50px" class="summary" name="raw_material_cost_sub_total_p" id="raw_material_cost_sub_total_p" value="@ViewBag.raw_material_cost_sub_total_p" />%</td>
                                 </tr>
                             </table>
                             <br />
-                            <table style="width:450px;">
+                            <table style="width:350px;font-size:13px">
                                 <tr>
-                                    <th style="text-decoration:underline;font-size:18px;width:200px">Breakdown of Process Cost</th>
+                                    <th style="text-decoration:underline;font-size:15px;width:200px">Breakdown of Process Cost</th>
                                     <th style="text-align:center">Unit Cost</th>
                                     <th style="text-align:center">%</th>
                                 </tr>
                                 <tr>
                                     <td>Labor Cost</td>
-                                    <td><input type="text" class="summary" name="labor_cost" id="labor_cost" value="@ViewBag.labor_cost" /></td>
-                                    <td><input type="text" class="summary" name="labor_cost_p" id="labor_cost_p" value="@ViewBag.labor_cost_p" />%</td>
+                                    <td><input type="text" style="width:80px" class="summary" name="labor_cost" id="labor_cost" value="@ViewBag.labor_cost" /></td>
+                                    <td><input type="text" style="width:50px" class="summary" name="labor_cost_p" id="labor_cost_p" value="@ViewBag.labor_cost_p" />%</td>
                                 </tr>
                                 <tr>
                                     <td>Machine Cost</td>
-                                    <td><input type="text" class="summary" name="machine_cost" id="machine_cost" value="@ViewBag.machine_cost" /></td>
-                                    <td><input type="text" class="summary" name="machine_cost_p" id="machine_cost_p" value="@ViewBag.machine_cost_p" />%</td>
+                                    <td><input type="text" style="width:80px" class="summary" name="machine_cost" id="machine_cost" value="@ViewBag.machine_cost" /></td>
+                                    <td><input type="text" style="width:50px" class="summary" name="machine_cost_p" id="machine_cost_p" value="@ViewBag.machine_cost_p" />%</td>
                                 </tr>
                                 <tr>
                                     <td>Overhead Cost</td>
-                                    <td><input type="text" class="summary" name="overhead_cost" id="overhead_cost" value="@ViewBag.overhead_cost" /></td>
-                                    <td><input type="text" class="summary" name="overhead_cost_p" id="overhead_cost_p" value="@ViewBag.overhead_cost_p" />%</td>
+                                    <td><input type="text" style="width:80px" class="summary" name="overhead_cost" id="overhead_cost" value="@ViewBag.overhead_cost" /></td>
+                                    <td><input type="text" style="width:50px" class="summary" name="overhead_cost_p" id="overhead_cost_p" value="@ViewBag.overhead_cost_p" />%</td>
                                 </tr>
                                 <tr style="background:lightgray">
                                     <td>Sub Total</td>
-                                    <td><input type="text" class="summary" name="process_cost_sub_total" id="process_cost_sub_total" value="@ViewBag.process_cost_sub_total" /></td>
-                                    <td><input type="text" class="summary" name="process_cost_sub_total_p" id="process_cost_sub_total_p" value="@ViewBag.process_cost_sub_total_p" />%</td>
+                                    <td><input type="text" style="width:80px" class="summary" name="process_cost_sub_total" id="process_cost_sub_total" value="@ViewBag.process_cost_sub_total" /></td>
+                                    <td><input type="text" style="width:50px" class="summary" name="process_cost_sub_total_p" id="process_cost_sub_total_p" value="@ViewBag.process_cost_sub_total_p" />%</td>
                                 </tr>
                             </table>
                             <br />
-                            <table style="width:450px;">
+                            <table style="width:350px;font-size:13px">
                                 <tr>
-                                    <th style="text-decoration:underline;font-size:18px;width:200px">Other Fixed Cost</th>
+                                    <th style="text-decoration:underline;font-size:15px;width:200px">Other Fixed Cost</th>
                                     <th style="text-align:center">Unit Cost</th>
                                     <th style="text-align:center">%</th>
                                 </tr>
                                 <tr>
                                     <td>Defectives</td>
-                                    <td><input type="text" class="summary" name="defectives" id="defectives" value="@ViewBag.defectives" /></td>
-                                    <td><input type="text" class="summary" name="defectives_p" id="defectives_p" value="@ViewBag.defectives_p" />%</td>
+                                    <td><input type="text" style="width:80px" class="summary" name="defectives" id="defectives" value="@ViewBag.defectives" /></td>
+                                    <td><input type="text" style="width:50px" class="summary" name="defectives_p" id="defectives_p" value="@ViewBag.defectives_p" />%</td>
                                 </tr>
                                 <tr>
                                     <td>Admin &Aacute; Engin, QC</td>
-                                    <td><input type="text" class="summary" name="admin_engin_qc" id="admin_engin_qc" value="@ViewBag.admin_engin_qc" /></td>
-                                    <td><input type="text" class="summary" name="admin_engin_qc_p" id="admin_engin_qc_p" value="@ViewBag.admin_engin_qc_p" />%</td>
+                                    <td><input type="text" style="width:80px" class="summary" name="admin_engin_qc" id="admin_engin_qc" value="@ViewBag.admin_engin_qc" /></td>
+                                    <td><input type="text" style="width:50px" class="summary" name="admin_engin_qc_p" id="admin_engin_qc_p" value="@ViewBag.admin_engin_qc_p" />%</td>
                                 </tr>
                                 <tr>
                                     <td>Tooling Cost</td>
-                                    <td><input type="text" class="summary" name="tooling_cost" id="tooling_cost" value="@ViewBag.tooling_cost" /></td>
-                                    <td><input type="text" class="summary" name="tooling_cost_p" id="tooling_cost_p" value="@ViewBag.tooling_cost_p" />%</td>
+                                    <td><input type="text" style="width:80px" class="summary" name="tooling_cost" id="tooling_cost" value="@ViewBag.tooling_cost" /></td>
+                                    <td><input type="text" style="width:50px" class="summary" name="tooling_cost_p" id="tooling_cost_p" value="@ViewBag.tooling_cost_p" />%</td>
                                 </tr>
                                 <tr>
                                     <td style="color:red">Process Margin Adjust</td>
-                                    <td><input type="text" class="summary" name="process_margin_adjust" id="process_margin_adjust" value="@ViewBag.process_margin_adjust" /></td>
-                                    <td><input type="text" class="summary" name="process_margin_adjust_p" id="process_margin_adjust_p" value="@ViewBag.process_margin_adjust_p" />%</td>
+                                    <td><input type="text" style="width:80px" class="summary" name="process_margin_adjust" id="process_margin_adjust" value="@ViewBag.process_margin_adjust" /></td>
+                                    <td><input type="text" style="width:50px" class="summary" name="process_margin_adjust_p" id="process_margin_adjust_p" value="@ViewBag.process_margin_adjust_p" />%</td>
                                 </tr>
                                 <tr style="background:lightgray">
                                     <td>Sub total</td>
-                                    <td><input type="text" class="summary" name="other_fixed_cost_sub_total" id="other_fixed_cost_sub_total" value="@ViewBag.other_fixed_cost_sub_total" /></td>
-                                    <td><input type="text" class="summary" name="other_fixed_cost_sub_total_p" id="other_fixed_cost_sub_total_p" value="@ViewBag.other_fixed_cost_sub_total_p" />%</td>
+                                    <td><input type="text" style="width:80px" class="summary" name="other_fixed_cost_sub_total" id="other_fixed_cost_sub_total" value="@ViewBag.other_fixed_cost_sub_total" /></td>
+                                    <td><input type="text" style="width:50px" class="summary" name="other_fixed_cost_sub_total_p" id="other_fixed_cost_sub_total_p" value="@ViewBag.other_fixed_cost_sub_total_p" />%</td>
                                 </tr>
                             </table>
                             <br />
-                            <table style="width:450px;">
-                                <tr style="background:lightgray;font-size:18px;width:200px">
+                            <table style="width:350px;font-size:15px">
+                                <tr style="background:lightgray;font-size:15px;width:200px">
                                     <td>Grand Total Cost</td>
-                                    <td><input style="font-size:18px" type="text" class="summary" name="grand_total_cost" id="grand_total_cost" value="@ViewBag.grand_total_cost" /></td>
-                                    <td><input style="color:red;font-size:18px" type="text" class="summary" name="grand_total_cost_p" id="grand_total_cost_p" value="@ViewBag.grand_total_cost_p" />%</td>
+                                    <td><input style="font-size:15px" type="text" class="summary" name="grand_total_cost" id="grand_total_cost" value="@ViewBag.grand_total_cost" /></td>
+                                    <td><input style="color:red;font-size:13px;width:100px" type="text" class="summary" name="grand_total_cost_p" id="grand_total_cost_p" value="@ViewBag.grand_total_cost_p" />%</td>
                                 </tr>
                             </table>
                         </td>

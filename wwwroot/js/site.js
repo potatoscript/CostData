@@ -1,6 +1,11 @@
-﻿//var _url = "/";          //if your app upload outside Default Web site - for my pc
-var _url = "/costnag/";  //if your app upload under Default Web site - for company
-//you need to change on the Helper.cs for the deploying as well
+﻿/*******
+ * you need to switch over the following setting for localhost and company server doing deploring your project
+ * 1. _url in site.js
+ * 2. Client.BaseAddress in Helper.cs
+ *******/
+var _url = "/";          //if your app upload outside Default Web site - for my pc
+//var _url = "/costnag/";  //if your app upload under Default Web site - for company
+
 
 var tooling_no = 0;
 
@@ -500,7 +505,7 @@ function jQueryAjaxPost(form, page) {
 
 function setWindow() {
 
-    document.getElementById('div_body').style.width = (window.innerWidth - 60) + 'px';
+    document.getElementById('div_body').style.width = (window.innerWidth - 80) + 'px';
     document.getElementById('div_body').style.height = (window.innerHeight - 105) + 'px';
 
     document.getElementById('table_summary').style.width = (window.innerWidth - 90) + 'px';

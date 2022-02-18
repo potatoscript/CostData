@@ -28,13 +28,13 @@
                             <p style="margin-top:5px">SERACH :</p>
                         </li>
                         <li class="nav-item">
-                            <input type="text" style="width:150px;cursor:pointer;margin-left:5px" class="ui-icon-search" name="search_code" id="search_code" value="-" />
+                            <input type="text" style="width:130px;cursor:pointer;margin-left:5px" class="ui-icon-search" name="search_code" id="search_code" value="-" />
                         </li>
                         <li class="nav-item">
-                            <input type="button" onclick="SubmitData('Index');" style="margin-left:15px" class="btn btn-info w-280" value="Save" />
+                            <input type="button" onclick="SubmitData('Index');" style="margin-left:10px" class="btn btn-info w-250" value="Save" />
                         </li>
                         <li class="nav-item">
-                            <input type="button" onclick="RefreshData();" style="margin-left:15px" class="btn btn-warning w-280" value="Refresh" />
+                            <input type="button" onclick="RefreshData();" style="margin-left:10px" class="btn btn-warning w-250" value="Refresh" />
                         </li>
                         <li class="nav-item" style="margin-left:10px">
                             <a id="Excel" class="btn btn-outline-dark mx-1"
@@ -316,7 +316,7 @@
                                asp-route-grand_total_cost_p="@ViewBag.grand_total_cost_p">Excel</a>
                         </li>
                         <li class="nav-item">
-                            <input type="button" style="margin-left:15px" class="btn btn-primary w-280"
+                            <input type="button" style="margin-left:10px" class="btn btn-primary w-250"
                                    value="Process Master"
                                    id="ProcessMaster"
                                    onclick="showPopupMaster('@Url.Action("Index", "ProcessMaster",
@@ -326,7 +326,7 @@
 						                Context.Request.Scheme)','Process Master');" />
                         </li>
                         <li class="nav-item">
-                            <input type="button" style="margin-left:15px" class="btn btn-primary w-280"
+                            <input type="button" style="margin-left:10px" class="btn btn-primary w-250"
                                    value="Rubber Master"
                                    id="RubberMaster"
                                    onclick="showPopupMaster('@Url.Action("Index", "Rubber",
@@ -335,6 +335,17 @@
 
                                         },
 						                Context.Request.Scheme)','Rubber Master');" />
+                        </li>
+                        <li class="nav-item">
+                            <input type="button" style="margin-left:10px" class="btn btn-primary w-250"
+                                   value="Tooling Master"
+                                   id="ToolingMaster"
+                                   onclick="showPopupMaster('@Url.Action("Index", "Tooling",
+						                new
+						                {
+
+                                        },
+						                Context.Request.Scheme)','Tooling Master');" />
                         </li>
                         <li class="nav-item">
                             <div id="data_status" style="padding-left:20px;border:0px;font-size:20px;color:blue">ADD NEW</div>

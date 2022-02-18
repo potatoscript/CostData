@@ -57,7 +57,7 @@ function jQueryAjaxPostRubber(form, page) {
 
 
 function delete_rubber(id) {
-    var confirm_delete = confirm("Delete Process?");
+    var confirm_delete = confirm("Delete Rubber?");
     if (confirm_delete) {
         jQuery.ajax({
             type: "POST",

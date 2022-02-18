@@ -1,0 +1,122 @@
+﻿@{
+    ViewData["Title"] = "Tooling";
+    Layout = null;
+}
+
+<form method="post" asp-action="Save" onsubmit="return jQueryAjaxPostTooling(this,'Tooling/Index');"
+      style="margin-left:-20px;margin-top:-30px">
+
+    <table>
+        <tr>
+            <td style="vertical-align:top;border:0px">
+                <table id="table_master_input">
+                    <tr>
+                        <th>Description:</th>
+                        <th>Source:</th>
+                        <th>Qty:</th>
+                        <th>Unit:</th>
+                        <th>Price:</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="directInput"
+                                   style="width:200px"
+                                   name="description" id="description"
+                                   value="@ViewBag.description" />
+                        </td>
+                        <td>
+                            <input type="text" class="directInput"
+                                   name="source" id="source"
+                                   value="@ViewBag.source" />
+                        </td>
+                        <td>
+                            <input type="number" step="any" class="directInput"
+                                   name="qty" id="qty"
+                                   value="@ViewBag.mixing_process_cost" />
+                        </td>
+                        <td>
+                            <input type="text" class="directInput"
+                                   name="unit" id="unit"
+                                   value="@ViewBag.unit" />
+                        </td>
+                        <td>
+                            <input type="number" step="any" class="directInput"
+                                   name="price" id="price"
+                                   value="@ViewBag.price" />
+                        </td>
+
+                    </tr>
+                </table>
+
+            </td>
+            <td style="vertical-align:top;border:0px">
+                <input type="submit" id="SubmitTooling" class="btn btn-info w-100" value="Save" />
+
+            </td>
+            <td style="vertical-align:top;border:0px">
+                <input type="button" id="RefreshTooling"
+                       class="btn btn-warning w-100"
+                       value="Refresh"
+                       onclick="refreshTooling()" />
+
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="vertical-align:top;padding-left:20px;border:0px;font-size:18px;color:blue" id="statusTooling">
+                ADD NEW
+            </td>
+            <td style="vertical-align:top">
+                <input type="text" name="ToolingId" id="ToolingId" style="border:0px;font-size:10px;" value="@ViewBag.ToolingId" />
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <div id="div_master_data">
+        <table id="table_tooling">
+            <tr>
+                <th>Description</th>
+                <th>Source</th>
+                <th>Qty</th>
+                <th>Unit</th>
+                <th>Price</th>
+                <th style="display:none">ID</th>
+                <th></th>
+            </tr>
+            @{
+                foreach (var i in (List<Tooling>)ViewData["data"])
+                {
+                    <tr>
+                        <td>@i.description</td>
+                        <td>@i.source</td>
+                        <td>@i.qty</td>
+                        <td>@i.unit</td>
+                        <td>@i.price</td>
+                        <td style="display:none">@i.ToolingId</td>
+                        <td>
+                            <a style="height:25px;width:25px;cursor:pointer" 　
+                               onclick="delete_tooling(@i.ToolingId)"
+                               class="btn btn-danger bg-light">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="margin-left:-10px;margin-top:-15px"
+                                     fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                </svg>
+                            </a>
+                        </td>
+
+                    </tr>
+
+                }
+            }
+        </table>
+    </div>
+
+
+</form>
+
+
+<script src="~/js/tooling.js" asp-append-version="true"></script>
+

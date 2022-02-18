@@ -1,5 +1,5 @@
 ﻿body{
-    margin-left:0px;
+    margin-left:-10px;
 }
 
 label,input{
@@ -143,14 +143,14 @@ label,input{
     overflow-x:hidden;
 }
 
-#table_process_master,#table_rubber {
+#table_process_master,#table_rubber,#table_tooling {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width:1000px;
   
 }
 
-    #table_process_master th, #table_master_input th, #table_rubber th {
+    #table_process_master th, #table_master_input th, #table_rubber th, #table_tooling th {
         font-size: 15px;
         background: #d2d2d2;
         border: 1px solid black;
@@ -159,7 +159,7 @@ label,input{
         text-align: center;
     }
 
-    #table_process_master td, #table_master_input td, #table_rubber td {
+    #table_process_master td, #table_master_input td, #table_rubber td, #table_tooling td {
         font-size: 15px;
         background: white;
         border: 1px solid black;
@@ -173,6 +173,22 @@ label,input{
     }
 
     #table_process_master tr:hover td {
+        background: #fffd9c;
+    }
+
+    #table_rubber tr:nth-child(odd) td {
+        background: #a9e285;
+    }
+
+    #table_rubber tr:hover td {
+        background: #fffd9c;
+    }
+
+    #table_tooling tr:nth-child(odd) td {
+        background: #a9e285;
+    }
+
+    #table_tooling tr:hover td {
         background: #fffd9c;
     }
 
