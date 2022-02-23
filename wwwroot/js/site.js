@@ -89,7 +89,7 @@ jQuery(document).ready(function () {
             document.getElementById("tooling_list_source_" + i).value + "," +
             document.getElementById("tooling_list_qty_" + i).value + "," +
             document.getElementById("tooling_list_unit_" + i).value + "," +
-            document.getElementById("tooling_list_price_" + i).value;
+            document.getElementById("tooling_list_price_" + i).value 
 
     }
     
@@ -125,7 +125,11 @@ jQuery(document).ready(function () {
         };
     }
 
-
+    jQuery("#item_od").keypress(function (e) {
+        var chartCode = (e.which) ? e.which : event.keyCode;
+        alert(chartCode);
+        window.location.href = _url + "Home/ReloadIndex?itemod=" + document.getElementById("item_od").value;
+    })
 
 
     jQuery("#search_code").click(function () {

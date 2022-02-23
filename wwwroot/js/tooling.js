@@ -21,7 +21,8 @@ jQuery(document).ready(function () {
             document.getElementById("qty").value = table.rows[ri].cells[2].innerText;
             document.getElementById("unit").value = table.rows[ri].cells[3].innerText;
             document.getElementById("price").value = table.rows[ri].cells[4].innerText;
-            document.getElementById("ToolingId").value = table.rows[ri].cells[5].innerText;
+            document.getElementById("od").value = table.rows[ri].cells[5].innerText;
+            document.getElementById("ToolingId").value = table.rows[ri].cells[6].innerText;
 
             document.getElementById("statusTooling").innerText = "EDITING";
 

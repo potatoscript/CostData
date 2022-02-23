@@ -18,6 +18,7 @@ namespace CostNag.Models
         public string unit { get; set; }
 
         public double price { get; set; }
+        public double od { get; set; }
 
         public List<Tooling> data = new List<Tooling>();
     }
