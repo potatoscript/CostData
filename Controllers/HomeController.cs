@@ -26,465 +26,223 @@ namespace CostNag.Controllers
          
         public async Task<IActionResult> Index()
         {
+            Cost costdata = new Cost();
+            DataValue(costdata);
 
-            DataValue(
-               "-","-",
-            DateTime.Now.AddDays(0).ToString("dd-MM-yyyy"),
-            "-","-","-","-","-",
-            DateTime.Now.AddDays(0).ToString("dd-MM-yyyy"),
-            DateTime.Now.AddDays(0).ToString("dd-MM-yyyy"),
-            DateTime.Now.AddDays(180).ToString("dd-MM-yyyy"),
-            "-","-","-","-","-",
-            "-",0,0,0,0,"-",0,84.13,0.74,0.65,
-            0.0,0.0,0.0,0.0,0.0,0.0,
-            0,21,0,"-",0,0,0,0,0,0,0,0,0,0,
-            "-",0,0,0,0,0,0,0,0,0,0,
-            "-","-",0,0,0,0,
-            "-","-",0,0,0,0,
-            "-","-",0,0,0,0,
-            "-","-",0,0,0,0,
-            "-","-",0,0,0,0,
-            "-","-",0,0,0,0,
-            0,0,10,0,0,0,0,0,0,3,0,0,15,0,0,
-            5,0,0,0,10,0,0,5,0,0,0,
-            0,0,0,0,0,"-",0,0,0,0,
-            "-","-","-",0,"-",0,0,0,
-            "-","-","-",0,"-",0,0,0,
-            "-","-","-",0,"-",0,0,0,
-            "-","-","-",0,"-",0,0,0,
-            "-","-","-",0,"-",0,0,0,
-            "-","-","-",0,"-",0,0,0,
-            "-","-","-",0,"-",0,0,0,
-            "-","-","-",0,"-",0,0,0,
-            "-","-","-",0,"-",0,0,0,
-            "-","-","-",0,"-",0,0,0,
-            "-","-","-",0,"-",0,0,0,
-            "-","-","-",0,"-",0,0,0,
-            "-","-","-",0,"-",0,0,0,
-            "-","-","-",0,"-",0,0,0,
-            "-","-","-",0,"-",0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-            );
+            ViewBag.searchcode = "-";
 
+            await RubberViewBag();
 
             ListModel list = new ListModel();
             ViewData["plant"] = list.plant;
             ViewData["item_spec"] = list.item_spec;
 
-            List<Cost> cost = new List<Cost>();
-            HttpClient client = _api.Initial();
-            try
-            {
-                HttpResponseMessage res = await client.GetAsync("api/data/get-all-costs");
-                if (res.IsSuccessStatusCode)
-                {
-                    var result = res.Content.ReadAsStringAsync().Result;
-                    cost = JsonConvert.DeserializeObject<List<Cost>>(result);
-                    foreach (var o in cost)
-                    {
-                        list.partscode.Add(new ListModel
-                        {
-                            doc_no = o.doc_no,
-                            code = o.parts_code,
-                            id = o.CostId.ToString()
 
-                        });
-                    }
-
-                }
-                
-            }
-            catch(Exception e) { }
 
             List<ListModel> model = list.partscode.ToList();
             ViewData["partscode"] = model;
 
             dynamic mymodel = new ExpandoObject();
-            mymodel.code = model;
+            //mymodel.code = model;
             return View(mymodel);
         }
 
-         
-        public async Task<IActionResult> ReloadIndex()
+
+        public async Task<IActionResult> ReloadPage(
+           int CostId,
+        string issue_date,
+        string section,
+        string doc_no,
+        string wr_no,
+        string sales,
+        string revision_no,
+        string checked_date,
+        string approved_by,
+        string expired_by,
+        string customer,
+        string parts_code,
+        string item,
+        string product,
+        string product_type,
+        //string size,
+        double item_id,
+        double item_od,
+        double item_w,
+        double item_w2,
+        string business_type,
+        int qty_month,
+        double exchange_rate_jpy,
+        double exchange_rate_usd,
+        double exchange_rate_eud,
+        double target_price_sgd,
+        double target_price_wr_sgd,
+        double target_price_usd,
+        double target_price_wr_usd,
+        double target_price_eud,
+        double target_price_wr_eud,
+        double production_qty_day,
+        double working_day,
+        string rubber_material_name,
+        //double rubber_database_price_current,
+        //double rubber_database_price_new,
+        double rubber_price_kg,
+        double rubber_mixing_process_cost,
+        double rubber_weight_g,
+        double rubber_weight_kg,
+        double rubber_yield_rate,
+        double rubber_weight_kg_yieldrate,
+        double rubber_cost_sgd,
+        double rubber_percentage_target_price,
+        string rubber_material_name2,
+        double rubber_price_kg2,
+        double rubber_mixing_process_cost2,
+        double rubber_weight_g2,
+        double rubber_weight_kg2,
+        double rubber_yield_rate2,
+        double rubber_weight_kg_yieldrate2,
+        double rubber_cost_sgd2,
+        double rubber_percentage_target_price2
+        )
         {
+            Cost costdata = new Cost();
 
-            ViewBag.process_type = "Process Type";
-
-            ViewBag.plant = "-";
-            ViewBag.item_spec = "-";
-            ViewBag.issue_date = DateTime.Now.AddDays(0).ToString("dd-MM-yyyy");
-            ViewBag.section = "-";
-            ViewBag.doc_no = "-";
-            ViewBag.wr_no = "-";
-            ViewBag.sales = "-";
-            ViewBag.revision_no = "-";
-            ViewBag.checked_date = DateTime.Now.AddDays(0).ToString("dd-MM-yyyy");
-            ViewBag.approved_by = DateTime.Now.AddDays(0).ToString("dd-MM-yyyy");
-            ViewBag.expired_by = DateTime.Now.AddDays(180).ToString("dd-MM-yyyy");
-            ViewBag.customer = "-";
-            ViewBag.parts_code = "-";
-            ViewBag.item = "-";
-            ViewBag.product = "-";
-            ViewBag.product_type = "-";
-            ViewBag.size = "-";
-            ViewBag.item_id = 0;
-            ViewBag.item_od = 0;
-            ViewBag.item_w = 0;
-            ViewBag.item_w2 = 0;
-            ViewBag.business_type = "-";
-            ViewBag.qty_month = 0;
-
-            ViewBag.exchange_rate_jpy = 84.13;
-            ViewBag.exchange_rate_usd = 0.74;
-            ViewBag.exchange_rate_eud = 0.65;
-
-            ViewBag.target_price_sgd = 0.0;
-            ViewBag.target_price_usd = 0.0;
-            ViewBag.target_price_eud = 0.0;
-            ViewBag.target_price_wr_sgd = 0.0;
-            ViewBag.target_price_wr_usd = 0.0;
-            ViewBag.target_price_wr_eud = 0.0;
-
-            ViewBag.production_qty_day = 0;
-            ViewBag.working_day = 21;
-
-            ViewBag.rubber_weight_g_total = 0;
-
-            ViewBag.rubber_material_name = "-";
-            ViewBag.rubber_database_price_current = 0;
-            ViewBag.rubber_database_price_new = 0;
-            ViewBag.rubber_price_kg = 0;
-            ViewBag.rubber_mixing_process_cost = 0;
-            ViewBag.rubber_weight_g = 0;
-            ViewBag.rubber_weight_kg = 0;
-            ViewBag.rubber_yield_rate = 0;
-            ViewBag.rubber_weight_kg_yieldrate = 0;
-            ViewBag.rubber_cost_sgd = 0;
-            ViewBag.rubber_percentage_target_price = 0;
-
-            ViewBag.rubber_material_name2 = "-";
-            ViewBag.rubber_database_price_current2 = 0;
-            ViewBag.rubber_database_price_new2 = 0;
-            ViewBag.rubber_price_kg2 = 0;
-            ViewBag.rubber_mixing_process_cost2 = 0;
-            ViewBag.rubber_weight_g2 = 0;
-            ViewBag.rubber_weight_kg2 = 0;
-            ViewBag.rubber_yield_rate2 = 0;
-            ViewBag.rubber_weight_kg_yieldrate2 = 0;
-            ViewBag.rubber_cost_sgd2 = 0;
-            ViewBag.rubber_percentage_target_price2 = 0;
-
-            ViewBag.material_inhouse_name_1 = "-";
-            ViewBag.material_inhouse_info_1 = "-";
-            ViewBag.material_inhouse_value_1 = 0;
-            ViewBag.material_inhouse_info_1b = "gram/pcs       $/kg";
-            ViewBag.material_inhouse_value_1b = 0;
-            ViewBag.material_inhouse_cost_sgd_1 = 0;
-            ViewBag.material_inhouse_percentage_target_price_1 = 0;
-
-            ViewBag.material_inhouse_name_2 = "-";
-            ViewBag.material_inhouse_info_2 = "-";
-            ViewBag.material_inhouse_value_2 = 0;
-            ViewBag.material_inhouse_info_2b = "gram/pcs       $/kg";
-            ViewBag.material_inhouse_value_2b = 0;
-            ViewBag.material_inhouse_cost_sgd_2 = 0;
-            ViewBag.material_inhouse_percentage_target_price_2 = 0;
-
-            ViewBag.material_inhouse_name_3 = "-";
-            ViewBag.material_inhouse_info_3 = "-";
-            ViewBag.material_inhouse_value_3 = 0;
-            ViewBag.material_inhouse_info_3b = "gram/pcs       $/kg";
-            ViewBag.material_inhouse_value_3b = 0;
-            ViewBag.material_inhouse_cost_sgd_3 = 0;
-            ViewBag.material_inhouse_percentage_target_price_3 = 0;
-
-            ViewBag.material_outside_name_1 = "-";
-            ViewBag.material_outside_info_1 = "-";
-            ViewBag.material_outside_value_1 = 0;
-            ViewBag.material_outside_info_1b = "gram/pcs       $/kg";
-            ViewBag.material_outside_value_1b = 0;
-            ViewBag.material_outside_cost_sgd_1 = 0;
-            ViewBag.material_outside_percentage_target_price_1 = 0;
-
-            ViewBag.material_outside_name_2 = "-";
-            ViewBag.material_outside_info_2 = "-";
-            ViewBag.material_outside_value_2 = 0;
-            ViewBag.material_outside_info_2b = "gram/pcs       $/kg";
-            ViewBag.material_outside_value_2b = 0;
-            ViewBag.material_outside_cost_sgd_2 = 0;
-            ViewBag.material_outside_percentage_target_price_2 = 0;
-
-            ViewBag.material_outside_name_3 = "-";
-            ViewBag.material_outside_info_3 = "-";
-            ViewBag.material_outside_value_3 = 0;
-            ViewBag.material_outside_info_3b = "gram/pcs       $/kg";
-            ViewBag.material_outside_value_3b = 0;
-            ViewBag.material_outside_cost_sgd_3 = 0;
-            ViewBag.material_outside_percentage_target_price_3 = 0;
-
-            ViewBag.direct_material_cost = 0;
-            ViewBag.direct_material_cost_percentage = 0;
-            ViewBag.sub_material_percentage = 10;
-            ViewBag.sub_material_cost = 0;
-            ViewBag.sub_material_cost_percentage = 0;
-            ViewBag.direct_process_cost = 0;
-            ViewBag.direct_process_cost_percentage = 0;
-            ViewBag.total_direct_cost = 0;
-            ViewBag.total_direct_cost_percentage = 0;
-            ViewBag.defective_percentage = 3;
-            ViewBag.defective_cost = 0;
-            ViewBag.defective_cost_percentage = 0;
-            ViewBag.indirect_percentage = 15;
-            ViewBag.indirect_cost = 0;
-            ViewBag.indirect_cost_percentage = 0;
-            ViewBag.packing_material_percentage = 5;
-            ViewBag.special_package_cost = 0;
-            ViewBag.packing_material_cost = 0;
-            ViewBag.packing_material_cost_percentage = 0;
-            ViewBag.administration_percentage = 10;
-            ViewBag.administration_cost = 0;
-            ViewBag.administration_cost_percentage = 0;
-            ViewBag.plant_retail_percentage = 5;
-            ViewBag.plant_retail_cost = 0;
-            ViewBag.plant_retail_cost_percentage = 0;
-            ViewBag.moldjig_percentage = 0;
-            ViewBag.moldjig_cost = 0;
-            ViewBag.moldjig_cost_percentage = 0;
-            ViewBag.die_percentage = 0;
-            ViewBag.die_cost = 0;
-            ViewBag.die_cost_percentage = 0;
-            ViewBag.note = "-";
-            ViewBag.net_included_tooling_cost = 0;
-            ViewBag.net_included_tooling_cost_percentage = 0;
-            ViewBag.net_exclude_tooling_cost = 0;
-            ViewBag.net_exclude_tooling_cost_percentage = 0;
-
-            ViewBag.tooling_list_description_1 = "-";
-            ViewBag.tooling_list_type_1 = "-";
-            ViewBag.tooling_list_source_1 = "-";
-            ViewBag.tooling_list_qty_1 = 0;
-            ViewBag.tooling_list_unit_1 = "-";
-            ViewBag.tooling_list_price_1 = 0;
-            ViewBag.tooling_list_amount_jpy_1 = 0;
-            ViewBag.tooling_list_amount_sgd_1 = 0;
-
-            ViewBag.tooling_list_description_2 = "-";
-            ViewBag.tooling_list_type_2 = "-";
-            ViewBag.tooling_list_source_2 = "-";
-            ViewBag.tooling_list_qty_2 = 0;
-            ViewBag.tooling_list_unit_2 = "-";
-            ViewBag.tooling_list_price_2 = 0;
-            ViewBag.tooling_list_amount_jpy_2 = 0;
-            ViewBag.tooling_list_amount_sgd_2 = 0;
-
-            ViewBag.tooling_list_description_3 = "-";
-            ViewBag.tooling_list_type_3 = "-";
-            ViewBag.tooling_list_source_3 = "-";
-            ViewBag.tooling_list_qty_3 = 0;
-            ViewBag.tooling_list_unit_3 = "-";
-            ViewBag.tooling_list_price_3 = 0;
-            ViewBag.tooling_list_amount_jpy_3 = 0;
-            ViewBag.tooling_list_amount_sgd_3 = 0;
-
-            ViewBag.tooling_list_description_4 = "-";
-            ViewBag.tooling_list_type_4 = "-";
-            ViewBag.tooling_list_source_4 = "-";
-            ViewBag.tooling_list_qty_4 = 0;
-            ViewBag.tooling_list_unit_4 = "-";
-            ViewBag.tooling_list_price_4 = 0;
-            ViewBag.tooling_list_amount_jpy_4 = 0;
-            ViewBag.tooling_list_amount_sgd_4 = 0;
-
-            ViewBag.tooling_list_description_5 = "-";
-            ViewBag.tooling_list_type_5 = "-";
-            ViewBag.tooling_list_source_5 = "-";
-            ViewBag.tooling_list_qty_5 = 0;
-            ViewBag.tooling_list_unit_5 = "-";
-            ViewBag.tooling_list_price_5 = 0;
-            ViewBag.tooling_list_amount_jpy_5 = 0;
-            ViewBag.tooling_list_amount_sgd_5 = 0;
-
-            ViewBag.tooling_list_description_6 = "-";
-            ViewBag.tooling_list_type_6 = "-";
-            ViewBag.tooling_list_source_6 = "-";
-            ViewBag.tooling_list_qty_6 = 0;
-            ViewBag.tooling_list_unit_6 = "-";
-            ViewBag.tooling_list_price_6 = 0;
-            ViewBag.tooling_list_amount_jpy_6 = 0;
-            ViewBag.tooling_list_amount_sgd_6 = 0;
-
-            ViewBag.tooling_list_description_7 = "-";
-            ViewBag.tooling_list_type_7 = "-";
-            ViewBag.tooling_list_source_7 = "-";
-            ViewBag.tooling_list_qty_7 = 0;
-            ViewBag.tooling_list_unit_7 = "-";
-            ViewBag.tooling_list_price_7 = 0;
-            ViewBag.tooling_list_amount_jpy_7 = 0;
-            ViewBag.tooling_list_amount_sgd_7 = 0;
-
-            ViewBag.tooling_list_description_8 = "-";
-            ViewBag.tooling_list_type_8 = "-";
-            ViewBag.tooling_list_source_8 = "-";
-            ViewBag.tooling_list_qty_8 = 0;
-            ViewBag.tooling_list_unit_8 = "-";
-            ViewBag.tooling_list_price_8 = 0;
-            ViewBag.tooling_list_amount_jpy_8 = 0;
-            ViewBag.tooling_list_amount_sgd_8 = 0;
-
-            ViewBag.tooling_list_description_9 = "-";
-            ViewBag.tooling_list_type_9 = "-";
-            ViewBag.tooling_list_source_9 = "-";
-            ViewBag.tooling_list_qty_9 = 0;
-            ViewBag.tooling_list_unit_9 = "-";
-            ViewBag.tooling_list_price_9 = 0;
-            ViewBag.tooling_list_amount_jpy_9 = 0;
-            ViewBag.tooling_list_amount_sgd_9 = 0;
-
-            ViewBag.tooling_list_description_10 = "-";
-            ViewBag.tooling_list_type_10 = "-";
-            ViewBag.tooling_list_source_10 = "-";
-            ViewBag.tooling_list_qty_10 = 0;
-            ViewBag.tooling_list_unit_10 = "-";
-            ViewBag.tooling_list_price_10 = 0;
-            ViewBag.tooling_list_amount_jpy_10 = 0;
-            ViewBag.tooling_list_amount_sgd_10 = 0;
-
-            ViewBag.tooling_list_description_11 = "-";
-            ViewBag.tooling_list_type_11 = "-";
-            ViewBag.tooling_list_source_11 = "-";
-            ViewBag.tooling_list_qty_11 = 0;
-            ViewBag.tooling_list_unit_11 = "-";
-            ViewBag.tooling_list_price_11 = 0;
-            ViewBag.tooling_list_amount_jpy_11 = 0;
-            ViewBag.tooling_list_amount_sgd_11 = 0;
-
-            ViewBag.tooling_list_description_12 = "-";
-            ViewBag.tooling_list_type_12 = "-";
-            ViewBag.tooling_list_source_12 = "-";
-            ViewBag.tooling_list_qty_12 = 0;
-            ViewBag.tooling_list_unit_12 = "-";
-            ViewBag.tooling_list_price_12 = 0;
-            ViewBag.tooling_list_amount_jpy_12 = 0;
-            ViewBag.tooling_list_amount_sgd_12 = 0;
-
-            ViewBag.tooling_list_description_13 = "-";
-            ViewBag.tooling_list_type_13 = "-";
-            ViewBag.tooling_list_source_13 = "-";
-            ViewBag.tooling_list_qty_13 = 0;
-            ViewBag.tooling_list_unit_13 = "-";
-            ViewBag.tooling_list_price_13 = 0;
-            ViewBag.tooling_list_amount_jpy_13 = 0;
-            ViewBag.tooling_list_amount_sgd_13 = 0;
-
-            ViewBag.tooling_list_description_14 = "-";
-            ViewBag.tooling_list_type_14 = "-";
-            ViewBag.tooling_list_source_14 = "-";
-            ViewBag.tooling_list_qty_14 = 0;
-            ViewBag.tooling_list_unit_14 = "-";
-            ViewBag.tooling_list_price_14 = 0;
-            ViewBag.tooling_list_amount_jpy_14 = 0;
-            ViewBag.tooling_list_amount_sgd_14 = 0;
-
-            ViewBag.tooling_list_description_15 = "-";
-            ViewBag.tooling_list_type_15 = "-";
-            ViewBag.tooling_list_source_15 = "-";
-            ViewBag.tooling_list_qty_15 = 0;
-            ViewBag.tooling_list_unit_15 = "-";
-            ViewBag.tooling_list_price_15 = 0;
-            ViewBag.tooling_list_amount_jpy_15 = 0;
-            ViewBag.tooling_list_amount_sgd_15 = 0;
-
-            ViewBag.tooling_list_total_amount_sgd = 0;
-
-            ViewBag.direct_raw_material = 0;
-            ViewBag.direct_raw_material_p = 0;
-            ViewBag.sub_material = 0;
-            ViewBag.sub_material_p = 0;
-            ViewBag.raw_material_cost_sub_total = 0;
-            ViewBag.raw_material_cost_sub_total_p = 0;
-            ViewBag.labor_cost = 0;
-            ViewBag.labor_cost_p = 0;
-            ViewBag.machine_cost = 0;
-            ViewBag.machine_cost_p = 0;
-            ViewBag.overhead_cost = 0;
-            ViewBag.overhead_cost_p = 0;
-            ViewBag.process_cost_sub_total = 0;
-            ViewBag.process_cost_sub_total_p = 0;
-            ViewBag.defectives = 0;
-            ViewBag.defectives_p = 0;
-            ViewBag.admin_engin_qc = 0;
-            ViewBag.admin_engin_qc_p = 0;
-            ViewBag.tooling_cost = 0;
-            ViewBag.tooling_cost_p = 0;
-            ViewBag.process_margin_adjust = 0;
-            ViewBag.process_margin_adjust_p = 0;
-            ViewBag.other_fixed_cost_sub_total = 0;
-            ViewBag.other_fixed_cost_sub_total_p = 0;
-            ViewBag.grand_total_cost = 0;
-            ViewBag.grand_total_cost_p = 0;
-
-            ViewBag.production_capacity = 0;
-            ViewBag.actual_working_time = 0;
-            ViewBag.cycle_time = 0;
-            ViewBag.efficiency = 0;
-            ViewBag.daily_qty_days = 0;
-            ViewBag.daily_qty_days_p = 0;
-            ViewBag.daily_amount = 0;
-
-
-
-            Tooling listTooling = new Tooling();
-            List<Tooling> tooling = new List<Tooling>();
-
-            HttpClient t = _api.Initial();
-            HttpResponseMessage resTooling = await t.GetAsync("api/tooling/get-all-toolings");
-            if (resTooling.IsSuccessStatusCode)
+            if (CostId > 0)
             {
-                var result = resTooling.Content.ReadAsStringAsync().Result;
-                tooling = JsonConvert.DeserializeObject<List<Tooling>>(result);
-            }
-            ViewBag.Tooling = tooling.Select(x => new SelectListItem()
-            {
-                Text = x.description,
-                Value = x.description + "," + x.source + "," + x.qty + "," + x.unit + "," + x.price
+                HttpClient clientdata = _api.Initial();
 
-            }).ToList();
+                var action = "api/data/get-cost-by-id/" + CostId;
+                HttpResponseMessage resdata = await clientdata.GetAsync(action).ConfigureAwait(false);
 
+                resdata.EnsureSuccessStatusCode();
 
+                if (resdata.IsSuccessStatusCode)
+                {
 
-            Rubber listRubber = new Rubber();
-            List<Rubber> rubber = new List<Rubber>();
+                    var resultdata = resdata.Content.ReadAsStringAsync().Result;
 
+                    costdata = JsonConvert.DeserializeObject<Cost>(resultdata);
 
-            HttpClient r = _api.Initial();
-            HttpResponseMessage resRubber = await r.GetAsync("api/rubber/get-all-rubbers");
-            if (resRubber.IsSuccessStatusCode)
-            {
-                var result = resRubber.Content.ReadAsStringAsync().Result;
-                rubber = JsonConvert.DeserializeObject<List<Rubber>>(result);
+                }
             }
 
-            ViewBag.Rubber = rubber.Select(x => new SelectListItem()
-            {
-                Text = x.material_name,
-                Value = x.material_name + "," + x.price_kg + "," + x.mixing_process_cost + "," + x.weight_g + "," + x.yield_rate
+            await RubberViewBag();
 
-            }).ToList();
+            await ToolingViewBag(item_od);
 
+            ViewBag.searchcode = "-";
+            //set the input field values as keyin value
+            costdata.CostId = CostId;
+            costdata.issue_date = issue_date;
+            costdata.section = section;
+            costdata.doc_no = doc_no;
+            costdata.wr_no = wr_no;
+            costdata.sales = sales;
+            costdata.revision_no = revision_no;
+            costdata.checked_date = checked_date;
+            costdata.approved_by = approved_by;
+            costdata.expired_by = expired_by;
+            costdata.customer = customer;
+            costdata.parts_code = parts_code;
+            costdata.item = item;
+            costdata.product = product;
+            costdata.product_type = product_type;
+            //costdata.size=size;
+            costdata.item_id = item_id;
+            costdata.item_od = item_od;
+            costdata.item_w = item_w;
+            costdata.item_w2 = item_w2;
+            costdata.business_type = business_type;
+            costdata.qty_month = qty_month;
+            costdata.exchange_rate_jpy = exchange_rate_jpy;
+            costdata.exchange_rate_usd = exchange_rate_usd;
+            costdata.exchange_rate_eud = exchange_rate_eud;
+            costdata.target_price_sgd = target_price_sgd;
+            costdata.target_price_wr_sgd = target_price_wr_sgd;
+            costdata.target_price_usd = target_price_usd;
+            costdata.target_price_wr_usd = target_price_wr_usd;
+            costdata.target_price_eud = target_price_eud;
+            costdata.target_price_wr_eud = target_price_wr_eud;
+            costdata.production_qty_day = production_qty_day;
+            costdata.working_day = working_day;
+            costdata.rubber_material_name = rubber_material_name;
 
+            costdata.rubber_price_kg = rubber_price_kg;
+            costdata.rubber_mixing_process_cost = rubber_mixing_process_cost;
+            costdata.rubber_weight_g = rubber_weight_g;
+            costdata.rubber_weight_kg = rubber_weight_kg;
+            costdata.rubber_yield_rate = rubber_yield_rate;
+            costdata.rubber_weight_kg_yieldrate = rubber_weight_kg_yieldrate;
+            costdata.rubber_cost_sgd = rubber_cost_sgd;
+            costdata.rubber_percentage_target_price = rubber_percentage_target_price;
+            costdata.rubber_material_name2 = rubber_material_name2;
+            costdata.rubber_price_kg2 = rubber_price_kg2;
+            costdata.rubber_mixing_process_cost2 = rubber_mixing_process_cost2;
+            costdata.rubber_weight_g2 = rubber_weight_g2;
+            costdata.rubber_weight_kg2 = rubber_weight_kg2;
+            costdata.rubber_yield_rate2 = rubber_yield_rate2;
+            costdata.rubber_weight_kg_yieldrate2 = rubber_weight_kg_yieldrate2;
+            costdata.rubber_cost_sgd2 = rubber_cost_sgd2;
+            costdata.rubber_percentage_target_price2 = rubber_percentage_target_price2;
 
-           
+            DataValue(costdata);// the less of the value follow the default value;
 
-
+            // keep for reference
             ListModel list = new ListModel();
             ViewData["plant"] = list.plant;
             ViewData["item_spec"] = list.item_spec;
 
+
+            List<ListModel> model = list.partscode.ToList();
+            ViewData["partscode"] = model;
+
+            dynamic mymodel = new ExpandoObject();
+            //mymodel.code = model;
+
+            return View("Index",mymodel);
+        }
+
+        public async Task<IActionResult> Read(int id)
+        {
+            ViewBag.CostId = id;
+
+            HttpClient clientdata = _api.Initial();
+
+            var action = "api/data/get-cost-by-id/"+id;
+            HttpResponseMessage resdata = await clientdata.GetAsync(action).ConfigureAwait(false);
+
+            resdata.EnsureSuccessStatusCode();
+
+            if (resdata.IsSuccessStatusCode)
+            {
+                var resultdata = resdata.Content.ReadAsStringAsync().Result;
+
+                Cost costdata = new Cost();
+                costdata = JsonConvert.DeserializeObject<Cost>(resultdata);
+
+                DataValue(costdata);
+                await ToolingViewBag(costdata.item_od);
+                await RubberViewBag();
+
+                ListModel list = new ListModel();
+                ViewData["plant"] = list.plant;
+                ViewData["item_spec"] = list.item_spec;
+
+                List<ListModel> model = list.partscode.ToList();
+                ViewData["partscode"] = model;
+            }
+
+            dynamic mymodel = new ExpandoObject();
+            return View("Index",mymodel); 
+        }
+
+        public async Task<IActionResult> GetDocNo(string search_code)
+        {
+            ListModel list = new ListModel();
             List<Cost> cost = new List<Cost>();
             HttpClient client = _api.Initial();
             try
             {
-                HttpResponseMessage res = await client.GetAsync("api/data/get-all-costs");
+                HttpResponseMessage res = await client.GetAsync("api/data/get-cost-by-search/"+search_code);
                 if (res.IsSuccessStatusCode)
                 {
                     var result = res.Content.ReadAsStringAsync().Result;
@@ -505,6 +263,13 @@ namespace CostNag.Controllers
             }
             catch (Exception e) { }
 
+            Cost costdata = new Cost();
+            ViewBag.searchcode = search_code;
+            DataValue(costdata);
+
+
+            await RubberViewBag();
+
             List<ListModel> model = list.partscode.ToList();
             ViewData["partscode"] = model;
 
@@ -515,1038 +280,52 @@ namespace CostNag.Controllers
         }
 
 
-        public void DataValue(
-            string plant, string item_spec, string issue_date, string section,
-            string doc_no, string wr_no, string sales,string revision_no, string checked_date,
-            string approved_by,
-            string expired_by,
-            string customer,
-            string parts_code,
-            string item,
-            string product,
-            string product_type,
-            string size,
-            double item_id, double item_od,
-            double item_w,double item_w2,string business_type,double qty_month,
-            double exchange_rate_jpy,double exchange_rate_usd,double exchange_rate_eud,
-            double target_price_sgd,double target_price_usd,
-            double target_price_eud,double target_price_wr_sgd,double target_price_wr_usd,
-            double target_price_wr_eud,double production_qty_day,
-            double working_day,double rubber_weight_g_total,
-
-            string rubber_material_name,
-            double rubber_database_price_current,
-            double rubber_database_price_new,
-            double rubber_price_kg,
-            double rubber_mixing_process_cost,
-            double rubber_weight_g,
-            double rubber_weight_kg,
-            double rubber_yield_rate,
-            double rubber_weight_kg_yieldrate,
-            double rubber_cost_sgd,
-            double rubber_percentage_target_price,
-
-            string rubber_material_name2,
-            double rubber_database_price_current2,
-            double rubber_database_price_new2,
-            double rubber_price_kg2,
-            double rubber_mixing_process_cost2,
-            double rubber_weight_g2,
-            double rubber_weight_kg2,
-            double rubber_yield_rate2,
-            double rubber_weight_kg_yieldrate2,
-            double rubber_cost_sgd2,
-            double rubber_percentage_target_price2,
-
-            string material_inhouse_name_1,
-            string material_inhouse_info_1,
-            double material_inhouse_value_1,
-            double material_inhouse_value_1b,
-            double material_inhouse_cost_sgd_1,
-            double material_inhouse_percentage_target_price_1,
-
-            string material_inhouse_name_2,
-            string material_inhouse_info_2,
-            double material_inhouse_value_2,
-            double material_inhouse_value_2b,
-            double material_inhouse_cost_sgd_2,
-            double material_inhouse_percentage_target_price_2,
-
-            string material_inhouse_name_3,
-            string material_inhouse_info_3,
-            double material_inhouse_value_3,
-            double material_inhouse_value_3b,
-            double material_inhouse_cost_sgd_3,
-            double material_inhouse_percentage_target_price_3,
-            string material_outside_name_1,
-            string material_outside_info_1,
-            double material_outside_value_1,
-            double material_outside_value_1b,
-            double material_outside_cost_sgd_1,
-            double material_outside_percentage_target_price_1,
-            string material_outside_name_2,
-            string material_outside_info_2,
-            double material_outside_value_2,
-            double material_outside_value_2b,
-            double material_outside_cost_sgd_2,
-            double material_outside_percentage_target_price_2,
-            string material_outside_name_3,
-            string material_outside_info_3,
-            double material_outside_value_3,
-            double material_outside_value_3b,
-            double material_outside_cost_sgd_3,
-            double material_outside_percentage_target_price_3,
-            double direct_material_cost,
-            double direct_material_cost_percentage,
-            double sub_material_percentage,
-            double sub_material_cost,
-            double sub_material_cost_percentage,
-            double direct_process_cost,
-            double direct_process_cost_percentage,
-            double total_direct_cost,
-            double total_direct_cost_percentage,
-            double defective_percentage,
-            double defective_cost,
-            double defective_cost_percentage,
-            double indirect_percentage,
-            double indirect_cost,
-            double indirect_cost_percentage,
-            double packing_material_percentage,
-            double special_package_cost,
-            double packing_material_cost,
-            double packing_material_cost_percentage,
-            double administration_percentage,
-            double administration_cost,
-            double administration_cost_percentage,
-            double plant_retail_percentage,
-            double plant_retail_cost,
-            double plant_retail_cost_percentage,
-            double moldjig_percentage,
-            double moldjig_cost,
-            double moldjig_cost_percentage,
-            double die_percentage,
-            double die_cost,
-            double die_cost_percentage,
-            string note,
-            double net_included_tooling_cost,
-            double net_included_tooling_cost_percentage,
-            double net_exclude_tooling_cost,
-            double net_exclude_tooling_cost_percentage,
-            string tooling_list_description_1,
-            string tooling_list_type_1,
-            string tooling_list_source_1,
-            double tooling_list_qty_1,
-            string tooling_list_unit_1,
-            double tooling_list_price_1,
-            double tooling_list_amount_jpy_1,
-            double tooling_list_amount_sgd_1,
-
-            string tooling_list_description_2,
-            string tooling_list_type_2,
-            string tooling_list_source_2,
-            double tooling_list_qty_2,
-            string tooling_list_unit_2,
-            double tooling_list_price_2,
-            double tooling_list_amount_jpy_2,
-            double tooling_list_amount_sgd_2,
-
-            string tooling_list_description_3,
-            string tooling_list_type_3,
-            string tooling_list_source_3,
-            double tooling_list_qty_3,
-            string tooling_list_unit_3,
-            double tooling_list_price_3,
-            double tooling_list_amount_jpy_3,
-            double tooling_list_amount_sgd_3,
-
-            string tooling_list_description_4,
-            string tooling_list_type_4,
-            string tooling_list_source_4,
-            double tooling_list_qty_4,
-            string tooling_list_unit_4,
-            double tooling_list_price_4,
-            double tooling_list_amount_jpy_4,
-            double tooling_list_amount_sgd_4,
-
-            string tooling_list_description_5,
-            string tooling_list_type_5,
-            string tooling_list_source_5,
-            double tooling_list_qty_5,
-            string tooling_list_unit_5,
-            double tooling_list_price_5,
-            double tooling_list_amount_jpy_5,
-            double tooling_list_amount_sgd_5,
-
-            string tooling_list_description_6,
-            string tooling_list_type_6,
-            string tooling_list_source_6,
-            double tooling_list_qty_6,
-            string tooling_list_unit_6,
-            double tooling_list_price_6,
-            double tooling_list_amount_jpy_6,
-            double tooling_list_amount_sgd_6,
-
-            string tooling_list_description_7,
-            string tooling_list_type_7,
-            string tooling_list_source_7,
-            double tooling_list_qty_7,
-            string tooling_list_unit_7,
-            double tooling_list_price_7,
-            double tooling_list_amount_jpy_7,
-            double tooling_list_amount_sgd_7,
-
-            string tooling_list_description_8,
-            string tooling_list_type_8,
-            string tooling_list_source_8,
-            double tooling_list_qty_8,
-            string tooling_list_unit_8,
-            double tooling_list_price_8,
-            double tooling_list_amount_jpy_8,
-            double tooling_list_amount_sgd_8,
-
-            string tooling_list_description_9,
-            string tooling_list_type_9,
-            string tooling_list_source_9,
-            double tooling_list_qty_9,
-            string tooling_list_unit_9,
-            double tooling_list_price_9,
-            double tooling_list_amount_jpy_9,
-            double tooling_list_amount_sgd_9,
-
-            string tooling_list_description_10,
-            string tooling_list_type_10,
-            string tooling_list_source_10,
-            double tooling_list_qty_10,
-            string tooling_list_unit_10,
-            double tooling_list_price_10,
-            double tooling_list_amount_jpy_10,
-            double tooling_list_amount_sgd_10,
-
-            string tooling_list_description_11,
-            string tooling_list_type_11,
-            string tooling_list_source_11,
-            double tooling_list_qty_11,
-            string tooling_list_unit_11,
-            double tooling_list_price_11,
-            double tooling_list_amount_jpy_11,
-            double tooling_list_amount_sgd_11,
-
-            string tooling_list_description_12,
-            string tooling_list_type_12,
-            string tooling_list_source_12,
-            double tooling_list_qty_12,
-            string tooling_list_unit_12,
-            double tooling_list_price_12,
-            double tooling_list_amount_jpy_12,
-            double tooling_list_amount_sgd_12,
-
-            string tooling_list_description_13,
-            string tooling_list_type_13,
-            string tooling_list_source_13,
-            double tooling_list_qty_13,
-            string tooling_list_unit_13,
-            double tooling_list_price_13,
-            double tooling_list_amount_jpy_13,
-            double tooling_list_amount_sgd_13,
-
-            string tooling_list_description_14,
-            string tooling_list_type_14,
-            string tooling_list_source_14,
-            double tooling_list_qty_14,
-            string tooling_list_unit_14,
-            double tooling_list_price_14,
-            double tooling_list_amount_jpy_14,
-            double tooling_list_amount_sgd_14,
-
-            string tooling_list_description_15,
-            string tooling_list_type_15,
-            string tooling_list_source_15,
-            double tooling_list_qty_15,
-            string tooling_list_unit_15,
-            double tooling_list_price_15,
-            double tooling_list_amount_jpy_15,
-            double tooling_list_amount_sgd_15,
-
-            double tooling_list_total_amount_sgd,
-            double direct_raw_material,
-            double direct_raw_material_p,
-            double sub_material,
-            double sub_material_p,
-            double raw_material_cost_sub_total,
-            double raw_material_cost_sub_total_p,
-            double labor_cost,
-            double labor_cost_p,
-            double machine_cost,
-            double machine_cost_p,
-            double overhead_cost,
-            double overhead_cost_p,
-            double process_cost_sub_total,
-            double process_cost_sub_total_p,
-            double defectives,
-            double defectives_p,
-            double admin_engin_qc,
-            double admin_engin_qc_p,
-            double tooling_cost,
-            double tooling_cost_p,
-            double process_margin_adjust,
-            double process_margin_adjust_p,
-            double other_fixed_cost_sub_total,
-            double other_fixed_cost_sub_total_p,
-            double grand_total_cost,
-            double grand_total_cost_p,
-            double production_capacity,
-            double actual_working_time,
-            double cycle_time,
-            double efficiency,
-            double daily_qty_days,
-            double daily_qty_days_p,
-            double daily_amount
-            
-        )
+        public async Task<IActionResult> RubberViewBag()
         {
-            ViewBag.process_type = "Process Type";
+            Rubber listRubber = new Rubber();
+            List<Rubber> rubber = new List<Rubber>();
 
-            ViewBag.plant = plant;
-            ViewBag.item_spec = item_spec;
-            ViewBag.issue_date = issue_date;
-            ViewBag.section = section;
-            ViewBag.doc_no = doc_no;
-            ViewBag.wr_no = wr_no;
-            ViewBag.sales = sales;
-            ViewBag.revision_no = revision_no;
-            ViewBag.checked_date = checked_date;
-            ViewBag.approved_by = approved_by;
-            ViewBag.expired_by = expired_by;
-            ViewBag.customer = customer;
-            ViewBag.parts_code = parts_code;
-            ViewBag.item = item;
-            ViewBag.product = product;
-            ViewBag.product_type = product_type;
-            ViewBag.size = size;
-            ViewBag.item_id = item_id;
-            ViewBag.item_od = item_od;
-            ViewBag.item_w = item_w;
-            ViewBag.item_w2 = item_w2;
-            ViewBag.business_type = business_type;
-            ViewBag.qty_month = qty_month;
+            HttpClient r = _api.Initial();
+            HttpResponseMessage resRubber = await r.GetAsync("api/rubber/get-all-rubbers");
+            if (resRubber.IsSuccessStatusCode)
+            {
+                var result = resRubber.Content.ReadAsStringAsync().Result;
+                rubber = JsonConvert.DeserializeObject<List<Rubber>>(result);
+            }
 
-            ViewBag.exchange_rate_jpy = exchange_rate_jpy;
-            ViewBag.exchange_rate_usd = exchange_rate_usd;
-            ViewBag.exchange_rate_eud = exchange_rate_eud;
+            //List<Rubber> rubberModel = listRubber.data.ToList();
 
-            ViewBag.target_price_sgd = target_price_sgd;
-            ViewBag.target_price_usd = target_price_usd;
-            ViewBag.target_price_eud = target_price_eud;
-            ViewBag.target_price_wr_sgd = target_price_wr_sgd;
-            ViewBag.target_price_wr_usd = target_price_wr_usd;
-            ViewBag.target_price_wr_eud = target_price_wr_eud;
+            ViewBag.Rubber = rubber.Select(x => new SelectListItem()
+            {
+                Text = x.material_name,
+                Value = x.material_name + "," + x.price_kg + "," + x.mixing_process_cost + "," + x.weight_g + "," + x.yield_rate
 
-            ViewBag.production_qty_day = production_qty_day;
-            ViewBag.working_day = working_day;
+            }).ToList();
 
-            ViewBag.rubber_weight_g_total = rubber_weight_g_total;
-
-            ViewBag.rubber_material_name = rubber_material_name;
-            ViewBag.rubber_database_price_current = rubber_database_price_current;
-            ViewBag.rubber_database_price_new = rubber_database_price_new;
-            ViewBag.rubber_price_kg = rubber_price_kg;
-            ViewBag.rubber_mixing_process_cost = rubber_mixing_process_cost;
-            ViewBag.rubber_weight_g = rubber_weight_g;
-            ViewBag.rubber_weight_kg = rubber_weight_kg;
-            ViewBag.rubber_yield_rate = rubber_yield_rate;
-            ViewBag.rubber_weight_kg_yieldrate = rubber_weight_kg_yieldrate;
-            ViewBag.rubber_cost_sgd = rubber_cost_sgd;
-            ViewBag.rubber_percentage_target_price = rubber_percentage_target_price;
-
-            ViewBag.rubber_material_name2 = rubber_material_name2;
-            ViewBag.rubber_database_price_current2 = rubber_database_price_current2;
-            ViewBag.rubber_database_price_new2 = rubber_database_price_new2;
-            ViewBag.rubber_price_kg2 = rubber_price_kg2;
-            ViewBag.rubber_mixing_process_cost2 = rubber_mixing_process_cost2;
-            ViewBag.rubber_weight_g2 = rubber_weight_g2;
-            ViewBag.rubber_weight_kg2 = rubber_weight_kg2;
-            ViewBag.rubber_yield_rate2 = rubber_yield_rate2;
-            ViewBag.rubber_weight_kg_yieldrate2 = rubber_weight_kg_yieldrate2;
-            ViewBag.rubber_cost_sgd2 = rubber_cost_sgd2;
-            ViewBag.rubber_percentage_target_price2 = rubber_percentage_target_price2;
-
-            ViewBag.material_inhouse_name_1 = "-";
-            ViewBag.material_inhouse_info_1 = "-";
-            ViewBag.material_inhouse_value_1 = 0;
-            ViewBag.material_inhouse_info_1b = "gram/pcs       $/kg";
-            ViewBag.material_inhouse_value_1b = 0;
-            ViewBag.material_inhouse_cost_sgd_1 = 0;
-            ViewBag.material_inhouse_percentage_target_price_1 = 0;
-
-            ViewBag.material_inhouse_name_2 = "-";
-            ViewBag.material_inhouse_info_2 = "-";
-            ViewBag.material_inhouse_value_2 = 0;
-            ViewBag.material_inhouse_info_2b = "gram/pcs       $/kg";
-            ViewBag.material_inhouse_value_2b = 0;
-            ViewBag.material_inhouse_cost_sgd_2 = 0;
-            ViewBag.material_inhouse_percentage_target_price_2 = 0;
-
-            ViewBag.material_inhouse_name_3 = "-";
-            ViewBag.material_inhouse_info_3 = "-";
-            ViewBag.material_inhouse_value_3 = 0;
-            ViewBag.material_inhouse_info_3b = "gram/pcs       $/kg";
-            ViewBag.material_inhouse_value_3b = 0;
-            ViewBag.material_inhouse_cost_sgd_3 = 0;
-            ViewBag.material_inhouse_percentage_target_price_3 = 0;
-
-            ViewBag.material_outside_name_1 = "-";
-            ViewBag.material_outside_info_1 = "-";
-            ViewBag.material_outside_value_1 = 0;
-            ViewBag.material_outside_info_1b = "gram/pcs       $/kg";
-            ViewBag.material_outside_value_1b = 0;
-            ViewBag.material_outside_cost_sgd_1 = 0;
-            ViewBag.material_outside_percentage_target_price_1 = 0;
-
-            ViewBag.material_outside_name_2 = "-";
-            ViewBag.material_outside_info_2 = "-";
-            ViewBag.material_outside_value_2 = 0;
-            ViewBag.material_outside_info_2b = "gram/pcs       $/kg";
-            ViewBag.material_outside_value_2b = 0;
-            ViewBag.material_outside_cost_sgd_2 = 0;
-            ViewBag.material_outside_percentage_target_price_2 = 0;
-
-            ViewBag.material_outside_name_3 = "-";
-            ViewBag.material_outside_info_3 = "-";
-            ViewBag.material_outside_value_3 = 0;
-            ViewBag.material_outside_info_3b = "gram/pcs       $/kg";
-            ViewBag.material_outside_value_3b = 0;
-            ViewBag.material_outside_cost_sgd_3 = 0;
-            ViewBag.material_outside_percentage_target_price_3 = 0;
-
-            ViewBag.direct_material_cost = 0;
-            ViewBag.direct_material_cost_percentage = 0;
-            ViewBag.sub_material_percentage = 10;
-            ViewBag.sub_material_cost = 0;
-            ViewBag.sub_material_cost_percentage = 0;
-            ViewBag.direct_process_cost = 0;
-            ViewBag.direct_process_cost_percentage = 0;
-            ViewBag.total_direct_cost = 0;
-            ViewBag.total_direct_cost_percentage = 0;
-            ViewBag.defective_percentage = 3;
-            ViewBag.defective_cost = 0;
-            ViewBag.defective_cost_percentage = 0;
-            ViewBag.indirect_percentage = 15;
-            ViewBag.indirect_cost = 0;
-            ViewBag.indirect_cost_percentage = 0;
-            ViewBag.packing_material_percentage = 5;
-            ViewBag.special_package_cost = 0;
-            ViewBag.packing_material_cost = 0;
-            ViewBag.packing_material_cost_percentage = 0;
-            ViewBag.administration_percentage = 10;
-            ViewBag.administration_cost = 0;
-            ViewBag.administration_cost_percentage = 0;
-            ViewBag.plant_retail_percentage = 5;
-            ViewBag.plant_retail_cost = 0;
-            ViewBag.plant_retail_cost_percentage = 0;
-            ViewBag.moldjig_percentage = 0;
-            ViewBag.moldjig_cost = 0;
-            ViewBag.moldjig_cost_percentage = 0;
-            ViewBag.die_percentage = 0;
-            ViewBag.die_cost = die_cost;
-            ViewBag.die_cost_percentage = die_cost_percentage;
-            ViewBag.note = note;
-            ViewBag.net_included_tooling_cost = net_included_tooling_cost;
-            ViewBag.net_included_tooling_cost_percentage = net_included_tooling_cost_percentage;
-            ViewBag.net_exclude_tooling_cost = net_exclude_tooling_cost;
-            ViewBag.net_exclude_tooling_cost_percentage = net_exclude_tooling_cost_percentage;
-
-            ViewBag.tooling_list_description_1 = tooling_list_description_1;
-            ViewBag.tooling_list_type_1 = tooling_list_type_1;
-            ViewBag.tooling_list_source_1 = tooling_list_source_1;
-            ViewBag.tooling_list_qty_1 = tooling_list_qty_1;
-            ViewBag.tooling_list_unit_1 = tooling_list_unit_1;
-            ViewBag.tooling_list_price_1 = tooling_list_price_1;
-            ViewBag.tooling_list_amount_jpy_1 = tooling_list_amount_jpy_1;
-            ViewBag.tooling_list_amount_sgd_1 = tooling_list_amount_sgd_1;
-
-            ViewBag.tooling_list_description_1 = tooling_list_description_2;
-            ViewBag.tooling_list_type_1 = tooling_list_type_2;
-            ViewBag.tooling_list_source_1 = tooling_list_source_2;
-            ViewBag.tooling_list_qty_1 = tooling_list_qty_2;
-            ViewBag.tooling_list_unit_1 = tooling_list_unit_2;
-            ViewBag.tooling_list_price_1 = tooling_list_price_2;
-            ViewBag.tooling_list_amount_jpy_1 = tooling_list_amount_jpy_2;
-            ViewBag.tooling_list_amount_sgd_1 = tooling_list_amount_sgd_2;
-
-            ViewBag.tooling_list_description_1 = tooling_list_description_3;
-            ViewBag.tooling_list_type_1 = tooling_list_type_3;
-            ViewBag.tooling_list_source_1 = tooling_list_source_3;
-            ViewBag.tooling_list_qty_1 = tooling_list_qty_3;
-            ViewBag.tooling_list_unit_1 = tooling_list_unit_3;
-            ViewBag.tooling_list_price_1 = tooling_list_price_3;
-            ViewBag.tooling_list_amount_jpy_1 = tooling_list_amount_jpy_3;
-            ViewBag.tooling_list_amount_sgd_1 = tooling_list_amount_sgd_3;
-
-            ViewBag.tooling_list_description_1 = tooling_list_description_4;
-            ViewBag.tooling_list_type_1 = tooling_list_type_4;
-            ViewBag.tooling_list_source_1 = tooling_list_source_4;
-            ViewBag.tooling_list_qty_1 = tooling_list_qty_4;
-            ViewBag.tooling_list_unit_1 = tooling_list_unit_4;
-            ViewBag.tooling_list_price_1 = tooling_list_price_4;
-            ViewBag.tooling_list_amount_jpy_1 = tooling_list_amount_jpy_4;
-            ViewBag.tooling_list_amount_sgd_1 = tooling_list_amount_sgd_4;
-
-            ViewBag.tooling_list_description_1 = tooling_list_description_5;
-            ViewBag.tooling_list_type_1 = tooling_list_type_5;
-            ViewBag.tooling_list_source_1 = tooling_list_source_5;
-            ViewBag.tooling_list_qty_1 = tooling_list_qty_5;
-            ViewBag.tooling_list_unit_1 = tooling_list_unit_5;
-            ViewBag.tooling_list_price_1 = tooling_list_price_5;
-            ViewBag.tooling_list_amount_jpy_1 = tooling_list_amount_jpy_5;
-            ViewBag.tooling_list_amount_sgd_1 = tooling_list_amount_sgd_5;
-
-            ViewBag.tooling_list_description_1 = tooling_list_description_6;
-            ViewBag.tooling_list_type_1 = tooling_list_type_6;
-            ViewBag.tooling_list_source_1 = tooling_list_source_6;
-            ViewBag.tooling_list_qty_1 = tooling_list_qty_6;
-            ViewBag.tooling_list_unit_1 = tooling_list_unit_6;
-            ViewBag.tooling_list_price_1 = tooling_list_price_6;
-            ViewBag.tooling_list_amount_jpy_1 = tooling_list_amount_jpy_6;
-            ViewBag.tooling_list_amount_sgd_1 = tooling_list_amount_sgd_6;
-
-            ViewBag.tooling_list_description_1 = tooling_list_description_7;
-            ViewBag.tooling_list_type_1 = tooling_list_type_7;
-            ViewBag.tooling_list_source_1 = tooling_list_source_7;
-            ViewBag.tooling_list_qty_1 = tooling_list_qty_7;
-            ViewBag.tooling_list_unit_1 = tooling_list_unit_7;
-            ViewBag.tooling_list_price_1 = tooling_list_price_7;
-            ViewBag.tooling_list_amount_jpy_1 = tooling_list_amount_jpy_7;
-            ViewBag.tooling_list_amount_sgd_1 = tooling_list_amount_sgd_7;
-
-            ViewBag.tooling_list_description_1 = tooling_list_description_8;
-            ViewBag.tooling_list_type_1 = tooling_list_type_8;
-            ViewBag.tooling_list_source_1 = tooling_list_source_8;
-            ViewBag.tooling_list_qty_1 = tooling_list_qty_8;
-            ViewBag.tooling_list_unit_1 = tooling_list_unit_8;
-            ViewBag.tooling_list_price_1 = tooling_list_price_8;
-            ViewBag.tooling_list_amount_jpy_1 = tooling_list_amount_jpy_8;
-            ViewBag.tooling_list_amount_sgd_1 = tooling_list_amount_sgd_8;
-
-            ViewBag.tooling_list_description_1 = tooling_list_description_9;
-            ViewBag.tooling_list_type_1 = tooling_list_type_9;
-            ViewBag.tooling_list_source_1 = tooling_list_source_9;
-            ViewBag.tooling_list_qty_1 = tooling_list_qty_9;
-            ViewBag.tooling_list_unit_1 = tooling_list_unit_9;
-            ViewBag.tooling_list_price_1 = tooling_list_price_9;
-            ViewBag.tooling_list_amount_jpy_1 = tooling_list_amount_jpy_9;
-            ViewBag.tooling_list_amount_sgd_1 = tooling_list_amount_sgd_9;
-
-            ViewBag.tooling_list_description_1 = tooling_list_description_10;
-            ViewBag.tooling_list_type_1 = tooling_list_type_10;
-            ViewBag.tooling_list_source_1 = tooling_list_source_10;
-            ViewBag.tooling_list_qty_1 = tooling_list_qty_10;
-            ViewBag.tooling_list_unit_1 = tooling_list_unit_10;
-            ViewBag.tooling_list_price_1 = tooling_list_price_10;
-            ViewBag.tooling_list_amount_jpy_1 = tooling_list_amount_jpy_10;
-            ViewBag.tooling_list_amount_sgd_1 = tooling_list_amount_sgd_10;
-
-            ViewBag.tooling_list_description_1 = tooling_list_description_11;
-            ViewBag.tooling_list_type_1 = tooling_list_type_11;
-            ViewBag.tooling_list_source_1 = tooling_list_source_11;
-            ViewBag.tooling_list_qty_1 = tooling_list_qty_11;
-            ViewBag.tooling_list_unit_1 = tooling_list_unit_11;
-            ViewBag.tooling_list_price_1 = tooling_list_price_11;
-            ViewBag.tooling_list_amount_jpy_1 = tooling_list_amount_jpy_11;
-            ViewBag.tooling_list_amount_sgd_1 = tooling_list_amount_sgd_11;
-
-            ViewBag.tooling_list_description_1 = tooling_list_description_12;
-            ViewBag.tooling_list_type_1 = tooling_list_type_12;
-            ViewBag.tooling_list_source_1 = tooling_list_source_12;
-            ViewBag.tooling_list_qty_1 = tooling_list_qty_12;
-            ViewBag.tooling_list_unit_1 = tooling_list_unit_12;
-            ViewBag.tooling_list_price_1 = tooling_list_price_12;
-            ViewBag.tooling_list_amount_jpy_1 = tooling_list_amount_jpy_12;
-            ViewBag.tooling_list_amount_sgd_1 = tooling_list_amount_sgd_12;
-
-            ViewBag.tooling_list_description_1 = tooling_list_description_13;
-            ViewBag.tooling_list_type_1 = tooling_list_type_13;
-            ViewBag.tooling_list_source_1 = tooling_list_source_13;
-            ViewBag.tooling_list_qty_1 = tooling_list_qty_13;
-            ViewBag.tooling_list_unit_1 = tooling_list_unit_13;
-            ViewBag.tooling_list_price_1 = tooling_list_price_13;
-            ViewBag.tooling_list_amount_jpy_1 = tooling_list_amount_jpy_13;
-            ViewBag.tooling_list_amount_sgd_1 = tooling_list_amount_sgd_13;
-
-            ViewBag.tooling_list_description_1 = tooling_list_description_14;
-            ViewBag.tooling_list_type_1 = tooling_list_type_14;
-            ViewBag.tooling_list_source_1 = tooling_list_source_14;
-            ViewBag.tooling_list_qty_1 = tooling_list_qty_14;
-            ViewBag.tooling_list_unit_1 = tooling_list_unit_14;
-            ViewBag.tooling_list_price_1 = tooling_list_price_14;
-            ViewBag.tooling_list_amount_jpy_1 = tooling_list_amount_jpy_14;
-            ViewBag.tooling_list_amount_sgd_1 = tooling_list_amount_sgd_14;
-
-            ViewBag.tooling_list_description_1 = tooling_list_description_15;
-            ViewBag.tooling_list_type_1 = tooling_list_type_15;
-            ViewBag.tooling_list_source_1 = tooling_list_source_15;
-            ViewBag.tooling_list_qty_1 = tooling_list_qty_15;
-            ViewBag.tooling_list_unit_1 = tooling_list_unit_15;
-            ViewBag.tooling_list_price_1 = tooling_list_price_15;
-            ViewBag.tooling_list_amount_jpy_1 = tooling_list_amount_jpy_15;
-            ViewBag.tooling_list_amount_sgd_1 = tooling_list_amount_sgd_15;
-
-            ViewBag.tooling_list_total_amount_sgd = tooling_list_total_amount_sgd;
-
-            ViewBag.direct_raw_material = direct_raw_material;
-            ViewBag.direct_raw_material_p = direct_raw_material_p;
-            ViewBag.sub_material = sub_material;
-            ViewBag.sub_material_p = sub_material_p;
-            ViewBag.raw_material_cost_sub_total = raw_material_cost_sub_total;
-            ViewBag.raw_material_cost_sub_total_p = raw_material_cost_sub_total_p;
-            ViewBag.labor_cost = labor_cost;
-            ViewBag.labor_cost_p = labor_cost_p;
-            ViewBag.machine_cost = machine_cost;
-            ViewBag.machine_cost_p = machine_cost_p;
-            ViewBag.overhead_cost = overhead_cost;
-            ViewBag.overhead_cost_p = overhead_cost_p;
-            ViewBag.process_cost_sub_total = process_cost_sub_total;
-            ViewBag.process_cost_sub_total_p = process_cost_sub_total_p;
-            ViewBag.defectives = defectives;
-            ViewBag.defectives_p = defectives_p;
-            ViewBag.admin_engin_qc = admin_engin_qc;
-            ViewBag.admin_engin_qc_p = admin_engin_qc_p;
-            ViewBag.tooling_cost = tooling_cost;
-            ViewBag.tooling_cost_p = tooling_cost_p;
-            ViewBag.process_margin_adjust = process_margin_adjust;
-            ViewBag.process_margin_adjust_p = process_margin_adjust_p;
-            ViewBag.other_fixed_cost_sub_total = other_fixed_cost_sub_total;
-            ViewBag.other_fixed_cost_sub_total_p = other_fixed_cost_sub_total_p;
-            ViewBag.grand_total_cost = grand_total_cost;
-            ViewBag.grand_total_cost_p = grand_total_cost_p;
-
-            ViewBag.production_capacity = production_capacity;
-            ViewBag.actual_working_time = actual_working_time;
-            ViewBag.cycle_time = cycle_time;
-            ViewBag.efficiency = efficiency;
-            ViewBag.daily_qty_days = daily_qty_days;
-            ViewBag.daily_qty_days_p = daily_qty_days_p;
-            ViewBag.daily_amount = daily_amount;
+            return null;
         }
 
-
-        public async Task<IActionResult> Read(int id)
+        public async Task<IActionResult> ToolingViewBag(double item_od)
         {
-            ViewBag.CostId = id;
+            Tooling listTooling = new Tooling();
+            List<Tooling> tooling = new List<Tooling>();
 
-            ListModel list = new ListModel();
-            ViewData["plant"] = list.plant;
-            ViewData["item_spec"] = list.item_spec;
-            List<Cost> cost = new List<Cost>();
-            HttpClient client = _api.Initial();
-            HttpResponseMessage res = await client.GetAsync("api/data/get-all-costs");
-            if (res.IsSuccessStatusCode)
+            HttpClient t = _api.Initial();
+            HttpResponseMessage resTooling = await t.GetAsync("api/tooling/get-tooling-by-od/" + item_od);
+            if (resTooling.IsSuccessStatusCode)
             {
-                var result = res.Content.ReadAsStringAsync().Result;
-                cost = JsonConvert.DeserializeObject<List<Cost>>(result);
-                foreach (var o in cost)
-                {
-                    list.partscode.Add(new ListModel
-                    {
-                        doc_no = o.doc_no,
-                        code = o.parts_code,
-                        id = o.CostId.ToString()
+                var result = resTooling.Content.ReadAsStringAsync().Result;
+                tooling = JsonConvert.DeserializeObject<List<Tooling>>(result);
 
-                    });
-                }
-            }
-            List<ListModel> model = list.partscode.ToList();
-            ViewData["partscode"] = model;
-
-            Cost costdata = new Cost();
-            
-            //HttpClient clientdata = _api.Initial();
-            //HttpResponseMessage resdata = await clientdata.GetAsync("api/data/get-cost-by-id/5" + id);
-
-
-            HttpClient clientdata = _api.Initial();
-
-            var action = "api/data/get-cost-by-id/"+id;
-            HttpResponseMessage resdata = await clientdata.GetAsync(action).ConfigureAwait(false);
-           // HttpResponseMessage resdata = await clientdata.GetAsync("api/data/get-all-costs");
-
-            resdata.EnsureSuccessStatusCode();
-
-            if (resdata.IsSuccessStatusCode)
-            {
-                var resultdata = resdata.Content.ReadAsStringAsync().Result;
-                costdata = JsonConvert.DeserializeObject<Cost>(resultdata);
-
-
-                Rubber listRubber = new Rubber();
-                List<Rubber> rubber = new List<Rubber>();
-
-                HttpClient r = _api.Initial();
-                HttpResponseMessage resRubber = await r.GetAsync("api/rubber/get-all-rubbers");
-                if (resRubber.IsSuccessStatusCode)
-                {
-                    var result = resRubber.Content.ReadAsStringAsync().Result;
-                    rubber = JsonConvert.DeserializeObject<List<Rubber>>(result);
-                }
-
-                //List<Rubber> rubberModel = listRubber.data.ToList();
-
-                ViewBag.Rubber = rubber.Select(x => new SelectListItem()
-                {
-                    Text = x.material_name,
-                    Value = x.material_name+","+x.price_kg + "," +x.mixing_process_cost + "," +x.weight_g + "," +x.yield_rate
-
-                }).ToList();
-
-
-
-                Tooling listTooling = new Tooling();
-                List<Tooling> tooling = new List<Tooling>();
-
-                HttpClient t = _api.Initial();
-                HttpResponseMessage resTooling = await t.GetAsync("api/tooling/get-all-toolings");
-                if (resTooling.IsSuccessStatusCode)
-                {
-                    var result = resTooling.Content.ReadAsStringAsync().Result;
-                    tooling = JsonConvert.DeserializeObject<List<Tooling>>(result);
-                }
                 ViewBag.Tooling = tooling.Select(x => new SelectListItem()
                 {
                     Text = x.description,
-                    Value = x.description + "," + x.source + "," + x.qty + "," + x.unit + "," + x.price + "," + x.od
+                    Value = x.description + "," + x.source + "," + x.qty + "," + x.unit + "," + x.price
 
                 }).ToList();
-
-
-                ViewBag.plant = costdata.plant;
-                ViewBag.item_spec = costdata.item_spec;
-                ViewBag.issue_date = costdata.issue_date;
-                ViewBag.section = costdata.section;
-                ViewBag.doc_no = costdata.doc_no;
-                ViewBag.wr_no = costdata.wr_no;
-                ViewBag.sales = costdata.sales;
-                ViewBag.revision_no = costdata.revision_no;
-                ViewBag.checked_date = costdata.checked_date;
-                ViewBag.approved_by = costdata.approved_by;
-                ViewBag.expired_by = costdata.expired_by;
-                ViewBag.customer = costdata.customer;
-                ViewBag.parts_code = costdata.parts_code;
-                ViewBag.item = costdata.item;
-                ViewBag.product =costdata.product;
-                ViewBag.product_type = costdata.product_type;
-                ViewBag.size = costdata.size;
-                ViewBag.item_id = costdata.item_id;
-                ViewBag.item_od = costdata.item_od;
-                ViewBag.item_w = costdata.item_w;
-                ViewBag.item_w2 = costdata.item_w2;
-                ViewBag.business_type = costdata.business_type;
-                ViewBag.qty_month = costdata.qty_month;
-
-                ViewBag.exchange_rate_jpy = costdata.exchange_rate_jpy;
-                ViewBag.exchange_rate_usd = costdata.exchange_rate_usd;
-                ViewBag.exchange_rate_eud = costdata.exchange_rate_eud;
-
-
-                ViewBag.target_price_sgd = costdata.target_price_sgd;
-                ViewBag.target_price_usd = costdata.target_price_usd;
-                ViewBag.target_price_eud = costdata.target_price_eud;
-
-                ViewBag.target_price_wr_sgd = costdata.target_price_wr_sgd;
-                ViewBag.target_price_wr_usd = costdata.target_price_wr_usd;
-                ViewBag.target_price_wr_eud = costdata.target_price_wr_eud;
-
-                ViewBag.production_qty_day = costdata.production_qty_day;
-                ViewBag.working_day = costdata.working_day;
-
-                var total_rubber_weight = float.Parse(costdata.rubber_weight_g.ToString()) + float.Parse(costdata.rubber_weight_g2.ToString());
-                ViewBag.rubber_weight_g_total = total_rubber_weight;
-
-                ViewBag.rubber_material_name = costdata.rubber_material_name;
-                ViewBag.rubber_database_price_current = costdata.rubber_database_price_current;
-                ViewBag.rubber_database_price_new = costdata.rubber_database_price_new;
-                ViewBag.rubber_price_kg = costdata.rubber_price_kg;
-                ViewBag.rubber_mixing_process_cost = costdata.rubber_mixing_process_cost;
-                ViewBag.rubber_weight_g = costdata.rubber_weight_g;
-                ViewBag.rubber_weight_kg = costdata.rubber_weight_kg;
-                ViewBag.rubber_yield_rate = costdata.rubber_yield_rate;
-                ViewBag.rubber_weight_kg_yieldrate = costdata.rubber_weight_kg_yieldrate;
-                ViewBag.rubber_cost_sgd = costdata.rubber_cost_sgd;
-                ViewBag.rubber_percentage_target_price = costdata.rubber_percentage_target_price;
-
-                ViewBag.rubber_material_name2 = costdata.rubber_material_name2;
-                ViewBag.rubber_database_price_current2 = costdata.rubber_database_price_current2;
-                ViewBag.rubber_database_price_new2 = costdata.rubber_database_price_new2;
-                ViewBag.rubber_price_kg2 = costdata.rubber_price_kg2;
-                ViewBag.rubber_mixing_process_cost2 = costdata.rubber_mixing_process_cost2;
-                ViewBag.rubber_weight_g2 = costdata.rubber_weight_g2;
-                ViewBag.rubber_weight_kg2 = costdata.rubber_weight_kg2;
-                ViewBag.rubber_yield_rate2 = costdata.rubber_yield_rate2;
-                ViewBag.rubber_weight_kg_yieldrate2 = costdata.rubber_weight_kg_yieldrate2;
-                ViewBag.rubber_cost_sgd2 = costdata.rubber_cost_sgd2;
-                ViewBag.rubber_percentage_target_price2 = costdata.rubber_percentage_target_price2;
-
-                ViewBag.material_inhouse_name_1 = costdata.material_inhouse_name_1;
-                ViewBag.material_inhouse_info_1 = costdata.material_inhouse_info_1;
-                ViewBag.material_inhouse_value_1 = costdata.material_inhouse_value_1;
-                ViewBag.material_inhouse_info_1b = costdata.material_inhouse_info_1b;
-                ViewBag.material_inhouse_value_1b = costdata.material_inhouse_value_1b;
-                ViewBag.material_inhouse_cost_sgd_1 = costdata.material_inhouse_cost_sgd_1;
-                ViewBag.material_inhouse_percentage_target_price_1 = costdata.material_inhouse_percentage_target_price_1;
-
-                ViewBag.material_inhouse_name_2 = costdata.material_inhouse_name_2;
-                ViewBag.material_inhouse_info_2 = costdata.material_inhouse_info_2;
-                ViewBag.material_inhouse_value_2 = costdata.material_inhouse_value_2;
-                ViewBag.material_inhouse_info_2b = costdata.material_inhouse_info_2b;
-                ViewBag.material_inhouse_value_2b = costdata.material_inhouse_value_2b;
-                ViewBag.material_inhouse_cost_sgd_2 = costdata.material_inhouse_cost_sgd_2;
-                ViewBag.material_inhouse_percentage_target_price_2 = costdata.material_inhouse_percentage_target_price_2;
-
-                ViewBag.material_inhouse_name_3 = costdata.material_inhouse_name_3;
-                ViewBag.material_inhouse_info_3 = costdata.material_inhouse_info_3;
-                ViewBag.material_inhouse_value_3 = costdata.material_inhouse_value_3;
-                ViewBag.material_inhouse_info_3b = costdata.material_inhouse_info_3b;
-                ViewBag.material_inhouse_value_3b = costdata.material_inhouse_value_3b;
-                ViewBag.material_inhouse_cost_sgd_3 = costdata.material_inhouse_cost_sgd_3;
-                ViewBag.material_inhouse_percentage_target_price_3 = costdata.material_inhouse_percentage_target_price_3;
-
-                ViewBag.material_outside_name_1 = costdata.material_outside_name_1;
-                ViewBag.material_outside_info_1 = costdata.material_outside_info_1;
-                ViewBag.material_outside_value_1 = costdata.material_outside_value_1;
-                ViewBag.material_outside_info_1b = costdata.material_outside_info_1b;
-                ViewBag.material_outside_value_1b = costdata.material_outside_value_1b;
-                ViewBag.material_outside_cost_sgd_1 = costdata.material_outside_cost_sgd_1;
-                ViewBag.material_outside_percentage_target_price_1 = costdata.material_outside_percentage_target_price_1;
-
-                ViewBag.material_outside_name_2 = costdata.material_outside_name_2;
-                ViewBag.material_outside_info_2 = costdata.material_outside_info_2;
-                ViewBag.material_outside_value_2 = costdata.material_outside_value_2;
-                ViewBag.material_outside_info_2b = costdata.material_outside_info_2b;
-                ViewBag.material_outside_value_2b = costdata.material_outside_value_2b;
-                ViewBag.material_outside_cost_sgd_2 = costdata.material_outside_cost_sgd_2;
-                ViewBag.material_outside_percentage_target_price_2 = costdata.material_outside_percentage_target_price_2;
-
-                ViewBag.material_outside_name_3 = costdata.material_outside_name_3;
-                ViewBag.material_outside_info_3 = costdata.material_outside_info_3;
-                ViewBag.material_outside_value_3 = costdata.material_outside_value_3;
-                ViewBag.material_outside_info_3b = costdata.material_outside_info_3b;
-                ViewBag.material_outside_value_3b = costdata.material_outside_value_3b;
-                ViewBag.material_outside_cost_sgd_3 = costdata.material_outside_cost_sgd_3;
-                ViewBag.material_outside_percentage_target_price_3 = costdata.material_outside_percentage_target_price_3;
-
-                ViewBag.direct_material_cost = costdata.direct_material_cost;
-                ViewBag.direct_material_cost_percentage = costdata.direct_material_cost_percentage;
-                ViewBag.sub_material_percentage = costdata.sub_material_percentage;
-                ViewBag.sub_material_cost = costdata.sub_material_cost;
-                ViewBag.sub_material_cost_percentage = costdata.sub_material_cost_percentage;
-                ViewBag.direct_process_cost = costdata.direct_process_cost;
-                ViewBag.direct_process_cost_percentage = costdata.direct_process_cost_percentage;
-                ViewBag.total_direct_cost = costdata.total_direct_cost;
-                ViewBag.total_direct_cost_percentage = costdata.total_direct_cost_percentage;
-                ViewBag.defective_percentage = costdata.defective_percentage;
-                ViewBag.defective_cost = costdata.defective_cost;
-                ViewBag.defective_cost_percentage = costdata.defective_cost_percentage;
-                ViewBag.indirect_percentage = costdata.indirect_percentage;
-                ViewBag.indirect_cost = costdata.indirect_cost;
-                ViewBag.indirect_cost_percentage = costdata.indirect_cost_percentage;
-                ViewBag.packing_material_percentage = costdata.packing_material_percentage;
-                ViewBag.special_package_cost = costdata.special_package_cost;
-                ViewBag.packing_material_cost = costdata.packing_material_cost;
-                ViewBag.packing_material_cost_percentage = costdata.packing_material_cost_percentage;
-                ViewBag.administration_percentage = costdata.administration_percentage;
-                ViewBag.administration_cost = costdata.administration_cost;
-                ViewBag.administration_cost_percentage = costdata.administration_cost_percentage;
-                ViewBag.plant_retail_percentage = costdata.plant_retail_percentage;
-                ViewBag.plant_retail_cost = costdata.plant_retail_cost;
-                ViewBag.plant_retail_cost_percentage = costdata.plant_retail_cost_percentage;
-                ViewBag.moldjig_percentage = costdata.moldjig_percentage;
-                ViewBag.moldjig_cost = costdata.moldjig_cost;
-                ViewBag.moldjig_cost_percentage = costdata.moldjig_cost_percentage;
-                ViewBag.die_percentage = costdata.die_percentage;
-                ViewBag.die_cost = costdata.die_cost;
-                ViewBag.die_cost_percentage = costdata.die_cost_percentage;
-                ViewBag.note = costdata.note;
-                ViewBag.net_included_tooling_cost = costdata.net_included_tooling_cost;
-                ViewBag.net_included_tooling_cost_percentage = costdata.net_included_tooling_cost_percentage;
-                ViewBag.net_exclude_tooling_cost = costdata.net_exclude_tooling_cost;
-                ViewBag.net_exclude_tooling_cost_percentage = costdata.net_exclude_tooling_cost_percentage;
-
-                ViewBag.tooling_list_description_1 = costdata.tooling_list_description_1;
-                ViewBag.tooling_list_type_1 = costdata.tooling_list_type_1;
-                ViewBag.tooling_list_source_1 = costdata.tooling_list_source_1;
-                ViewBag.tooling_list_qty_1 = costdata.tooling_list_qty_1;
-                ViewBag.tooling_list_unit_1 = costdata.tooling_list_unit_1;
-                ViewBag.tooling_list_price_1 = costdata.tooling_list_price_1;
-                ViewBag.tooling_list_amount_jpy_1 = costdata.tooling_list_amount_jpy_1.ToString("#,##0");
-                ViewBag.tooling_list_amount_usd_1 = costdata.tooling_list_amount_usd_1.ToString("#,##0"); 
-
-                ViewBag.tooling_list_description_2 = costdata.tooling_list_description_2;
-                ViewBag.tooling_list_type_2 = costdata.tooling_list_type_2;
-                ViewBag.tooling_list_source_2 = costdata.tooling_list_source_2;
-                ViewBag.tooling_list_qty_2 = costdata.tooling_list_qty_2;
-                ViewBag.tooling_list_unit_2 = costdata.tooling_list_unit_2;
-                ViewBag.tooling_list_price_2 = costdata.tooling_list_price_2;
-                ViewBag.tooling_list_amount_jpy_2 = costdata.tooling_list_amount_jpy_2.ToString("#,##0");
-                ViewBag.tooling_list_amount_usd_2 = costdata.tooling_list_amount_usd_2.ToString("#,##0");
-
-                ViewBag.tooling_list_description_3 = costdata.tooling_list_description_3;
-                ViewBag.tooling_list_type_3 = costdata.tooling_list_type_3;
-                ViewBag.tooling_list_source_3 = costdata.tooling_list_source_3;
-                ViewBag.tooling_list_qty_3 = costdata.tooling_list_qty_3;
-                ViewBag.tooling_list_unit_3 = costdata.tooling_list_unit_3;
-                ViewBag.tooling_list_price_3 = costdata.tooling_list_price_3;
-                ViewBag.tooling_list_amount_jpy_3 = costdata.tooling_list_amount_jpy_3.ToString("#,##0");
-                ViewBag.tooling_list_amount_usd_3 = costdata.tooling_list_amount_usd_3.ToString("#,##0");
-
-                ViewBag.tooling_list_description_4 = costdata.tooling_list_description_4;
-                ViewBag.tooling_list_type_4 = costdata.tooling_list_type_4;
-                ViewBag.tooling_list_source_4 = costdata.tooling_list_source_4;
-                ViewBag.tooling_list_qty_4 = costdata.tooling_list_qty_4;
-                ViewBag.tooling_list_unit_4 = costdata.tooling_list_unit_4;
-                ViewBag.tooling_list_price_4 = costdata.tooling_list_price_4;
-                ViewBag.tooling_list_amount_jpy_4 = costdata.tooling_list_amount_jpy_4.ToString("#,##0");
-                ViewBag.tooling_list_amount_usd_4 = costdata.tooling_list_amount_usd_4.ToString("#,##0");
-
-                ViewBag.tooling_list_description_5 = costdata.tooling_list_description_5;
-                ViewBag.tooling_list_type_5 = costdata.tooling_list_type_5;
-                ViewBag.tooling_list_source_5 = costdata.tooling_list_source_5;
-                ViewBag.tooling_list_qty_5 = costdata.tooling_list_qty_5;
-                ViewBag.tooling_list_unit_5 = costdata.tooling_list_unit_5;
-                ViewBag.tooling_list_price_5 = costdata.tooling_list_price_5;
-                ViewBag.tooling_list_amount_jpy_5 = costdata.tooling_list_amount_jpy_5.ToString("#,##0");
-                ViewBag.tooling_list_amount_usd_5 = costdata.tooling_list_amount_usd_5.ToString("#,##0");
-
-                ViewBag.tooling_list_description_6 = costdata.tooling_list_description_6;
-                ViewBag.tooling_list_type_6 = costdata.tooling_list_type_6;
-                ViewBag.tooling_list_source_6 = costdata.tooling_list_source_6;
-                ViewBag.tooling_list_qty_6 = costdata.tooling_list_qty_6;
-                ViewBag.tooling_list_unit_6 = costdata.tooling_list_unit_6;
-                ViewBag.tooling_list_price_6 = costdata.tooling_list_price_6;
-                ViewBag.tooling_list_amount_jpy_6 = costdata.tooling_list_amount_jpy_6.ToString("#,##0");
-                ViewBag.tooling_list_amount_usd_6 = costdata.tooling_list_amount_usd_6.ToString("#,##0");
-
-                ViewBag.tooling_list_description_7 = costdata.tooling_list_description_7;
-                ViewBag.tooling_list_type_7 = costdata.tooling_list_type_7;
-                ViewBag.tooling_list_source_7 = costdata.tooling_list_source_7;
-                ViewBag.tooling_list_qty_7 = costdata.tooling_list_qty_7;
-                ViewBag.tooling_list_unit_7 = costdata.tooling_list_unit_7;
-                ViewBag.tooling_list_price_7 = costdata.tooling_list_price_7;
-                ViewBag.tooling_list_amount_jpy_7 = costdata.tooling_list_amount_jpy_7.ToString("#,##0");
-                ViewBag.tooling_list_amount_usd_7 = costdata.tooling_list_amount_usd_7.ToString("#,##0");
-
-                ViewBag.tooling_list_description_8 = costdata.tooling_list_description_8;
-                ViewBag.tooling_list_type_8 = costdata.tooling_list_type_8;
-                ViewBag.tooling_list_source_8 = costdata.tooling_list_source_8;
-                ViewBag.tooling_list_qty_8 = costdata.tooling_list_qty_8;
-                ViewBag.tooling_list_unit_8 = costdata.tooling_list_unit_8;
-                ViewBag.tooling_list_price_8 = costdata.tooling_list_price_8;
-                ViewBag.tooling_list_amount_jpy_8 = costdata.tooling_list_amount_jpy_8.ToString("#,##0");
-                ViewBag.tooling_list_amount_usd_8 = costdata.tooling_list_amount_usd_8.ToString("#,##0");
-
-                ViewBag.tooling_list_description_9 = costdata.tooling_list_description_9;
-                ViewBag.tooling_list_type_9 = costdata.tooling_list_type_9;
-                ViewBag.tooling_list_source_9 = costdata.tooling_list_source_9;
-                ViewBag.tooling_list_qty_9 = costdata.tooling_list_qty_9;
-                ViewBag.tooling_list_unit_9 = costdata.tooling_list_unit_9;
-                ViewBag.tooling_list_price_9 = costdata.tooling_list_price_9;
-                ViewBag.tooling_list_amount_jpy_9 = costdata.tooling_list_amount_jpy_9.ToString("#,##0");
-                ViewBag.tooling_list_amount_usd_9 = costdata.tooling_list_amount_usd_9.ToString("#,##0");
-
-                ViewBag.tooling_list_description_10 = costdata.tooling_list_description_10;
-                ViewBag.tooling_list_type_10 = costdata.tooling_list_type_10;
-                ViewBag.tooling_list_source_10 = costdata.tooling_list_source_10;
-                ViewBag.tooling_list_qty_10 = costdata.tooling_list_qty_10;
-                ViewBag.tooling_list_unit_10 = costdata.tooling_list_unit_10;
-                ViewBag.tooling_list_price_10 = costdata.tooling_list_price_10;
-                ViewBag.tooling_list_amount_jpy_10 = costdata.tooling_list_amount_jpy_10.ToString("#,##0");
-                ViewBag.tooling_list_amount_usd_10 = costdata.tooling_list_amount_usd_10.ToString("#,##0");
-
-                ViewBag.tooling_list_description_11 = costdata.tooling_list_description_11;
-                ViewBag.tooling_list_type_11 = costdata.tooling_list_type_11;
-                ViewBag.tooling_list_source_11 = costdata.tooling_list_source_11;
-                ViewBag.tooling_list_qty_11 = costdata.tooling_list_qty_11;
-                ViewBag.tooling_list_unit_11 = costdata.tooling_list_unit_11;
-                ViewBag.tooling_list_price_11 = costdata.tooling_list_price_11;
-                ViewBag.tooling_list_amount_jpy_11 = costdata.tooling_list_amount_jpy_11.ToString("#,##0");
-                ViewBag.tooling_list_amount_usd_11 = costdata.tooling_list_amount_usd_11.ToString("#,##0");
-
-                ViewBag.tooling_list_description_12 = costdata.tooling_list_description_12;
-                ViewBag.tooling_list_type_12 = costdata.tooling_list_type_12;
-                ViewBag.tooling_list_source_12 = costdata.tooling_list_source_12;
-                ViewBag.tooling_list_qty_12 = costdata.tooling_list_qty_12;
-                ViewBag.tooling_list_unit_12 = costdata.tooling_list_unit_12;
-                ViewBag.tooling_list_price_12 = costdata.tooling_list_price_12;
-                ViewBag.tooling_list_amount_jpy_12 = costdata.tooling_list_amount_jpy_12.ToString("#,##0");
-                ViewBag.tooling_list_amount_usd_12 = costdata.tooling_list_amount_usd_12.ToString("#,##0");
-
-                ViewBag.tooling_list_description_13 = costdata.tooling_list_description_13;
-                ViewBag.tooling_list_type_13 = costdata.tooling_list_type_13;
-                ViewBag.tooling_list_source_13 = costdata.tooling_list_source_13;
-                ViewBag.tooling_list_qty_13 = costdata.tooling_list_qty_13;
-                ViewBag.tooling_list_unit_13 = costdata.tooling_list_unit_13;
-                ViewBag.tooling_list_price_13 = costdata.tooling_list_price_13;
-                ViewBag.tooling_list_amount_jpy_13 = costdata.tooling_list_amount_jpy_13.ToString("#,##0");
-                ViewBag.tooling_list_amount_usd_13 = costdata.tooling_list_amount_usd_13.ToString("#,##0");
-
-                ViewBag.tooling_list_description_14 = costdata.tooling_list_description_14;
-                ViewBag.tooling_list_type_14 = costdata.tooling_list_type_14;
-                ViewBag.tooling_list_source_14 = costdata.tooling_list_source_14;
-                ViewBag.tooling_list_qty_14 = costdata.tooling_list_qty_14;
-                ViewBag.tooling_list_unit_14 = costdata.tooling_list_unit_14;
-                ViewBag.tooling_list_price_14 = costdata.tooling_list_price_14;
-                ViewBag.tooling_list_amount_jpy_14 = costdata.tooling_list_amount_jpy_14.ToString("#,##0");
-                ViewBag.tooling_list_amount_usd_14 = costdata.tooling_list_amount_usd_14.ToString("#,##0");
-
-                ViewBag.tooling_list_description_15 = costdata.tooling_list_description_15;
-                ViewBag.tooling_list_type_15 = costdata.tooling_list_type_15;
-                ViewBag.tooling_list_source_15 = costdata.tooling_list_source_15;
-                ViewBag.tooling_list_qty_15 = costdata.tooling_list_qty_15;
-                ViewBag.tooling_list_unit_15 = costdata.tooling_list_unit_15;
-                ViewBag.tooling_list_price_15 = costdata.tooling_list_price_15;
-                ViewBag.tooling_list_amount_jpy_15 = costdata.tooling_list_amount_jpy_15.ToString("#,##0");
-                ViewBag.tooling_list_amount_usd_15 = costdata.tooling_list_amount_usd_15.ToString("#,##0");
-
-                ViewBag.tooling_list_total_amount_usd = costdata.tooling_list_total_amount_usd.ToString("#,##0");
-
-
-                ViewBag.direct_raw_material = costdata.direct_raw_material;
-                ViewBag.direct_raw_material_p = costdata.direct_raw_material_p;
-                ViewBag.sub_material = costdata.sub_material;
-                ViewBag.sub_material_p = costdata.sub_material_p;
-                ViewBag.raw_material_cost_sub_total = costdata.raw_material_cost_sub_total;
-                ViewBag.raw_material_cost_sub_total_p = costdata.raw_material_cost_sub_total_p;
-                ViewBag.labor_cost = costdata.labor_cost;
-                ViewBag.labor_cost_p = costdata.labor_cost_p;
-                ViewBag.machine_cost = costdata.machine_cost;
-                ViewBag.machine_cost_p = costdata.machine_cost_p;
-                ViewBag.overhead_cost = costdata.overhead_cost;
-                ViewBag.overhead_cost_p = costdata.overhead_cost_p;
-                ViewBag.process_cost_sub_total = costdata.process_cost_sub_total;
-                ViewBag.process_cost_sub_total_p = costdata.process_cost_sub_total_p;
-                ViewBag.defectives = costdata.defectives;
-                ViewBag.defectives_p = costdata.defectives_p;
-                ViewBag.admin_engin_qc = costdata.admin_engin_qc;
-                ViewBag.admin_engin_qc_p = costdata.admin_engin_qc_p;
-                ViewBag.tooling_cost = costdata.tooling_cost;
-                ViewBag.tooling_cost_p = costdata.tooling_cost_p;
-                ViewBag.process_margin_adjust = costdata.process_margin_adjust;
-                ViewBag.process_margin_adjust_p = costdata.process_margin_adjust_p;
-                ViewBag.other_fixed_cost_sub_total = costdata.other_fixed_cost_sub_total;
-                ViewBag.other_fixed_cost_sub_total_p = costdata.other_fixed_cost_sub_total_p;
-                ViewBag.grand_total_cost = costdata.grand_total_cost;
-                ViewBag.grand_total_cost_p = costdata.grand_total_cost_p;
-
-                ViewBag.production_capacity = costdata.production_capacity;
-                ViewBag.actual_working_time = costdata.actual_working_time;
-                ViewBag.cycle_time = costdata.cycle_time;
-                ViewBag.efficiency = costdata.efficiency;
-                ViewBag.daily_qty_days = costdata.daily_qty_days;
-                ViewBag.daily_qty_days_p = costdata.daily_qty_days_p;
-                ViewBag.daily_amount = costdata.daily_amount;
-
             }
 
-            dynamic mymodel = new ExpandoObject();
-           // mymodel.code = costdata;
-            return View("Index",mymodel); 
+            return null;
         }
 
 
@@ -3909,5 +2688,340 @@ namespace CostNag.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+        public void DataValue(Cost costdata)
+        {
+
+            ViewBag.CostId = costdata.CostId;
+                ViewBag.plant = costdata.plant;
+                ViewBag.item_spec = costdata.item_spec;
+                ViewBag.issue_date = costdata.issue_date;
+                ViewBag.section = costdata.section;
+                ViewBag.doc_no = costdata.doc_no;
+                ViewBag.wr_no = costdata.wr_no;
+                ViewBag.sales = costdata.sales;
+                ViewBag.revision_no = costdata.revision_no;
+                ViewBag.checked_date = costdata.checked_date;
+                ViewBag.approved_by = costdata.approved_by;
+                ViewBag.expired_by = costdata.expired_by;
+                ViewBag.customer = costdata.customer;
+                ViewBag.parts_code = costdata.parts_code;
+                ViewBag.item = costdata.item;
+                ViewBag.product = costdata.product;
+                ViewBag.product_type = costdata.product_type;
+                ViewBag.size = costdata.size;
+                ViewBag.item_id = costdata.item_id;
+                ViewBag.item_od = costdata.item_od;
+                ViewBag.item_w = costdata.item_w;
+                ViewBag.item_w2 = costdata.item_w2;
+                ViewBag.business_type = costdata.business_type;
+                ViewBag.qty_month = costdata.qty_month;
+
+                ViewBag.exchange_rate_jpy = costdata.exchange_rate_jpy;
+                ViewBag.exchange_rate_usd = costdata.exchange_rate_usd;
+                ViewBag.exchange_rate_eud = costdata.exchange_rate_eud;
+
+
+                ViewBag.target_price_sgd = costdata.target_price_sgd;
+                ViewBag.target_price_usd = costdata.target_price_usd;
+                ViewBag.target_price_eud = costdata.target_price_eud;
+
+                ViewBag.target_price_wr_sgd = costdata.target_price_wr_sgd;
+                ViewBag.target_price_wr_usd = costdata.target_price_wr_usd;
+                ViewBag.target_price_wr_eud = costdata.target_price_wr_eud;
+
+                ViewBag.production_qty_day = costdata.production_qty_day;
+                ViewBag.working_day = costdata.working_day;
+
+                var total_rubber_weight = float.Parse(costdata.rubber_weight_g.ToString()) + float.Parse(costdata.rubber_weight_g2.ToString());
+                ViewBag.rubber_weight_g_total = total_rubber_weight;
+
+                ViewBag.rubber_material_name = costdata.rubber_material_name;
+                ViewBag.rubber_database_price_current = costdata.rubber_database_price_current;
+                ViewBag.rubber_database_price_new = costdata.rubber_database_price_new;
+                ViewBag.rubber_price_kg = costdata.rubber_price_kg;
+                ViewBag.rubber_mixing_process_cost = costdata.rubber_mixing_process_cost;
+                ViewBag.rubber_weight_g = costdata.rubber_weight_g;
+                ViewBag.rubber_weight_kg = costdata.rubber_weight_kg;
+                ViewBag.rubber_yield_rate = costdata.rubber_yield_rate;
+                ViewBag.rubber_weight_kg_yieldrate = costdata.rubber_weight_kg_yieldrate;
+                ViewBag.rubber_cost_sgd = costdata.rubber_cost_sgd;
+                ViewBag.rubber_percentage_target_price = costdata.rubber_percentage_target_price;
+
+                ViewBag.rubber_material_name2 = costdata.rubber_material_name2;
+                ViewBag.rubber_database_price_current2 = costdata.rubber_database_price_current2;
+                ViewBag.rubber_database_price_new2 = costdata.rubber_database_price_new2;
+                ViewBag.rubber_price_kg2 = costdata.rubber_price_kg2;
+                ViewBag.rubber_mixing_process_cost2 = costdata.rubber_mixing_process_cost2;
+                ViewBag.rubber_weight_g2 = costdata.rubber_weight_g2;
+                ViewBag.rubber_weight_kg2 = costdata.rubber_weight_kg2;
+                ViewBag.rubber_yield_rate2 = costdata.rubber_yield_rate2;
+                ViewBag.rubber_weight_kg_yieldrate2 = costdata.rubber_weight_kg_yieldrate2;
+                ViewBag.rubber_cost_sgd2 = costdata.rubber_cost_sgd2;
+                ViewBag.rubber_percentage_target_price2 = costdata.rubber_percentage_target_price2;
+
+                ViewBag.material_inhouse_name_1 = costdata.material_inhouse_name_1;
+                ViewBag.material_inhouse_info_1 = costdata.material_inhouse_info_1;
+                ViewBag.material_inhouse_value_1 = costdata.material_inhouse_value_1;
+                ViewBag.material_inhouse_info_1b = costdata.material_inhouse_info_1b;
+                ViewBag.material_inhouse_value_1b = costdata.material_inhouse_value_1b;
+                ViewBag.material_inhouse_cost_sgd_1 = costdata.material_inhouse_cost_sgd_1;
+                ViewBag.material_inhouse_percentage_target_price_1 = costdata.material_inhouse_percentage_target_price_1;
+
+                ViewBag.material_inhouse_name_2 = costdata.material_inhouse_name_2;
+                ViewBag.material_inhouse_info_2 = costdata.material_inhouse_info_2;
+                ViewBag.material_inhouse_value_2 = costdata.material_inhouse_value_2;
+                ViewBag.material_inhouse_info_2b = costdata.material_inhouse_info_2b;
+                ViewBag.material_inhouse_value_2b = costdata.material_inhouse_value_2b;
+                ViewBag.material_inhouse_cost_sgd_2 = costdata.material_inhouse_cost_sgd_2;
+                ViewBag.material_inhouse_percentage_target_price_2 = costdata.material_inhouse_percentage_target_price_2;
+
+                ViewBag.material_inhouse_name_3 = costdata.material_inhouse_name_3;
+                ViewBag.material_inhouse_info_3 = costdata.material_inhouse_info_3;
+                ViewBag.material_inhouse_value_3 = costdata.material_inhouse_value_3;
+                ViewBag.material_inhouse_info_3b = costdata.material_inhouse_info_3b;
+                ViewBag.material_inhouse_value_3b = costdata.material_inhouse_value_3b;
+                ViewBag.material_inhouse_cost_sgd_3 = costdata.material_inhouse_cost_sgd_3;
+                ViewBag.material_inhouse_percentage_target_price_3 = costdata.material_inhouse_percentage_target_price_3;
+
+                ViewBag.material_outside_name_1 = costdata.material_outside_name_1;
+                ViewBag.material_outside_info_1 = costdata.material_outside_info_1;
+                ViewBag.material_outside_value_1 = costdata.material_outside_value_1;
+                ViewBag.material_outside_info_1b = costdata.material_outside_info_1b;
+                ViewBag.material_outside_value_1b = costdata.material_outside_value_1b;
+                ViewBag.material_outside_cost_sgd_1 = costdata.material_outside_cost_sgd_1;
+                ViewBag.material_outside_percentage_target_price_1 = costdata.material_outside_percentage_target_price_1;
+
+                ViewBag.material_outside_name_2 = costdata.material_outside_name_2;
+                ViewBag.material_outside_info_2 = costdata.material_outside_info_2;
+                ViewBag.material_outside_value_2 = costdata.material_outside_value_2;
+                ViewBag.material_outside_info_2b = costdata.material_outside_info_2b;
+                ViewBag.material_outside_value_2b = costdata.material_outside_value_2b;
+                ViewBag.material_outside_cost_sgd_2 = costdata.material_outside_cost_sgd_2;
+                ViewBag.material_outside_percentage_target_price_2 = costdata.material_outside_percentage_target_price_2;
+
+                ViewBag.material_outside_name_3 = costdata.material_outside_name_3;
+                ViewBag.material_outside_info_3 = costdata.material_outside_info_3;
+                ViewBag.material_outside_value_3 = costdata.material_outside_value_3;
+                ViewBag.material_outside_info_3b = costdata.material_outside_info_3b;
+                ViewBag.material_outside_value_3b = costdata.material_outside_value_3b;
+                ViewBag.material_outside_cost_sgd_3 = costdata.material_outside_cost_sgd_3;
+                ViewBag.material_outside_percentage_target_price_3 = costdata.material_outside_percentage_target_price_3;
+
+                ViewBag.direct_material_cost = costdata.direct_material_cost;
+                ViewBag.direct_material_cost_percentage = costdata.direct_material_cost_percentage;
+                ViewBag.sub_material_percentage = costdata.sub_material_percentage;
+                ViewBag.sub_material_cost = costdata.sub_material_cost;
+                ViewBag.sub_material_cost_percentage = costdata.sub_material_cost_percentage;
+                ViewBag.direct_process_cost = costdata.direct_process_cost;
+                ViewBag.direct_process_cost_percentage = costdata.direct_process_cost_percentage;
+                ViewBag.total_direct_cost = costdata.total_direct_cost;
+                ViewBag.total_direct_cost_percentage = costdata.total_direct_cost_percentage;
+                ViewBag.defective_percentage = costdata.defective_percentage;
+                ViewBag.defective_cost = costdata.defective_cost;
+                ViewBag.defective_cost_percentage = costdata.defective_cost_percentage;
+                ViewBag.indirect_percentage = costdata.indirect_percentage;
+                ViewBag.indirect_cost = costdata.indirect_cost;
+                ViewBag.indirect_cost_percentage = costdata.indirect_cost_percentage;
+                ViewBag.packing_material_percentage = costdata.packing_material_percentage;
+                ViewBag.special_package_cost = costdata.special_package_cost;
+                ViewBag.packing_material_cost = costdata.packing_material_cost;
+                ViewBag.packing_material_cost_percentage = costdata.packing_material_cost_percentage;
+                ViewBag.administration_percentage = costdata.administration_percentage;
+                ViewBag.administration_cost = costdata.administration_cost;
+                ViewBag.administration_cost_percentage = costdata.administration_cost_percentage;
+                ViewBag.plant_retail_percentage = costdata.plant_retail_percentage;
+                ViewBag.plant_retail_cost = costdata.plant_retail_cost;
+                ViewBag.plant_retail_cost_percentage = costdata.plant_retail_cost_percentage;
+                ViewBag.moldjig_percentage = costdata.moldjig_percentage;
+                ViewBag.moldjig_cost = costdata.moldjig_cost;
+                ViewBag.moldjig_cost_percentage = costdata.moldjig_cost_percentage;
+                ViewBag.die_percentage = costdata.die_percentage;
+                ViewBag.die_cost = costdata.die_cost;
+                ViewBag.die_cost_percentage = costdata.die_cost_percentage;
+                ViewBag.note = costdata.note;
+                ViewBag.net_included_tooling_cost = costdata.net_included_tooling_cost;
+                ViewBag.net_included_tooling_cost_percentage = costdata.net_included_tooling_cost_percentage;
+                ViewBag.net_exclude_tooling_cost = costdata.net_exclude_tooling_cost;
+                ViewBag.net_exclude_tooling_cost_percentage = costdata.net_exclude_tooling_cost_percentage;
+
+                ViewBag.tooling_list_description_1 = costdata.tooling_list_description_1;
+                ViewBag.tooling_list_type_1 = costdata.tooling_list_type_1;
+                ViewBag.tooling_list_source_1 = costdata.tooling_list_source_1;
+                ViewBag.tooling_list_qty_1 = costdata.tooling_list_qty_1;
+                ViewBag.tooling_list_unit_1 = costdata.tooling_list_unit_1;
+                ViewBag.tooling_list_price_1 = costdata.tooling_list_price_1;
+                ViewBag.tooling_list_amount_jpy_1 = costdata.tooling_list_amount_jpy_1.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_1 = costdata.tooling_list_amount_usd_1.ToString("#,##0");
+
+                ViewBag.tooling_list_description_2 = costdata.tooling_list_description_2;
+                ViewBag.tooling_list_type_2 = costdata.tooling_list_type_2;
+                ViewBag.tooling_list_source_2 = costdata.tooling_list_source_2;
+                ViewBag.tooling_list_qty_2 = costdata.tooling_list_qty_2;
+                ViewBag.tooling_list_unit_2 = costdata.tooling_list_unit_2;
+                ViewBag.tooling_list_price_2 = costdata.tooling_list_price_2;
+                ViewBag.tooling_list_amount_jpy_2 = costdata.tooling_list_amount_jpy_2.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_2 = costdata.tooling_list_amount_usd_2.ToString("#,##0");
+
+                ViewBag.tooling_list_description_3 = costdata.tooling_list_description_3;
+                ViewBag.tooling_list_type_3 = costdata.tooling_list_type_3;
+                ViewBag.tooling_list_source_3 = costdata.tooling_list_source_3;
+                ViewBag.tooling_list_qty_3 = costdata.tooling_list_qty_3;
+                ViewBag.tooling_list_unit_3 = costdata.tooling_list_unit_3;
+                ViewBag.tooling_list_price_3 = costdata.tooling_list_price_3;
+                ViewBag.tooling_list_amount_jpy_3 = costdata.tooling_list_amount_jpy_3.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_3 = costdata.tooling_list_amount_usd_3.ToString("#,##0");
+
+                ViewBag.tooling_list_description_4 = costdata.tooling_list_description_4;
+                ViewBag.tooling_list_type_4 = costdata.tooling_list_type_4;
+                ViewBag.tooling_list_source_4 = costdata.tooling_list_source_4;
+                ViewBag.tooling_list_qty_4 = costdata.tooling_list_qty_4;
+                ViewBag.tooling_list_unit_4 = costdata.tooling_list_unit_4;
+                ViewBag.tooling_list_price_4 = costdata.tooling_list_price_4;
+                ViewBag.tooling_list_amount_jpy_4 = costdata.tooling_list_amount_jpy_4.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_4 = costdata.tooling_list_amount_usd_4.ToString("#,##0");
+
+                ViewBag.tooling_list_description_5 = costdata.tooling_list_description_5;
+                ViewBag.tooling_list_type_5 = costdata.tooling_list_type_5;
+                ViewBag.tooling_list_source_5 = costdata.tooling_list_source_5;
+                ViewBag.tooling_list_qty_5 = costdata.tooling_list_qty_5;
+                ViewBag.tooling_list_unit_5 = costdata.tooling_list_unit_5;
+                ViewBag.tooling_list_price_5 = costdata.tooling_list_price_5;
+                ViewBag.tooling_list_amount_jpy_5 = costdata.tooling_list_amount_jpy_5.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_5 = costdata.tooling_list_amount_usd_5.ToString("#,##0");
+
+                ViewBag.tooling_list_description_6 = costdata.tooling_list_description_6;
+                ViewBag.tooling_list_type_6 = costdata.tooling_list_type_6;
+                ViewBag.tooling_list_source_6 = costdata.tooling_list_source_6;
+                ViewBag.tooling_list_qty_6 = costdata.tooling_list_qty_6;
+                ViewBag.tooling_list_unit_6 = costdata.tooling_list_unit_6;
+                ViewBag.tooling_list_price_6 = costdata.tooling_list_price_6;
+                ViewBag.tooling_list_amount_jpy_6 = costdata.tooling_list_amount_jpy_6.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_6 = costdata.tooling_list_amount_usd_6.ToString("#,##0");
+
+                ViewBag.tooling_list_description_7 = costdata.tooling_list_description_7;
+                ViewBag.tooling_list_type_7 = costdata.tooling_list_type_7;
+                ViewBag.tooling_list_source_7 = costdata.tooling_list_source_7;
+                ViewBag.tooling_list_qty_7 = costdata.tooling_list_qty_7;
+                ViewBag.tooling_list_unit_7 = costdata.tooling_list_unit_7;
+                ViewBag.tooling_list_price_7 = costdata.tooling_list_price_7;
+                ViewBag.tooling_list_amount_jpy_7 = costdata.tooling_list_amount_jpy_7.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_7 = costdata.tooling_list_amount_usd_7.ToString("#,##0");
+
+                ViewBag.tooling_list_description_8 = costdata.tooling_list_description_8;
+                ViewBag.tooling_list_type_8 = costdata.tooling_list_type_8;
+                ViewBag.tooling_list_source_8 = costdata.tooling_list_source_8;
+                ViewBag.tooling_list_qty_8 = costdata.tooling_list_qty_8;
+                ViewBag.tooling_list_unit_8 = costdata.tooling_list_unit_8;
+                ViewBag.tooling_list_price_8 = costdata.tooling_list_price_8;
+                ViewBag.tooling_list_amount_jpy_8 = costdata.tooling_list_amount_jpy_8.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_8 = costdata.tooling_list_amount_usd_8.ToString("#,##0");
+
+                ViewBag.tooling_list_description_9 = costdata.tooling_list_description_9;
+                ViewBag.tooling_list_type_9 = costdata.tooling_list_type_9;
+                ViewBag.tooling_list_source_9 = costdata.tooling_list_source_9;
+                ViewBag.tooling_list_qty_9 = costdata.tooling_list_qty_9;
+                ViewBag.tooling_list_unit_9 = costdata.tooling_list_unit_9;
+                ViewBag.tooling_list_price_9 = costdata.tooling_list_price_9;
+                ViewBag.tooling_list_amount_jpy_9 = costdata.tooling_list_amount_jpy_9.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_9 = costdata.tooling_list_amount_usd_9.ToString("#,##0");
+
+                ViewBag.tooling_list_description_10 = costdata.tooling_list_description_10;
+                ViewBag.tooling_list_type_10 = costdata.tooling_list_type_10;
+                ViewBag.tooling_list_source_10 = costdata.tooling_list_source_10;
+                ViewBag.tooling_list_qty_10 = costdata.tooling_list_qty_10;
+                ViewBag.tooling_list_unit_10 = costdata.tooling_list_unit_10;
+                ViewBag.tooling_list_price_10 = costdata.tooling_list_price_10;
+                ViewBag.tooling_list_amount_jpy_10 = costdata.tooling_list_amount_jpy_10.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_10 = costdata.tooling_list_amount_usd_10.ToString("#,##0");
+
+                ViewBag.tooling_list_description_11 = costdata.tooling_list_description_11;
+                ViewBag.tooling_list_type_11 = costdata.tooling_list_type_11;
+                ViewBag.tooling_list_source_11 = costdata.tooling_list_source_11;
+                ViewBag.tooling_list_qty_11 = costdata.tooling_list_qty_11;
+                ViewBag.tooling_list_unit_11 = costdata.tooling_list_unit_11;
+                ViewBag.tooling_list_price_11 = costdata.tooling_list_price_11;
+                ViewBag.tooling_list_amount_jpy_11 = costdata.tooling_list_amount_jpy_11.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_11 = costdata.tooling_list_amount_usd_11.ToString("#,##0");
+
+                ViewBag.tooling_list_description_12 = costdata.tooling_list_description_12;
+                ViewBag.tooling_list_type_12 = costdata.tooling_list_type_12;
+                ViewBag.tooling_list_source_12 = costdata.tooling_list_source_12;
+                ViewBag.tooling_list_qty_12 = costdata.tooling_list_qty_12;
+                ViewBag.tooling_list_unit_12 = costdata.tooling_list_unit_12;
+                ViewBag.tooling_list_price_12 = costdata.tooling_list_price_12;
+                ViewBag.tooling_list_amount_jpy_12 = costdata.tooling_list_amount_jpy_12.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_12 = costdata.tooling_list_amount_usd_12.ToString("#,##0");
+
+                ViewBag.tooling_list_description_13 = costdata.tooling_list_description_13;
+                ViewBag.tooling_list_type_13 = costdata.tooling_list_type_13;
+                ViewBag.tooling_list_source_13 = costdata.tooling_list_source_13;
+                ViewBag.tooling_list_qty_13 = costdata.tooling_list_qty_13;
+                ViewBag.tooling_list_unit_13 = costdata.tooling_list_unit_13;
+                ViewBag.tooling_list_price_13 = costdata.tooling_list_price_13;
+                ViewBag.tooling_list_amount_jpy_13 = costdata.tooling_list_amount_jpy_13.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_13 = costdata.tooling_list_amount_usd_13.ToString("#,##0");
+
+                ViewBag.tooling_list_description_14 = costdata.tooling_list_description_14;
+                ViewBag.tooling_list_type_14 = costdata.tooling_list_type_14;
+                ViewBag.tooling_list_source_14 = costdata.tooling_list_source_14;
+                ViewBag.tooling_list_qty_14 = costdata.tooling_list_qty_14;
+                ViewBag.tooling_list_unit_14 = costdata.tooling_list_unit_14;
+                ViewBag.tooling_list_price_14 = costdata.tooling_list_price_14;
+                ViewBag.tooling_list_amount_jpy_14 = costdata.tooling_list_amount_jpy_14.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_14 = costdata.tooling_list_amount_usd_14.ToString("#,##0");
+
+                ViewBag.tooling_list_description_15 = costdata.tooling_list_description_15;
+                ViewBag.tooling_list_type_15 = costdata.tooling_list_type_15;
+                ViewBag.tooling_list_source_15 = costdata.tooling_list_source_15;
+                ViewBag.tooling_list_qty_15 = costdata.tooling_list_qty_15;
+                ViewBag.tooling_list_unit_15 = costdata.tooling_list_unit_15;
+                ViewBag.tooling_list_price_15 = costdata.tooling_list_price_15;
+                ViewBag.tooling_list_amount_jpy_15 = costdata.tooling_list_amount_jpy_15.ToString("#,##0");
+                ViewBag.tooling_list_amount_usd_15 = costdata.tooling_list_amount_usd_15.ToString("#,##0");
+
+                ViewBag.tooling_list_total_amount_usd = costdata.tooling_list_total_amount_usd.ToString("#,##0");
+
+
+                ViewBag.direct_raw_material = costdata.direct_raw_material;
+                ViewBag.direct_raw_material_p = costdata.direct_raw_material_p;
+                ViewBag.sub_material = costdata.sub_material;
+                ViewBag.sub_material_p = costdata.sub_material_p;
+                ViewBag.raw_material_cost_sub_total = costdata.raw_material_cost_sub_total;
+                ViewBag.raw_material_cost_sub_total_p = costdata.raw_material_cost_sub_total_p;
+                ViewBag.labor_cost = costdata.labor_cost;
+                ViewBag.labor_cost_p = costdata.labor_cost_p;
+                ViewBag.machine_cost = costdata.machine_cost;
+                ViewBag.machine_cost_p = costdata.machine_cost_p;
+                ViewBag.overhead_cost = costdata.overhead_cost;
+                ViewBag.overhead_cost_p = costdata.overhead_cost_p;
+                ViewBag.process_cost_sub_total = costdata.process_cost_sub_total;
+                ViewBag.process_cost_sub_total_p = costdata.process_cost_sub_total_p;
+                ViewBag.defectives = costdata.defectives;
+                ViewBag.defectives_p = costdata.defectives_p;
+                ViewBag.admin_engin_qc = costdata.admin_engin_qc;
+                ViewBag.admin_engin_qc_p = costdata.admin_engin_qc_p;
+                ViewBag.tooling_cost = costdata.tooling_cost;
+                ViewBag.tooling_cost_p = costdata.tooling_cost_p;
+                ViewBag.process_margin_adjust = costdata.process_margin_adjust;
+                ViewBag.process_margin_adjust_p = costdata.process_margin_adjust_p;
+                ViewBag.other_fixed_cost_sub_total = costdata.other_fixed_cost_sub_total;
+                ViewBag.other_fixed_cost_sub_total_p = costdata.other_fixed_cost_sub_total_p;
+                ViewBag.grand_total_cost = costdata.grand_total_cost;
+                ViewBag.grand_total_cost_p = costdata.grand_total_cost_p;
+
+                ViewBag.production_capacity = costdata.production_capacity;
+                ViewBag.actual_working_time = costdata.actual_working_time;
+                ViewBag.cycle_time = costdata.cycle_time;
+                ViewBag.efficiency = costdata.efficiency;
+                ViewBag.daily_qty_days = costdata.daily_qty_days;
+                ViewBag.daily_qty_days_p = costdata.daily_qty_days_p;
+                ViewBag.daily_amount = costdata.daily_amount;
+
+                
+            }
+
+
     }
 }

@@ -25,10 +25,15 @@
                 <div style="margin-top:10px;margin-left:10px" class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <p style="margin-top:5px">SERACH :</p>
+                            <input type="text" style="width:130px;cursor:pointer;margin-left:5px" class="ui-icon-search" name="search_code" id="search_code" value="@ViewBag.searchcode" />
                         </li>
                         <li class="nav-item">
-                            <input type="text" style="width:130px;cursor:pointer;margin-left:5px" class="ui-icon-search" name="search_code" id="search_code" value="-" />
+                            <a class="btn btn-outline-dark mx-0" id="btn_search">
+                                <svg xmlns="http://www.w3.org/2000/svg" style="margin-left:-3px;margin-top:-3px"
+                                     width="13" height="13" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                </svg>
+                            </a>
                         </li>
                         <li class="nav-item">
                             <input type="button" onclick="SubmitData('Index');" style="margin-left:10px" class="btn btn-info w-250" value="Save" />

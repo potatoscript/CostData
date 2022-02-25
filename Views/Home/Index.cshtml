@@ -96,10 +96,10 @@
                                 </tr>
                                 <tr>
                                     <th>Size(ID×OD×W×W2)</th>
-                                    <td><input type="text" class="directInput" name="item_id" id="item_id" value="@ViewBag.item_id" /></td>
+                                    <td><input type="number" step="any" class="directInput" name="item_id" id="item_id" value="@ViewBag.item_id" /></td>
                                     <td><input type="text" class="directInput" name="item_od" id="item_od" value="@ViewBag.item_od" /></td>
-                                    <td><input type="text" class="directInput" name="item_w" id="item_w" value="@ViewBag.item_w" /></td>
-                                    <td><input type="text" class="directInput" name="item_w2" id="item_w2" value="@ViewBag.item_w2" /></td>
+                                    <td><input type="number" step="any" class="directInput" name="item_w" id="item_w" value="@ViewBag.item_w" /></td>
+                                    <td><input type="number" step="any" class="directInput" name="item_w2" id="item_w2" value="@ViewBag.item_w2" /></td>
                                 </tr>
                             </table>
                             <table class="table">
@@ -914,11 +914,7 @@
         </form>
 
 
-        <script>
-            jQuery(document).ready(function () {
-                document.getElementById("search_code").value = "@ViewBag.doc_no";
-            })
-        </script>
+
 
    
 

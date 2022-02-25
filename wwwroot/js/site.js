@@ -9,6 +9,7 @@ var _url = "/";          //if your app upload outside Default Web site - for my 
 
 var tooling_no = 0;
 
+
 jQuery(document).ready(function () {
     window.onresize = setWindow;
     setWindow();
@@ -30,6 +31,10 @@ jQuery(document).ready(function () {
         document.getElementById("rubber_yield_rate").value = dat.slice(4, 5);
 
         calculate_cost();
+
+        
+
+
 
     })
 
@@ -125,51 +130,119 @@ jQuery(document).ready(function () {
         };
     }
 
-    jQuery("#item_od").keypress(function (e) {
-        var chartCode = (e.which) ? e.which : event.keyCode;
-        alert(chartCode);
-        window.location.href = _url + "Home/ReloadIndex?itemod=" + document.getElementById("item_od").value;
-    })
 
+    jQuery("#item_od").keyup(function (e) {
+        var chartCode = (e.which) ? e.which : event.keyCode;
+        //alert(chartCode);
+        //window.location.href = _url + "Home/ReloadIndex?itemod=" + document.getElementById("item_od").value;
+        // to load the tooling list data
+        if (chartCode > 47 && chartCode < 58) {
+            window.location.href = _url + "Home/ReloadPage?" +
+                "CostId=" + document.getElementById("CostId").value +
+                "&issue_date=" + document.getElementById("issue_date").value +
+                "&section=" + document.getElementById("section").value +
+                "&doc_no=" + document.getElementById("doc_no").value +
+                "&wr_no=" + document.getElementById("wr_no").value +
+                "&sales=" + document.getElementById("sales").value +
+                "&revision_no=" + document.getElementById("revision_no").value +
+                "&checked_date=" + document.getElementById("checked_date").value +
+                "&approved_by=" + document.getElementById("approved_by").value +
+                "&expired_by=" + document.getElementById("expired_by").value +
+                "&customer=" + document.getElementById("customer").value +
+                "&parts_code=" + document.getElementById("parts_code").value +
+                "&item=" + document.getElementById("item").value +
+                "&product=" + document.getElementById("product").value +
+                "&product_type=" + document.getElementById("product_type").value +
+                //"&size=" + document.getElementById("size").value +
+                "&item_id=" + document.getElementById("item_id").value +
+                "&item_od=" + document.getElementById("item_od").value +
+                "&item_w=" + document.getElementById("item_w").value +
+                "&item_w2=" + document.getElementById("item_w2").value +
+                "&business_type=" + document.getElementById("business_type").value +
+                "&qty_month=" + document.getElementById("qty_month").value +
+                "&exchange_rate_jpy=" + document.getElementById("exchange_rate_jpy").value +
+                "&exchange_rate_usd=" + document.getElementById("exchange_rate_usd").value +
+                "&exchange_rate_eud=" + document.getElementById("exchange_rate_eud").value +
+                "&target_price_sgd=" + document.getElementById("target_price_sgd").value +
+                "&target_price_wr_sgd=" + document.getElementById("target_price_wr_sgd").value +
+                "&target_price_usd=" + document.getElementById("target_price_usd").value +
+                "&target_price_wr_usd=" + document.getElementById("target_price_wr_usd").value +
+                "&target_price_eud=" + document.getElementById("target_price_eud").value +
+                "&target_price_wr_eud=" + document.getElementById("target_price_wr_eud").value +
+                "&production_qty_day=" + document.getElementById("production_qty_day").value +
+                "&working_day=" + document.getElementById("working_day").value +
+                "&rubber_material_name=" + document.getElementById("rubber_material_name").value +
+                //"&rubber_database_price_current=" + document.getElementById("rubber_database_price_current").value +
+                //"&rubber_database_price_new=" + document.getElementById("rubber_database_price_new").value +
+                "&rubber_price_kg=" + document.getElementById("rubber_price_kg").value +
+                "&rubber_mixing_process_cost=" + document.getElementById("rubber_mixing_process_cost").value +
+                "&rubber_weight_g=" + document.getElementById("rubber_weight_g").value +
+                "&rubber_weight_kg=" + document.getElementById("rubber_weight_kg").value +
+                "&rubber_yield_rate=" + document.getElementById("rubber_yield_rate").value +
+                "&rubber_weight_kg_yieldrate=" + document.getElementById("rubber_weight_kg_yieldrate").value +
+                "&rubber_cost_sgd=" + document.getElementById("rubber_cost_sgd").value +
+                "&rubber_percentage_target_price=" + document.getElementById("rubber_percentage_target_price").value +
+                "&rubber_material_name2=" + document.getElementById("rubber_material_name2").value +
+                "&rubber_price_kg2=" + document.getElementById("rubber_price_kg2").value +
+                "&rubber_mixing_process_cost2=" + document.getElementById("rubber_mixing_process_cost2").value +
+                "&rubber_weight_g2=" + document.getElementById("rubber_weight_g2").value +
+                "&rubber_weight_kg2=" + document.getElementById("rubber_weight_kg2").value +
+                "&rubber_yield_rate2=" + document.getElementById("rubber_yield_rate2").value +
+                "&rubber_weight_kg_yieldrate2=" + document.getElementById("rubber_weight_kg_yieldrate2").value +
+                "&rubber_cost_sgd2=" + document.getElementById("rubber_cost_sgd2").value +
+                "&rubber_percentage_target_price2=" + document.getElementById("rubber_percentage_target_price2").value;
+        }
+        
+    })
+   
 
     jQuery("#search_code").click(function () {
         document.getElementById("search_code").select();
-        jQuery("#table_parts_code")
-            .show()
-            .css({
-                "position": "absolute",
-                "top": event.clientY + 20 + "px",
-                "left": event.clientX - 40 + "px"
+    });
 
-            })
-        jQuery('#table_parts_code td')
-            .click(function (event) {//for multiple select on process
-
-                var RI = jQuery(this).parent().parent().children().index(this.parentNode);
-
-                var table = document.getElementById("table_parts_code");
-                document.getElementById("search_code").value =
-                    table.rows[RI].cells[0].innerText;
-                document.getElementById("CostId").value =
-                    table.rows[RI].cells[2].innerText;
-
-                window.location.href = _url + "Home/Read?id=" + table.rows[RI].cells[2].innerText;
-
-
-                jQuery("#table_parts_code").hide();
-
-            })
-        jQuery('#table_parts_code th')
-            .click(function (event) {//for multiple select on process
-                jQuery("#table_parts_code").hide();
-
-            })
-    })
+    jQuery("#btn_search").click(function () {
+            window.location.href = _url + "Home/GetDocNo?" +
+                "search_code=" + document.getElementById("search_code").value;
+    });
 
     calculate_cost();
 
 
+    jQuery("#table_parts_code").hide();
+    if (String(window.location.href).indexOf("GetDocNo")!=-1) {
+        jQuery("#table_parts_code").show();
+    }
+
+    jQuery("#table_parts_code")
+        .css({
+            "position": "absolute",
+            "top": 60 + "px",
+            "left": 150 + "px"
+
+        })
     
+    jQuery('#table_parts_code td')
+        .click(function (event) {//for multiple select on process
+
+            var RI = jQuery(this).parent().parent().children().index(this.parentNode);
+
+            var table = document.getElementById("table_parts_code");
+            document.getElementById("search_code").value =
+                table.rows[RI].cells[0].innerText;
+            document.getElementById("CostId").value =
+                table.rows[RI].cells[2].innerText;
+
+            window.location.href = _url + "Home/Read?id=" + table.rows[RI].cells[2].innerText;
+
+
+            jQuery("#table_parts_code").hide();
+
+        })
+    jQuery('#table_parts_code th')
+        .click(function (event) {//for multiple select on process
+            jQuery("#table_parts_code").hide();
+
+        })
 
 
 });
