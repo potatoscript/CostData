@@ -15,14 +15,14 @@ jQuery(document).ready(function () {
         total_labor_cost += parseFloat(table.rows[k].cells[4].innerText);
         totalcost += parseFloat(table.rows[k].cells[5].innerText);
     }
-    document.getElementById("total_overhead_cost").value = total_overhead_cost;
-    document.getElementById("total_machine_cost").value = total_machine_cost;
-    document.getElementById("total_labor_cost").value = total_labor_cost;
-    document.getElementById("process_cost").value = totalcost;
-    document.getElementById("direct_process_cost").value = totalcost;// in the main page
-    document.getElementById("overhead_cost").value = total_overhead_cost;
-    document.getElementById("machine_cost").value = total_machine_cost;
-    document.getElementById("labor_cost").value = total_labor_cost;
+    document.getElementById("total_overhead_cost").value = total_overhead_cost.toFixed(4);
+    document.getElementById("total_machine_cost").value = total_machine_cost.toFixed(4);
+    document.getElementById("total_labor_cost").value = total_labor_cost.toFixed(4);
+    document.getElementById("process_cost").value = totalcost.toFixed(4);
+    document.getElementById("direct_process_cost").value = totalcost.toFixed(4);// in the main page
+    document.getElementById("overhead_cost").value = total_overhead_cost.toFixed(4);
+    document.getElementById("machine_cost").value = total_machine_cost.toFixed(4);
+    document.getElementById("labor_cost").value = total_labor_cost.toFixed(4);
 
     var price_sgd = parseFloat(document.getElementById("target_price_sgd").value);
     document.getElementById("overhead_cost_p").value = ((total_overhead_cost / price_sgd)*100).toFixed(1);
@@ -33,6 +33,9 @@ jQuery(document).ready(function () {
     document.getElementById("process_cost_sub_total").value = process_cost_sub_total.toFixed(4);
     document.getElementById("process_cost_sub_total_p").value = ((process_cost_sub_total / price_sgd) * 100).toFixed(1);
 
+
+    
+
     jQuery("#processtypes").change(function () {
         document.getElementById("product_type").value = document.getElementById("processtypes").value;
 
@@ -40,7 +43,7 @@ jQuery(document).ready(function () {
 
             jQuery.ajax({
                 type: "GET",
-                url: _url + 'CostProcess/IndexGetType',
+                url: _url + 'CostProcess/Index',
                 data: jQuery.param({
                     p_doc_no: document.getElementById("doc_no").value,
                     p_od: document.getElementById("od").value,
@@ -52,6 +55,7 @@ jQuery(document).ready(function () {
                     jQuery("#form-modal .modal-title").html("Process Cost Data");
                     jQuery("#form-modal").modal('show');
 
+                    //make sure the select value stay at the selected value after select
                     document.getElementById("processtypes").value = document.getElementById("product_type").value;
                 }
             })
@@ -76,8 +80,10 @@ jQuery(document).ready(function () {
             document.getElementById("process_type_data").value = table.rows[ri].cells[1].innerText;
             document.getElementById("overhead_cost_data").value = table.rows[ri].cells[2].innerText;
             document.getElementById("machine_cost_data").value = table.rows[ri].cells[3].innerText;
-            document.getElementById("labor_cost_data").value = table.rows[ri].cells[4].innerText;
-            document.getElementById("total_cost_data").value = total_cost_data;
+            document.getElementById("labor_cost_data").value = parseFloat(table.rows[ri].cells[4].innerText).toFixed(4);
+            document.getElementById("total_cost_data").value = total_cost_data.toFixed(4);
+
+            
 
         })
         .click(function () {
@@ -137,7 +143,8 @@ jQuery(document).ready(function () {
     }
     */
 
-    
+    if (document.getElementById("product_type").value.length>2)
+    document.getElementById("processtypes").value = document.getElementById("product_type").value;
 
 
 });
@@ -153,7 +160,8 @@ function jQueryAjaxPostCostProcess(form, page) {
             processData: false,
             success: function (res) {
                 if (res.isValid) {
-                        document.getElementById("direct_process_cost").click();
+                    document.getElementById("direct_process_cost").click();
+                    document.getElementById("product_type").value = document.getElementById("processtypes").value;
                 }
             },
             error: function (err) {
@@ -180,6 +188,8 @@ function delete_process_data(id) {
                 //set the id to zero for initial state
                 var url = _url + "CostProcess/Index?p_doc_no=" + document.getElementById("doc_no").value + "&p_od=" + document.getElementById("od").value;
                 showPopup(url, 'Process Cost Data');
+
+                
             }
         });
     }

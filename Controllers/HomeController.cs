@@ -110,7 +110,7 @@ namespace CostNag.Controllers
             {
                 HttpClient clientdata = _api.Initial();
 
-                var action = "api/data/get-cost-by-id/" + CostId;
+                var action = "api/cost/get-cost-by-id/" + CostId;
                 HttpResponseMessage resdata = await clientdata.GetAsync(action).ConfigureAwait(false);
 
                 resdata.EnsureSuccessStatusCode();
@@ -207,7 +207,7 @@ namespace CostNag.Controllers
 
             HttpClient clientdata = _api.Initial();
 
-            var action = "api/data/get-cost-by-id/"+id;
+            var action = "api/cost/get-cost-by-id/"+id;
             HttpResponseMessage resdata = await clientdata.GetAsync(action).ConfigureAwait(false);
 
             resdata.EnsureSuccessStatusCode();
@@ -242,7 +242,7 @@ namespace CostNag.Controllers
             HttpClient client = _api.Initial();
             try
             {
-                HttpResponseMessage res = await client.GetAsync("api/data/get-cost-by-search/"+search_code);
+                HttpResponseMessage res = await client.GetAsync("api/cost/get-cost-by-search/"+search_code);
                 if (res.IsSuccessStatusCode)
                 {
                     var result = res.Content.ReadAsStringAsync().Result;
@@ -2632,7 +2632,7 @@ namespace CostNag.Controllers
 
                     var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
 
-                    var action = "api/data/delete-cost-by-id/" + Id;
+                    var action = "api/cost/delete-cost-by-id/" + Id;
 
                     HttpResponseMessage res = await client.PostAsync(action, content).ConfigureAwait(false);
 
@@ -2653,10 +2653,10 @@ namespace CostNag.Controllers
 
             var content = new StringContent(JsonConvert.SerializeObject(model),Encoding.UTF8, "application/json");
 
-            var action = "api/data/add-cost"; 
+            var action = "api/cost/add-cost"; 
             if (model.CostId > 0)
             {
-                action = "api/data/update-cost-by-id/" + model.CostId;
+                action = "api/cost/update-cost-by-id/" + model.CostId;
             }
 
             HttpResponseMessage res = await client.PostAsync(action, content).ConfigureAwait(false);

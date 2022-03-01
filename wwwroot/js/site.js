@@ -679,11 +679,55 @@ function showPopup(url, title) {
 }
 
 
+function showPopupDirectProcess(url, title) {
+    var total_rubber_weight = parseFloat(document.getElementById("rubber_weight_g").value) +
+        parseFloat(document.getElementById("rubber_weight_g2").value);
+
+    jQuery.ajax({
+        type: "GET",
+        url: _url + 'CostProcess/Index',
+        data: jQuery.param({
+            p_doc_no: document.getElementById("doc_no").value,
+            p_od: document.getElementById("item_od").value,
+            p_process_type: document.getElementById("product_type").value,
+            p_rubber_weight: total_rubber_weight
+        }),
+        success: function (res) {
+            jQuery("#form-modal .modal-body").html(res);
+            jQuery("#form-modal .modal-title").html("Process Cost Data");
+            jQuery("#form-modal").modal('show');
+
+        }
+    })
+
+
+}
+
+
+
+function showPopupMasterProcess(url, title) {
+
+    jQuery.ajax({
+        type: "GET",
+        url: url,
+        data: jQuery.param({ p_type:"Bonding"}),
+        success: function (res) {
+            jQuery("#form-modal .modal-body").html(res);
+            jQuery("#form-modal .modal-title").html(title);
+            jQuery("#form-modal").modal('show');
+        }
+    })
+
+
+}
+
+
 function showPopupMaster(url, title) {
 
     jQuery.ajax({
         type: "GET",
         url: url,
+        //data: jQuery.param({ p_type:"Bonding"}),
         success: function (res) {
             jQuery("#form-modal .modal-body").html(res);
             jQuery("#form-modal .modal-title").html(title);

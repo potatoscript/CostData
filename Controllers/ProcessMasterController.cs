@@ -18,7 +18,7 @@ namespace CostNag.Controllers
 
         CostAPI _api = new CostAPI();
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string p_type)
         {
             CostAPI _api = new CostAPI();
 
@@ -43,8 +43,8 @@ namespace CostNag.Controllers
             ViewBag.ProcessId = 0;
 
 
-                ViewBag.p_od_min = 5;
-                ViewBag.p_od_max = 50;
+            ViewBag.p_od_min = 5;
+            ViewBag.p_od_max = 50;
 
 
 
@@ -56,13 +56,7 @@ namespace CostNag.Controllers
 
             HttpClient clientdata = _api.Initial();
 
-            //var action = "api/processmaster/get-processmaster-by-od/" + p_od;
-            //if (p_od<5)
-            //{
-            //    action = "api/processmaster/get-all-processesmaster";
-            //}
-            //var action = "api/processmaster/get-processmaster-by-type/"+ p_type;
-            var action = "api/processmaster/get-all-processesmaster";
+            var action = "api/processmaster/get-processmaster-by-type/" + p_type;
             HttpResponseMessage resdata = await clientdata.GetAsync(action).ConfigureAwait(false);
 
             resdata.EnsureSuccessStatusCode();
@@ -79,9 +73,9 @@ namespace CostNag.Controllers
                         process_type = o.process_type,
                         od_min = o.od_min,
                         od_max = o.od_max,
-                        overhead_cost = o.overhead_cost,
-                        machine_cost = o.machine_cost,
-                        labor_cost = o.labor_cost,
+                        overhead_cost = double.Parse(o.overhead_cost.ToString("0.0000")),
+                        machine_cost = double.Parse(o.machine_cost.ToString("0.0000")),
+                        labor_cost = double.Parse(o.labor_cost.ToString("0.0000")),
                         total_cost = double.Parse(o.total_cost.ToString("0.0000")),
                         ProcessMasterId = o.ProcessMasterId
                     });

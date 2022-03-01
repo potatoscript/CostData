@@ -60,7 +60,8 @@ namespace CostNag.Models
                 new ListModel(){processType = "Rubber"},
                 new ListModel(){processType = "Spring"},
                 new ListModel(){processType = "Step Forming"},
-                new ListModel(){processType = "Trimmer"}
+                new ListModel(){processType = "Trimmer"},
+                new ListModel(){processType = "Trimming"}
             };
         }
 

@@ -18,7 +18,7 @@ namespace CostNag.Controllers
 
         
 
-        public async Task<IActionResult> Index(string p_doc_no, int p_od, float p_rubber_weight)
+        public async Task<IActionResult> Index(string p_doc_no, int p_od, string p_process_type, float p_rubber_weight)
         {
             CostAPI _api = new CostAPI();
 
@@ -35,7 +35,7 @@ namespace CostNag.Controllers
             ViewBag.p_od = p_od;
             ViewBag.p_process_cost = 0;
             ViewBag.p_process_name = "-";
-            ViewBag.p_process_type = "-";
+            ViewBag.p_process_type = p_process_type;
             ViewBag.p_overhead_cost = 0;
             ViewBag.p_machine_cost = 0;
             ViewBag.p_total_labor_cost = 0;
@@ -80,11 +80,10 @@ namespace CostNag.Controllers
 
             HttpClient clientdata = _api.Initial();
 
-            var action = "api/processmaster/get-processmaster-by-od/" + p_od;
-            if(p_od<5)
-                action = "api/processmaster/get-all-processesmaster";
 
-
+            var action = "api/processmaster/get-processmaster-by-odtype/" + p_od + "/" + p_process_type;
+            if (p_od < 5)
+                action = "api/processmaster/get-processmaster-by-type/" + p_process_type;
 
             HttpResponseMessage resdata = await clientdata.GetAsync(action).ConfigureAwait(false);
 
