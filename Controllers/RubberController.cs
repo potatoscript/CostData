@@ -73,7 +73,7 @@ namespace CostNag.Controllers
             var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
 
             var action = "api/rubber/add-rubber-data";
-            if (model.RubberId > 0)
+            if (model.RubberId != 0)
             {
                 action = "api/rubber/update-rubber-by-id/" + model.RubberId;
             }

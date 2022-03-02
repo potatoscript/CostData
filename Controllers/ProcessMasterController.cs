@@ -97,7 +97,7 @@ namespace CostNag.Controllers
             var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
 
             var action = "api/processmaster/add-processmaster"; 
-            if (model.ProcessMasterId > 0)
+            if (model.ProcessMasterId != 0)
             {
                 action = "api/processmaster/update-processmaster-by-id/" + model.ProcessMasterId;
             }

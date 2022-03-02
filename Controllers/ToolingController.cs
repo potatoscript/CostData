@@ -21,7 +21,7 @@ namespace CostNag.Controllers
 
             ViewBag.description = "-";
             ViewBag.source = "-";
-            ViewBag.qty = 0;
+            ViewBag.qty = 1;
             ViewBag.unit = "-";
             ViewBag.price = 0;
             ViewBag.ToolingId = 0;
@@ -75,7 +75,7 @@ namespace CostNag.Controllers
             var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
 
             var action = "api/tooling/add-tooling-data";
-            if (model.ToolingId > 0)
+            if (model.ToolingId != 0)
             {
                 action = "api/tooling/update-tooling-by-id/" + model.ToolingId;
             }

@@ -13,7 +13,7 @@
                     <tr>
                         <th>Description:</th>
                         <th>Source:</th>
-                        <th>Qty:</th>
+                        <th style="display:none">Qty:</th>
                         <th>Unit:</th>
                         <th>Price:</th>
                         <th>OD:</th>
@@ -30,10 +30,10 @@
                                    name="source" id="source"
                                    value="@ViewBag.source" />
                         </td>
-                        <td>
+                        <td style="display:none">
                             <input type="number" step="any" class="directInput"
                                    name="qty" id="qty"
-                                   value="@ViewBag.mixing_process_cost" />
+                                   value="@ViewBag.qty" />
                         </td>
                         <td>
                             <input type="text" class="directInput"
