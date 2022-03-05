@@ -16,7 +16,9 @@
                         <th style="display:none">Qty:</th>
                         <th>Unit:</th>
                         <th>Price:</th>
-                        <th>OD:</th>
+                        <th>OD Min:</th>
+                        <th>OD Max:</th>
+                        <th>Type:</th>
                     </tr>
                     <tr>
                         <td>
@@ -49,6 +51,16 @@
                             <input type="number" step="any" class="directInput"
                                    name="od" id="od"
                                    value="@ViewBag.od" />
+                        </td>
+                        <td>
+                            <input type="number" step="any" class="directInput"
+                                   name="od_max" id="od_max"
+                                   value="@ViewBag.od_max" />
+                        </td>
+                        <td>
+                            <input type="text"  class="directInput"
+                                   name="type" id="type"
+                                   value="@ViewBag.type" />
                         </td>
 
                     </tr>
@@ -88,7 +100,9 @@
                 <th>Qty</th>
                 <th>Unit</th>
                 <th>Price</th>
-                <th>OD</th>
+                <th>OD Min</th>
+                <th>OD Max</th>
+                <th>Type</th>
                 <th style="display:none">ID</th>
                 <th></th>
             </tr>
@@ -102,6 +116,8 @@
                         <td>@i.unit</td>
                         <td>@i.price</td>
                         <td>@i.od</td>
+                        <td>@i.od_max</td>
+                        <td>@i.type</td>
                         <td style="display:none">@i.ToolingId</td>
                         <td>
                             <a style="height:25px;width:25px;cursor:pointer" 　

@@ -22,7 +22,10 @@ jQuery(document).ready(function () {
             document.getElementById("unit").value = table.rows[ri].cells[3].innerText;
             document.getElementById("price").value = table.rows[ri].cells[4].innerText;
             document.getElementById("od").value = table.rows[ri].cells[5].innerText;
-            document.getElementById("ToolingId").value = table.rows[ri].cells[6].innerText;
+            document.getElementById("od_max").value = table.rows[ri].cells[6].innerText;
+            document.getElementById("type").value = table.rows[ri].cells[7].innerText;
+
+            document.getElementById("ToolingId").value = table.rows[ri].cells[8].innerText;
 
             document.getElementById("statusTooling").innerText = "EDITING";
 

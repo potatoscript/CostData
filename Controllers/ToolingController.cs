@@ -26,6 +26,8 @@ namespace CostNag.Controllers
             ViewBag.price = 0;
             ViewBag.ToolingId = 0;
             ViewBag.od = 0;
+            ViewBag.od_max = 0;
+            ViewBag.type = "-";
 
 
             Tooling list = new Tooling();
@@ -54,6 +56,8 @@ namespace CostNag.Controllers
                         unit = o.unit,
                         price = o.price,
                         od = o.od,
+                        od_max = o.od_max,
+                        type = o.type,
                         ToolingId = o.ToolingId
 
                     });

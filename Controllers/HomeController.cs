@@ -127,7 +127,7 @@ namespace CostNag.Controllers
 
             await RubberViewBag();
 
-            await ToolingViewBag(item_od);
+            await ToolingViewBag(item_od, product_type);
 
             ViewBag.searchcode = "-";
             //set the input field values as keyin value
@@ -220,7 +220,7 @@ namespace CostNag.Controllers
                 costdata = JsonConvert.DeserializeObject<Cost>(resultdata);
 
                 DataValue(costdata);
-                await ToolingViewBag(costdata.item_od);
+                await ToolingViewBag(costdata.item_od, costdata.product_type);
                 await RubberViewBag();
 
                 ListModel list = new ListModel();
@@ -305,13 +305,13 @@ namespace CostNag.Controllers
             return null;
         }
 
-        public async Task<IActionResult> ToolingViewBag(double item_od)
+        public async Task<IActionResult> ToolingViewBag(double item_od, string item_type)
         {
             Tooling listTooling = new Tooling();
             List<Tooling> tooling = new List<Tooling>();
 
             HttpClient t = _api.Initial();
-            HttpResponseMessage resTooling = await t.GetAsync("api/tooling/get-tooling-by-od/" + item_od);
+            HttpResponseMessage resTooling = await t.GetAsync("api/tooling/get-tooling-by-od/" + item_od+"/"+item_type);
             if (resTooling.IsSuccessStatusCode)
             {
                 var result = resTooling.Content.ReadAsStringAsync().Result;

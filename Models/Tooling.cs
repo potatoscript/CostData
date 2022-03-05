@@ -20,6 +20,10 @@ namespace CostNag.Models
         public double price { get; set; }
         public double od { get; set; }
 
+        public double od_max { get; set; }
+
+        public string type { get; set; }
+
         public List<Tooling> data = new List<Tooling>();
     }
 }
