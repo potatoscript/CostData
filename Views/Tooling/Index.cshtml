@@ -58,7 +58,7 @@
                                    value="@ViewBag.od_max" />
                         </td>
                         <td>
-                            <input type="text"  class="directInput"
+                            <input type="text" class="directInput"
                                    name="type" id="type"
                                    value="@ViewBag.type" />
                         </td>
@@ -95,6 +95,7 @@
     <div id="div_master_data">
         <table id="table_tooling">
             <tr>
+                <th>No</th>
                 <th>Description</th>
                 <th>Source</th>
                 <th>Qty</th>
@@ -107,9 +108,11 @@
                 <th></th>
             </tr>
             @{
+                var n = 1;
                 foreach (var i in (List<Tooling>)ViewData["data"])
                 {
                     <tr>
+                        <td>@n</td>
                         <td>@i.description</td>
                         <td>@i.source</td>
                         <td>@i.qty</td>
@@ -132,14 +135,87 @@
                         </td>
 
                     </tr>
+                    n++;
 
                 }
             }
         </table>
+
     </div>
-
-
 </form>
+<table cellpadding="0" cellspacing="0" style="margin-left:-20px;margin-top:-50px">
+    <tr>
+        @if (ViewBag.first > 10)
+        {
+            <td style="padding-left:5px;">
+                <button class="next" onclick="PageClick(
+                            '@Url.Action("IndexPage", "Tooling",
+						        new
+						        {
+                                   CurrentPage = ViewBag.first-10,
+                                   first = ViewBag.first-10,
+                                   last = ViewBag.last-10
+                                },
+						        Context.Request.Scheme)',
+                            'Tooling Master');">
+                    &#60&#60
+                </button>
+            </td>
+        }
+
+        <!--use ni++ to get the last page with one data -->
+        @{var ni = ViewBag.PageCount; }
+
+        @for (int i = 1; i <= ni; i++)
+        {
+            if ((i+1 >= ViewBag.first && i+1 <= ViewBag.last))
+            {
+                <td style="padding-left:5px;">
+                    @if (i != ViewBag.CurrentPageIndex)
+                    {
+                        <button onclick="PageClick(
+                                '@Url.Action("IndexPage", "Tooling",
+						            new
+						            {
+                                       CurrentPage = i,
+                                       first = ViewBag.first,
+                                       last = ViewBag.last
+                                    },
+						            Context.Request.Scheme)',
+                                'Tooling Master');">
+                            @i
+                        </button>
+                    }
+                    else
+                    {
+                        <input type="text" class="currentPage" value="@i" />
+                    }
+                </td>
+            }
+
+        }
+        @if (ViewBag.PageCount >= ViewBag.first + 9)
+        {
+            <td style="padding-left:5px;">
+                <button class="next" onclick="PageClick(
+                    '@Url.Action("IndexPage", "Tooling",
+						new
+						{
+                           CurrentPage = ViewBag.first+10,
+                           first = ViewBag.first+10,
+                           last = ViewBag.last+10
+                        },
+						Context.Request.Scheme)',
+                    'Tooling Master');">
+                    &#62&#62
+                </button>
+            </td>
+        }
+    </tr>
+</table>
+<input type="hidden" id="hfCurrentPageIndex" name="currentPageIndex" />
+
+
 
 
 <script src="~/js/tooling.js" asp-append-version="true"></script>

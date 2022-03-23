@@ -25,5 +25,16 @@ namespace CostNag.Models
         public string type { get; set; }
 
         public List<Tooling> data = new List<Tooling>();
+
+        ///<summary>
+        /// Gets or sets CurrentPageIndex.
+        ///</summary>
+        public int CurrentPageIndex { get; set; }
+
+        ///<summary>
+        /// Gets or sets PageCount.
+        ///</summary>
+        public int PageCount { get; set; }
+
     }
 }

@@ -55,6 +55,19 @@ label,input{
     padding-right:5px;
 }
 
+.reloadtoolinglist{
+    border:2px solid red;
+}
+
+#btn_reloadToolingList{
+    font-size:16px;
+    color:red;
+    width:130px;
+    height:80px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
 #CostId{
  border:0px;
  height:15px;
@@ -370,3 +383,29 @@ label,input{
         text-align: center;
         cursor: pointer;
     }
+
+button {
+    border: 1px solid black;
+    width: 40px;
+    height: 35px;
+    font-size: 15px;
+    border-radius: 8px;
+}
+
+.currentPage {
+    border: 1px solid green;
+    width: 40px;
+    height: 35px;
+    font-size: 15px;
+    border-radius: 8px;
+}
+
+.next {
+    border: 1px solid black;
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    background: lightblue;
+}
