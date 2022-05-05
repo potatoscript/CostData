@@ -781,6 +781,18 @@ function showPopupMasterProcess(url, title) {
 
 }
 
+function showPopupMasterTooling(url, title) {
+    jQuery.ajax({
+        type: "GET",
+        url: url,
+        data: jQuery.param({ search: "-" }),
+        success: function (res) {
+            jQuery("#form-modal .modal-body").html(res);
+            jQuery("#form-modal .modal-title").html(title);
+            jQuery("#form-modal").modal('show');
+        }
+    })
+}
 
 function showPopupMaster(url, title) {
 

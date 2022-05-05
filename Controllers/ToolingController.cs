@@ -16,10 +16,10 @@ namespace CostNag.Controllers
 
         CostAPI _api = new CostAPI();
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search)
         {
 
-            ViewBag.description = "-";
+            ViewBag.description = search;
             ViewBag.source = "-";
             ViewBag.qty = 1;
             ViewBag.unit = "-";
@@ -42,6 +42,10 @@ namespace CostNag.Controllers
             ViewBag.last = 10;
 
             var action = "api/tooling/get-tooling-by-page/" + 1;
+            if(search!="" && search != "-")
+            {
+                action = "api/tooling/get-tooling-by-search/" + search;
+            }
             HttpResponseMessage resdata = await clientdata.GetAsync(action).ConfigureAwait(false);
 
             resdata.EnsureSuccessStatusCode();

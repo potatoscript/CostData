@@ -47,7 +47,7 @@ function jQueryAjaxPostTooling(form, page) {
         processData: false,
         success: function (res) {
             if (res.isValid) {
-                document.getElementById("ToolingMaster").click();
+                document.getElementById("description_search").click();
             }
         },
         error: function (err) {
@@ -93,4 +93,17 @@ function delete_tooling(id) {
 
 function refreshTooling() {
     document.getElementById("ToolingMaster").click();
+}
+
+function searchTooling(url) {
+    jQuery.ajax({
+        type: "GET",
+        url: url,
+        data: jQuery.param({ search: document.getElementById("description").value }),
+        success: function (res) {
+            jQuery("#form-modal .modal-body").html(res);
+            jQuery("#form-modal .modal-title").html("Tooling");
+            jQuery("#form-modal").modal('show');
+        }
+    })
 }
